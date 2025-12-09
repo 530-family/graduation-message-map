@@ -151,7 +151,7 @@ echo -e "${GREEN}========================================${NC}"
 
 # JSON 형식으로도 출력
 echo ""
-echo -e "${YELLOW}JSON 출력:${NC}"
+echo -e "${YELLOW}JSON 출력 (전체):${NC}"
 echo "{
   \"address\": \"$ADDRESS\",
   \"refined\": \"$REFINED_TEXT\",
@@ -168,6 +168,16 @@ echo "{
     \"level3\": \"$LEVEL3\",
     \"level4L\": \"$LEVEL4L\",
     \"level5\": \"$LEVEL5\"
+  }
+}" | jq '.'
+
+echo ""
+echo -e "${YELLOW}JSON 출력 (간단):${NC}"
+echo "{
+  \"address\": \"$REFINED_TEXT\",
+  \"coordinates\": {
+    \"longitude\": $X,
+    \"latitude\": $Y
   }
 }" | jq '.'
 
