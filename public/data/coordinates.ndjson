@@ -1,0 +1,152 @@
+{
+  "schoolName": "세종과학예술영재학교",
+  "address": "세종특별자치시 달빛1로 265 (아름동)",
+  "coordinates": {
+    "longitude": 127.249402773,
+    "latitude": 36.522914781
+  }
+}
+{
+  "schoolName": "광주과학고등학교",
+  "address": "광주광역시 북구 첨단과기로 215 (오룡동)",
+  "coordinates": {
+    "longitude": 126.848196344,
+    "latitude": 35.228158701
+  }
+}
+{
+  "schoolName": "심석고등학교",
+  "address": "경기도 남양주시 화도읍 마석로 62",
+  "coordinates": {
+    "longitude": 127.307784975,
+    "latitude": 37.656257145
+  }
+}
+{
+  "schoolName": "울산과학고등학교",
+  "address": "울산광역시 울주군 상북면 도동신리로 117",
+  "coordinates": {
+    "longitude": 129.101496116,
+    "latitude": 35.598593609
+  }
+}
+{
+  "schoolName": "한국외국어대학교",
+  "address": "서울특별시 동대문구 이문로 107 (이문동)",
+  "coordinates": {
+    "longitude": 127.060034839,
+    "latitude": 37.596677149
+  }
+}
+{
+  "schoolName": "금남중학교",
+  "address": "경상남도 하동군 금남면 섬진강대로 656-7",
+  "coordinates": {
+    "longitude": 127.839348756,
+    "latitude": 34.986773922
+  }
+}
+{
+  "schoolName": "광주제일고등학교",
+  "address": "광주광역시 북구 독립로237번길 33 (누문동)",
+  "coordinates": {
+    "longitude": 126.906432875,
+    "latitude": 35.153642328
+  }
+}
+{
+  "schoolName": "삼천포중학교",
+  "address": "경상남도 사천시 벌리6길 77 (벌리동)",
+  "coordinates": {
+    "longitude": 128.085776151,
+    "latitude": 34.942174237
+  }
+}
+{
+  "schoolName": "경북대학교 사범대학 부설중학교",
+  "address": "대구광역시 중구 달구벌대로 2178 (대봉동)",
+  "coordinates": {
+    "longitude": 128.601515797,
+    "latitude": 35.862384278
+  }
+}
+{
+  "schoolName": "대평중학교",
+  "address": "경기도 수원시 장안구 만석로68번길 7 (정자동)",
+  "coordinates": {
+    "longitude": 126.989914067,
+    "latitude": 37.297250859
+  }
+}
+{
+  "schoolName": "시지중학교",
+  "address": "대구광역시 수성구 신매로 66 (신매동)",
+  "coordinates": {
+    "longitude": 128.708915366,
+    "latitude": 35.835535114
+  }
+}
+{
+  "schoolName": "번동중학교",
+  "address": "서울특별시 강북구 오현로35길 87 (번동)",
+  "coordinates": {
+    "longitude": 127.036693388,
+    "latitude": 37.631869899
+  }
+}
+{
+  "schoolName": "웅천고등학교",
+  "address": "충청남도 보령시 웅천읍 방축길 87",
+  "coordinates": {
+    "longitude": 126.605010705,
+    "latitude": 36.234665777
+  }
+}
+{
+  "schoolName": "용남중학교",
+  "address": "경상남도 사천시 용현면 선진리 67",
+  "coordinates": {
+    "longitude": 128.06564067174486,
+    "latitude": 35.04466130163958
+  }
+}
+{
+  "schoolName": "대천고등학교",
+  "address": "충청남도 보령시 대고로 58 (죽정동)",
+  "coordinates": {
+    "longitude": 126.603857945,
+    "latitude": 36.366678288
+  }
+}
+{
+  "schoolName": "거제중앙고등학교",
+  "address": "경상남도 거제시 중곡로2길 61 (고현동)",
+  "coordinates": {
+    "longitude": 128.636812235,
+    "latitude": 34.893667010
+  }
+}
+{
+  "schoolName": "장전중학교",
+  "address": "부산광역시 금정구 금샘로18번길 39 (장전동)",
+  "coordinates": {
+    "longitude": 129.078003595,
+    "latitude": 35.228851298
+  }
+}
+{
+  "schoolName": "천곡중학교",
+  "address": "광주광역시 광산구 월계로16번길 78 (월계동)",
+  "coordinates": {
+    "longitude": 126.834867385,
+    "latitude": 35.211974174
+  }
+}
+{
+  "schoolName": "동평중학교",
+  "address": "부산광역시 부산진구 백양순환로119번길 12-31 (부암동)",
+  "coordinates": {
+    "longitude": 129.041719460,
+    "latitude": 35.170975521
+  }
+}
