@@ -27,6 +27,18 @@ const fixMarkerIcon = () => {
   });
 };
 
+// Create orange marker icon
+const orangeIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 export default function KoreaMap() {
   const [schools, setSchools] = useState<SchoolData[]>([]);
 
@@ -65,10 +77,10 @@ export default function KoreaMap() {
   }, []);
 
   // 한국의 중심 좌표 (서울)
-  const center: [number, number] = [37.5665, 126.978];
+  const center: [number, number] = [35.8665, 127.878];
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen pt-36">
       <MapContainer
         center={center}
         zoom={7}
@@ -86,6 +98,7 @@ export default function KoreaMap() {
               school.coordinates.latitude,
               school.coordinates.longitude,
             ]}
+            icon={orangeIcon}
           >
             <Popup>
               <div>
