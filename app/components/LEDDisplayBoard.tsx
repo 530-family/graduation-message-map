@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Mail, X, Send } from "lucide-react";
 
 export default function LEDDisplayBoard() {
   const [isVisible, setIsVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
   const [schoolCount, setSchoolCount] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -46,6 +48,26 @@ export default function LEDDisplayBoard() {
       ? `졸업을 축하합니다! - 총 ${schoolCount}개교`
       : "졸업을 축하합니다!";
 
+  const handleEmailClick = () => {
+    const subject = encodeURIComponent(
+      "[축사] OO중/고등학교 졸업식 축사 요청드립니다"
+    );
+    const body = encodeURIComponent(`안녕하세요, {자기소개}
+
+다가오는 졸업식을 앞두고,
+저희 학교 학생들을 위한 졸업 축하 메세지를 부탁드립니다.
+
+[학교명 / 소재지]:
+[졸업식 날짜]:
+[꼭 포함했으면 하는 내용]:
+
+축하 영상은 본 메일로 회신해주세요.
+감사합니다.`);
+
+    window.location.href = `mailto:j7840790@gmail.com?subject=${subject}&body=${body}`;
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 z-500 bg-linear-to-b from-gray-900 to-black py-4 border-b-4 border-yellow-500 shadow-2xl">
       <div className="container mx-auto px-4">
@@ -81,7 +103,71 @@ export default function LEDDisplayBoard() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent animate-pulse"></div>
           </div>
         </div>
+
+        {/* 우리 학교도? 버튼 */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="absolute top-full mt-4 right-4 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 rounded-lg px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-semibold z-[1000] text-yellow-400 hover:text-yellow-300"
+        >
+          <Mail className="w-5 h-5 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
+          <span className="font-[PfStardust30] font-(800) drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">
+            우리 학교도?
+          </span>
+        </button>
       </div>
+
+      {/* 모달 */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1001] p-4">
+          <div className="bg-gradient-to-b from-gray-900 to-black rounded-lg shadow-2xl max-w-md w-full p-6 relative border-2 border-yellow-600/30">
+            {/* 닫기 버튼 */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-yellow-400/70 hover:text-yellow-400 transition-colors"
+            >
+              <X className="w-6 h-6 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
+            </button>
+
+            {/* 제목 */}
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4 font-[PfStardust30] drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
+              졸업 축하 요청
+            </h2>
+
+            {/* 설명 */}
+            <p className="text-yellow-100/80 mb-6">
+              여러분의 학교에도 졸업 축하 메세지를 전할 수 있습니다.
+            </p>
+
+            {/* 가이드라인 */}
+            <div className="bg-black/50 border border-yellow-600/30 rounded-lg p-4 mb-6">
+              <h3 className="font-semibold text-yellow-400 mb-2 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">
+                제안 시 포함해주세요:
+              </h3>
+              <ul className="text-sm text-yellow-100/70 space-y-1">
+                <li>
+                  • 학교명 / 소재지 (동명의 다른 학교와 헷갈릴 수 있어요!)
+                </li>
+                <li>• 졸업식 날짜 </li>
+                <li>• 꼭 포함했으면 하는 내용 (선택사항)</li>
+              </ul>
+            </div>
+
+            {/* 이메일 보내기 버튼 */}
+            <button
+              onClick={handleEmailClick}
+              className="w-full bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 text-yellow-400 hover:text-yellow-300 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]"
+            >
+              <Send className="w-5 h-5" />
+              이메일 보내기
+            </button>
+
+            {/* 추가 안내 */}
+            <p className="text-xs text-yellow-100/50 text-center mt-4">
+              요청해주신 축사는 검토 후 순차적으로 발송됩니다.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
