@@ -77,10 +77,10 @@ export default function KoreaMap() {
   }, []);
 
   // 한국의 중심 좌표 (서울)
-  const center: [number, number] = [35.8665, 127.878];
+  const center: [number, number] = [36.6665, 127.878];
 
   return (
-    <div className="w-full h-screen pt-36">
+    <div className="w-full h-screen">
       <MapContainer
         center={center}
         zoom={7}

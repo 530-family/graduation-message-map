@@ -47,7 +47,7 @@ export default function LEDDisplayBoard() {
       : "졸업을 축하합니다!";
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-gray-900 to-black py-4 border-b-4 border-yellow-500 shadow-2xl">
+    <div className="fixed top-0 left-0 right-0 z-500 bg-linear-to-b from-gray-900 to-black py-4 border-b-4 border-yellow-500 shadow-2xl">
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden bg-black/50 rounded-lg border-2 border-yellow-600/30 p-4 shadow-inner">
           {/* 상단 인디케이터 라인 */}
