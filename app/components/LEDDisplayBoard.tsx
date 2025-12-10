@@ -14,8 +14,10 @@ export default function LEDDisplayBoard() {
     fetch("/data/coordinates.ndjson")
       .then((res) => res.text())
       .then((text) => {
-        const lines = text.trim().split("\n");
-        setSchoolCount(lines.length);
+        // Remove all whitespace and newlines, then split by }{
+        const cleaned = text.replace(/\s+/g, "");
+        const objects = cleaned.split("}{");
+        setSchoolCount(objects.length);
       })
       .catch((err) => console.error("Failed to load school data:", err));
 
