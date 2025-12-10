@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Mail, X, Copy } from "lucide-react";
+import { Mail, X, Copy, Send } from "lucide-react";
 
 export default function LEDDisplayBoard() {
   const [isVisible, setIsVisible] = useState(true);
@@ -56,11 +56,30 @@ export default function LEDDisplayBoard() {
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
-        setIsModalOpen(false);
       }, 1500);
     } catch (err) {
       console.error("Failed to copy email:", err);
     }
+  };
+
+  const handleEmailClick = () => {
+    const subject = encodeURIComponent(
+      "[축사] OO중/고등학교 졸업식 축사 요청드립니다"
+    );
+    const body = encodeURIComponent(`안녕하세요, {자기소개}
+
+다가오는 졸업식을 앞두고,
+저희 학교 학생들을 위한 졸업 축하 메세지를 부탁드립니다.
+
+[학교명 / 소재지]:
+[졸업식 날짜]:
+[꼭 포함했으면 하는 내용]:
+
+축하 영상은 본 메일로 회신해주세요.
+감사합니다.`);
+
+    window.location.href = `mailto:j7840790@gmail.com?subject=${subject}&body=${body}`;
+    setIsModalOpen(false);
   };
 
   return (
@@ -144,18 +163,30 @@ export default function LEDDisplayBoard() {
                   • 학교명 / 소재지 (동명의 다른 학교와 헷갈릴 수 있어요!)
                 </li>
                 <li>• 졸업식 날짜 </li>
-                <li>• 꼭 포함했으면 하는 내용 (선택사항)</li>
+                <li>• 축사에 꼭 포함했으면 하는 내용 (선택사항)</li>
               </ul>
             </div>
 
-            {/* 이메일 주소 복사하기 버튼 */}
-            <button
-              onClick={handleCopyEmail}
-              className="w-full bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 text-yellow-400 hover:text-yellow-300 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]"
-            >
-              <Copy className="w-5 h-5" />
-              {isCopied ? "복사되었습니다!" : "이메일 주소 복사하기"}
-            </button>
+            {/* 버튼들 */}
+            <div className="flex gap-3">
+              {/* 이메일 보내기 버튼 */}
+              <button
+                onClick={handleEmailClick}
+                className="flex-1 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 text-yellow-400 hover:text-yellow-300 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]"
+              >
+                <Send className="w-5 h-5" />
+                이메일 보내기
+              </button>
+
+              {/* 이메일 주소 복사하기 버튼 */}
+              <button
+                onClick={handleCopyEmail}
+                className="flex-1 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 text-yellow-400 hover:text-yellow-300 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]"
+              >
+                <Copy className="w-5 h-5" />
+                {isCopied ? "복사완료!" : "주소 복사"}
+              </button>
+            </div>
 
             {/* 추가 안내 */}
             <p className="text-xs text-yellow-100/50 text-center mt-4">
