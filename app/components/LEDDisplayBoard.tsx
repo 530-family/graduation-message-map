@@ -83,7 +83,7 @@ export default function LEDDisplayBoard() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-500 bg-linear-to-b from-gray-900 to-black py-4 border-b-4 border-yellow-500 shadow-2xl">
+    <div className="fixed top-0 left-0 right-0 z-1001 bg-linear-to-b from-gray-900 to-black py-4 border-b-4 border-yellow-500 shadow-2xl">
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden bg-black/50 rounded-lg border-2 border-yellow-600/30 p-4 shadow-inner">
           {/* 상단 인디케이터 라인 */}
@@ -121,7 +121,7 @@ export default function LEDDisplayBoard() {
         {/* 우리 학교도? 버튼 */}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="absolute top-full mt-4 right-4 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 rounded-lg px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-semibold z-[1000] text-yellow-400 hover:text-yellow-300"
+          className="absolute top-full mt-4 right-4 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 rounded-lg px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-semibold text-yellow-400 hover:text-yellow-300"
         >
           <Mail className="w-5 h-5 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
           <span className="font-[PfStardust30] font-(800) drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">
@@ -156,7 +156,7 @@ export default function LEDDisplayBoard() {
             {/* 가이드라인 */}
             <div className="bg-black/50 border border-yellow-600/30 rounded-lg p-4 mb-6">
               <h3 className="font-semibold text-yellow-400 mb-2 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">
-                제안 시 포함해주세요:
+                메일에 포함해주세요:
               </h3>
               <ul className="text-sm text-yellow-100/70 space-y-1">
                 <li>
@@ -164,6 +164,24 @@ export default function LEDDisplayBoard() {
                 </li>
                 <li>• 졸업식 날짜 </li>
                 <li>• 축사에 꼭 포함했으면 하는 내용 (선택사항)</li>
+                <li>
+                  • 아래 <strong>①, ② 각각 하나씩</strong>을 동시에 찍어
+                  첨부해주세요.
+                </li>
+                <div
+                  className="ml-4 mt-2 space-y-1 bg-yellow-600/10 rounded p-2 border-l-2 
+  border-yellow-600/50"
+                >
+                  <li>① 학생증 / 청소년증 / 교복 착용샷 중 1가지</li>
+                  <li>
+                    &nbsp;&nbsp;※ 학생증·청소년증 사진은 주민등록번호, 주소 등{" "}
+                    <strong>민감한 개인정보</strong>를 모두 가려주세요.
+                  </li>
+                  <li>
+                    ② 시계 <em>또는</em> &lsquo;이준석 파이팅&rsquo;이라고 쓴
+                    쪽지
+                  </li>
+                </div>
               </ul>
             </div>
 
@@ -189,7 +207,8 @@ export default function LEDDisplayBoard() {
             </div>
 
             {/* 추가 안내 */}
-            <p className="text-xs text-yellow-100/50 text-center mt-4">
+            <p className="text-xs text-yellow-100/50 text-center leading-5 mt-4">
+              제출된 자료는 학생 신분 확인 목적 외에는 사용되지 않습니다. <br />{" "}
               요청해주신 축사는 검토 후 순차적으로 발송됩니다.
             </p>
           </div>
