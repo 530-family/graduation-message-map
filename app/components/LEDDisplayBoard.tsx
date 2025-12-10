@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Mail, X, Send } from "lucide-react";
+import { Mail, X, Copy } from "lucide-react";
 
 export default function LEDDisplayBoard() {
   const [isVisible, setIsVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
   const [schoolCount, setSchoolCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -48,24 +49,18 @@ export default function LEDDisplayBoard() {
       ? `졸업을 축하합니다! - 총 ${schoolCount}개교`
       : "졸업을 축하합니다!";
 
-  const handleEmailClick = () => {
-    const subject = encodeURIComponent(
-      "[축사] OO중/고등학교 졸업식 축사 요청드립니다"
-    );
-    const body = encodeURIComponent(`안녕하세요, {자기소개}
-
-다가오는 졸업식을 앞두고,
-저희 학교 학생들을 위한 졸업 축하 메세지를 부탁드립니다.
-
-[학교명 / 소재지]:
-[졸업식 날짜]:
-[꼭 포함했으면 하는 내용]:
-
-축하 영상은 본 메일로 회신해주세요.
-감사합니다.`);
-
-    window.location.href = `mailto:j7840790@gmail.com?subject=${subject}&body=${body}`;
-    setIsModalOpen(false);
+  const handleCopyEmail = async () => {
+    const email = "j7840790@gmail.com";
+    try {
+      await navigator.clipboard.writeText(email);
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+        setIsModalOpen(false);
+      }, 1500);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
   };
 
   return (
@@ -135,7 +130,8 @@ export default function LEDDisplayBoard() {
 
             {/* 설명 */}
             <p className="text-yellow-100/80 mb-6">
-              여러분의 학교에도 졸업 축하 메세지를 전할 수 있습니다.
+              여러분의 학교에도 졸업 축하 메세지를 전할 수 있습니다. <br />
+              보내는 곳: j7840790@gmail.com
             </p>
 
             {/* 가이드라인 */}
@@ -152,13 +148,13 @@ export default function LEDDisplayBoard() {
               </ul>
             </div>
 
-            {/* 이메일 보내기 버튼 */}
+            {/* 이메일 주소 복사하기 버튼 */}
             <button
-              onClick={handleEmailClick}
+              onClick={handleCopyEmail}
               className="w-full bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 text-yellow-400 hover:text-yellow-300 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]"
             >
-              <Send className="w-5 h-5" />
-              이메일 보내기
+              <Copy className="w-5 h-5" />
+              {isCopied ? "복사되었습니다!" : "이메일 주소 복사하기"}
             </button>
 
             {/* 추가 안내 */}
