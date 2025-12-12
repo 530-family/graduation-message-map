@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Mail, X, Copy, Send } from "lucide-react";
+import { Mail, X, Copy, Send, Loader2 } from "lucide-react";
 
 export default function LEDDisplayBoard() {
   const [isVisible, setIsVisible] = useState(true);
@@ -115,6 +115,12 @@ export default function LEDDisplayBoard() {
           {/* 하단 스캔라인 효과 */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent animate-pulse"></div>
+          </div>
+
+          {/* 오른쪽 하단 로딩 표시 */}
+          <div className="absolute bottom-2 right-2 flex items-center gap-2 text-yellow-400/70 text-xs font-mono">
+            <Loader2 className="w-4 h-4 animate-spin drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
+            <span className="drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">축사 작성중...</span>
           </div>
         </div>
 
