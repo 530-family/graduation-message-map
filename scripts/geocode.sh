@@ -191,18 +191,20 @@ NDJSON_FILE="$PROJECT_ROOT/public/data/coordinates.ndjson"
 # 디렉토리가 없으면 생성
 mkdir -p "$(dirname "$NDJSON_FILE")"
 
-# 새 데이터를 NDJSON 형식으로 준비
-NEW_ENTRY=$(cat <<EOF
-{
-  "schoolName": "$SCHOOL_NAME",
-  "address": "$REFINED_TEXT",
-  "coordinates": {
-    "longitude": $X,
-    "latitude": $Y
-  }
-}
-EOF
-)
+# ID 생성 (기존 파일에서 최대 ID를 찾아서 +1)
+if [ -f "$NDJSON_FILE" ] && [ -s "$NDJSON_FILE" ]; then
+    MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
+    if [ -z "$MAX_ID" ] || [ "$MAX_ID" = "null" ]; then
+        NEXT_ID=1
+    else
+        NEXT_ID=$((MAX_ID + 1))
+    fi
+else
+    NEXT_ID=1
+fi
+
+# 새 데이터를 NDJSON 형식으로 준비 (한 줄로)
+NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
 
 # 중복 체크 (학교명 기준)
 REPLACE_MODE=false
@@ -210,53 +212,66 @@ INSERT_LINE=0
 
 if [ -f "$NDJSON_FILE" ]; then
     # 학교명이 포함된 줄 번호 찾기
-    LINE_NUM=$(grep -n "\"schoolName\": \"$SCHOOL_NAME\"" "$NDJSON_FILE" 2>/dev/null | cut -d: -f1)
+    LINE_NUM=$(grep -n "\"schoolName\":\"$SCHOOL_NAME\"" "$NDJSON_FILE" 2>/dev/null | cut -d: -f1)
 
     if [ -n "$LINE_NUM" ]; then
-        # 기존 데이터 추출 ({ 부터 } 까지 8줄)
-        START_LINE=$((LINE_NUM - 1))
-        EXISTING=$(sed -n "${START_LINE},$((START_LINE + 6))p" "$NDJSON_FILE")
+        # 기존 데이터 추출 (한 줄)
+        EXISTING=$(sed -n "${LINE_NUM}p" "$NDJSON_FILE")
+
+        # 기존 ID 추출
+        EXISTING_ID=$(echo "$EXISTING" | jq -r '.id')
+        NEXT_ID=$EXISTING_ID
 
         echo ""
         echo -e "${YELLOW}⚠️  경고: '$SCHOOL_NAME'는 이미 coordinates.ndjson에 존재합니다.${NC}"
         echo -e "${YELLOW}기존 데이터:${NC}"
-        echo "$EXISTING"
+        echo "$EXISTING" | jq '.'
         echo ""
-        read -p "덮어쓰시겠습니까? (y/N): " -n 1 -r
+        echo "선택하세요:"
+        echo "  1) 덮어쓰기 (기존 데이터를 새 데이터로 교체)"
+        echo "  2) 새로 추가 (같은 이름의 다른 학교로 추가)"
+        echo "  3) 취소"
+        read -p "선택 (1/2/3): " -n 1 -r
         echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+
+        if [[ $REPLY == "1" ]]; then
+            REPLACE_MODE=true
+            INSERT_LINE=$LINE_NUM
+
+            # 기존 ID로 NEW_ENTRY 재생성
+            NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+
+            # 기존 항목 제거 (해당 줄만)
+            sed -i.bak "${LINE_NUM}d" "$NDJSON_FILE"
+            rm -f "$NDJSON_FILE.bak"
+            echo -e "${GREEN}기존 데이터를 제거했습니다.${NC}"
+        elif [[ $REPLY == "2" ]]; then
+            # 새로운 ID로 추가 (최대 ID + 1)
+            MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
+            NEXT_ID=$((MAX_ID + 1))
+            NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+            echo -e "${GREEN}새로운 항목으로 추가합니다. (ID: $NEXT_ID)${NC}"
+        else
             echo -e "${RED}취소되었습니다.${NC}"
             exit 0
         fi
-
-        REPLACE_MODE=true
-        INSERT_LINE=$((START_LINE - 1))
-
-        # 기존 항목 제거 (해당 줄 위 1줄 + 해당 줄 + 아래 5줄 = 총 8줄)
-        sed -i.bak "${START_LINE},$((START_LINE + 7))d" "$NDJSON_FILE"
-        rm -f "$NDJSON_FILE.bak"
-        echo -e "${GREEN}기존 데이터를 제거했습니다.${NC}"
     fi
 fi
 
 # 새 데이터 추가
 if [ "$REPLACE_MODE" = true ]; then
     # 삭제한 위치에 삽입
-    # 임시 파일에 NEW_ENTRY 저장
-    TEMP_ENTRY=$(mktemp)
-    echo "$NEW_ENTRY" > "$TEMP_ENTRY"
-
-    if [ $INSERT_LINE -eq 0 ]; then
+    if [ $INSERT_LINE -eq 1 ]; then
         # 파일 맨 앞에 삽입
-        cat "$TEMP_ENTRY" "$NDJSON_FILE" > "$NDJSON_FILE.tmp"
+        echo "$NEW_ENTRY" | cat - "$NDJSON_FILE" > "$NDJSON_FILE.tmp"
         mv "$NDJSON_FILE.tmp" "$NDJSON_FILE"
     else
-        # 특정 줄 다음에 삽입
-        sed -i.bak "${INSERT_LINE}r $TEMP_ENTRY" "$NDJSON_FILE"
+        # 특정 줄 위치에 삽입 (삭제된 줄의 원래 위치)
+        PREV_LINE=$((INSERT_LINE - 1))
+        sed -i.bak "${PREV_LINE}a\\
+$NEW_ENTRY" "$NDJSON_FILE"
         rm -f "$NDJSON_FILE.bak"
     fi
-
-    rm -f "$TEMP_ENTRY"
 else
     # 파일 끝에 추가
     echo "$NEW_ENTRY" >> "$NDJSON_FILE"
