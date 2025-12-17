@@ -2,6 +2,7 @@ import base64
 import email
 import json
 import os
+import argparse
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -28,11 +29,9 @@ def get_gmail_service():
 def get_school_search_names(school_name):
     search_names = []
     if school_name.endswith("중학교"):
-        # For "OO중학교", add "OO중" and "OO"
         search_names.append(school_name[:-2])
         search_names.append(school_name[:-3])
     elif school_name.endswith("고등학교"):
-        # For "XX고등학교", add "XX고" and "XX"
         search_names.append(school_name[:-3])
         search_names.append(school_name[:-4])
     else:
@@ -40,7 +39,14 @@ def get_school_search_names(school_name):
     return search_names
 
 def main():
-    service = get_gmail_service()
+    parser = argparse.ArgumentParser(description='Extract Gmail messages and update coordinates data.')
+    parser.add_argument('--skip-gmail', action='store_true', help='Skip Gmail API calls and process existing requestContent.')
+    args = parser.parse_args()
+
+    service = None
+    if not args.skip_gmail:
+        service = get_gmail_service()
+
     updated_data = []
 
     try:
@@ -58,7 +64,14 @@ def main():
         try:
             data = json.loads(line)
             school_name = data.get('schoolName')
-            
+
+            if args.skip_gmail and data.get('requestContent'):
+                print(f"Skipping Gmail lookup for {school_name} (content exists).")
+                if 'drive.google.com' in data['requestContent']:
+                    data['done'] = True
+                updated_data.append(data)
+                continue
+
             content = ""
             if school_name:
                 search_names = get_school_search_names(school_name)
@@ -79,6 +92,7 @@ def main():
                     raw_email = base64.urlsafe_b64decode(message_data['raw'].encode('ASCII'))
                     email_message = email.message_from_bytes(raw_email)
                     
+                    payload = None
                     if email_message.is_multipart():
                         for part in email_message.walk():
                             if part.get_content_type() == "text/html":
@@ -92,9 +106,8 @@ def main():
                             soup = BeautifulSoup(payload, 'html.parser')
                             content = soup.get_text()
                     
-                    
                     drive_link_found = False
-                    if content:
+                    if payload:
                         soup_for_links = BeautifulSoup(payload, 'html.parser')
                         for link in soup_for_links.find_all('a'):
                             href = link.get('href')
@@ -104,7 +117,6 @@ def main():
                     
                     if drive_link_found:
                         data['done'] = True
-                    
                     
                     print(f"Successfully extracted message for {school_name}")
                 else:
