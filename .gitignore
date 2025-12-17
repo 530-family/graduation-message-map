@@ -46,3 +46,6 @@ token.json
 
 # internal resources
 README.internal.md
+
+# Python
+__pycache__/
