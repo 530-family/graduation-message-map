@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# google cloud console
+credentials.json
+token.json
+
+# internal resources
+README.internal.md
