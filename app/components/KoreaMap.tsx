@@ -12,6 +12,7 @@ interface SchoolData {
     longitude: number;
     latitude: number;
   };
+  done?: boolean;
 }
 
 // Fix for default marker icon issue in Next.js
@@ -31,6 +32,18 @@ const fixMarkerIcon = () => {
 const orangeIcon = new L.Icon({
   iconUrl:
     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+// Create green marker icon
+const greenIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
   shadowUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
   iconSize: [25, 41],
@@ -98,7 +111,7 @@ export default function KoreaMap() {
               school.coordinates.latitude,
               school.coordinates.longitude,
             ]}
-            icon={orangeIcon}
+            icon={school.done ? greenIcon : orangeIcon}
           >
             <Popup>
               <div>
