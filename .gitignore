@@ -45,7 +45,8 @@ credentials.json
 token.json
 
 # internal resources
-README.internal.md
+*.internal.md
+*.internal.ndjson
 
 # Python
 __pycache__/
