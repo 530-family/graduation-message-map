@@ -12,7 +12,7 @@ interface SchoolData {
     longitude: number;
     latitude: number;
   };
-  done?: boolean;
+  status?: "written" | "sent";
 }
 
 // Fix for default marker icon issue in Next.js
@@ -28,10 +28,11 @@ const fixMarkerIcon = () => {
   });
 };
 
-// Create orange marker icon
-const orangeIcon = new L.Icon({
+// Create marker icons for different statuses
+// Blue: default (no status)
+const blueIcon = new L.Icon({
   iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
   shadowUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
   iconSize: [25, 41],
@@ -40,7 +41,19 @@ const orangeIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-// Create green marker icon
+// Yellow: written status
+const yellowIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+// Green: sent status
 const greenIcon = new L.Icon({
   iconUrl:
     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
@@ -51,6 +64,13 @@ const greenIcon = new L.Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
+
+// Function to get marker icon based on status
+const getMarkerIcon = (status?: "written" | "sent") => {
+  if (status === "sent") return greenIcon;
+  if (status === "written") return yellowIcon;
+  return blueIcon; // default
+};
 
 export default function KoreaMap() {
   const [schools, setSchools] = useState<SchoolData[]>([]);
@@ -111,13 +131,18 @@ export default function KoreaMap() {
               school.coordinates.latitude,
               school.coordinates.longitude,
             ]}
-            icon={school.done ? greenIcon : orangeIcon}
+            icon={getMarkerIcon(school.status)}
           >
             <Popup>
               <div>
                 <p className="text-xs text-gray-500 mb-1">#{index + 1}</p>
                 <h3 className="font-bold">{school.schoolName}</h3>
                 <p className="text-sm">{school.address}</p>
+                {school.status && (
+                  <p className="text-xs text-gray-600 mt-1">
+                    Status: {school.status}
+                  </p>
+                )}
               </div>
             </Popup>
           </Marker>

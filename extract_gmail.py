@@ -87,8 +87,8 @@ def main():
         if args.skip_gmail:
             if internal_item.get('requestContent') and 'drive.google.com' in internal_item['requestContent']:
                 print(f"Skipping Gmail lookup for {school_name}, Drive link found in existing content.")
-                internal_item['done'] = True
-                original_data[i]['done'] = True
+                internal_item['status'] = 'sent'
+                original_data[i]['status'] = 'sent'
             else:
                  print(f"Skipping Gmail lookup for {school_name} (content exists or flag set).")
             internal_data.append(internal_item)
@@ -154,9 +154,9 @@ def main():
                             break
                 
                 if drive_link_found:
-                    print(f"Google Drive link found in newest email for {school_name}. Marking as 'done'.")
-                    internal_item['done'] = True
-                    original_data[i]['done'] = True
+                    print(f"Google Drive link found in newest email for {school_name}. Marking as 'sent'.")
+                    internal_item['status'] = 'sent'
+                    original_data[i]['status'] = 'sent'
             else:
                 print(f"No message found for {school_name} (tried {len(queries)} queries)")
 
@@ -169,12 +169,12 @@ def main():
             f.write(json.dumps(item, ensure_ascii=False) + '\n')
     print("Finished writing to public/data/coordinates.internal.ndjson")
 
-    # Write updates (specifically the 'done' flag) back to the main coordinates file
+    # Write updates (specifically the 'status' field) back to the main coordinates file
     with open('public/data/coordinates.ndjson', 'w', encoding='utf-8') as f:
         for item in original_data:
             f.write(json.dumps(item, ensure_ascii=False) + '\n')
-    
-    print("Finished updating public/data/coordinates.ndjson with 'done' status.")
+
+    print("Finished updating public/data/coordinates.ndjson with status.")
 
 if __name__ == '__main__':
     main()
