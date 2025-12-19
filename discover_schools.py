@@ -15,9 +15,10 @@ from bs4 import BeautifulSoup
 
 # Gmail API setup
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
-# This pattern matches words ending with '학교' or '아카데미', capturing the full name.
-# It's designed to avoid splitting names and is not perfect, but covers many cases.
-SCHOOL_PATTERN = re.compile(r'([\w\s]+(?:중학교|고등학교|대학교|아카데미|스쿨|유치원|초등학교))')
+# This pattern uses two groups to ensure a name part exists before the suffix.
+# 1. A non-greedy name part that must start with a non-whitespace character.
+# 2. The school type suffix.
+SCHOOL_PATTERN = re.compile(r'(\S[\w\s]*?)(중학교|고등학교|대학교|아카데미|스쿨|유치원|초등학교)')
 
 def get_gmail_service():
     """Authenticates with Gmail API and returns a service object."""
@@ -101,11 +102,13 @@ def find_new_schools(service, start_dt_obj, start_date_str):
 
         full_text = f"{subject} {body}"
         
-        # Find all matches in the text
-        potential_schools = SCHOOL_PATTERN.findall(full_text)
-        for school in potential_schools:
+        # Find all matches using the new two-group pattern
+        for match in SCHOOL_PATTERN.finditer(full_text):
+            # Combine group 1 (name) and group 2 (suffix)
+            full_school_name = match.group(1).strip() + match.group(2)
+            
             # Basic cleaning
-            cleaned_school = school.strip()
+            cleaned_school = full_school_name.strip()
             # Add to our set of found schools
             found_schools.add(cleaned_school)
             
