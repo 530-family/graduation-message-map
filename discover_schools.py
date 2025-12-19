@@ -19,6 +19,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 # 1. A non-greedy name part that must start with a non-whitespace character.
 # 2. The school type suffix.
 SCHOOL_PATTERN = re.compile(r'(\S[\w\s]*?)(중학교|고등학교|대학교|아카데미|스쿨|유치원|초등학교)')
+PRIMARY_SCHOOL_PATTERN = re.compile(r'\[학교명 / 소재지\]:\s*(.+?학교)')
 
 def get_gmail_service():
     """Authenticates with Gmail API and returns a service object."""
@@ -60,29 +61,32 @@ def find_new_schools(service, start_dt_obj, start_date_str):
     print(f"Searching Gmail with query: '{query}'")
     
     response = service.users().messages().list(userId='me', q=query).execute()
-    messages = response.get('messages', [])
+    messages_summary = response.get('messages', [])
     
-    if not messages:
+    if not messages_summary:
         print("No messages found matching the criteria.")
         return set()
 
-    print(f"Found {len(messages)} messages. Processing and filtering by exact time...")
+    print(f"Found {len(messages_summary)} messages. Fetching details for sorting...")
+    
+    # Fetch internalDate for all messages to sort them
+    dated_messages = []
+    for msg_summary in messages_summary:
+        msg_meta = service.users().messages().get(userId='me', id=msg_summary['id'], format='metadata', fields='id,internalDate').execute()
+        # Filter by exact start time before sorting
+        msg_internal_dt = datetime.fromtimestamp(int(msg_meta['internalDate']) / 1000)
+        if msg_internal_dt >= start_dt_obj:
+            dated_messages.append(msg_meta)
+
+    # Sort messages by internalDate, oldest first
+    dated_messages.sort(key=lambda x: int(x['internalDate']))
+    
+    print(f"Processing {len(dated_messages)} messages in chronological order...")
     
     found_schools = set()
-    for msg in messages:
-        message_data = service.users().messages().get(userId='me', id=msg['id']).execute()
+    for msg_meta in dated_messages:
+        message_data = service.users().messages().get(userId='me', id=msg_meta['id']).execute()
         
-        # Convert internalDate to datetime object for comparison
-        # internalDate is in milliseconds since epoch
-        # The internalDate is UTC, so ensure comparison is also UTC-aware or naive but consistent.
-        # For simplicity, we'll assume naive datetimes are in the same timezone for comparison.
-        msg_internal_dt = datetime.fromtimestamp(int(message_data['internalDate']) / 1000)
-
-        # Filter by exact start_dt_obj
-        if msg_internal_dt < start_dt_obj:
-            print(f"  Skipping message (ID: {msg['id']}) older than {start_dt_obj}.")
-            continue # Skip messages older than the specified start_dt
-
         # Extract subject
         subject = ''
         for header in message_data['payload']['headers']:
@@ -108,15 +112,25 @@ def find_new_schools(service, start_dt_obj, start_date_str):
 
         full_text = f"{subject} {body}"
         
-        # Find all matches using the new two-group pattern
-        for match in SCHOOL_PATTERN.finditer(full_text):
-            # Combine group 1 (name) and group 2 (suffix)
-            full_school_name = match.group(1).strip() + match.group(2)
-            
-            # Basic cleaning
-            cleaned_school = full_school_name.strip()
-            # Add to our set of found schools
-            found_schools.add(cleaned_school)
+        # --- New Parsing Logic ---
+        school_found = False
+        # 1. Primary Strategy: Look for '[학교명 / 소재지]:'
+        primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
+        if primary_match:
+            school_name = primary_match.group(1).strip()
+            found_schools.add(school_name)
+            school_found = True
+        
+        # 2. Fallback Strategy: If primary fails, use the general pattern
+        if not school_found:
+            for match in SCHOOL_PATTERN.finditer(full_text):
+                # Combine group 1 (name) and group 2 (suffix)
+                full_school_name = match.group(1).strip() + match.group(2)
+                
+                # Basic cleaning
+                cleaned_school = full_school_name.strip()
+                # Add to our set of found schools
+                found_schools.add(cleaned_school)
             
     return found_schools
 
