@@ -86,9 +86,15 @@ def get_existing_schools(file_path):
     schools = set()
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
-            for line in f:
-                if line.strip():
+            for i, line in enumerate(f):
+                if not line.strip():
+                    continue
+                try:
                     schools.add(json.loads(line).get('schoolName'))
+                except json.JSONDecodeError as e:
+                    print(f"Warning: Skipping malformed JSON on line {i+1} in '{file_path}': {e}")
+                    print(f"         > Content: {line.strip()}")
+                    continue
     except FileNotFoundError:
         print(f"Info: '{file_path}' not found. Assuming no existing schools.")
     return schools
