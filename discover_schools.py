@@ -55,13 +55,16 @@ def get_existing_schools(file_path):
 
 def find_new_schools(service, start_dt_obj, start_date_str):
     """
-    Searches Gmail across all pages, sorts messages chronologically, extracts
-    potential school names, and returns a new, unique, and ordered list.
+    Searches Gmail, extracts school names, and identifies emails that need
+    manual review if no school is found.
+    Returns:
+        A tuple containing:
+        - A list of unique, chronologically ordered school names.
+        - A list of emails (dict with id, subject, body) for manual review.
     """
     query = f'label:졸업식 to:me after:{start_date_str}'
     print(f"Searching Gmail with query: '{query}'")
     
-    # --- Handle Pagination: Fetch all message summaries from all pages ---
     messages_summary = []
     request = service.users().messages().list(userId='me', q=query)
     while request is not None:
@@ -71,11 +74,10 @@ def find_new_schools(service, start_dt_obj, start_date_str):
     
     if not messages_summary:
         print("No messages found matching the criteria.")
-        return []
+        return [], []
 
     print(f"Found a total of {len(messages_summary)} messages. Fetching details for sorting...")
     
-    # Fetch internalDate for all messages to sort them
     dated_messages = []
     for msg_summary in messages_summary:
         msg_meta = service.users().messages().get(userId='me', id=msg_summary['id'], format='metadata', fields='id,internalDate').execute()
@@ -83,13 +85,13 @@ def find_new_schools(service, start_dt_obj, start_date_str):
         if msg_internal_dt >= start_dt_obj:
             dated_messages.append(msg_meta)
 
-    # Sort messages by internalDate, oldest first
     dated_messages.sort(key=lambda x: int(x['internalDate']))
     
     print(f"Processing {len(dated_messages)} messages in chronological order...")
     
     found_schools_list = []
     seen_schools_set = set()
+    emails_for_manual_review = []
 
     for msg_meta in dated_messages:
         print(f"\n--- Checking Email ID: {msg_meta['id']} ---")
@@ -114,34 +116,39 @@ def find_new_schools(service, start_dt_obj, start_date_str):
             body_data = message_data['payload']['body']['data']
             body = base64.urlsafe_b64decode(body_data).decode('utf-8', errors='ignore')
 
-        full_text = f"{subject} {body}"
+        full_text = f"{subject}\n\n{body}"
         
         def add_school(school_name):
             cleaned_school = school_name.strip()
             if cleaned_school and cleaned_school not in seen_schools_set:
                 seen_schools_set.add(cleaned_school)
                 found_schools_list.append(cleaned_school)
-
-        # 1. Primary Strategy: Look for '[학교명 / 소재지]:'
+        
+        school_found = False
         primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
         if primary_match:
             school_name = primary_match.group(1).strip()
             print(f"  > Primary pattern matched: '{school_name}'")
             add_school(school_name)
-            continue # Skip to the next email
+            school_found = True
 
-        # 2. Fallback Strategy: Find the *first* match of the general pattern
-        fallback_match = SCHOOL_PATTERN.search(full_text)
-        if fallback_match:
-            # Combine the name part and the suffix part
-            full_school_name = fallback_match.group(1).strip() + fallback_match.group(2)
-            print(f"  > Fallback pattern matched: '{full_school_name}'")
-            add_school(full_school_name)
-            continue # Skip to the next email
+        if not school_found:
+            fallback_match = SCHOOL_PATTERN.search(full_text)
+            if fallback_match:
+                full_school_name = fallback_match.group(1).strip() + fallback_match.group(2)
+                print(f"  > Fallback pattern matched: '{full_school_name}'")
+                add_school(full_school_name)
+                school_found = True
+        
+        if not school_found:
+            print("  > No school name patterns matched. Flagging for manual review.")
+            emails_for_manual_review.append({
+                'id': msg_meta['id'],
+                'subject': subject,
+                'body': body
+            })
             
-        print("  > No school name patterns matched in this email.")
-            
-    return found_schools_list
+    return found_schools_list, emails_for_manual_review
 
 def append_to_ndjson(file_path, data_item):
     """Appends a JSON object to the ndjson file."""
@@ -200,16 +207,14 @@ def main():
     existing_schools = get_existing_schools(coords_file)
     print(f"Found {len(existing_schools)} existing schools in '{coords_file}'.")
 
-    # --- Step 2: Find new schools from Gmail ---
+    # --- Step 2: Find new schools and emails for manual review ---
     service = get_gmail_service()
-    # Pass the datetime object for precise filtering and the date part for the initial Gmail query
-    newly_found_schools = find_new_schools(service, start_dt_obj, start_dt_obj.strftime('%Y/%m/%d'))
+    newly_found_schools, emails_for_manual_review = find_new_schools(service, start_dt_obj, start_dt_obj.strftime('%Y/%m/%d'))
     
-    if not newly_found_schools:
+    if newly_found_schools:
+        print(f"\nFound {len(newly_found_schools)} total potential schools from Gmail.")
+    else:
         print("\nNo new potential schools found in Gmail.")
-        return
-
-    print(f"\nFound {len(newly_found_schools)} total potential schools from Gmail.")
 
     # --- Step 3: Filter out existing schools ---
     print("\nFiltering against existing schools...")
@@ -221,68 +226,76 @@ def main():
             print(f"  - Skipping '{school}' (already exists in coordinates.ndjson)")
     
     if not schools_to_add:
-        print("\nAll found schools already exist in the coordinates file. Nothing to add.")
-        return
-        
-    print(f"\nAttempting to add {len(schools_to_add)} new schools in chronological order:")
-    for school in schools_to_add:
-        print(f"  - {school}")
+        print("\nAll auto-detected schools already exist. No new schools to add automatically.")
+    else:
+        print(f"\nAttempting to add {len(schools_to_add)} new schools in chronological order:")
+        for school in schools_to_add:
+            print(f"  - {school}")
 
-    # --- Step 4: Run geocode.sh for each new school ---
-    geocode_script = 'scripts/geocode.sh'
-    if not os.path.exists(geocode_script):
-        print(f"\nError: Geocoding script not found at '{geocode_script}'.")
-        return
+        # --- Step 4: Geocode and add new schools ---
+        geocode_script = 'scripts/geocode.sh'
+        if not os.path.exists(geocode_script):
+            print(f"\nError: Geocoding script not found at '{geocode_script}'.")
+            return
 
-    print("\n" + "="*80)
-    print("Starting Geocoding Process")
-    print("="*80)
+        print("\n" + "="*80)
+        print("Starting Geocoding Process")
+        print("="*80)
 
-    success_count = 0
-    added_empty_address_count = 0
+        success_count = 0
+        added_empty_address_count = 0
 
-    for school_name in schools_to_add:
-        print(f"\n--- Processing '{school_name}' ---")
-        geocoded_successfully = False
-        try:
-            # Attempt to geocode using school name as address
-            command = [
-                'bash', geocode_script,
-                '--on-duplicate', 'skip',
-                school_name, school_name 
-            ]
-            result = subprocess.run(command, check=False, text=True, capture_output=True)
+        for school_name in schools_to_add:
+            print(f"\n--- Processing '{school_name}' ---")
+            geocoded_successfully = False
+            try:
+                command = [
+                    'bash', geocode_script,
+                    '--on-duplicate', 'skip',
+                    school_name, school_name 
+                ]
+                result = subprocess.run(command, check=False, text=True, capture_output=True)
+                
+                if result.returncode == 0:
+                    print(f"  ✓ Successfully geocoded '{school_name}' using its name.")
+                    print(result.stdout)
+                    success_count += 1
+                    geocoded_successfully = True
+                else:
+                    print(f"  ✗ Geocoding with name failed. Adding as entry with empty address.")
+
+            except Exception as e:
+                print(f"  ✗ An unexpected error occurred during geocoding: {e}")
             
-            if result.returncode == 0:
-                print(f"  ✓ Successfully geocoded '{school_name}' using its name.")
-                print(result.stdout)
-                success_count += 1
-                geocoded_successfully = True
-            else:
-                print(f"  ✗ Geocoding with name failed. Adding as entry with empty address.")
-
-        except Exception as e:
-            print(f"  ✗ An unexpected error occurred during geocoding: {e}")
+            if not geocoded_successfully:
+                next_id = get_next_id_from_ndjson(coords_file)
+                empty_address_entry = {
+                    "id": next_id,
+                    "schoolName": school_name,
+                    "address": "",
+                    "coordinates": {"longitude": 0, "latitude": 0}
+                }
+                append_to_ndjson(coords_file, empty_address_entry)
+                print(f"  -> Added '{school_name}' to '{coords_file}' with an empty address (ID: {next_id}).")
+                added_empty_address_count += 1
         
-        # Fallback: Add with empty address if geocoding failed
-        if not geocoded_successfully:
-            next_id = get_next_id_from_ndjson(coords_file)
-            empty_address_entry = {
-                "id": next_id,
-                "schoolName": school_name,
-                "address": "",
-                "coordinates": {"longitude": 0, "latitude": 0}
-            }
-            append_to_ndjson(coords_file, empty_address_entry)
-            print(f"  -> Added '{school_name}' to '{coords_file}' with an empty address (ID: {next_id}).")
-            added_empty_address_count += 1
+        print("\n" + "="*80)
+        print("Automatic Geocoding Summary")
+        print("="*80)
+        print(f"Successfully geocoded and added: {success_count}")
+        print(f"Added with empty address (requires manual update): {added_empty_address_count}")
 
+    # --- Step 5: Handle emails needing manual review ---
+    if emails_for_manual_review:
+        manual_file = 'manual_school_entry.json'
+        print(f"\n" + "="*80)
+        print(f"Manual Review Needed")
+        print("="*80)
+        print(f"{len(emails_for_manual_review)} emails could not be parsed automatically.")
+        print(f"Their content has been saved to '{manual_file}' for manual review.")
+        with open(manual_file, 'w', encoding='utf-8') as f:
+            json.dump(emails_for_manual_review, f, ensure_ascii=False, indent=2)
+    
     print("\n" + "="*80)
-    print("Geocoding Summary")
+    print("Script Finished")
     print("="*80)
-    print(f"Successfully geocoded and added: {success_count}")
-    print(f"Added with empty address (requires manual update): {added_empty_address_count}")
-    print("="*80)
-
-if __name__ == '__main__':
-    main()
