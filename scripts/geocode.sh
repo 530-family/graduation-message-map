@@ -75,7 +75,8 @@ SCHOOL_NAME="${POSITIONAL_ARGS[0]}"
 ADDRESS="${POSITIONAL_ARGS[1]}"
 TYPE="${POSITIONAL_ARGS[2]:-ROAD}"  # 기본값은 ROAD
 
-# 주소 정제: 앞뒤 공백과 줄바꿈 제거
+# 입력값 정제: 앞뒤 공백과 줄바꿈 제거
+SCHOOL_NAME=$(echo "$SCHOOL_NAME" | tr -d '\n\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 ADDRESS=$(echo "$ADDRESS" | tr -d '\n\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
 # .env.local 파일에서 API 키 로드
@@ -244,8 +245,8 @@ REPLACE_MODE=false
 INSERT_LINE=0
 
 if [ -f "$NDJSON_FILE" ]; then
-    # 학교명이 포함된 줄 번호 찾기
-    LINE_NUM=$(grep -n "\"schoolName\":\"$SCHOOL_NAME\"" "$NDJSON_FILE" 2>/dev/null | cut -d: -f1)
+    # 학교명이 포함된 줄 번호 찾기 (Fixed-string search)
+    LINE_NUM=$(grep -n -F "\"schoolName\":\"$SCHOOL_NAME\"" "$NDJSON_FILE" 2>/dev/null | cut -d: -f1)
 
     if [ -n "$LINE_NUM" ]; then
         # 기존 데이터 추출 (한 줄)
