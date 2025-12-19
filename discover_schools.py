@@ -114,6 +114,29 @@ def find_new_schools(service, start_dt_obj, start_date_str):
             
     return found_schools
 
+def append_to_ndjson(file_path, data_item):
+    """Appends a JSON object to the ndjson file."""
+    os.makedirs(os.path.dirname(file_path), exist_ok=True) # Ensure directory exists
+    with open(file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(data_item, ensure_ascii=False) + '\n')
+
+# Helper functions for ndjson operations
+def get_next_id_from_ndjson(file_path):
+    """Reads the ndjson file and returns the next available ID."""
+    max_id = 0
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if line.strip():
+                    data = json.loads(line)
+                    if 'id' in data and isinstance(data['id'], int):
+                        max_id = max(max_id, data['id'])
+    except FileNotFoundError:
+        pass # File does not exist, max_id remains 0
+    except json.JSONDecodeError as e:
+        print(f"Warning: Error decoding JSON from '{file_path}': {e}. IDs might be inconsistent.")
+    return max_id + 1
+
 def main():
     """Main function to run the school discovery and geocoding process."""
     parser = argparse.ArgumentParser(description='Discover new schools from Gmail and add them to the coordinates file.')
@@ -176,8 +199,8 @@ def main():
     print("="*80)
 
     success_count = 0
-    fail_count = 0
-    manual_lookup_list = []
+    added_empty_address_count = 0
+    manual_lookup_list = [] # For schools that need web search by the agent
 
     for school_name in sorted(list(schools_to_add)):
         print(f"\n--- Geocoding '{school_name}' ---")
@@ -200,15 +223,27 @@ def main():
                     print(result.stderr)
                 success_count += 1
             else:
-                print(f"✗ Geocoding failed with school name as address. Adding to manual lookup list.")
+                # If first geocoding attempt fails, add to ndjson with empty address
+                print(f"✗ Geocoding failed with school name as address.")
+                
+                next_id = get_next_id_from_ndjson(coords_file)
+                empty_address_entry = {
+                    "id": next_id,
+                    "schoolName": school_name,
+                    "address": "", # Empty address as requested
+                    "coordinates": {"longitude": 0, "latitude": 0} # Dummy coordinates
+                }
+                append_to_ndjson(coords_file, empty_address_entry)
+                print(f"  -> Added '{school_name}' to '{coords_file}' with an empty address (ID: {next_id}).")
+                
                 manual_lookup_list.append(school_name)
-                fail_count += 1
+                added_empty_address_count += 1
 
         except Exception as e:
             print(f"✗ An unexpected error occurred while running geocode.sh for '{school_name}': {e}")
             manual_lookup_list.append(school_name)
-            fail_count += 1
-    
+            added_empty_address_count += 1 # Count as added with empty address if exception occurs
+
     # After the loop, save the list of schools needing manual lookup
     if manual_lookup_list:
         manual_file = 'manual_address_lookup.txt'
@@ -220,8 +255,8 @@ def main():
     print("\n" + "="*80)
     print("Geocoding Summary")
     print("="*80)
-    print(f"Successfully added: {success_count}")
-    print(f"Failed (needs manual lookup): {fail_count}")
+    print(f"Successfully geocoded and added: {success_count}")
+    print(f"Added with empty address (needs manual web search by agent): {added_empty_address_count}")
     if manual_lookup_list:
         print(f"A list of schools needing manual address lookup has been saved to 'manual_address_lookup.txt'.")
     print("="*80)
