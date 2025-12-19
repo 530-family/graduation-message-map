@@ -59,7 +59,8 @@ def get_school_search_queries(school_name):
 
 def main():
     parser = argparse.ArgumentParser(description='Extract Gmail messages and update coordinates data.')
-    parser.add_argument('--skip-gmail', action='store_true', help='Skip Gmail API calls if requestContent exists.')
+    parser.add_argument('--skip-gmail', action='store_true', help='Skip Gmail API calls and use existing internal data.')
+    parser.add_argument('--skip-existing', action='store_true', help='Skip Gmail API calls if requestContent already exists.')
     args = parser.parse_args()
 
     service = None
@@ -77,23 +78,82 @@ def main():
         print(f"Error decoding JSON from coordinates.ndjson: {e}")
         return
 
+    # Load existing internal data if it exists and create backup
+    existing_internal_data = {}
+    try:
+        import shutil
+        from datetime import datetime
+
+        # Create backup before processing
+        if os.path.exists('public/data/coordinates.internal.ndjson'):
+            backup_name = f'public/data/coordinates.internal.ndjson.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}'
+            shutil.copy2('public/data/coordinates.internal.ndjson', backup_name)
+            print(f"Created backup: {backup_name}")
+
+        with open('public/data/coordinates.internal.ndjson', 'r', encoding='utf-8') as f:
+            for line in f:
+                if line.strip():
+                    item = json.loads(line)
+                    # Use id as key to map existing internal data
+                    existing_internal_data[item.get('id')] = item
+        print(f"Loaded {len(existing_internal_data)} existing internal records.")
+    except FileNotFoundError:
+        print("No existing internal data found, will create new file.")
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON from coordinates.internal.ndjson: {e}")
+
     internal_data = []
+    schools_needing_manual_input = []  # Track schools that need manual data entry
 
     for i, data in enumerate(original_data):
-        internal_item = data.copy()
-        school_name = internal_item.get('schoolName')
+        school_id = data.get('id')
+        school_name = data.get('schoolName')
 
-        # When skipping Gmail, we check existing content for the link
+        # When skipping Gmail, preserve existing internal data
         if args.skip_gmail:
-            if internal_item.get('requestContent') and 'drive.google.com' in internal_item['requestContent']:
-                print(f"Skipping Gmail lookup for {school_name}, Drive link found in existing content.")
-                internal_item['status'] = 'sent'
-                original_data[i]['status'] = 'sent'
+            # Check if we have existing internal data for this school
+            if school_id in existing_internal_data:
+                internal_item = existing_internal_data[school_id].copy()
+                print(f"Skipping Gmail lookup for {school_name}, using existing internal data.")
+
+                # Check if there's a Drive link in existing content and update status
+                if internal_item.get('requestContent') and 'drive.google.com' in internal_item['requestContent']:
+                    if not internal_item.get('status'):
+                        internal_item['status'] = 'sent'
+                        original_data[i]['status'] = 'sent'
+                        print(f"  -> Drive link found, marked as 'sent'.")
             else:
-                 print(f"Skipping Gmail lookup for {school_name} (content exists or flag set).")
+                # No existing internal data, just copy from original
+                internal_item = data.copy()
+                print(f"Skipping Gmail lookup for {school_name}, no existing internal data found.")
+
             internal_data.append(internal_item)
             continue
-        
+
+        # Not skipping Gmail - create new internal_item from original data
+        internal_item = data.copy()
+
+        # Check if we should skip this school because it already has requestContent
+        # IMPORTANT: Check BEFORE making any Gmail API calls
+        if args.skip_existing and school_id in existing_internal_data:
+            existing_content = existing_internal_data[school_id].get('requestContent', '').strip()
+            if existing_content:  # Only skip if there's actual content (not empty string)
+                print(f"Skipping {school_name} - requestContent already exists (length: {len(existing_content)} chars).")
+                internal_item = existing_internal_data[school_id].copy()
+
+                # Still check for Drive link and update status if needed
+                if 'drive.google.com' in existing_content:
+                    if not internal_item.get('status'):
+                        internal_item['status'] = 'sent'
+                        original_data[i]['status'] = 'sent'
+                        print(f"  -> Drive link found, marked as 'sent'.")
+
+                internal_data.append(internal_item)
+                continue
+            else:
+                print(f"Processing {school_name} - requestContent is empty, will fetch from Gmail.")
+
+        # Only proceed with Gmail API calls if we haven't skipped above
         content = ""
         if school_name and service:
             queries = get_school_search_queries(school_name)
@@ -159,6 +219,11 @@ def main():
                     original_data[i]['status'] = 'sent'
             else:
                 print(f"No message found for {school_name} (tried {len(queries)} queries)")
+                schools_needing_manual_input.append({
+                    'id': school_id,
+                    'schoolName': school_name,
+                    'address': data.get('address', '')
+                })
 
         internal_item['requestContent'] = content.strip()
         internal_data.append(internal_item)
@@ -175,6 +240,26 @@ def main():
             f.write(json.dumps(item, ensure_ascii=False) + '\n')
 
     print("Finished updating public/data/coordinates.ndjson with status.")
+
+    # Print summary of schools needing manual input
+    if schools_needing_manual_input:
+        print("\n" + "="*80)
+        print("SCHOOLS REQUIRING MANUAL DATA ENTRY (Email not found)")
+        print("="*80)
+        for school in schools_needing_manual_input:
+            print(f"\nID: {school['id']}")
+            print(f"School Name: {school['schoolName']}")
+            print(f"Address: {school['address']}")
+            print("-" * 80)
+
+        print(f"\nTotal schools needing manual input: {len(schools_needing_manual_input)}")
+
+        # Save to a separate file for easy reference
+        with open('public/data/manual_input_needed.json', 'w', encoding='utf-8') as f:
+            json.dump(schools_needing_manual_input, f, ensure_ascii=False, indent=2)
+        print("List saved to: public/data/manual_input_needed.json")
+    else:
+        print("\n✓ All schools have email data - no manual input required!")
 
 if __name__ == '__main__':
     main()
