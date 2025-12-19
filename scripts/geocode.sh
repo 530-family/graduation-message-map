@@ -16,31 +16,64 @@ ENV_FILE="$PROJECT_ROOT/.env.local"
 
 # 사용법 출력 함수
 usage() {
-    echo "사용법: $0 <학교명> <주소> [주소타입]"
+    echo "사용법: $0 [OPTIONS] <학교명> <주소> [주소타입]"
     echo ""
     echo "파라미터:"
     echo "  학교명    : 학교 이름 (필수)"
     echo "  주소      : 검색할 주소 (필수)"
     echo "  주소타입  : PARCEL (지번주소) 또는 ROAD (도로명주소, 기본값)"
     echo ""
+    echo "옵션:"
+    echo "  --on-duplicate <action> : 중복 발견 시 수행할 동작."
+    echo "                            - prompt: 사용자에게 묻기 (기본값)"
+    echo "                            - skip: 작업을 건너뛰기"
+    echo "                            - overwrite: 기존 항목 덮어쓰기"
+    echo "                            - add-new: 새 항목으로 추가하기"
+    echo ""
     echo "예시:"
     echo "  $0 \"천곡중학교\" \"광주광역시 광산구 월계로16번길 78 (월계동)\""
-    echo "  $0 \"한국외국어대학교\" \"서울특별시 동대문구 이문로 107 (이문동)\" ROAD"
+    echo "  $0 --on-duplicate skip \"한국외국어대학교\" \"서울특별시 동대문구 이문로 107 (이문동)\""
     echo ""
     echo "참고: API 키는 .env.local 파일의 VWORLD_API_KEY에서 자동으로 로드됩니다."
     echo "      결과는 public/data/coordinates.ndjson 파일에 자동으로 추가됩니다."
     exit 1
 }
 
+# 기본값 설정
+ON_DUPLICATE_ACTION="prompt"
+
+# 옵션 파싱
+# 루프를 돌면서 옵션을 먼저 처리하고, 남은 것을 위치 인자로 사용
+declare -a POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --on-duplicate)
+        if [[ -n "$2" && "$2" != -* ]]; then
+            ON_DUPLICATE_ACTION="$2"
+            shift # past argument
+            shift # past value
+        else
+            echo "오류: --on-duplicate 옵션에는 값이 필요합니다." >&2
+            exit 1
+        fi
+        ;;
+        *)
+        POSITIONAL_ARGS+=("$1") # 위치 인자 저장
+        shift # past argument
+        ;;
+    esac
+done
+set -- "${POSITIONAL_ARGS[@]}" # 위치 인자 복원
+
 # 파라미터 체크
-if [ $# -lt 2 ]; then
+if [ ${#POSITIONAL_ARGS[@]} -lt 2 ]; then
     echo -e "${RED}오류: 학교명과 주소를 입력해주세요.${NC}"
     usage
 fi
 
-SCHOOL_NAME="$1"
-ADDRESS="$2"
-TYPE="${3:-ROAD}"  # 기본값은 ROAD
+SCHOOL_NAME="${POSITIONAL_ARGS[0]}"
+ADDRESS="${POSITIONAL_ARGS[1]}"
+TYPE="${POSITIONAL_ARGS[2]:-ROAD}"  # 기본값은 ROAD
 
 # 주소 정제: 앞뒤 공백과 줄바꿈 제거
 ADDRESS=$(echo "$ADDRESS" | tr -d '\n\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
@@ -222,39 +255,73 @@ if [ -f "$NDJSON_FILE" ]; then
         EXISTING_ID=$(echo "$EXISTING" | jq -r '.id')
         NEXT_ID=$EXISTING_ID
 
-        echo ""
-        echo -e "${YELLOW}⚠️  경고: '$SCHOOL_NAME'는 이미 coordinates.ndjson에 존재합니다.${NC}"
-        echo -e "${YELLOW}기존 데이터:${NC}"
-        echo "$EXISTING" | jq '.'
-        echo ""
-        echo "선택하세요:"
-        echo "  1) 덮어쓰기 (기존 데이터를 새 데이터로 교체)"
-        echo "  2) 새로 추가 (같은 이름의 다른 학교로 추가)"
-        echo "  3) 취소"
-        read -p "선택 (1/2/3): " -n 1 -r
-        echo
+        # --on-duplicate 값에 따라 분기 처리
+        case "$ON_DUPLICATE_ACTION" in
+            skip)
+                echo -e "${YELLOW}경고: '$SCHOOL_NAME'가 이미 존재합니다. --on-duplicate=skip 설정에 따라 건너뜁니다.${NC}"
+                exit 0
+                ;;
+            overwrite)
+                echo -e "${YELLOW}경고: '$SCHOOL_NAME'가 이미 존재합니다. --on-duplicate=overwrite 설정에 따라 덮어씁니다.${NC}"
+                REPLACE_MODE=true
+                INSERT_LINE=$LINE_NUM
 
-        if [[ $REPLY == "1" ]]; then
-            REPLACE_MODE=true
-            INSERT_LINE=$LINE_NUM
+                # 기존 ID로 NEW_ENTRY 재생성
+                NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
 
-            # 기존 ID로 NEW_ENTRY 재생성
-            NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+                # 기존 항목 제거 (해당 줄만)
+                sed -i.bak "${LINE_NUM}d" "$NDJSON_FILE"
+                rm -f "$NDJSON_FILE.bak"
+                echo -e "${GREEN}기존 데이터를 제거했습니다.${NC}"
+                ;;
+            add-new)
+                echo -e "${YELLOW}경고: '$SCHOOL_NAME'가 이미 존재합니다. --on-duplicate=add-new 설정에 따라 새로 추가합니다.${NC}"
+                # 새로운 ID로 추가 (최대 ID + 1)
+                MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
+                if [ -z "$MAX_ID" ] || [ "$MAX_ID" = "null" ]; then
+                    NEXT_ID=1
+                else
+                    NEXT_ID=$((MAX_ID + 1))
+                fi
+                NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+                echo -e "${GREEN}새로운 항목으로 추가합니다. (ID: $NEXT_ID)${NC}"
+                ;;
+            *) # prompt 또는 잘못된 값일 경우
+                echo ""
+                echo -e "${YELLOW}⚠️  경고: '$SCHOOL_NAME'는 이미 coordinates.ndjson에 존재합니다.${NC}"
+                echo -e "${YELLOW}기존 데이터:${NC}"
+                echo "$EXISTING" | jq '.'
+                echo ""
+                echo "선택하세요:"
+                echo "  1) 덮어쓰기 (기존 데이터를 새 데이터로 교체)"
+                echo "  2) 새로 추가 (같은 이름의 다른 학교로 추가)"
+                echo "  3) 취소"
+                read -p "선택 (1/2/3): " -n 1 -r
+                echo
 
-            # 기존 항목 제거 (해당 줄만)
-            sed -i.bak "${LINE_NUM}d" "$NDJSON_FILE"
-            rm -f "$NDJSON_FILE.bak"
-            echo -e "${GREEN}기존 데이터를 제거했습니다.${NC}"
-        elif [[ $REPLY == "2" ]]; then
-            # 새로운 ID로 추가 (최대 ID + 1)
-            MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
-            NEXT_ID=$((MAX_ID + 1))
-            NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
-            echo -e "${GREEN}새로운 항목으로 추가합니다. (ID: $NEXT_ID)${NC}"
-        else
-            echo -e "${RED}취소되었습니다.${NC}"
-            exit 0
-        fi
+                if [[ $REPLY == "1" ]]; then
+                    REPLACE_MODE=true
+                    INSERT_LINE=$LINE_NUM
+
+                    # 기존 ID로 NEW_ENTRY 재생성
+                    NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+
+                    # 기존 항목 제거 (해당 줄만)
+                    sed -i.bak "${LINE_NUM}d" "$NDJSON_FILE"
+                    rm -f "$NDJSON_FILE.bak"
+                    echo -e "${GREEN}기존 데이터를 제거했습니다.${NC}"
+                elif [[ $REPLY == "2" ]]; then
+                    # 새로운 ID로 추가 (최대 ID + 1)
+                    MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
+                    NEXT_ID=$((MAX_ID + 1))
+                    NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+                    echo -e "${GREEN}새로운 항목으로 추가합니다. (ID: $NEXT_ID)${NC}"
+                else
+                    echo -e "${RED}취소되었습니다.${NC}"
+                    exit 0
+                fi
+                ;;
+        esac
     fi
 fi
 
