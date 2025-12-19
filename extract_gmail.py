@@ -172,21 +172,43 @@ def main():
                 raw_email = base64.urlsafe_b64decode(message_data['raw'].encode('ASCII'))
                 email_message = email.message_from_bytes(raw_email)
                 
-                payload = None
+                body_html = None
+                body_plain = None
+
                 if email_message.is_multipart():
                     for part in email_message.walk():
-                        if part.get_content_type() == "text/html":
+                        content_type = part.get_content_type()
+                        # Prefer HTML part, but only if we haven't found one yet
+                        if content_type == "text/html" and not body_html:
                             payload = part.get_payload(decode=True)
-                            soup = BeautifulSoup(payload, 'html.parser')
-                            content = soup.get_text()
-                            break
-                else:
-                    if email_message.get_content_type() == "text/html":
+                            if payload and payload.strip():
+                                body_html = payload
+                        # Also look for plain text part
+                        elif content_type == "text/plain" and not body_plain:
+                            payload = part.get_payload(decode=True)
+                            if payload and payload.strip():
+                                body_plain = payload
+                else: # Not multipart
+                    content_type = email_message.get_content_type()
+                    if content_type == "text/html":
                         payload = email_message.get_payload(decode=True)
-                        soup = BeautifulSoup(payload, 'html.parser')
-                        content = soup.get_text()
-                
-                print(f"Successfully extracted content from oldest email for {school_name}")
+                        if payload and payload.strip():
+                            body_html = payload
+                    elif content_type == "text/plain":
+                        payload = email_message.get_payload(decode=True)
+                        if payload and payload.strip():
+                            body_plain = payload
+
+                # Prioritize HTML content, but fallback to plain text
+                if body_html:
+                    soup = BeautifulSoup(body_html, 'html.parser')
+                    content = soup.get_text()
+                    print(f"  -> Successfully extracted content from HTML part.")
+                elif body_plain:
+                    content = body_plain.decode('utf-8', errors='ignore')
+                    print(f"  -> Successfully extracted content from plain text part.")
+                else:
+                    print(f"  -> WARNING: Could not extract readable content for {school_name}.")
 
                 # 2. Process newest email to check for Google Drive link
                 newest_message_id = messages[0]['id']
