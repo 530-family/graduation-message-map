@@ -56,27 +56,30 @@ def get_existing_schools(file_path):
 
 def find_new_schools(service, start_dt_obj, start_date_str):
     """
-    Searches Gmail, extracts potential school names, and returns a new, unique,
-    and chronologically ordered list of schools.
+    Searches Gmail across all pages, sorts messages chronologically, extracts
+    potential school names, and returns a new, unique, and ordered list.
     """
-    # Use only date for the initial Gmail API query to limit results efficiently
-    query = f'label:졸업식 to:me after:{start_date_str}' # start_date_str is 'YYYY/MM/DD'
+    query = f'label:졸업식 to:me after:{start_date_str}'
     print(f"Searching Gmail with query: '{query}'")
     
-    response = service.users().messages().list(userId='me', q=query).execute()
-    messages_summary = response.get('messages', [])
+    # --- Handle Pagination: Fetch all message summaries from all pages ---
+    messages_summary = []
+    request = service.users().messages().list(userId='me', q=query)
+    while request is not None:
+        response = request.execute()
+        messages_summary.extend(response.get('messages', []))
+        request = service.users().messages().list_next(previous_request=request, previous_response=response)
     
     if not messages_summary:
         print("No messages found matching the criteria.")
         return []
 
-    print(f"Found {len(messages_summary)} messages. Fetching details for sorting...")
+    print(f"Found a total of {len(messages_summary)} messages. Fetching details for sorting...")
     
     # Fetch internalDate for all messages to sort them
     dated_messages = []
     for msg_summary in messages_summary:
         msg_meta = service.users().messages().get(userId='me', id=msg_summary['id'], format='metadata', fields='id,internalDate').execute()
-        # Filter by exact start time before sorting
         msg_internal_dt = datetime.fromtimestamp(int(msg_meta['internalDate']) / 1000)
         if msg_internal_dt >= start_dt_obj:
             dated_messages.append(msg_meta)
@@ -86,19 +89,18 @@ def find_new_schools(service, start_dt_obj, start_date_str):
     
     print(f"Processing {len(dated_messages)} messages in chronological order...")
     
-    # Use a list to preserve order and a set to track uniqueness
     found_schools_list = []
     seen_schools_set = set()
 
     for msg_meta in dated_messages:
         message_data = service.users().messages().get(userId='me', id=msg_meta['id']).execute()
         
-        # Extract subject and body
         subject = ''
         for header in message_data['payload']['headers']:
             if header['name'].lower() == 'subject':
                 subject = header['value']
                 break
+        
         body = ''
         if 'parts' in message_data['payload']:
             for part in message_data['payload']['parts']:
@@ -115,21 +117,17 @@ def find_new_schools(service, start_dt_obj, start_date_str):
         full_text = f"{subject} {body}"
         
         def add_school(school_name):
-            """Helper to add a school to the list if it's unique."""
             cleaned_school = school_name.strip()
             if cleaned_school and cleaned_school not in seen_schools_set:
                 seen_schools_set.add(cleaned_school)
                 found_schools_list.append(cleaned_school)
 
-        # --- New Parsing Logic ---
         school_found_in_this_email = False
-        # 1. Primary Strategy: Look for '[학교명 / 소재지]:'
         primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
         if primary_match:
             add_school(primary_match.group(1))
             school_found_in_this_email = True
         
-        # 2. Fallback Strategy: If primary fails, use the general pattern
         if not school_found_in_this_email:
             for match in SCHOOL_PATTERN.finditer(full_text):
                 full_school_name = match.group(1).strip() + match.group(2)
