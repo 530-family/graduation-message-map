@@ -245,8 +245,8 @@ REPLACE_MODE=false
 INSERT_LINE=0
 
 if [ -f "$NDJSON_FILE" ]; then
-    # 학교명이 포함된 줄 번호 찾기 (Fixed-string search)
-    LINE_NUM=$(grep -n -F "\"schoolName\":\"$SCHOOL_NAME\"" "$NDJSON_FILE" 2>/dev/null | cut -d: -f1)
+    # 학교명이 포함된 줄 번호 찾기 (Regex search with optional space)
+    LINE_NUM=$(grep -n -E "\"schoolName\":\s*\"$SCHOOL_NAME\"" "$NDJSON_FILE" 2>/dev/null | cut -d: -f1)
 
     if [ -n "$LINE_NUM" ]; then
         # 기존 데이터 추출 (한 줄)
