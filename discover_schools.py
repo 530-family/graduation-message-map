@@ -55,7 +55,10 @@ def get_existing_schools(file_path):
     return schools
 
 def find_new_schools(service, start_dt_obj, start_date_str):
-    """Searches Gmail, extracts potential school names, and returns new, unique ones, filtering by exact datetime."""
+    """
+    Searches Gmail, extracts potential school names, and returns a new, unique,
+    and chronologically ordered list of schools.
+    """
     # Use only date for the initial Gmail API query to limit results efficiently
     query = f'label:졸업식 to:me after:{start_date_str}' # start_date_str is 'YYYY/MM/DD'
     print(f"Searching Gmail with query: '{query}'")
@@ -65,7 +68,7 @@ def find_new_schools(service, start_dt_obj, start_date_str):
     
     if not messages_summary:
         print("No messages found matching the criteria.")
-        return set()
+        return []
 
     print(f"Found {len(messages_summary)} messages. Fetching details for sorting...")
     
@@ -83,18 +86,19 @@ def find_new_schools(service, start_dt_obj, start_date_str):
     
     print(f"Processing {len(dated_messages)} messages in chronological order...")
     
-    found_schools = set()
+    # Use a list to preserve order and a set to track uniqueness
+    found_schools_list = []
+    seen_schools_set = set()
+
     for msg_meta in dated_messages:
         message_data = service.users().messages().get(userId='me', id=msg_meta['id']).execute()
         
-        # Extract subject
+        # Extract subject and body
         subject = ''
         for header in message_data['payload']['headers']:
             if header['name'].lower() == 'subject':
                 subject = header['value']
                 break
-        
-        # Extract body
         body = ''
         if 'parts' in message_data['payload']:
             for part in message_data['payload']['parts']:
@@ -104,35 +108,34 @@ def find_new_schools(service, start_dt_obj, start_date_str):
                     elif part['mimeType'] == 'text/html':
                         soup = BeautifulSoup(base64.urlsafe_b64decode(part['body']['data']), 'html.parser')
                         body += soup.get_text()
-        else:
-             if message_data['payload'].get('body') and message_data['payload'].get('body').get('data'):
-                body_data = message_data['payload']['body']['data']
-                body = base64.urlsafe_b64decode(body_data).decode('utf-8')
-
+        elif message_data['payload'].get('body') and message_data['payload'].get('body').get('data'):
+            body_data = message_data['payload']['body']['data']
+            body = base64.urlsafe_b64decode(body_data).decode('utf-8')
 
         full_text = f"{subject} {body}"
         
+        def add_school(school_name):
+            """Helper to add a school to the list if it's unique."""
+            cleaned_school = school_name.strip()
+            if cleaned_school and cleaned_school not in seen_schools_set:
+                seen_schools_set.add(cleaned_school)
+                found_schools_list.append(cleaned_school)
+
         # --- New Parsing Logic ---
-        school_found = False
+        school_found_in_this_email = False
         # 1. Primary Strategy: Look for '[학교명 / 소재지]:'
         primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
         if primary_match:
-            school_name = primary_match.group(1).strip()
-            found_schools.add(school_name)
-            school_found = True
+            add_school(primary_match.group(1))
+            school_found_in_this_email = True
         
         # 2. Fallback Strategy: If primary fails, use the general pattern
-        if not school_found:
+        if not school_found_in_this_email:
             for match in SCHOOL_PATTERN.finditer(full_text):
-                # Combine group 1 (name) and group 2 (suffix)
                 full_school_name = match.group(1).strip() + match.group(2)
-                
-                # Basic cleaning
-                cleaned_school = full_school_name.strip()
-                # Add to our set of found schools
-                found_schools.add(cleaned_school)
+                add_school(full_school_name)
             
-    return found_schools
+    return found_schools_list
 
 def append_to_ndjson(file_path, data_item):
     """Appends a JSON object to the ndjson file."""
@@ -203,14 +206,14 @@ def main():
     print(f"\nFound {len(newly_found_schools)} total potential schools from Gmail.")
 
     # --- Step 3: Filter out existing schools ---
-    schools_to_add = newly_found_schools - existing_schools
+    schools_to_add = [school for school in newly_found_schools if school not in existing_schools]
     
     if not schools_to_add:
         print("\nAll found schools already exist in the coordinates file. Nothing to add.")
         return
         
-    print(f"\nAttempting to add {len(schools_to_add)} new schools:")
-    for school in sorted(list(schools_to_add)):
+    print(f"\nAttempting to add {len(schools_to_add)} new schools in chronological order:")
+    for school in schools_to_add:
         print(f"  - {school}")
 
     # --- Step 4: Run geocode.sh for each new school ---
@@ -226,7 +229,7 @@ def main():
     success_count = 0
     added_empty_address_count = 0
 
-    for school_name in sorted(list(schools_to_add)):
+    for school_name in schools_to_add:
         print(f"\n--- Processing '{school_name}' ---")
         geocoded_successfully = False
         try:
