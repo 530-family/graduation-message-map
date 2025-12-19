@@ -174,40 +174,53 @@ def main():
 
     success_count = 0
     fail_count = 0
+    manual_lookup_list = []
 
     for school_name in sorted(list(schools_to_add)):
         print(f"\n--- Geocoding '{school_name}' ---")
         try:
-            # We use the school name as the address as requested.
+            # Attempt 1: Use school name as address.
             command = [
-                'bash',
-                geocode_script,
-                '--on-duplicate',
-                'skip',
-                school_name,
-                school_name 
+                'bash', geocode_script,
+                '--on-duplicate', 'skip',
+                school_name, school_name 
             ]
             
-            # The script will print its own output, so we don't need to capture it unless for debugging.
-            # We check the return code to see if it succeeded.
-            result = subprocess.run(command, check=False, text=True) # check=False to handle non-zero exit codes manually
+            # Capture output to avoid cluttering the log on failure.
+            result = subprocess.run(command, check=False, text=True, capture_output=True)
             
             if result.returncode == 0:
-                print(f"✓ Successfully processed '{school_name}'.")
+                print(f"✓ Successfully processed '{school_name}' with school name as address.")
+                print(result.stdout) # Show successful output
+                if result.stderr:
+                    print("--- Stderr ---")
+                    print(result.stderr)
                 success_count += 1
             else:
-                print(f"✗ Failed to process '{school_name}' (geocode.sh exit code: {result.returncode}). Check output above for details.")
+                print(f"✗ Geocoding failed with school name as address. Adding to manual lookup list.")
+                manual_lookup_list.append(school_name)
                 fail_count += 1
 
         except Exception as e:
             print(f"✗ An unexpected error occurred while running geocode.sh for '{school_name}': {e}")
+            manual_lookup_list.append(school_name)
             fail_count += 1
     
+    # After the loop, save the list of schools needing manual lookup
+    if manual_lookup_list:
+        manual_file = 'manual_address_lookup.txt'
+        print(f"\nSaving {len(manual_lookup_list)} schools that need manual address lookup to '{manual_file}'...")
+        with open(manual_file, 'w', encoding='utf-8') as f:
+            for school in manual_lookup_list:
+                f.write(school + '\n')
+
     print("\n" + "="*80)
     print("Geocoding Summary")
     print("="*80)
     print(f"Successfully added: {success_count}")
-    print(f"Failed or skipped: {fail_count}")
+    print(f"Failed (needs manual lookup): {fail_count}")
+    if manual_lookup_list:
+        print(f"A list of schools needing manual address lookup has been saved to 'manual_address_lookup.txt'.")
     print("="*80)
 
 if __name__ == '__main__':
