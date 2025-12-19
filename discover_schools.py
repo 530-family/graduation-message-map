@@ -15,9 +15,9 @@ from bs4 import BeautifulSoup
 
 # Gmail API setup
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
-# 1. A non-greedy name part that must start with a word character.
-# 2. The school type suffix. This is now a single-group pattern.
-SCHOOL_PATTERN = re.compile(r'(\w[\w\s]*?(?:중학교|고등학교|대학교|아카데미|스쿨|유치원|초등학교))')
+# This pattern uses a more explicit character set for the name part and adds '영재학교'.
+# It uses two groups: 1. The name part (greedy). 2. The suffix part.
+SCHOOL_PATTERN = re.compile(r'([a-zA-Z0-9가-힣\s]+)(중학교|고등학교|대학교|아카데미|스쿨|유치원|초등학교|영재학교)')
 PRIMARY_SCHOOL_PATTERN = re.compile(r'\[학교명 / 소재지\]:\s*(.+?학교)')
 
 def get_gmail_service():
@@ -133,9 +133,10 @@ def find_new_schools(service, start_dt_obj, start_date_str):
         # 2. Fallback Strategy: Find the *first* match of the general pattern
         fallback_match = SCHOOL_PATTERN.search(full_text)
         if fallback_match:
-            school_name = fallback_match.group(1).strip()
-            print(f"  > Fallback pattern matched: '{school_name}'")
-            add_school(school_name)
+            # Combine the name part and the suffix part
+            full_school_name = fallback_match.group(1).strip() + fallback_match.group(2)
+            print(f"  > Fallback pattern matched: '{full_school_name}'")
+            add_school(full_school_name)
             continue # Skip to the next email
             
         print("  > No school name patterns matched in this email.")
