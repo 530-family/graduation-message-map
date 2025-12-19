@@ -6,7 +6,7 @@ import os
 import re
 import argparse
 import subprocess
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -46,9 +46,10 @@ def get_existing_schools(file_path):
         print(f"Info: '{file_path}' not found. Assuming no existing schools.")
     return schools
 
-def find_new_schools(service, start_date):
-    """Searches Gmail, extracts potential school names, and returns new, unique ones."""
-    query = f'label:졸업식 to:me after:{start_date}'
+def find_new_schools(service, start_dt_obj, start_date_str):
+    """Searches Gmail, extracts potential school names, and returns new, unique ones, filtering by exact datetime."""
+    # Use only date for the initial Gmail API query to limit results efficiently
+    query = f'label:졸업식 to:me after:{start_date_str}' # start_date_str is 'YYYY/MM/DD'
     print(f"Searching Gmail with query: '{query}'")
     
     response = service.users().messages().list(userId='me', q=query).execute()
@@ -58,12 +59,23 @@ def find_new_schools(service, start_date):
         print("No messages found matching the criteria.")
         return set()
 
-    print(f"Found {len(messages)} messages. Processing...")
+    print(f"Found {len(messages)} messages. Processing and filtering by exact time...")
     
     found_schools = set()
     for msg in messages:
         message_data = service.users().messages().get(userId='me', id=msg['id']).execute()
         
+        # Convert internalDate to datetime object for comparison
+        # internalDate is in milliseconds since epoch
+        # The internalDate is UTC, so ensure comparison is also UTC-aware or naive but consistent.
+        # For simplicity, we'll assume naive datetimes are in the same timezone for comparison.
+        msg_internal_dt = datetime.fromtimestamp(int(message_data['internalDate']) / 1000)
+
+        # Filter by exact start_dt_obj
+        if msg_internal_dt < start_dt_obj:
+            print(f"  Skipping message (ID: {msg['id']}) older than {start_dt_obj}.")
+            continue # Skip messages older than the specified start_dt
+
         # Extract subject
         subject = ''
         for header in message_data['payload']['headers']:
@@ -103,19 +115,25 @@ def main():
     """Main function to run the school discovery and geocoding process."""
     parser = argparse.ArgumentParser(description='Discover new schools from Gmail and add them to the coordinates file.')
     parser.add_argument(
-        '--start-date',
+        '--start-datetime',
         type=str,
         required=True,
-        help='The start date for the email search in YYYY-MM-DD format.'
+        help='The start date and optionally time for the email search in YYYY-MM-DD or "YYYY-MM-DD HH:MM:SS" format.'
     )
     args = parser.parse_args()
 
-    # Validate date format
+    # Validate datetime format and convert to datetime object
+    start_dt_obj = None
     try:
-        date.fromisoformat(args.start_date)
+        # Try parsing with time first
+        start_dt_obj = datetime.strptime(args.start_datetime, '%Y-%m-%d %H:%M:%S')
     except ValueError:
-        print("Error: --start-date must be in YYYY-MM-DD format.")
-        return
+        try:
+            # Fallback to date only, set time to 00:00:00
+            start_dt_obj = datetime.strptime(args.start_datetime, '%Y-%m-%d')
+        except ValueError:
+            print("Error: --start-datetime must be in YYYY-MM-DD or 'YYYY-MM-DD HH:MM:SS' format.")
+            return
 
     # --- Step 1: Get existing schools from coordinates file ---
     coords_file = 'public/data/coordinates.ndjson'
@@ -124,7 +142,8 @@ def main():
 
     # --- Step 2: Find new schools from Gmail ---
     service = get_gmail_service()
-    newly_found_schools = find_new_schools(service, args.start_date.replace('-', '/'))
+    # Pass the datetime object for precise filtering and the date part for the initial Gmail query
+    newly_found_schools = find_new_schools(service, start_dt_obj, start_dt_obj.strftime('%Y/%m/%d'))
     
     if not newly_found_schools:
         print("\nNo new potential schools found in Gmail.")
