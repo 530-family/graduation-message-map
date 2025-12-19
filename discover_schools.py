@@ -7,6 +7,8 @@ import re
 import argparse
 import subprocess
 from datetime import date, timedelta, datetime
+import urllib.parse
+import urllib.request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -19,6 +21,50 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 # 1. A non-greedy name part that must start with a non-whitespace character.
 # 2. The school type suffix.
 SCHOOL_PATTERN = re.compile(r'(\S[\w\s]*?)(중학교|고등학교|대학교|아카데미|스쿨|유치원|초등학교)')
+
+def get_google_search_credentials():
+    """Reads Google API Key and CSE ID from .env.local file."""
+    creds = {}
+    try:
+        with open('.env.local', 'r') as f:
+            for line in f:
+                if line.strip() and not line.startswith('#'):
+                    key, value = line.strip().split('=', 1)
+                    key = key.strip()
+                    value = value.strip().strip('"\'') # Remove quotes
+                    if key in ['GOOGLE_API_KEY', 'GOOGLE_CSE_ID']:
+                        creds[key] = value
+    except FileNotFoundError:
+        return None # .env.local not found
+    
+    if 'GOOGLE_API_KEY' in creds and 'GOOGLE_CSE_ID' in creds:
+        return creds
+    return None # Keys not found
+
+def search_address_web(school_name, api_key, cse_id):
+    """Searches for a school's address using Google Custom Search API."""
+    print(f"  -> Performing web search for '{school_name}' address...")
+    try:
+        query = f'"{school_name}" 도로명 주소'
+        encoded_query = urllib.parse.quote(query)
+        url = f"https://www.googleapis.com/customsearch/v1?key={api_key}&cx={cse_id}&q={encoded_query}"
+        
+        with urllib.request.urlopen(url) as response:
+            data = json.loads(response.read().decode())
+            
+            if 'items' in data and data['items']:
+                # Return the snippet of the first result
+                snippet = data['items'][0].get('snippet', '').strip()
+                # Clean the snippet
+                cleaned_snippet = snippet.replace('\n', ' ').replace('...', ' ').strip()
+                if cleaned_snippet:
+                    print(f"  -> Found potential address: {cleaned_snippet}")
+                    return cleaned_snippet
+    except Exception as e:
+        print(f"  -> Web search failed: {e}")
+    
+    print("  -> Web search did not find a usable address.")
+    return None
 
 def get_gmail_service():
     """Authenticates with Gmail API and returns a service object."""
@@ -200,65 +246,75 @@ def main():
 
     success_count = 0
     added_empty_address_count = 0
-    manual_lookup_list = [] # For schools that need web search by the agent
+    search_creds = get_google_search_credentials()
+
+    if not search_creds:
+        print("NOTE: Google Search credentials not found in .env.local. Web search fallback will be skipped.")
 
     for school_name in sorted(list(schools_to_add)):
-        print(f"\n--- Geocoding '{school_name}' ---")
+        print(f"\n--- Processing '{school_name}' ---")
+        geocoded_successfully = False
+
+        # --- Attempt 1: Use school name as address ---
         try:
-            # Attempt 1: Use school name as address.
-            command = [
+            print("  Attempt 1: Geocoding with school name as address.")
+            command1 = [
                 'bash', geocode_script,
                 '--on-duplicate', 'skip',
                 school_name, school_name 
             ]
+            result1 = subprocess.run(command1, check=False, text=True, capture_output=True)
             
-            # Capture output to avoid cluttering the log on failure.
-            result = subprocess.run(command, check=False, text=True, capture_output=True)
-            
-            if result.returncode == 0:
-                print(f"✓ Successfully processed '{school_name}' with school name as address.")
-                print(result.stdout) # Show successful output
-                if result.stderr:
-                    print("--- Stderr ---")
-                    print(result.stderr)
+            if result1.returncode == 0:
+                print(f"  ✓ Success with Attempt 1.")
+                print(result1.stdout)
                 success_count += 1
+                geocoded_successfully = True
             else:
-                # If first geocoding attempt fails, add to ndjson with empty address
-                print(f"✗ Geocoding failed with school name as address.")
+                print(f"  ✗ Attempt 1 failed.")
+
+            # --- Attempt 2: Web search for address if first attempt failed ---
+            if not geocoded_successfully and search_creds:
+                found_address = search_address_web(school_name, search_creds['GOOGLE_API_KEY'], search_creds['GOOGLE_CSE_ID'])
                 
-                next_id = get_next_id_from_ndjson(coords_file)
-                empty_address_entry = {
-                    "id": next_id,
-                    "schoolName": school_name,
-                    "address": "", # Empty address as requested
-                    "coordinates": {"longitude": 0, "latitude": 0} # Dummy coordinates
-                }
-                append_to_ndjson(coords_file, empty_address_entry)
-                print(f"  -> Added '{school_name}' to '{coords_file}' with an empty address (ID: {next_id}).")
-                
-                manual_lookup_list.append(school_name)
-                added_empty_address_count += 1
+                if found_address:
+                    print("  Attempt 2: Geocoding with address found from web search.")
+                    command2 = [
+                        'bash', geocode_script,
+                        '--on-duplicate', 'skip',
+                        school_name, found_address
+                    ]
+                    result2 = subprocess.run(command2, check=False, text=True, capture_output=True)
+
+                    if result2.returncode == 0:
+                        print(f"  ✓ Success with Attempt 2.")
+                        print(result2.stdout)
+                        success_count += 1
+                        geocoded_successfully = True
+                    else:
+                        print(f"  ✗ Attempt 2 failed.")
 
         except Exception as e:
-            print(f"✗ An unexpected error occurred while running geocode.sh for '{school_name}': {e}")
-            manual_lookup_list.append(school_name)
-            added_empty_address_count += 1 # Count as added with empty address if exception occurs
-
-    # After the loop, save the list of schools needing manual lookup
-    if manual_lookup_list:
-        manual_file = 'manual_address_lookup.txt'
-        print(f"\nSaving {len(manual_lookup_list)} schools that need manual address lookup to '{manual_file}'...")
-        with open(manual_file, 'w', encoding='utf-8') as f:
-            for school in manual_lookup_list:
-                f.write(school + '\n')
+            print(f"  ✗ An unexpected error occurred while processing '{school_name}': {e}")
+        
+        # --- Fallback: Add with empty address if all attempts failed ---
+        if not geocoded_successfully:
+            print(f"  -> All attempts failed. Adding '{school_name}' with an empty address.")
+            next_id = get_next_id_from_ndjson(coords_file)
+            empty_address_entry = {
+                "id": next_id,
+                "schoolName": school_name,
+                "address": "",
+                "coordinates": {"longitude": 0, "latitude": 0}
+            }
+            append_to_ndjson(coords_file, empty_address_entry)
+            added_empty_address_count += 1
 
     print("\n" + "="*80)
     print("Geocoding Summary")
     print("="*80)
     print(f"Successfully geocoded and added: {success_count}")
-    print(f"Added with empty address (needs manual web search by agent): {added_empty_address_count}")
-    if manual_lookup_list:
-        print(f"A list of schools needing manual address lookup has been saved to 'manual_address_lookup.txt'.")
+    print(f"Added with empty address (requires manual update): {added_empty_address_count}")
     print("="*80)
 
 if __name__ == '__main__':
