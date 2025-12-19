@@ -122,16 +122,18 @@ def find_new_schools(service, start_dt_obj, start_date_str):
                 seen_schools_set.add(cleaned_school)
                 found_schools_list.append(cleaned_school)
 
-        school_found_in_this_email = False
+        # --- One school per email parsing logic ---
+        # 1. Primary Strategy: Look for '[학교명 / 소재지]:'
         primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
         if primary_match:
             add_school(primary_match.group(1))
-            school_found_in_this_email = True
-        
-        if not school_found_in_this_email:
-            for match in SCHOOL_PATTERN.finditer(full_text):
-                full_school_name = match.group(1).strip() + match.group(2)
-                add_school(full_school_name)
+            continue # Skip to the next email
+
+        # 2. Fallback Strategy: Find the *first* match of the general pattern
+        fallback_match = SCHOOL_PATTERN.search(full_text)
+        if fallback_match:
+            full_school_name = fallback_match.group(1).strip() + fallback_match.group(2)
+            add_school(full_school_name)
             
     return found_schools_list
 
