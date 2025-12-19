@@ -93,6 +93,7 @@ def find_new_schools(service, start_dt_obj, start_date_str):
     seen_schools_set = set()
 
     for msg_meta in dated_messages:
+        print(f"\n--- Checking Email ID: {msg_meta['id']} ---")
         message_data = service.users().messages().get(userId='me', id=msg_meta['id']).execute()
         
         subject = ''
@@ -106,13 +107,13 @@ def find_new_schools(service, start_dt_obj, start_date_str):
             for part in message_data['payload']['parts']:
                 if part.get('body') and part.get('body').get('data'):
                     if part['mimeType'] == 'text/plain':
-                        body += base64.urlsafe_b64decode(part['body']['data']).decode('utf-8')
+                        body += base64.urlsafe_b64decode(part['body']['data']).decode('utf-8', errors='ignore')
                     elif part['mimeType'] == 'text/html':
                         soup = BeautifulSoup(base64.urlsafe_b64decode(part['body']['data']), 'html.parser')
                         body += soup.get_text()
         elif message_data['payload'].get('body') and message_data['payload'].get('body').get('data'):
             body_data = message_data['payload']['body']['data']
-            body = base64.urlsafe_b64decode(body_data).decode('utf-8')
+            body = base64.urlsafe_b64decode(body_data).decode('utf-8', errors='ignore')
 
         full_text = f"{subject} {body}"
         
@@ -122,18 +123,23 @@ def find_new_schools(service, start_dt_obj, start_date_str):
                 seen_schools_set.add(cleaned_school)
                 found_schools_list.append(cleaned_school)
 
-        # --- One school per email parsing logic ---
         # 1. Primary Strategy: Look for '[학교명 / 소재지]:'
         primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
         if primary_match:
-            add_school(primary_match.group(1))
+            school_name = primary_match.group(1).strip()
+            print(f"  > Primary pattern matched: '{school_name}'")
+            add_school(school_name)
             continue # Skip to the next email
 
         # 2. Fallback Strategy: Find the *first* match of the general pattern
         fallback_match = SCHOOL_PATTERN.search(full_text)
         if fallback_match:
             full_school_name = fallback_match.group(1).strip() + fallback_match.group(2)
+            print(f"  > Fallback pattern matched: '{full_school_name}'")
             add_school(full_school_name)
+            continue # Skip to the next email
+            
+        print("  > No school name patterns matched in this email.")
             
     return found_schools_list
 
@@ -206,7 +212,13 @@ def main():
     print(f"\nFound {len(newly_found_schools)} total potential schools from Gmail.")
 
     # --- Step 3: Filter out existing schools ---
-    schools_to_add = [school for school in newly_found_schools if school not in existing_schools]
+    print("\nFiltering against existing schools...")
+    schools_to_add = []
+    for school in newly_found_schools:
+        if school not in existing_schools:
+            schools_to_add.append(school)
+        else:
+            print(f"  - Skipping '{school}' (already exists in coordinates.ndjson)")
     
     if not schools_to_add:
         print("\nAll found schools already exist in the coordinates file. Nothing to add.")
