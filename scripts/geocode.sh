@@ -251,10 +251,7 @@ if [ -f "$NDJSON_FILE" ]; then
     if [ -n "$LINE_NUM" ]; then
         # 기존 데이터 추출 (한 줄)
         EXISTING=$(sed -n "${LINE_NUM}p" "$NDJSON_FILE")
-
-        # 기존 ID 추출
         EXISTING_ID=$(echo "$EXISTING" | jq -r '.id')
-        NEXT_ID=$EXISTING_ID
 
         # --on-duplicate 값에 따라 분기 처리
         case "$ON_DUPLICATE_ACTION" in
@@ -264,28 +261,21 @@ if [ -f "$NDJSON_FILE" ]; then
                 ;;
             overwrite)
                 echo -e "${YELLOW}경고: '$SCHOOL_NAME'가 이미 존재합니다. --on-duplicate=overwrite 설정에 따라 덮어씁니다.${NC}"
-                REPLACE_MODE=true
-                INSERT_LINE=$LINE_NUM
-
-                # 기존 ID로 NEW_ENTRY 재생성
-                NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
-
-                # 기존 항목 제거 (해당 줄만)
-                sed -i.bak "${LINE_NUM}d" "$NDJSON_FILE"
+                NEW_ENTRY="{\"id\":$EXISTING_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+                
+                # sed의 치환(substitute) 기능을 사용하여 해당 라인을 직접 교체
+                # BSD/macOS sed와 호환되도록 -i 뒤에 '' 확장자 제공
+                sed -i.bak "${LINE_NUM}s/.*/$NEW_ENTRY/" "$NDJSON_FILE"
                 rm -f "$NDJSON_FILE.bak"
-                echo -e "${GREEN}기존 데이터를 제거했습니다.${NC}"
+
+                echo -e "${GREEN}기존 데이터를 덮어썼습니다.${NC}"
+                echo -e "${YELLOW}새 데이터:${NC}"
+                echo "$NEW_ENTRY" | jq '.'
+                exit 0
                 ;;
             add-new)
                 echo -e "${YELLOW}경고: '$SCHOOL_NAME'가 이미 존재합니다. --on-duplicate=add-new 설정에 따라 새로 추가합니다.${NC}"
-                # 새로운 ID로 추가 (최대 ID + 1)
-                MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
-                if [ -z "$MAX_ID" ] || [ "$MAX_ID" = "null" ]; then
-                    NEXT_ID=1
-                else
-                    NEXT_ID=$((MAX_ID + 1))
-                fi
-                NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
-                echo -e "${GREEN}새로운 항목으로 추가합니다. (ID: $NEXT_ID)${NC}"
+                # Fall through to the default append logic
                 ;;
             *) # prompt 또는 잘못된 값일 경우
                 echo ""
@@ -301,22 +291,16 @@ if [ -f "$NDJSON_FILE" ]; then
                 echo
 
                 if [[ $REPLY == "1" ]]; then
-                    REPLACE_MODE=true
-                    INSERT_LINE=$LINE_NUM
-
-                    # 기존 ID로 NEW_ENTRY 재생성
-                    NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
-
-                    # 기존 항목 제거 (해당 줄만)
-                    sed -i.bak "${LINE_NUM}d" "$NDJSON_FILE"
+                    NEW_ENTRY="{\"id\":$EXISTING_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+                    sed -i.bak "${LINE_NUM}s/.*/$NEW_ENTRY/" "$NDJSON_FILE"
                     rm -f "$NDJSON_FILE.bak"
-                    echo -e "${GREEN}기존 데이터를 제거했습니다.${NC}"
+                    echo -e "${GREEN}기존 데이터를 덮어썼습니다.${NC}"
+                    echo -e "${YELLOW}새 데이터:${NC}"
+                    echo "$NEW_ENTRY" | jq '.'
+                    exit 0
                 elif [[ $REPLY == "2" ]]; then
-                    # 새로운 ID로 추가 (최대 ID + 1)
-                    MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
-                    NEXT_ID=$((MAX_ID + 1))
-                    NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
-                    echo -e "${GREEN}새로운 항목으로 추가합니다. (ID: $NEXT_ID)${NC}"
+                    echo -e "${GREEN}새로운 항목으로 추가합니다.${NC}"
+                    # Fall through to the default append logic
                 else
                     echo -e "${RED}취소되었습니다.${NC}"
                     exit 0
@@ -326,24 +310,23 @@ if [ -f "$NDJSON_FILE" ]; then
     fi
 fi
 
-# 새 데이터 추가
-if [ "$REPLACE_MODE" = true ]; then
-    # 삭제한 위치에 삽입
-    if [ $INSERT_LINE -eq 1 ]; then
-        # 파일 맨 앞에 삽입
-        echo "$NEW_ENTRY" | cat - "$NDJSON_FILE" > "$NDJSON_FILE.tmp"
-        mv "$NDJSON_FILE.tmp" "$NDJSON_FILE"
+# ID 생성 (기존 파일에서 최대 ID를 찾아서 +1)
+if [ -f "$NDJSON_FILE" ] && [ -s "$NDJSON_FILE" ]; then
+    MAX_ID=$(jq -r '.id' "$NDJSON_FILE" 2>/dev/null | sort -n | tail -1)
+    if [ -z "$MAX_ID" ] || [ "$MAX_ID" = "null" ]; then
+        NEXT_ID=1
     else
-        # 특정 줄 위치에 삽입 (삭제된 줄의 원래 위치)
-        PREV_LINE=$((INSERT_LINE - 1))
-        sed -i.bak "${PREV_LINE}a\\
-$NEW_ENTRY" "$NDJSON_FILE"
-        rm -f "$NDJSON_FILE.bak"
+        NEXT_ID=$((MAX_ID + 1))
     fi
 else
-    # 파일 끝에 추가
-    echo "$NEW_ENTRY" >> "$NDJSON_FILE"
+    NEXT_ID=1
 fi
+
+# 새 데이터를 NDJSON 형식으로 준비 (한 줄로)
+NEW_ENTRY="{\"id\":$NEXT_ID,\"schoolName\":\"$SCHOOL_NAME\",\"address\":\"$REFINED_TEXT\",\"coordinates\":{\"longitude\":$X,\"latitude\":$Y}}"
+
+# 파일 끝에 추가
+echo "$NEW_ENTRY" >> "$NDJSON_FILE"
 
 echo ""
 echo -e "${GREEN}✓ coordinates.ndjson에 데이터가 추가되었습니다!${NC}"
