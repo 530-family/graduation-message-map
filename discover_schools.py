@@ -26,6 +26,7 @@ PRIMARY_SCHOOL_PATTERN = re.compile(r'\[학교명 / 소재지\]:\s*(.+?학교)')
 def get_school_info_from_csv(school_name, csv_path='public/data/schoolInfo.csv'):
     """
     Searches for a school in the local CSV file and returns its information.
+    It first tries an exact match, then falls back to a suffix match.
     """
     try:
         # Try cp949 first, as it's a common Korean Windows encoding
@@ -35,10 +36,11 @@ def get_school_info_from_csv(school_name, csv_path='public/data/schoolInfo.csv')
             print(f"  ! cp949 decoding failed for '{csv_path}', trying euc-kr with error replacement.")
             infile = open(csv_path, mode='r', encoding='euc-kr', errors='replace')
         
-        with infile: # Use the opened file object
+        with infile:
             reader = csv.reader(infile)
             try:
-                header = next(reader) # Skip header row
+                header = next(reader)
+                all_rows = list(reader)
             except StopIteration:
                 print(f"  ! CSV file '{csv_path}' is empty.")
                 return None
@@ -46,18 +48,22 @@ def get_school_info_from_csv(school_name, csv_path='public/data/schoolInfo.csv')
             school_name_index = 3
             address_index = 10
 
-            for row in reader:
+            # Pass 1: Exact match
+            for row in all_rows:
                 try:
-                    if len(row) > max(school_name_index, address_index):
-                        csv_school_name = row[school_name_index]
-                        if school_name == csv_school_name:
-                            print(f"  ✓ Found '{school_name}' in {csv_path}")
-                            return {
-                                "SCHUL_NM": row[school_name_index],
-                                "ORG_RDNMA": row[address_index]
-                            }
+                    if len(row) > school_name_index and school_name == row[school_name_index]:
+                        print(f"  ✓ Found exact match for '{school_name}' in {csv_path}")
+                        return {"SCHUL_NM": row[school_name_index], "ORG_RDNMA": row[address_index]}
                 except IndexError:
-                    # Skip malformed rows
+                    continue
+            
+            # Pass 2: Suffix match (e.g., searching for "명곡고등학교" matches "OO명곡고등학교")
+            for row in all_rows:
+                try:
+                    if len(row) > school_name_index and row[school_name_index].endswith(school_name):
+                        print(f"  ✓ Found suffix match for '{school_name}' in {csv_path}: '{row[school_name_index]}'")
+                        return {"SCHUL_NM": row[school_name_index], "ORG_RDNMA": row[address_index]}
+                except IndexError:
                     continue
             
             print(f"  ! '{school_name}' not found in {csv_path}.")
@@ -153,7 +159,7 @@ def find_new_schools(service, start_dt_obj, start_date_str):
     if extraction fails.
     Returns:
         A tuple containing:
-        - A list of unique, chronologically ordered school names.
+        - A list of school data dictionaries (including name and email context).
         - A list of emails (dict with id, subject, body) for manual review.
     """
     query = f'label:졸업식 to:me after:{start_date_str}'
@@ -201,27 +207,43 @@ def find_new_schools(service, start_dt_obj, start_date_str):
 
         full_text = f"{subject}\n\n{body}"
         
-        def add_school(school_name):
+        def add_school(school_name, msg_id, subject, body):
             cleaned_school = school_name.strip()
             if cleaned_school and cleaned_school not in seen_schools_set:
                 seen_schools_set.add(cleaned_school)
-                found_schools_list.append(cleaned_school)
+                found_schools_list.append({
+                    'id': msg_id,
+                    'subject': subject,
+                    'body': body,
+                    'schoolName': cleaned_school
+                })
         
         school_found = False
         primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
         if primary_match:
             school_name = primary_match.group(1).strip()
             print(f"  > Primary pattern matched: '{school_name}'")
-            add_school(school_name)
+            add_school(school_name, msg_meta['id'], subject, body)
             school_found = True
 
         if not school_found:
             fallback_match = SCHOOL_PATTERN.search(full_text)
             if fallback_match:
                 full_school_name = fallback_match.group(0).strip()
-                print(f"  > Fallback pattern matched: '{full_school_name}'")
-                add_school(full_school_name)
-                school_found = True
+                
+                # Filter out common false positives
+                JUNK_WORDS_IN_NAME = ['의원님', '선생님', '입니다', '안녕하세요', '졸업축하']
+                is_junk = False
+                for junk in JUNK_WORDS_IN_NAME:
+                    if junk in full_school_name:
+                        print(f"  > Rejecting match '{full_school_name}' because it contains junk word '{junk}'.")
+                        is_junk = True
+                        break
+                
+                if not is_junk:
+                    print(f"  > Fallback pattern matched: '{full_school_name}'")
+                    add_school(full_school_name, msg_meta['id'], subject, body)
+                    school_found = True
         
         if not school_found:
             print("\n" + "-"*50)
@@ -237,7 +259,7 @@ def find_new_schools(service, start_dt_obj, start_date_str):
             
             if manual_school_name:
                 print(f"  > 사용자가 입력한 학교 이름: '{manual_school_name}'")
-                add_school(manual_school_name)
+                add_school(manual_school_name, msg_meta['id'], subject, body)
             else:
                 print("  > 건너뛰었습니다. 수동 검토 목록에 추가합니다.")
                 emails_for_manual_review.append({
@@ -319,27 +341,26 @@ def main():
     schools_to_add = []
     # Create a simple set of names for logging and basic checking
     existing_school_names = {s[0] for s in existing_schools if s[0]}
-    for school in newly_found_schools:
-        if school not in existing_school_names:
-            schools_to_add.append(school)
+    for school_data in newly_found_schools:
+        if school_data['schoolName'] not in existing_school_names:
+            schools_to_add.append(school_data)
         else:
             # Even if the name exists, it might be a different school in another location.
             # We will let the more robust geocoding step handle the final duplicate check.
-            print(f"  - Name '{school}' already exists, but adding for geocoding to verify location.")
-            schools_to_add.append(school)
+            print(f"  - Name '{school_data['schoolName']}' already exists, but adding for geocoding to verify location.")
+            schools_to_add.append(school_data)
     
     if not schools_to_add:
         print("\nAll auto-detected schools already exist. No new schools to add automatically.")
     else:
         print(f"\nAttempting to add {len(schools_to_add)} new schools in chronological order:")
-        for school in schools_to_add:
-            print(f"  - {school}")
+        for school_data in schools_to_add:
+            print(f"  - {school_data['schoolName']}")
 
         # --- Step 4: Find school addresses and add new schools ---
         geocode_script = 'scripts/geocode.sh'
         if not os.path.exists(geocode_script):
             print(f"\nError: Geocoding script not found at '{geocode_script}'. Cannot get coordinates.")
-            # To prevent adding entries without trying to geocode, we stop here.
             return
 
         print("\n" + "="*80)
@@ -349,76 +370,86 @@ def main():
         success_count = 0
         added_empty_address_count = 0
 
-        for school_name in schools_to_add:
-            print(f"\n--- Processing '{school_name}' ---")
+        for school_data in schools_to_add:
+            original_school_name = school_data['schoolName']
+            print(f"\n--- Processing '{original_school_name}' ---")
             
-            school_info = get_school_info_from_csv(school_name)
-            
+            current_school_name = original_school_name
             geocoded_successfully = False
-            if school_info and school_info.get("ORG_RDNMA"):
-                precise_name = school_info.get("SCHUL_NM", school_name)
-                precise_address = school_info.get("ORG_RDNMA")
-                print(f"  ✓ Found via CSV: '{precise_name}' at '{precise_address}'")
 
-                try:
-                    command = [
-                        'bash', geocode_script,
-                        '--on-duplicate', 'skip',
-                        precise_name, precise_address
-                    ]
-                    result = subprocess.run(command, check=False, text=True, capture_output=True)
+            while not geocoded_successfully:
+                school_info = get_school_info_from_csv(current_school_name)
                 
-                    if result.returncode == 0:
-                        print(f"  ✓ Successfully geocoded '{precise_name}' using CSV address.")
-                        print(result.stdout)
-                        success_count += 1
-                        geocoded_successfully = True
+                if school_info and school_info.get("ORG_RDNMA"):
+                    # Address found, proceed to geocode
+                    precise_name = school_info.get("SCHUL_NM", current_school_name)
+                    precise_address = school_info.get("ORG_RDNMA")
+                    print(f"  ✓ Found via CSV: '{precise_name}' at '{precise_address}'")
+
+                    try:
+                        command = [ 'bash', geocode_script, '--on-duplicate', 'skip', precise_name, precise_address]
+                        result = subprocess.run(command, check=False, text=True, capture_output=True)
+                    
+                        if result.returncode == 0:
+                            print(f"  ✓ Successfully geocoded '{precise_name}' using CSV address.")
+                            print(result.stdout)
+                            success_count += 1
+                            geocoded_successfully = True
+                        else:
+                            print(f"  ✗ Geocoding with CSV address failed (Code: {result.returncode}). Stderr: {result.stderr.strip()}")
+                    except Exception as e:
+                        print(f"  ✗ An unexpected error occurred during geocoding: {e}")
+
+                    # If geocoding fails after finding address, add with the address info we found
+                    if not geocoded_successfully:
+                        print("  -> Adding entry with CSV address but without coordinates.")
+                        next_id = get_next_id_from_ndjson(coords_file)
+                        entry = {"id": next_id, "schoolName": precise_name, "address": precise_address, "coordinates": {"longitude": 0, "latitude": 0}}
+                        append_to_ndjson(coords_file, entry)
+                        added_empty_address_count += 1
+                    
+                    break # Exit the while loop after processing
+
+                else:
+                    # Address not found, ask user for correction
+                    print("\n" + "-"*50)
+                    print(f"  ! '{current_school_name}'의 주소를 CSV에서 찾지 못했습니다.")
+                    print(f"  ! Address for '{current_school_name}' not found in CSV.")
+                    print(f"  원본 이메일 내용을 확인하고 학교 이름을 수정하거나, Enter를 눌러 이 단계를 건너뛰세요.")
+                    print("  Review the original email and correct the name, or press Enter to skip.")
+                    print("-"*50)
+                    print(f"이메일 제목 (Subject): {school_data['subject']}")
+                    print("\n--- 이메일 본문 (Body) ---")
+                    print(school_data['body'].strip())
+                    print("-------------------------\n")
+
+                    corrected_name = input(f">>> 수정할 학교 이름 입력 (현재: '{current_school_name}', 건너뛰기: Enter): ").strip()
+
+                    if corrected_name:
+                        current_school_name = corrected_name
+                        print(f"  > 이름 수정됨: '{current_school_name}'. 주소 다시 검색 중...")
+                        # The 'while' loop will now retry with the new name
                     else:
-                        print(f"  ✗ Geocoding with CSV address failed (Code: {result.returncode}). Stderr: {result.stderr.strip()}")
-                except Exception as e:
-                    print(f"  ✗ An unexpected error occurred during geocoding: {e}")
+                        # User skipped. Fallback to geocoding with the last tried name.
+                        print(f"  > 건너뛰었습니다. '{current_school_name}' 이름으로 지오코딩을 시도합니다.")
+                        try:
+                            command = ['bash', geocode_script, '--on-duplicate', 'skip', current_school_name, current_school_name]
+                            result = subprocess.run(command, check=False, text=True, capture_output=True)
+                            if result.returncode == 0:
+                                print(f"  ✓ Successfully geocoded '{current_school_name}' using its name as fallback.")
+                                print(result.stdout)
+                                success_count += 1
+                                geocoded_successfully = True
+                        except Exception as e:
+                            print(f"  ✗ An unexpected error occurred during fallback geocoding: {e}")
 
-                # If geocoding fails after finding address, add with the address info we found
-                if not geocoded_successfully:
-                    print("  -> Adding entry with CSV address but without coordinates.")
-                    next_id = get_next_id_from_ndjson(coords_file)
-                    entry = {
-                        "id": next_id,
-                        "schoolName": precise_name,
-                        "address": precise_address,
-                        "coordinates": {"longitude": 0, "latitude": 0}
-                    }
-                    append_to_ndjson(coords_file, entry)
-                    added_empty_address_count += 1
-            else:
-                # CSV lookup failed. Try geocoding with the original name as a fallback.
-                print(f"  ! CSV lookup failed for '{school_name}'. Falling back to geocoding with original name.")
-                try:
-                    command = [
-                        'bash', geocode_script,
-                        '--on-duplicate', 'skip',
-                        school_name, school_name
-                    ]
-                    result = subprocess.run(command, check=False, text=True, capture_output=True)
-                    if result.returncode == 0:
-                        print(f"  ✓ Successfully geocoded '{school_name}' using its name as fallback.")
-                        print(result.stdout)
-                        success_count += 1
-                        geocoded_successfully = True
-                except Exception as e:
-                     print(f"  ✗ An unexpected error occurred during fallback geocoding: {e}")
-
-                if not geocoded_successfully:
-                    print("  -> Fallback geocoding failed. Adding as entry with empty address.")
-                    next_id = get_next_id_from_ndjson(coords_file)
-                    empty_address_entry = {
-                        "id": next_id,
-                        "schoolName": school_name,
-                        "address": "",
-                        "coordinates": {"longitude": 0, "latitude": 0}
-                    }
-                    append_to_ndjson(coords_file, empty_address_entry)
-                    added_empty_address_count += 1
+                        if not geocoded_successfully:
+                            print("  -> Fallback geocoding failed. Adding as entry with empty address.")
+                            next_id = get_next_id_from_ndjson(coords_file)
+                            empty_address_entry = {"id": next_id, "schoolName": current_school_name, "address": "", "coordinates": {"longitude": 0, "latitude": 0}}
+                            append_to_ndjson(coords_file, empty_address_entry)
+                            added_empty_address_count += 1
+                        break # Exit the while loop
         
         print("\n" + "="*80)
         print("Automatic Geocoding Summary")
