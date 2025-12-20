@@ -69,7 +69,7 @@ const greenIcon = new L.Icon({
 const getMarkerIcon = (status?: "written" | "sent") => {
   if (status === "sent") return greenIcon;
   if (status === "written") return yellowIcon;
-  return blueIcon; // default
+  return orangeIcon; // default
 };
 
 export default function KoreaMap() {
