@@ -50,3 +50,6 @@ token.json
 
 # Python
 __pycache__/
+
+# Backup file
+public/data/backup/*
