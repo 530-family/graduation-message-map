@@ -299,3 +299,6 @@ def main():
     print("\n" + "="*80)
     print("Script Finished")
     print("="*80)
+
+if __name__ == '__main__':
+    main()
