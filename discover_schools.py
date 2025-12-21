@@ -6,6 +6,7 @@ import os
 import re
 import argparse
 import subprocess
+import time
 from datetime import date, timedelta, datetime
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -17,23 +18,27 @@ import csv
 # Gmail API setup
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
-# This pattern tries to find a school name with 1 to 3 parts, avoiding overly greedy matches.
-# It does not use capturing groups; the whole match is the school name.
-SCHOOL_PATTERN = re.compile(r'[a-zA-Z0-9가-힣]{2,10}(?:\s[a-zA-Z0-9가-힣]{1,10}){0,2}\s*(?:중학교|고등학교|대학교|아카데미|스쿨|유치원|초등학교|영재학교|국제학교)')
+# Define Suffixes globally
+K12_SUFFIXES = ['초등학교', '중학교', '고등학교']
+SUFFIX_LIST = K12_SUFFIXES + ['대학교', '영재학교', '국제학교', '아카데미', '스쿨', '유치원']
+SUFFIX_REGEX = '|'.join(SUFFIX_LIST)
+
+# Regex patterns
+SCHOOL_PATTERN = re.compile(r'[a-zA-Z0-9가-힣]{2,20}(?:\s[a-zA-Z0-9가-힣]{1,20}){0,4}\s*(?:' + SUFFIX_REGEX + r')')
 PRIMARY_SCHOOL_PATTERN = re.compile(r'\[학교명 / 소재지\]:\s*(.+?학교)')
 
 
-def get_school_info_from_csv(school_name, csv_path='public/data/schoolInfo.csv'):
+def _search_csv(csv_path, school_name, location_hint, school_name_col, address_col):
     """
-    Searches for a school in the local CSV file and returns its information.
-    It first tries an exact match, then falls back to a suffix match.
+    A helper function to search a given CSV file for a school.
+    It now uses exact matching.
     """
+    if not school_name:
+        return None
     try:
-        # Try cp949 first, as it's a common Korean Windows encoding
         try:
             infile = open(csv_path, mode='r', encoding='cp949')
         except UnicodeDecodeError:
-            print(f"  ! cp949 decoding failed for '{csv_path}', trying euc-kr with error replacement.")
             infile = open(csv_path, mode='r', encoding='euc-kr', errors='replace')
         
         with infile:
@@ -42,45 +47,66 @@ def get_school_info_from_csv(school_name, csv_path='public/data/schoolInfo.csv')
                 header = next(reader)
                 all_rows = list(reader)
             except StopIteration:
-                print(f"  ! CSV file '{csv_path}' is empty.")
                 return None
             
-            school_name_index = 3
-            address_index = 10
-
-            # Pass 1: Exact match
+            exact_matches = []
             for row in all_rows:
                 try:
-                    if len(row) > school_name_index and school_name == row[school_name_index]:
-                        print(f"  ✓ Found exact match for '{school_name}' in {csv_path}")
-                        return {"SCHUL_NM": row[school_name_index], "ORG_RDNMA": row[address_index]}
+                    if len(row) > max(school_name_col, address_col) and school_name == row[school_name_col]:
+                        exact_matches.append(row)
                 except IndexError:
                     continue
             
-            # Pass 2: Suffix match (e.g., searching for "명곡고등학교" matches "OO명곡고등학교")
-            for row in all_rows:
-                try:
-                    if len(row) > school_name_index and row[school_name_index].endswith(school_name):
-                        print(f"  ✓ Found suffix match for '{school_name}' in {csv_path}: '{row[school_name_index]}'")
-                        return {"SCHUL_NM": row[school_name_index], "ORG_RDNMA": row[address_index]}
-                except IndexError:
-                    continue
-            
-            print(f"  ! '{school_name}' not found in {csv_path}.")
-            return None
+            if not exact_matches:
+                return None
 
+            if location_hint:
+                hint_matches = [row for row in exact_matches if len(row) > address_col and location_hint in row[address_col]]
+                if hint_matches:
+                    print(f"  ✓ Found exact match for '{school_name}' with hint '{location_hint}' in {csv_path}")
+                    return {"schoolName": hint_matches[0][school_name_col], "address": hint_matches[0][address_col]}
+            
+            print(f"  ✓ Found exact match for '{school_name}' (no location hint match) in {csv_path}")
+            return {"schoolName": exact_matches[0][school_name_col], "address": exact_matches[0][address_col]}
+            
     except FileNotFoundError:
-        print(f"  ✗ Error: CSV file not found at '{csv_path}'.")
+        print(f"  ! CSV file not found at '{csv_path}'.")
         return None
     except Exception as e:
-        print(f"  ✗ An error occurred while reading CSV: {e}")
+        print(f"  ✗ An error occurred while reading {csv_path}: {e}")
         return None
+
+
+def get_school_info(school_name, location_hint=None):
+    """
+    Gets school information by searching the appropriate CSV file based on the school name's content.
+    """
+    if not school_name:
+        return None
+
+    if any(suffix in school_name for suffix in K12_SUFFIXES):
+        print(f"  > '{school_name}' identified as K-12, checking schoolInfo.csv...")
+        school_info = _search_csv('public/data/schoolInfo.csv', school_name, location_hint, school_name_col=3, address_col=10)
+        if school_info:
+            return school_info
+        print(f"  > Not found in schoolInfo.csv, falling back to universityInfo.csv...")
+        return _search_csv('public/data/universityInfo.csv', school_name, location_hint, school_name_col=0, address_col=8)
+    else:
+        print(f"  > '{school_name}' not identified as K-12, checking universityInfo.csv...")
+        uni_info = _search_csv('public/data/universityInfo.csv', school_name, location_hint, school_name_col=0, address_col=8)
+        
+        if uni_info and "대학원" not in uni_info['schoolName']:
+            return uni_info
+        elif uni_info:
+            print(f"  > Rejecting match '{uni_info['schoolName']}' because it is a graduate school.")
+
+        print(f"  > Not found in universityInfo.csv or was a grad school, falling back to schoolInfo.csv...")
+        return _search_csv('public/data/schoolInfo.csv', school_name, location_hint, school_name_col=3, address_col=10)
 
 
 def extract_email_text(payload):
     """
     Recursively extracts text from an email payload.
-    For multipart/alternative, it prioritizes text/html over text/plain.
     """
     if payload.get('mimeType') == 'text/plain' and payload.get('body') and payload.get('body').get('data'):
         return base64.urlsafe_b64decode(payload['body']['data']).decode('utf-8', errors='ignore')
@@ -91,9 +117,7 @@ def extract_email_text(payload):
 
     if 'parts' in payload:
         if payload.get('mimeType') == 'multipart/alternative':
-            # In alternative, parts are in order of increasing preference. Last part is best.
-            html_part = None
-            text_part = None
+            html_part, text_part = None, None
             for part in payload['parts']:
                 if part.get('mimeType') == 'text/plain':
                     text_part = extract_email_text(part)
@@ -101,10 +125,8 @@ def extract_email_text(payload):
                     html_part = extract_email_text(part)
             return html_part or text_part or ''
         else:
-            # For other multipart types (mixed, related, etc.), concatenate all parts.
             return "".join([extract_email_text(part) for part in payload['parts']])
     
-    # Fallback for non-multipart message with data directly in payload body
     if payload.get('body') and payload.get('body').get('data'):
          return base64.urlsafe_b64decode(payload['body']['data']).decode('utf-8', errors='ignore')
 
@@ -119,6 +141,9 @@ def get_gmail_service():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
+            if not os.path.exists('credentials.json'):
+                print("Error: credentials.json not found.")
+                return None
             flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
         with open('token.json', 'w') as token:
@@ -126,43 +151,79 @@ def get_gmail_service():
     return build('gmail', 'v1', credentials=creds)
 
 def get_existing_schools(file_path):
-    """Reads the ndjson file and returns a set of unique school identifiers.
-    An identifier is a tuple of (schoolName, address_prefix).
-    """
+    """Reads the ndjson file and returns a set of unique school identifiers."""
     schools = set()
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             for i, line in enumerate(f):
-                if not line.strip():
-                    continue
+                if not line.strip(): continue
                 try:
                     data = json.loads(line)
                     school_name = data.get('schoolName')
                     address = data.get('address')
                     if school_name and address:
-                        address_prefix = ' '.join(address.split()[:2])
-                        schools.add((school_name, address_prefix))
-                    elif school_name:
-                        # For entries with no address yet, use an empty prefix
-                        schools.add((school_name, ''))
-                except json.JSONDecodeError as e:
-                    print(f"Warning: Skipping malformed JSON on line {i+1} in '{file_path}': {e}")
-                    print(f"         > Content: {line.strip()}")
+                        schools.add((school_name, address))
+                except json.JSONDecodeError:
                     continue
     except FileNotFoundError:
-        print(f"Info: '{file_path}' not found. Assuming no existing schools.")
+        pass
     return schools
 
-def find_new_schools(service, start_dt_obj, start_date_str):
-    """
-    Searches Gmail, extracts school names using regex, and asks for manual input
-    if extraction fails.
-    Returns:
-        A tuple containing:
-        - A list of school data dictionaries (including name and email context).
-        - A list of emails (dict with id, subject, body) for manual review.
-    """
-    query = f'label:졸업식 to:me after:{start_date_str}'
+def append_to_ndjson(file_path, data_item):
+    """Appends a JSON object to the ndjson file."""
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    with open(file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(data_item, ensure_ascii=False) + '\n')
+
+def find_entry_in_ndjson(file_path, school_name):
+    """Finds a specific entry in an ndjson file by school name."""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            # Search from the end of the file, because we are looking for the most recent entry
+            for line in reversed(lines):
+                if not line.strip(): continue
+                try:
+                    data = json.loads(line)
+                    if data.get('schoolName') == school_name:
+                        return data
+                except (json.JSONDecodeError, AttributeError):
+                    continue
+    except FileNotFoundError:
+        return None
+    return None
+
+def main():
+    """Main function to run the school discovery and geocoding process."""
+    parser = argparse.ArgumentParser(description='Discover new schools from Gmail and add them to the coordinates file.')
+    parser.add_argument(
+        '--start-datetime', type=str, required=True,
+        help='The start date and optionally time for the email search in YYYY-MM-DD or "YYYY-MM-DD HH:MM:SS" format.'
+    )
+    args = parser.parse_args()
+
+    start_dt_obj = None
+    try:
+        start_dt_obj = datetime.strptime(args.start_datetime, '%Y-%m-%d %H:%M:%S')
+    except ValueError:
+        try:
+            start_dt_obj = datetime.strptime(args.start_datetime, '%Y-%m-%d')
+        except ValueError:
+            print("Error: --start-datetime must be in YYYY-MM-DD or 'YYYY-MM-DD HH:MM:SS' format.")
+            return
+
+    coords_file = 'public/data/coordinates.ndjson'
+    internal_coords_file = 'public/data/coordinates.internal.ndjson'
+    geocode_script = 'scripts/geocode.sh'
+
+    if not os.path.exists(geocode_script):
+        print(f"\nError: Geocoding script not found at '{geocode_script}'.")
+        return
+
+    service = get_gmail_service()
+    if not service: return
+
+    query = f'label:졸업식 to:me after:{start_dt_obj.strftime("%Y/%m/%d")}'
     print(f"Searching Gmail with query: '{query}'")
     
     messages_summary = []
@@ -173,304 +234,138 @@ def find_new_schools(service, start_dt_obj, start_date_str):
         request = service.users().messages().list_next(previous_request=request, previous_response=response)
     
     if not messages_summary:
-        print("No messages found matching the criteria.")
-        return [], []
+        print("No new messages found.")
+        return
 
-    print(f"Found a total of {len(messages_summary)} messages. Fetching details for sorting...")
-    
-    dated_messages = []
-    for msg_summary in messages_summary:
-        msg_meta = service.users().messages().get(userId='me', id=msg_summary['id'], format='metadata', fields='id,internalDate').execute()
-        msg_internal_dt = datetime.fromtimestamp(int(msg_meta['internalDate']) / 1000)
-        if msg_internal_dt >= start_dt_obj:
-            dated_messages.append(msg_meta)
+    print(f"Found {len(messages_summary)} messages. Processing in chronological order...")
+    messages_summary.reverse()
 
-    dated_messages.sort(key=lambda x: int(x['internalDate']))
-    
-    print(f"Processing {len(dated_messages)} messages in chronological order...")
-    
-    found_schools_list = []
-    seen_schools_set = set()
     emails_for_manual_review = []
+    processed_thread_ids = set()
+    
+    for msg_summary in messages_summary:
+        msg_id = msg_summary['id']
+        thread_id = msg_summary['threadId']
 
-    for msg_meta in dated_messages:
-        print(f"\n--- Checking Email ID: {msg_meta['id']} ---")
-        message_data = service.users().messages().get(userId='me', id=msg_meta['id']).execute()
+        if thread_id in processed_thread_ids:
+            print(f"\n--- Skipping Email ID: {msg_id} (already processed thread {thread_id}) ---")
+            continue
         
-        subject = ''
-        for header in message_data['payload']['headers']:
-            if header['name'].lower() == 'subject':
-                subject = header['value']
-                break
+        print(f"\n--- Checking Email ID: {msg_id} (Thread: {thread_id}) ---")
         
+        existing_schools = get_existing_schools(coords_file)
+
+        message_data = service.users().messages().get(userId='me', id=msg_id).execute()
+        processed_thread_ids.add(thread_id)
+
+        subject = next((h['value'] for h in message_data['payload']['headers'] if h['name'].lower() == 'subject'), '')
+        sender = next((h['value'] for h in message_data['payload']['headers'] if h['name'].lower() == 'from'), '')
         body = extract_email_text(message_data['payload'])
-
         full_text = f"{subject}\n\n{body}"
-        
-        def add_school(school_name, msg_id, subject, body):
-            cleaned_school = school_name.strip()
-            if cleaned_school and cleaned_school not in seen_schools_set:
-                seen_schools_set.add(cleaned_school)
-                found_schools_list.append({
-                    'id': msg_id,
-                    'subject': subject,
-                    'body': body,
-                    'schoolName': cleaned_school
-                })
-        
-        school_found = False
+
+        candidate_name = None
         primary_match = PRIMARY_SCHOOL_PATTERN.search(full_text)
         if primary_match:
-            school_name = primary_match.group(1).strip()
-            print(f"  > Primary pattern matched: '{school_name}'")
-            add_school(school_name, msg_meta['id'], subject, body)
-            school_found = True
-
-        if not school_found:
-            fallback_match = SCHOOL_PATTERN.search(full_text)
-            if fallback_match:
-                full_school_name = fallback_match.group(0).strip()
-                
-                # Filter out common false positives
-                JUNK_WORDS_IN_NAME = ['의원님', '선생님', '입니다', '안녕하세요', '졸업축하']
-                is_junk = False
-                for junk in JUNK_WORDS_IN_NAME:
-                    if junk in full_school_name:
-                        print(f"  > Rejecting match '{full_school_name}' because it contains junk word '{junk}'.")
-                        is_junk = True
-                        break
-                
-                if not is_junk:
-                    print(f"  > Fallback pattern matched: '{full_school_name}'")
-                    add_school(full_school_name, msg_meta['id'], subject, body)
-                    school_found = True
-        
-        if not school_found:
-            print("\n" + "-"*50)
-            print("  ! 자동 추출 실패: 수동 입력이 필요합니다.")
-            print("  ! Automatic extraction failed: Manual input required.")
-            print("-"*50)
-            print(f"이메일 제목 (Subject): {subject}")
-            print("\n--- 이메일 본문 (Body) ---")
-            print(body.strip())
-            print("-------------------------\n")
-            
-            manual_school_name = input(">>> 학교 이름을 직접 입력하세요 (건너뛰려면 Enter 키): ").strip()
-            
-            if manual_school_name:
-                print(f"  > 사용자가 입력한 학교 이름: '{manual_school_name}'")
-                add_school(manual_school_name, msg_meta['id'], subject, body)
-            else:
-                print("  > 건너뛰었습니다. 수동 검토 목록에 추가합니다.")
-                emails_for_manual_review.append({
-                    'id': msg_meta['id'],
-                    'subject': subject,
-                    'body': body
-                })
-            
-    return found_schools_list, emails_for_manual_review
-
-def append_to_ndjson(file_path, data_item):
-    """Appends a JSON object to the ndjson file."""
-    os.makedirs(os.path.dirname(file_path), exist_ok=True) # Ensure directory exists
-    with open(file_path, 'a', encoding='utf-8') as f:
-        f.write(json.dumps(data_item, ensure_ascii=False) + '\n')
-
-# Helper functions for ndjson operations
-# Helper functions for ndjson operations
-def get_next_id_from_ndjson(file_path):
-    """Reads the ndjson file robustly and returns the next available ID."""
-    max_id = 0
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            for i, line in enumerate(f):
-                if not line.strip():
-                    continue
-                try:
-                    data = json.loads(line)
-                    if 'id' in data and isinstance(data['id'], int):
-                        max_id = max(max_id, data['id'])
-                except json.JSONDecodeError:
-                    # This will skip malformed lines, preventing the ID bug
-                    print(f"Warning: Skipping malformed line {i+1} in '{file_path}' when determining next ID.")
-                    continue
-    except FileNotFoundError:
-        pass # File does not exist, max_id remains 0
-    return max_id + 1
-
-def main():
-    """Main function to run the school discovery and geocoding process."""
-    parser = argparse.ArgumentParser(description='Discover new schools from Gmail and add them to the coordinates file.')
-    parser.add_argument(
-        '--start-datetime',
-        type=str,
-        required=True,
-        help='The start date and optionally time for the email search in YYYY-MM-DD or "YYYY-MM-DD HH:MM:SS" format.'
-    )
-    args = parser.parse_args()
-
-    # Validate datetime format and convert to datetime object
-    start_dt_obj = None
-    try:
-        # Try parsing with time first
-        start_dt_obj = datetime.strptime(args.start_datetime, '%Y-%m-%d %H:%M:%S')
-    except ValueError:
-        try:
-            # Fallback to date only, set time to 00:00:00
-            start_dt_obj = datetime.strptime(args.start_datetime, '%Y-%m-%d')
-        except ValueError:
-            print("Error: --start-datetime must be in YYYY-MM-DD or 'YYYY-MM-DD HH:MM:SS' format.")
-            return
-
-    # --- Step 1: Get existing schools from coordinates file ---
-    coords_file = 'public/data/coordinates.ndjson'
-    existing_schools = get_existing_schools(coords_file)
-    print(f"Found {len(existing_schools)} existing schools in '{coords_file}'.")
-
-    # --- Step 2: Find new schools and emails for manual review ---
-    service = get_gmail_service()
-    newly_found_schools, emails_for_manual_review = find_new_schools(service, start_dt_obj, start_dt_obj.strftime('%Y/%m/%d'))
-    
-    if newly_found_schools:
-        print(f"\nFound {len(newly_found_schools)} total potential schools from Gmail.")
-    else:
-        print("\nNo new potential schools found in Gmail.")
-
-    # --- Step 3: Filter out existing schools ---
-    print("\nFiltering against existing schools...")
-    schools_to_add = []
-    # Create a simple set of names for logging and basic checking
-    existing_school_names = {s[0] for s in existing_schools if s[0]}
-    for school_data in newly_found_schools:
-        if school_data['schoolName'] not in existing_school_names:
-            schools_to_add.append(school_data)
+            candidate_name = primary_match.group(1).strip()
+            print(f"  > Primary pattern matched: '{candidate_name}'")
         else:
-            # Even if the name exists, it might be a different school in another location.
-            # We will let the more robust geocoding step handle the final duplicate check.
-            print(f"  - Name '{school_data['schoolName']}' already exists, but adding for geocoding to verify location.")
-            schools_to_add.append(school_data)
-    
-    if not schools_to_add:
-        print("\nAll auto-detected schools already exist. No new schools to add automatically.")
-    else:
-        print(f"\nAttempting to add {len(schools_to_add)} new schools in chronological order:")
-        for school_data in schools_to_add:
-            print(f"  - {school_data['schoolName']}")
+            all_fallback_matches = SCHOOL_PATTERN.findall(full_text)
+            if all_fallback_matches:
+                print(f"  > Fallback pattern matched: {all_fallback_matches}")
+                candidate_name = all_fallback_matches[0]
 
-        # --- Step 4: Find school addresses and add new schools ---
-        geocode_script = 'scripts/geocode.sh'
-        if not os.path.exists(geocode_script):
-            print(f"\nError: Geocoding script not found at '{geocode_script}'. Cannot get coordinates.")
-            return
+        school_info = None
+        if candidate_name is None:
+            print("  > No school name pattern matched automatically.")
+        else:
+            location_hint, school_name_to_search = None, candidate_name
+            if ' ' in candidate_name.strip():
+                parts = candidate_name.strip().split(' ')
+                if len(parts) > 1:
+                    location_hint, school_name_to_search = parts[0], parts[-1]
+                print(f"  > Derived: School Name='{school_name_to_search}', Location Hint='{location_hint}'")
+            school_info = get_school_info(school_name_to_search, location_hint)
 
-        print("\n" + "="*80)
-        print("Starting School Info Search & Geocoding Process")
-        print("="*80)
-
-        success_count = 0
-        added_empty_address_count = 0
-
-        for school_data in schools_to_add:
-            original_school_name = school_data['schoolName']
-            print(f"\n--- Processing '{original_school_name}' ---")
+        while not school_info:
+            print(f"\n  ! Could not validate school: '{candidate_name}'")
+            print("  Please review the email content and provide the correct name.")
+            print("-" * 50)
+            print(f"Subject: {subject}\nBody:\n{body.strip()}")
+            print("-" * 50)
             
-            current_school_name = original_school_name
-            geocoded_successfully = False
+            user_input = input(">>> Enter correct school name (or press Enter to skip): ").strip()
+            if not user_input:
+                print("  > Skipped. Adding to manual review list.")
+                emails_for_manual_review.append({'id': msg_id, 'subject': subject, 'body': body})
+                school_info = None
+                break
+            
+            candidate_name = user_input
+            location_hint, school_name_to_search = None, candidate_name
+            if ' ' in candidate_name.strip():
+                parts = candidate_name.strip().split(' ')
+                if len(parts) > 1:
+                    location_hint, school_name_to_search = parts[0], parts[-1]
+                print(f"  > Derived from user input: School Name='{school_name_to_search}', Location Hint='{location_hint}'")
+            school_info = get_school_info(school_name_to_search, location_hint)
 
-            while not geocoded_successfully:
-                school_info = get_school_info_from_csv(current_school_name)
-                
-                if school_info and school_info.get("ORG_RDNMA"):
-                    # Address found, proceed to geocode
-                    precise_name = school_info.get("SCHUL_NM", current_school_name)
-                    precise_address = school_info.get("ORG_RDNMA")
-                    print(f"  ✓ Found via CSV: '{precise_name}' at '{precise_address}'")
+        if not school_info: continue
 
-                    try:
-                        command = [ 'bash', geocode_script, '--on-duplicate', 'skip', precise_name, precise_address]
-                        result = subprocess.run(command, check=False, text=True, capture_output=True)
-                    
-                        if result.returncode == 0:
-                            print(f"  ✓ Successfully geocoded '{precise_name}' using CSV address.")
-                            print(result.stdout)
-                            success_count += 1
-                            geocoded_successfully = True
-                        else:
-                            print(f"  ✗ Geocoding with CSV address failed (Code: {result.returncode}). Stderr: {result.stderr.strip()}")
-                    except Exception as e:
-                        print(f"  ✗ An unexpected error occurred during geocoding: {e}")
+        final_name, final_address = school_info['schoolName'], school_info['address']
 
-                    # If geocoding fails after finding address, add with the address info we found
-                    if not geocoded_successfully:
-                        print("  -> Adding entry with CSV address but without coordinates.")
-                        next_id = get_next_id_from_ndjson(coords_file)
-                        entry = {"id": next_id, "schoolName": precise_name, "address": precise_address, "coordinates": {"longitude": 0, "latitude": 0}}
-                        append_to_ndjson(coords_file, entry)
-                        added_empty_address_count += 1
-                    
-                    break # Exit the while loop after processing
+        if (final_name, final_address) in existing_schools:
+            print(f"  ✓ School '{final_name}' with address '{final_address}' already exists. Skipping.")
+            continue
 
-                else:
-                    # Address not found, ask user for correction
-                    print("\n" + "-"*50)
-                    print(f"  ! '{current_school_name}'의 주소를 CSV에서 찾지 못했습니다.")
-                    print(f"  ! Address for '{current_school_name}' not found in CSV.")
-                    print(f"  원본 이메일 내용을 확인하고 학교 이름을 수정하거나, Enter를 눌러 이 단계를 건너뛰세요.")
-                    print("  Review the original email and correct the name, or press Enter to skip.")
-                    print("-"*50)
-                    print(f"이메일 제목 (Subject): {school_data['subject']}")
-                    print("\n--- 이메일 본문 (Body) ---")
-                    print(school_data['body'].strip())
-                    print("-------------------------\n")
-
-                    corrected_name = input(f">>> 수정할 학교 이름 입력 (현재: '{current_school_name}', 건너뛰기: Enter): ").strip()
-
-                    if corrected_name:
-                        current_school_name = corrected_name
-                        print(f"  > 이름 수정됨: '{current_school_name}'. 주소 다시 검색 중...")
-                        # The 'while' loop will now retry with the new name
-                    else:
-                        # User skipped. Fallback to geocoding with the last tried name.
-                        print(f"  > 건너뛰었습니다. '{current_school_name}' 이름으로 지오코딩을 시도합니다.")
-                        try:
-                            command = ['bash', geocode_script, '--on-duplicate', 'skip', current_school_name, current_school_name]
-                            result = subprocess.run(command, check=False, text=True, capture_output=True)
-                            if result.returncode == 0:
-                                print(f"  ✓ Successfully geocoded '{current_school_name}' using its name as fallback.")
-                                print(result.stdout)
-                                success_count += 1
-                                geocoded_successfully = True
-                        except Exception as e:
-                            print(f"  ✗ An unexpected error occurred during fallback geocoding: {e}")
-
-                        if not geocoded_successfully:
-                            print("  -> Fallback geocoding failed. Adding as entry with empty address.")
-                            next_id = get_next_id_from_ndjson(coords_file)
-                            empty_address_entry = {"id": next_id, "schoolName": current_school_name, "address": "", "coordinates": {"longitude": 0, "latitude": 0}}
-                            append_to_ndjson(coords_file, empty_address_entry)
-                            added_empty_address_count += 1
-                        break # Exit the while loop
+        print(f"  ✓ Valid school found: '{final_name}' at '{final_address}'.")
+        print("  Calling geocode.sh to add and geocode...")
         
-        print("\n" + "="*80)
-        print("Automatic Geocoding Summary")
-        print("="*80)
-        print(f"Successfully geocoded and added: {success_count}")
-        print(f"Added with empty address (requires manual update): {added_empty_address_count}")
+        try:
+            # Let geocode.sh handle the addition to coordinates.ndjson
+            command = ['bash', geocode_script, '--on-duplicate', 'overwrite', final_name, final_address]
+            result = subprocess.run(command, check=True, text=True, capture_output=True)
+            print(f"  ✓ Geocode script finished for '{final_name}'.")
 
-    # --- Step 5: Handle emails needing manual review ---
+            # Now, find the entry geocode.sh just created
+            newly_added_entry = None
+            for i in range(5): # Retry for 0.5 seconds
+                newly_added_entry = find_entry_in_ndjson(coords_file, final_name)
+                if newly_added_entry:
+                    break
+                time.sleep(0.1)
+
+            if newly_added_entry:
+                coords = newly_added_entry.get("coordinates", {})
+                lng = coords.get("longitude")
+                lat = coords.get("latitude")
+
+                if (lng is None or lng == 0) or (lat is None or lat == 0):
+                    print(f"  ✗ Geocoding failed for '{final_address}'. Adding to manual lookup file.")
+                    with open("manual_address_lookup.txt", "a", encoding="utf-8") as f:
+                        f.write(f"{final_address}\n")
+                
+                internal_entry = newly_added_entry.copy()
+                internal_entry['requestContent'] = body
+                internal_entry['sender'] = sender
+                internal_entry['subject'] = subject
+                append_to_ndjson(internal_coords_file, internal_entry)
+                print(f"  ✓ Successfully synced to {internal_coords_file}.")
+            else:
+                print(f"  ✗ ERROR: Could not find '{final_name}' in {coords_file} after geocoding to sync internal file.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"  ✗ Geocoding script failed for '{final_name}'. STDERR: {e.stderr.strip()}")
+        except Exception as e:
+            print(f"  ✗ An unexpected error occurred during geocoding: {e}")
+
     if emails_for_manual_review:
         manual_file = 'manual_school_entry.json'
-        print(f"\n" + "="*80)
-        print(f"Manual Review Needed")
-        print("="*80)
-        print(f"{len(emails_for_manual_review)} emails could not be parsed automatically.")
-        print(f"Their content has been saved to '{manual_file}' for manual review.")
+        print(f"\n{'='*80}\nManual Review Needed\n{'='*80}")
+        print(f"{len(emails_for_manual_review)} emails could not be processed automatically and were saved to '{manual_file}'.")
         with open(manual_file, 'w', encoding='utf-8') as f:
             json.dump(emails_for_manual_review, f, ensure_ascii=False, indent=2)
     
-    print("\n" + "="*80)
-    print("Script Finished")
-    print("="*80)
+    print(f"\n{'='*80}\nScript Finished\n{'='*80}")
 
 if __name__ == '__main__':
     main()
