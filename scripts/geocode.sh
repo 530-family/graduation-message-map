@@ -79,6 +79,42 @@ TYPE="${POSITIONAL_ARGS[2]:-ROAD}"  # 기본값은 ROAD
 SCHOOL_NAME=$(echo "$SCHOOL_NAME" | tr -d '\n\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 ADDRESS=$(echo "$ADDRESS" | tr -d '\n\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
+# --- CSV에서 주소 우선 검색 ---
+CSV_SCHOOL="$PROJECT_ROOT/public/data/schoolInfo.csv"
+CSV_UNIV="$PROJECT_ROOT/public/data/universityInfo.csv"
+CSV_TO_USE=""
+
+# 학교명 접미사에 따라 사용할 CSV 파일 결정
+if [[ "$SCHOOL_NAME" == *"초등학교" || "$SCHOOL_NAME" == *"중학교" || "$SCHOOL_NAME" == *"고등학교" ]]; then
+    CSV_TO_USE="$CSV_SCHOOL"
+else
+    CSV_TO_USE="$CSV_UNIV"
+fi
+
+echo -e "${YELLOW}CSV에서 주소 우선 검색 중... ($CSV_TO_USE)${NC}"
+
+FOUND_ADDRESS=""
+if [ -f "$CSV_TO_USE" ]; then
+    # iconv로 인코딩 처리, awk로 CSV 파싱
+    # 학교명: 4번째 열, 도로명주소: 11번째 열
+    FOUND_ADDRESS=$(iconv -f cp949 -t utf-8 "$CSV_TO_USE" 2>/dev/null | awk -F, -v name="$SCHOOL_NAME" 'BEGIN{OFS=FS} $4 == name {print $11}' | head -n 1)
+    
+    # 정확히 일치하는 것이 없으면, 이름으로 끝나는 경우(endswith)를 검색
+    if [ -z "$FOUND_ADDRESS" ]; then
+        FOUND_ADDRESS=$(iconv -f cp949 -t utf-8 "$CSV_TO_USE" 2>/dev/null | awk -F, -v name="$SCHOOL_NAME" 'BEGIN{OFS=FS} ($4 ~ name"$") {print $11}' | head -n 1)
+    fi
+fi
+
+if [ -n "$FOUND_ADDRESS" ]; then
+    # CSV에서 찾은 주소의 큰따옴표 제거
+    CLEANED_ADDRESS=$(echo "$FOUND_ADDRESS" | tr -d '"')
+    echo -e "${GREEN}✓ CSV에서 주소 찾음. 이 주소를 사용합니다:${NC} $CLEANED_ADDRESS"
+    ADDRESS="$CLEANED_ADDRESS" # ADDRESS 변수를 덮어씀
+else
+    echo -e "${YELLOW}! CSV에서 주소를 찾지 못함. 입력된 주소로 검색을 계속합니다.${NC}"
+fi
+# --- CSV 검색 로직 끝 ---
+
 # .env.local 파일에서 API 키 로드
 if [ ! -f "$ENV_FILE" ]; then
     echo -e "${RED}오류: .env.local 파일을 찾을 수 없습니다.${NC}"
