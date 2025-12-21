@@ -151,7 +151,7 @@ def get_gmail_service():
     return build('gmail', 'v1', credentials=creds)
 
 def get_existing_schools(file_path):
-    """Reads the ndjson file and returns a set of unique school identifiers."""
+    """Reads the ndjson file and returns a set of unique school names."""
     schools = set()
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -160,9 +160,8 @@ def get_existing_schools(file_path):
                 try:
                     data = json.loads(line)
                     school_name = data.get('schoolName')
-                    address = data.get('address')
-                    if school_name and address:
-                        schools.add((school_name, address))
+                    if school_name:
+                        schools.add(school_name)
                 except json.JSONDecodeError:
                     continue
     except FileNotFoundError:
@@ -223,7 +222,7 @@ def main():
     service = get_gmail_service()
     if not service: return
 
-    query = f'label:졸업식 to:me after:{start_dt_obj.strftime("%Y/%m/%d")}'
+    query = f'label:졸업식 to:me after:{int(start_dt_obj.timestamp())}'
     print(f"Searching Gmail with query: '{query}'")
     
     messages_summary = []
@@ -309,12 +308,15 @@ def main():
                 print(f"  > Derived from user input: School Name='{school_name_to_search}', Location Hint='{location_hint}'")
             school_info = get_school_info(school_name_to_search, location_hint)
 
-        if not school_info: continue
+        if not school_info:
+            print(f"  > Could not validate '{candidate_name}'. Adding with empty address as requested.")
+            # The candidate_name might be messy, but it's the best we have without validation
+            school_info = {'schoolName': candidate_name.strip() if candidate_name else 'Unknown School', 'address': ''}
 
         final_name, final_address = school_info['schoolName'], school_info['address']
 
-        if (final_name, final_address) in existing_schools:
-            print(f"  ✓ School '{final_name}' with address '{final_address}' already exists. Skipping.")
+        if final_name in existing_schools:
+            print(f"  ✓ School '{final_name}' already exists in the coordinates file. Skipping to avoid duplicates.")
             continue
 
         print(f"  ✓ Valid school found: '{final_name}' at '{final_address}'.")
@@ -325,6 +327,9 @@ def main():
             command = ['bash', geocode_script, '--on-duplicate', 'overwrite', final_name, final_address]
             result = subprocess.run(command, check=True, text=True, capture_output=True)
             print(f"  ✓ Geocode script finished for '{final_name}'.")
+
+            # Add to set to prevent re-processing from other emails in this same run
+            existing_schools.add(final_name)
 
             # Now, find the entry geocode.sh just created
             newly_added_entry = None
