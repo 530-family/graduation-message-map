@@ -65,6 +65,9 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                 if hint_matches:
                     print(f"  ✓ Found exact match for '{school_name}' with hint '{location_hint}' in {csv_path}")
                     return {"schoolName": hint_matches[0][school_name_col], "address": hint_matches[0][address_col]}
+                else:
+                    print(f"  ! Found matches for '{school_name}' but none with hint '{location_hint}'.")
+                    return None # Fail if hint was provided but not matched
             
             print(f"  ✓ Found exact match for '{school_name}' (no location hint match) in {csv_path}")
             return {"schoolName": exact_matches[0][school_name_col], "address": exact_matches[0][address_col]}
