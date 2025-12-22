@@ -86,7 +86,9 @@ def main():
 
         # Create backup before processing
         if os.path.exists('public/data/coordinates.internal.ndjson'):
-            backup_name = f'public/data/coordinates.internal.ndjson.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}'
+            backup_dir = 'public/data/backup'
+            os.makedirs(backup_dir, exist_ok=True)
+            backup_name = f'{backup_dir}/coordinates.internal.ndjson.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}'
             shutil.copy2('public/data/coordinates.internal.ndjson', backup_name)
             print(f"Created backup: {backup_name}")
 
@@ -171,6 +173,12 @@ def main():
                 message_data = service.users().messages().get(userId='me', id=oldest_message_id, format='raw').execute()
                 raw_email = base64.urlsafe_b64decode(message_data['raw'].encode('ASCII'))
                 email_message = email.message_from_bytes(raw_email)
+
+                # Get sender's email
+                sender = email_message.get('From')
+                if sender:
+                    internal_item['sender'] = sender
+                    print(f"  -> Extracted sender: {sender}")
                 
                 body_html = None
                 body_plain = None
