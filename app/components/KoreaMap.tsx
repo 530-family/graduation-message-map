@@ -12,7 +12,8 @@ interface SchoolData {
     longitude: number;
     latitude: number;
   };
-  status?: "written" | "sent";
+  videoStatus?: string;
+  videoUrl?: string;
 }
 
 // Fix for default marker icon issue in Next.js
@@ -29,7 +30,7 @@ const fixMarkerIcon = () => {
 };
 
 // Create marker icons for different statuses
-// Orange: default (no status)
+// Orange: for "Sent" status
 const orangeIcon = new L.Icon({
   iconUrl:
     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
@@ -41,10 +42,10 @@ const orangeIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-// Yellow: written status
-const yellowIcon = new L.Icon({
+// Grey icon for other statuses
+const greyIcon = new L.Icon({
   iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png",
   shadowUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
   iconSize: [25, 41],
@@ -53,23 +54,10 @@ const yellowIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-// Green: sent status
-const greenIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-// Function to get marker icon based on status
-const getMarkerIcon = (status?: "written" | "sent") => {
-  if (status === "sent") return greenIcon;
-  if (status === "written") return yellowIcon;
-  return orangeIcon; // default
+// Function to get marker icon based on videoStatus
+const getMarkerIcon = (videoStatus?: string) => {
+  if (videoStatus === "Sent") return orangeIcon;
+  return greyIcon; // default for others
 };
 
 export default function KoreaMap() {
@@ -80,28 +68,20 @@ export default function KoreaMap() {
 
     // NDJSON 파일 로드
     fetch("/data/coordinates.ndjson")
-      .then((response) => {
-        // console.log("Response status:", response.status);
-        return response.text();
-      })
+      .then((response) => response.text())
       .then((text) => {
-        // console.log("Raw text:", text);
-        // JSON 객체들을 배열로 파싱 (여러 줄에 걸쳐 있는 경우)
-        // "}\n{" 패턴을 찾아서 분리
-        const jsonObjects = text
+        const data = text
           .trim()
-          .split(/\}\s*\{/)
-          .map((obj, index, array) => {
-            // 첫 번째가 아니면 앞에 { 추가
-            if (index > 0) obj = "{" + obj;
-            // 마지막이 아니면 뒤에 } 추가
-            if (index < array.length - 1) obj = obj + "}";
-            return obj.trim();
+          .split("\n")
+          .map((line) => {
+            try {
+              return JSON.parse(line);
+            } catch (e) {
+              console.error("Failed to parse line:", line, e);
+              return null;
+            }
           })
-          .filter((obj) => obj);
-
-        const data = jsonObjects.map((obj) => JSON.parse(obj));
-        // console.log("Parsed schools data:", data);
+          .filter((item): item is SchoolData => item !== null);
         setSchools(data);
       })
       .catch((error) => {
@@ -131,18 +111,14 @@ export default function KoreaMap() {
               school.coordinates.latitude,
               school.coordinates.longitude,
             ]}
-            icon={getMarkerIcon(school.status)}
+            icon={getMarkerIcon(school.videoStatus)}
+            zIndexOffset={school.videoStatus === "Sent" ? 1000 : 500}
           >
             <Popup>
               <div>
                 <p className="text-xs text-gray-500 mb-1">#{index + 1}</p>
                 <h3 className="font-bold">{school.schoolName}</h3>
                 <p className="text-sm">{school.address}</p>
-                {school.status && (
-                  <p className="text-xs text-gray-600 mt-1">
-                    Status: {school.status}
-                  </p>
-                )}
               </div>
             </Popup>
           </Marker>
