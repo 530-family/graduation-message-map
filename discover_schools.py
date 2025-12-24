@@ -14,6 +14,8 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from bs4 import BeautifulSoup
 import csv
+import uuid
+import collections
 
 # Gmail API setup
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
@@ -28,7 +30,7 @@ SCHOOL_PATTERN = re.compile(r'[a-zA-Z0-9가-힣]{2,20}(?:\s[a-zA-Z0-9가-힣]{1,
 PRIMARY_SCHOOL_PATTERN = re.compile(r'\[학교명 / 소재지\]:\s*(.+?학교)')
 
 
-def _search_csv(csv_path, school_name, location_hint, school_name_col, address_col, email_subject=None, email_body=None):
+def _search_csv(csv_path, school_name, location_hint, school_name_col, address_col, id_col=None, email_subject=None, email_body=None):
     """
     A helper function to search a given CSV file for a school.
     It now uses exact matching and handles ambiguous matches.
@@ -52,7 +54,7 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
             exact_matches = []
             for row in all_rows:
                 try:
-                    if len(row) > max(school_name_col, address_col) and school_name == row[school_name_col]:
+                    if len(row) > max(school_name_col, address_col, id_col or 0) and school_name == row[school_name_col]:
                         exact_matches.append(row)
                 except IndexError:
                     continue
@@ -64,7 +66,9 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                 hint_matches = [row for row in exact_matches if len(row) > address_col and location_hint in row[address_col]]
                 if hint_matches:
                     print(f"  ✓ Found exact match for '{school_name}' with hint '{location_hint}' in {csv_path}")
-                    return {"schoolName": hint_matches[0][school_name_col], "address": hint_matches[0][address_col]}
+                    row = hint_matches[0]
+                    school_id = row[id_col] if id_col is not None and len(row) > id_col else None
+                    return {"schoolName": row[school_name_col], "address": row[address_col], "id": school_id}
 
             if len(exact_matches) > 1:
                 print(f"\n  ! Ambiguous school name: Found {len(exact_matches)} matches for '{school_name}'.")
@@ -84,7 +88,8 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                         choice_idx = int(choice) - 1
                         if 0 <= choice_idx < len(exact_matches):
                             chosen_row = exact_matches[choice_idx]
-                            return {"schoolName": chosen_row[school_name_col], "address": chosen_row[address_col]}
+                            school_id = chosen_row[id_col] if id_col is not None and len(chosen_row) > id_col else None
+                            return {"schoolName": chosen_row[school_name_col], "address": chosen_row[address_col], "id": school_id}
                         else:
                             print("  ! Invalid selection. Please try again.")
                     except ValueError:
@@ -92,7 +97,9 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
             
             # If only one match
             if exact_matches:
-                return {"schoolName": exact_matches[0][school_name_col], "address": exact_matches[0][address_col]}
+                row = exact_matches[0]
+                school_id = row[id_col] if id_col is not None and len(row) > id_col else None
+                return {"schoolName": row[school_name_col], "address": row[address_col], "id": school_id}
             
             return None
             
@@ -113,14 +120,14 @@ def get_school_info(school_name, location_hint=None, email_subject=None, email_b
 
     if any(suffix in school_name for suffix in K12_SUFFIXES):
         print(f"  > '{school_name}' identified as K-12, checking schoolInfo.csv...")
-        school_info = _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, email_subject, email_body)
+        school_info = _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, 2, email_subject, email_body)
         if school_info:
             return school_info
         print(f"  > Not found in schoolInfo.csv, falling back to universityInfo.csv...")
-        return _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, email_subject, email_body)
+        return _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, 19, email_subject, email_body)
     else:
         print(f"  > '{school_name}' not identified as K-12, checking universityInfo.csv...")
-        uni_info = _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, email_subject, email_body)
+        uni_info = _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, 19, email_subject, email_body)
         
         if uni_info and "대학원" not in uni_info['schoolName']:
             return uni_info
@@ -128,7 +135,7 @@ def get_school_info(school_name, location_hint=None, email_subject=None, email_b
             print(f"  > Rejecting match '{uni_info['schoolName']}' because it is a graduate school.")
 
         print(f"  > Not found in universityInfo.csv or was a grad school, falling back to schoolInfo.csv...")
-        return _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, email_subject, email_body)
+        return _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, 2, email_subject, email_body)
 
 
 def extract_email_text(payload):
@@ -200,6 +207,128 @@ def append_to_ndjson(file_path, data_item):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, 'a', encoding='utf-8') as f:
         f.write(json.dumps(data_item, ensure_ascii=False) + '\n')
+
+
+def get_max_id(file_path):
+    """Reads the ndjson file and returns the maximum 'id' found."""
+    max_id = 0
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if not line.strip(): continue
+                try:
+                    data = json.loads(line)
+                    if 'id' in data and isinstance(data['id'], int):
+                        max_id = max(max_id, data['id'])
+                except json.JSONDecodeError:
+                    continue
+    except FileNotFoundError:
+        pass
+    return max_id
+
+
+def upsert_ndjson_with_submissions(file_path, new_entry, lookup_key='schoolName'):
+    key_to_find = new_entry.get(lookup_key)
+    if not key_to_find:
+        append_to_ndjson(file_path, new_entry)
+        return
+
+    temp_file = file_path + ".tmp"
+    found = False
+    
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        existing_entries_buffer = [] # Buffer to hold all lines
+
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f_in:
+                for line in f_in:
+                    if not line.strip():
+                        existing_entries_buffer.append(line)
+                        continue
+                    try:
+                        data = json.loads(line)
+                        if data.get(lookup_key) == key_to_find:
+                            # Merge submissions if both existing and new entries have them
+                            if 'submissions' in data and 'submissions' in new_entry:
+                                data['submissions'].extend(new_entry['submissions'])
+                                # Update other top-level fields with new_entry's data (except submissions)
+                                for k, v in new_entry.items():
+                                    if k != 'submissions':
+                                        data[k] = v
+                            elif 'submissions' in new_entry: # Existing entry had no submissions, but new one does
+                                data['submissions'] = new_entry['submissions']
+                            # If new_entry has no submissions, just update other fields; no change to existing 'submissions'
+                            else: # If new_entry has no submissions, but other fields updated
+                                for k, v in new_entry.items():
+                                    if k != 'submissions':
+                                        data[k] = v
+
+
+                            existing_entries_buffer.append(json.dumps(data, ensure_ascii=False) + '\n')
+                            found = True
+                        else:
+                            existing_entries_buffer.append(line)
+                    except json.JSONDecodeError:
+                        existing_entries_buffer.append(line) # Keep invalid JSON lines as is
+        except FileNotFoundError:
+            pass # File doesn't exist yet, will be created below
+
+        with open(temp_file, 'w', encoding='utf-8') as f_out:
+            for line in existing_entries_buffer:
+                f_out.write(line)
+            if not found: # If key was not found, append the new entry
+                f_out.write(json.dumps(new_entry, ensure_ascii=False) + '\n')
+        
+        os.replace(temp_file, file_path)
+
+    except Exception as e:
+        print(f"  ✗ An error occurred during upsert to {file_path}: {e}")
+        if os.path.exists(temp_file):
+            os.remove(temp_file)
+
+def upsert_ndjson(file_path, data_item, lookup_key='schoolName'):
+    """
+    Updates an entry in an ndjson file if it exists, otherwise appends it.
+    The check is based on the lookup_key.
+    """
+    key_to_find = data_item.get(lookup_key)
+    if not key_to_find:
+        append_to_ndjson(file_path, data_item)
+        return
+
+    temp_file = file_path + ".tmp"
+    found = False
+    
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f_in, open(temp_file, 'w', encoding='utf-8') as f_out:
+                for line in f_in:
+                    if not line.strip():
+                        f_out.write(line)
+                        continue
+                    try:
+                        data = json.loads(line)
+                        if data.get(lookup_key) == key_to_find:
+                            f_out.write(json.dumps(data_item, ensure_ascii=False) + '\n')
+                            found = True
+                        else:
+                            f_out.write(line)
+                    except json.JSONDecodeError:
+                        f_out.write(line)
+        except FileNotFoundError:
+            pass
+
+        if not found:
+            with open(temp_file, 'a', encoding='utf-8') as f_out:
+                f_out.write(json.dumps(data_item, ensure_ascii=False) + '\n')
+        
+        os.replace(temp_file, file_path)
+    except Exception as e:
+        print(f"  ✗ An error occurred during upsert to {file_path}: {e}")
+        if os.path.exists(temp_file):
+            os.remove(temp_file)
 
 def find_entry_in_ndjson(file_path, school_name):
     """Finds a specific entry in an ndjson file by school name."""
@@ -338,54 +467,101 @@ def main():
         if not school_info:
             if candidate_name:
                 print(f"  > Could not validate '{candidate_name}'. Adding with empty address as requested.")
-                school_info = {'schoolName': candidate_name.strip(), 'address': ''}
+                school_info = {'schoolName': candidate_name.strip(), 'address': '', 'id': None}
             else:
                 continue
 
         final_name, final_address = school_info['schoolName'], school_info['address']
+        should_overwrite = True
 
         if final_name in existing_schools:
-            print(f"  ✓ School '{final_name}' already exists in the coordinates file. Skipping to avoid duplicates.")
-            continue
+            existing_entry = find_entry_in_ndjson(coords_file, final_name)
+            if not existing_entry:
+                print(f"  ! School '{final_name}' in existing_schools set but not found in {coords_file}. Proceeding to add/overwrite.")
+            else:
+                existing_address = existing_entry.get('address', '')
+                if final_address.strip() == existing_address.strip():
+                    print(f"  ✓ School '{final_name}' with same address already exists. Skipping.")
+                    continue
+                
+                print(f"  ! School '{final_name}' exists but with a different address ('{existing_address}').")
+                existing_internal_entry = find_entry_in_ndjson(internal_coords_file, final_name)
+                if not existing_internal_entry:
+                    print("  ! Could not find internal entry to check sender. Overwriting as default action.")
+                else:
+                    existing_sender = existing_internal_entry.get('sender')
+                    if existing_sender == sender:
+                        print(f"  > Same sender ('{sender}'). Proceeding to update.")
+                        should_overwrite = True
+                    else:
+                        print(f"  > Different sender (new: '{sender}', old: '{existing_sender}'). Adding as a new entry.")
+                        should_overwrite = False
 
         print(f"  ✓ Valid school found: '{final_name}' at '{final_address}'.")
         print("  Calling geocode.sh to add and geocode...")
         
         try:
-            # Let geocode.sh handle the addition to coordinates.ndjson
-            command = ['bash', geocode_script, '--on-duplicate', 'overwrite', final_name, final_address]
+            command = ['bash', geocode_script, final_name, final_address]
             result = subprocess.run(command, check=True, text=True, capture_output=True)
             print(f"  ✓ Geocode script finished for '{final_name}'.")
 
-            # Add to set to prevent re-processing from other emails in this same run
+            try:
+                newly_added_entry = json.loads(result.stdout)
+            except json.JSONDecodeError:
+                print(f"  ✗ Failed to parse JSON from geocode.sh output: {result.stdout}")
+                continue
+            
+            school_id_from_csv = school_info.get('id')
+            newly_added_entry_id = None
+
+            if should_overwrite: # It's an update
+                existing_entry_in_coords = find_entry_in_ndjson(coords_file, final_name)
+                if existing_entry_in_coords and 'id' in existing_entry_in_coords:
+                    newly_added_entry_id = existing_entry_in_coords['id']
+                else:
+                    # Fallback if somehow existing entry doesn't have an ID or find_entry_in_ndjson fails
+                    newly_added_entry_id = get_max_id(coords_file) + 1
+                    print(f"  ! Fallback auto-incremental ID generated for update: {newly_added_entry_id}")
+            else: # It's a new entry (append)
+                newly_added_entry_id = get_max_id(coords_file) + 1
+            
+            # Reconstruct newly_added_entry to ensure order and assign the determined ID
+            ordered_entry = collections.OrderedDict()
+            ordered_entry['id'] = newly_added_entry_id
+            ordered_entry['schoolName'] = newly_added_entry.get('schoolName')
+            ordered_entry['address'] = newly_added_entry.get('address')
+            ordered_entry['coordinates'] = newly_added_entry.get('coordinates')
+            newly_added_entry = ordered_entry
+
+            if should_overwrite:
+                upsert_ndjson(coords_file, newly_added_entry)
+            else:
+                append_to_ndjson(coords_file, newly_added_entry)
             existing_schools.add(final_name)
 
-            # Now, find the entry geocode.sh just created
-            newly_added_entry = None
-            for i in range(5): # Retry for 0.5 seconds
-                newly_added_entry = find_entry_in_ndjson(coords_file, final_name)
-                if newly_added_entry:
-                    break
-                time.sleep(0.1)
+            coords = newly_added_entry.get("coordinates", {})
+            lng = coords.get("longitude")
+            lat = coords.get("latitude")
 
-            if newly_added_entry:
-                coords = newly_added_entry.get("coordinates", {})
-                lng = coords.get("longitude")
-                lat = coords.get("latitude")
+            if (lng is None or lng == 0) or (lat is None or lat == 0):
+                print(f"  ✗ Geocoding failed for '{newly_added_entry.get('address', final_address)}'. Adding to manual lookup file.")
+                with open("manual_address_lookup.txt", "a", encoding="utf-8") as f:
+                    f.write(f"{newly_added_entry.get('address', final_address)}\n")
+            
+            internal_entry = newly_added_entry.copy() # This already has id, schoolName, address, coordinates
 
-                if (lng is None or lng == 0) or (lat is None or lat == 0):
-                    print(f"  ✗ Geocoding failed for '{final_address}'. Adding to manual lookup file.")
-                    with open("manual_address_lookup.txt", "a", encoding="utf-8") as f:
-                        f.write(f"{final_address}\n")
-                
-                internal_entry = newly_added_entry.copy()
-                internal_entry['requestContent'] = body
-                internal_entry['sender'] = sender
-                internal_entry['subject'] = subject
-                append_to_ndjson(internal_coords_file, internal_entry)
-                print(f"  ✓ Successfully synced to {internal_coords_file}.")
+            current_submission = {
+                "sender": sender,
+                "subject": subject,
+                "body": body
+            }
+            internal_entry['submissions'] = [current_submission]
+            
+            if should_overwrite:
+                upsert_ndjson_with_submissions(internal_coords_file, internal_entry)
             else:
-                print(f"  ✗ ERROR: Could not find '{final_name}' in {coords_file} after geocoding to sync internal file.")
+                append_to_ndjson(internal_coords_file, internal_entry)
+            print(f"  ✓ Successfully synced to {internal_coords_file}.")
 
         except subprocess.CalledProcessError as e:
             print(f"  ✗ Geocoding script failed for '{final_name}'. STDERR: {e.stderr.strip()}")
