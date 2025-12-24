@@ -28,10 +28,10 @@ SCHOOL_PATTERN = re.compile(r'[a-zA-Z0-9가-힣]{2,20}(?:\s[a-zA-Z0-9가-힣]{1,
 PRIMARY_SCHOOL_PATTERN = re.compile(r'\[학교명 / 소재지\]:\s*(.+?학교)')
 
 
-def _search_csv(csv_path, school_name, location_hint, school_name_col, address_col):
+def _search_csv(csv_path, school_name, location_hint, school_name_col, address_col, email_subject=None, email_body=None):
     """
     A helper function to search a given CSV file for a school.
-    It now uses exact matching.
+    It now uses exact matching and handles ambiguous matches.
     """
     if not school_name:
         return None
@@ -65,12 +65,36 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                 if hint_matches:
                     print(f"  ✓ Found exact match for '{school_name}' with hint '{location_hint}' in {csv_path}")
                     return {"schoolName": hint_matches[0][school_name_col], "address": hint_matches[0][address_col]}
-                else:
-                    print(f"  ! Found matches for '{school_name}' but none with hint '{location_hint}'.")
-                    return None # Fail if hint was provided but not matched
+
+            if len(exact_matches) > 1:
+                print(f"\n  ! Ambiguous school name: Found {len(exact_matches)} matches for '{school_name}'.")
+                print("  Please review the email content below to make the correct choice.")
+                print("-" * 70)
+                print(f"  Subject: {email_subject}")
+                print(f"  Body (first 200 chars): {email_body[:200].strip()}...")
+                print("-" * 70)
+                for i, row in enumerate(exact_matches):
+                    print(f"    {i+1}: {row[school_name_col]} ({row[address_col]})")
+                
+                while True:
+                    try:
+                        choice = input(f">>> Please select the correct school (1-{len(exact_matches)}) or press Enter to skip: ")
+                        if not choice:
+                            return None
+                        choice_idx = int(choice) - 1
+                        if 0 <= choice_idx < len(exact_matches):
+                            chosen_row = exact_matches[choice_idx]
+                            return {"schoolName": chosen_row[school_name_col], "address": chosen_row[address_col]}
+                        else:
+                            print("  ! Invalid selection. Please try again.")
+                    except ValueError:
+                        print("  ! Invalid input. Please enter a number.")
             
-            print(f"  ✓ Found exact match for '{school_name}' (no location hint match) in {csv_path}")
-            return {"schoolName": exact_matches[0][school_name_col], "address": exact_matches[0][address_col]}
+            # If only one match
+            if exact_matches:
+                return {"schoolName": exact_matches[0][school_name_col], "address": exact_matches[0][address_col]}
+            
+            return None
             
     except FileNotFoundError:
         print(f"  ! CSV file not found at '{csv_path}'.")
@@ -80,7 +104,7 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
         return None
 
 
-def get_school_info(school_name, location_hint=None):
+def get_school_info(school_name, location_hint=None, email_subject=None, email_body=None):
     """
     Gets school information by searching the appropriate CSV file based on the school name's content.
     """
@@ -89,14 +113,14 @@ def get_school_info(school_name, location_hint=None):
 
     if any(suffix in school_name for suffix in K12_SUFFIXES):
         print(f"  > '{school_name}' identified as K-12, checking schoolInfo.csv...")
-        school_info = _search_csv('public/data/schoolInfo.csv', school_name, location_hint, school_name_col=3, address_col=10)
+        school_info = _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, email_subject, email_body)
         if school_info:
             return school_info
         print(f"  > Not found in schoolInfo.csv, falling back to universityInfo.csv...")
-        return _search_csv('public/data/universityInfo.csv', school_name, location_hint, school_name_col=0, address_col=8)
+        return _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, email_subject, email_body)
     else:
         print(f"  > '{school_name}' not identified as K-12, checking universityInfo.csv...")
-        uni_info = _search_csv('public/data/universityInfo.csv', school_name, location_hint, school_name_col=0, address_col=8)
+        uni_info = _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, email_subject, email_body)
         
         if uni_info and "대학원" not in uni_info['schoolName']:
             return uni_info
@@ -104,7 +128,7 @@ def get_school_info(school_name, location_hint=None):
             print(f"  > Rejecting match '{uni_info['schoolName']}' because it is a graduate school.")
 
         print(f"  > Not found in universityInfo.csv or was a grad school, falling back to schoolInfo.csv...")
-        return _search_csv('public/data/schoolInfo.csv', school_name, location_hint, school_name_col=3, address_col=10)
+        return _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, email_subject, email_body)
 
 
 def extract_email_text(payload):
@@ -286,7 +310,7 @@ def main():
                 if len(parts) > 1:
                     location_hint, school_name_to_search = parts[0], parts[-1]
                 print(f"  > Derived: School Name='{school_name_to_search}', Location Hint='{location_hint}'")
-            school_info = get_school_info(school_name_to_search, location_hint)
+            school_info = get_school_info(school_name_to_search, location_hint, email_subject=subject, email_body=body)
 
         while not school_info:
             print(f"\n  ! Could not validate school: '{candidate_name}'")
@@ -309,12 +333,14 @@ def main():
                 if len(parts) > 1:
                     location_hint, school_name_to_search = parts[0], parts[-1]
                 print(f"  > Derived from user input: School Name='{school_name_to_search}', Location Hint='{location_hint}'")
-            school_info = get_school_info(school_name_to_search, location_hint)
+            school_info = get_school_info(school_name_to_search, location_hint, email_subject=subject, email_body=body)
 
         if not school_info:
-            print(f"  > Could not validate '{candidate_name}'. Adding with empty address as requested.")
-            # The candidate_name might be messy, but it's the best we have without validation
-            school_info = {'schoolName': candidate_name.strip() if candidate_name else 'Unknown School', 'address': ''}
+            if candidate_name:
+                print(f"  > Could not validate '{candidate_name}'. Adding with empty address as requested.")
+                school_info = {'schoolName': candidate_name.strip(), 'address': ''}
+            else:
+                continue
 
         final_name, final_address = school_info['schoolName'], school_info['address']
 
