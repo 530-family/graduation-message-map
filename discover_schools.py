@@ -167,8 +167,11 @@ def strip_parentheses_for_comparison(address_str):
     base_address = base_address.replace('"', '').strip()
     
     # Normalize province names to handle administrative changes
-    base_address = base_address.replace("강원특별자치도", "강원도")
-    base_address = base_address.replace("전북특별자치도", "전라북도")
+    base_address = re.sub(r'강원특별자치도', '강원도', base_address)
+    base_address = re.sub(r'전북특별자치도', '전라북도', base_address)
+
+    # Consolidate multiple spaces into a single space
+    base_address = re.sub(r'\s+', ' ', base_address).strip()
 
     return base_address
 
