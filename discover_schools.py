@@ -30,7 +30,7 @@ SCHOOL_PATTERN = re.compile(r'[a-zA-Z0-9가-힣]{2,20}(?:\s[a-zA-Z0-9가-힣]{1,
 PRIMARY_SCHOOL_PATTERN = re.compile(r'\[학교명 / 소재지\]:\s*(.+?학교)')
 
 
-def _search_csv(csv_path, school_name, location_hint, school_name_col, address_col, id_col=None, email_subject=None, email_body=None):
+def _search_csv(csv_path, school_name, location_hint, school_name_col, address_col, id_col=None, detail_address_col=None, email_subject=None, email_body=None):
     """
     A helper function to search a given CSV file for a school.
     It now uses exact matching and handles ambiguous matches.
@@ -54,7 +54,7 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
             exact_matches = []
             for row in all_rows:
                 try:
-                    if len(row) > max(school_name_col, address_col, id_col or 0) and school_name == row[school_name_col]:
+                    if len(row) > max(school_name_col, address_col, id_col or 0, detail_address_col or 0) and school_name == row[school_name_col]:
                         exact_matches.append(row)
                 except IndexError:
                     continue
@@ -68,7 +68,8 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                     print(f"  ✓ Found exact match for '{school_name}' with hint '{location_hint}' in {csv_path}")
                     row = hint_matches[0]
                     school_id = row[id_col] if id_col is not None and len(row) > id_col else None
-                    return {"schoolName": row[school_name_col], "address": row[address_col], "id": school_id}
+                    detail_address = row[detail_address_col] if detail_address_col is not None and len(row) > detail_address_col else None
+                    return {"schoolName": row[school_name_col], "address": format_address(row[address_col]), "id": school_id, "detailAddress": detail_address}
 
             if len(exact_matches) > 1:
                 print(f"\n  ! Ambiguous school name: Found {len(exact_matches)} matches for '{school_name}'.")
@@ -89,7 +90,8 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                         if 0 <= choice_idx < len(exact_matches):
                             chosen_row = exact_matches[choice_idx]
                             school_id = chosen_row[id_col] if id_col is not None and len(chosen_row) > id_col else None
-                            return {"schoolName": chosen_row[school_name_col], "address": chosen_row[address_col], "id": school_id}
+                            detail_address = chosen_row[detail_address_col] if detail_address_col is not None and len(chosen_row) > detail_address_col else None
+                            return {"schoolName": chosen_row[school_name_col], "address": format_address(chosen_row[address_col]), "id": school_id, "detailAddress": detail_address}
                         else:
                             print("  ! Invalid selection. Please try again.")
                     except ValueError:
@@ -99,10 +101,10 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
             if exact_matches:
                 row = exact_matches[0]
                 school_id = row[id_col] if id_col is not None and len(row) > id_col else None
-                return {"schoolName": row[school_name_col], "address": row[address_col], "id": school_id}
+                detail_address = row[detail_address_col] if detail_address_col is not None and len(row) > detail_address_col else None
+                return {"schoolName": row[school_name_col], "address": format_address(row[address_col]), "id": school_id, "detailAddress": detail_address}
             
             return None
-            
     except FileNotFoundError:
         print(f"  ! CSV file not found at '{csv_path}'.")
         return None
@@ -120,14 +122,14 @@ def get_school_info(school_name, location_hint=None, email_subject=None, email_b
 
     if any(suffix in school_name for suffix in K12_SUFFIXES):
         print(f"  > '{school_name}' identified as K-12, checking schoolInfo.csv...")
-        school_info = _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, 2, email_subject, email_body)
+        school_info = _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, 2, 11, email_subject, email_body)
         if school_info:
             return school_info
         print(f"  > Not found in schoolInfo.csv, falling back to universityInfo.csv...")
-        return _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, 19, email_subject, email_body)
+        return _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, 19, 9, email_subject, email_body)
     else:
         print(f"  > '{school_name}' not identified as K-12, checking universityInfo.csv...")
-        uni_info = _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, 19, email_subject, email_body)
+        uni_info = _search_csv('public/data/universityInfo.csv', school_name, location_hint, 0, 8, 19, 9, email_subject, email_body)
         
         if uni_info and "대학원" not in uni_info['schoolName']:
             return uni_info
@@ -135,7 +137,40 @@ def get_school_info(school_name, location_hint=None, email_subject=None, email_b
             print(f"  > Rejecting match '{uni_info['schoolName']}' because it is a graduate school.")
 
         print(f"  > Not found in universityInfo.csv or was a grad school, falling back to schoolInfo.csv...")
-        return _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, 2, email_subject, email_body)
+        return _search_csv('public/data/schoolInfo.csv', school_name, location_hint, 3, 10, 2, 11, email_subject, email_body)
+
+
+def format_address(address_str):
+    """
+    This function's only job is to return the clean base address.
+    The parenthesized detail is added back in the main function.
+    """
+    return strip_parentheses_for_comparison(address_str)
+
+
+def strip_parentheses_for_comparison(address_str):
+    """
+    Takes a raw address string and returns a clean "base" address 
+    by removing postcodes, parenthesized details, and other junk.
+    Also normalizes province names.
+    """
+    if not address_str:
+        return ""
+    
+    # Remove leading postcode
+    base_address = re.sub(r'^\d+\s*,\s*', '', address_str).strip()
+    
+    # Remove any existing parenthesized part and preceding junk
+    base_address = re.sub(r'(?:[\",]?\s*,\s*|[\",]?\s*)?\(.*?\),?$', '', base_address).strip()
+
+    # Remove any leftover quotes
+    base_address = base_address.replace('"', '').strip()
+    
+    # Normalize province names to handle administrative changes
+    base_address = base_address.replace("강원특별자치도", "강원도")
+    base_address = base_address.replace("전북특별자치도", "전라북도")
+
+    return base_address
 
 
 def extract_email_text(payload):
@@ -348,6 +383,42 @@ def find_entry_in_ndjson(file_path, school_name):
         return None
     return None
 
+
+def find_entries_in_ndjson(file_path, school_name):
+    """Finds all entries in an ndjson file matching a school name."""
+    entries = []
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if not line.strip(): continue
+                try:
+                    data = json.loads(line)
+                    if data.get('schoolName') == school_name:
+                        entries.append(data)
+                except (json.JSONDecodeError, AttributeError):
+                    continue
+    except FileNotFoundError:
+        pass
+    return entries
+
+
+def find_entry_in_ndjson_by_id(file_path, entry_id):
+    """Finds a specific entry in an ndjson file by its id."""
+    if entry_id is None: return None
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if not line.strip(): continue
+                try:
+                    data = json.loads(line)
+                    if data.get('id') == entry_id:
+                        return data
+                except (json.JSONDecodeError, AttributeError):
+                    continue
+    except FileNotFoundError:
+        return None
+    return None
+
 def main():
     """Main function to run the school discovery and geocoding process."""
     parser = argparse.ArgumentParser(description='Discover new schools from Gmail and add them to the coordinates file.')
@@ -467,35 +538,47 @@ def main():
         if not school_info:
             if candidate_name:
                 print(f"  > Could not validate '{candidate_name}'. Adding with empty address as requested.")
-                school_info = {'schoolName': candidate_name.strip(), 'address': '', 'id': None}
+                school_info = {'schoolName': candidate_name.strip(), 'address': '', 'id': None, 'detailAddress': None}
             else:
                 continue
 
         final_name, final_address = school_info['schoolName'], school_info['address']
-        should_overwrite = True
+        should_overwrite = False # Default to append for new schools
+        matching_entry = None
 
         if final_name in existing_schools:
-            existing_entry = find_entry_in_ndjson(coords_file, final_name)
-            if not existing_entry:
-                print(f"  ! School '{final_name}' in existing_schools set but not found in {coords_file}. Proceeding to add/overwrite.")
+            all_entries_with_name = find_entries_in_ndjson(coords_file, final_name)
+            
+            for entry in all_entries_with_name:
+                existing_address_base = strip_parentheses_for_comparison(entry.get('address', ''))
+                new_address_base = strip_parentheses_for_comparison(final_address)
+                print(f"  > Comparing base address for '{final_name}': new='{new_address_base}', old='{existing_address_base}'")
+                if existing_address_base and new_address_base and existing_address_base == new_address_base:
+                    matching_entry = entry
+                    break
+        
+        if matching_entry: # Found a school with same name and full address
+            should_overwrite = True # This will be an update/overwrite
+            
+            # Check for duplicate submission (same schoolName, same full address, same sender)
+            existing_internal_entry = find_entry_in_ndjson_by_id(internal_coords_file, matching_entry.get('id'))
+            if existing_internal_entry:
+                senders_in_submissions = [sub.get('sender') for sub in existing_internal_entry.get('submissions', [])]
+                if sender in senders_in_submissions:
+                     print(f"  ✓ School '{final_name}' with same address and submission from sender '{sender}' already exists. Skipping.")
+                     continue # Skip this email completely
+            
+            # If we are here, it's an existing school with same name & full address, but a new submission.
+            # It should proceed to geocode and update.
+            print(f"  ✓ School '{final_name}' with same address found. Proceeding to update with new submission.")
+        else: # No school found with this name and full address
+            if final_name in existing_schools:
+                # This implies a school with same name exists, but with a different full address.
+                # So it's a new entry, not an update.
+                print(f"  > School '{final_name}' found, but with different full address. Creating new entry.")
             else:
-                existing_address = existing_entry.get('address', '')
-                if final_address.strip() == existing_address.strip():
-                    print(f"  ✓ School '{final_name}' with same address already exists. Skipping.")
-                    continue
-                
-                print(f"  ! School '{final_name}' exists but with a different address ('{existing_address}').")
-                existing_internal_entry = find_entry_in_ndjson(internal_coords_file, final_name)
-                if not existing_internal_entry:
-                    print("  ! Could not find internal entry to check sender. Overwriting as default action.")
-                else:
-                    existing_sender = existing_internal_entry.get('sender')
-                    if existing_sender == sender:
-                        print(f"  > Same sender ('{sender}'). Proceeding to update.")
-                        should_overwrite = True
-                    else:
-                        print(f"  > Different sender (new: '{sender}', old: '{existing_sender}'). Adding as a new entry.")
-                        should_overwrite = False
+                 print(f"  > New school '{final_name}'. Creating new entry.")
+            should_overwrite = False # This will be a new entry (append)
 
         print(f"  ✓ Valid school found: '{final_name}' at '{final_address}'.")
         print("  Calling geocode.sh to add and geocode...")
@@ -511,6 +594,22 @@ def main():
                 print(f"  ✗ Failed to parse JSON from geocode.sh output: {result.stdout}")
                 continue
             
+            geocoding_successful = False
+            if newly_added_entry:
+                new_coords = newly_added_entry.get("coordinates", {})
+                new_lng = new_coords.get("longitude")
+                new_lat = new_coords.get("latitude")
+                geocoding_successful = (new_lng is not None and new_lng != 0) and (new_lat is not None and new_lat != 0)
+
+            # Preserve old coordinates if geocoding failed on an update
+            if not geocoding_successful and should_overwrite and matching_entry:
+                old_coords = matching_entry.get("coordinates", {})
+                old_lng = old_coords.get("longitude")
+                old_lat = old_coords.get("latitude")
+                if (old_lng is not None and old_lng != 0) and (old_lat is not None and old_lat != 0):
+                    print("  ! Geocoding API failed on update. Preserving old valid coordinates.")
+                    newly_added_entry["coordinates"] = old_coords
+
             school_id_from_csv = school_info.get('id')
             newly_added_entry_id = None
 
@@ -525,11 +624,21 @@ def main():
             else: # It's a new entry (append)
                 newly_added_entry_id = get_max_id(coords_file) + 1
             
+            # Reconstruct final address by appending the detail address part
+            final_address_complete = newly_added_entry.get('address')
+            detail_address = school_info.get('detailAddress')
+            if detail_address:
+                # Clean the detail address itself: e.g., "(달동/동평중학교)" -> "달동"
+                cleaned_detail = re.sub(r'[\(\)]', '', detail_address)
+                first_part = re.split(r'[,\/]', cleaned_detail)[0].strip()
+                if first_part:
+                     final_address_complete += f" ({first_part})"
+
             # Reconstruct newly_added_entry to ensure order and assign the determined ID
             ordered_entry = collections.OrderedDict()
             ordered_entry['id'] = newly_added_entry_id
             ordered_entry['schoolName'] = newly_added_entry.get('schoolName')
-            ordered_entry['address'] = newly_added_entry.get('address')
+            ordered_entry['address'] = final_address_complete
             ordered_entry['coordinates'] = newly_added_entry.get('coordinates')
             newly_added_entry = ordered_entry
 
@@ -543,8 +652,9 @@ def main():
             lng = coords.get("longitude")
             lat = coords.get("latitude")
 
+            error_status = newly_added_entry.get('errorStatus', 'N/A')
             if (lng is None or lng == 0) or (lat is None or lat == 0):
-                print(f"  ✗ Geocoding failed for '{newly_added_entry.get('address', final_address)}'. Adding to manual lookup file.")
+                print(f"  ✗ Geocoding failed for '{newly_added_entry.get('address', final_address)}' (Status: {error_status}). Adding to manual lookup file.")
                 with open("manual_address_lookup.txt", "a", encoding="utf-8") as f:
                     f.write(f"{newly_added_entry.get('address', final_address)}\n")
             
