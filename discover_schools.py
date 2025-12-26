@@ -37,6 +37,10 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
     """
     if not school_name:
         return None
+
+    # Do not perform partial matching on generic school type names
+    is_generic_search = school_name in SUFFIX_LIST
+
     try:
         try:
             infile = open(csv_path, mode='r', encoding='cp949')
@@ -52,43 +56,66 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                 return None
             
             exact_matches = []
+            partial_matches = []
             for row in all_rows:
                 try:
-                    if len(row) > max(school_name_col, address_col, id_col or 0, detail_address_col or 0) and school_name == row[school_name_col]:
-                        exact_matches.append(row)
+                    csv_school_name = row[school_name_col]
+                    max_col = max(school_name_col, address_col, id_col or 0, detail_address_col or 0)
+                    if len(row) > max_col:
+                        if school_name == csv_school_name:
+                            exact_matches.append(row)
+                        elif not is_generic_search and school_name in csv_school_name:
+                            partial_matches.append(row)
                 except IndexError:
                     continue
             
-            if not exact_matches:
+            # Combine and de-duplicate
+            unique_matches_dict = {}
+            for row in exact_matches + partial_matches:
+                key = (row[school_name_col], row[address_col])
+                if key not in unique_matches_dict:
+                    unique_matches_dict[key] = row
+            all_potential_matches = list(unique_matches_dict.values())
+
+            if not all_potential_matches:
                 return None
 
             if location_hint:
-                hint_matches = [row for row in exact_matches if len(row) > address_col and location_hint in row[address_col]]
-                if hint_matches:
-                    print(f"  ✓ Found exact match for '{school_name}' with hint '{location_hint}' in {csv_path}")
+                hint_matches = [row for row in all_potential_matches if len(row) > address_col and location_hint in row[address_col]]
+                if len(hint_matches) == 1:
+                    print(f"  ✓ Found unique match for '{school_name}' with hint '{location_hint}' in {csv_path}")
                     row = hint_matches[0]
                     school_id = row[id_col] if id_col is not None and len(row) > id_col else None
                     detail_address = row[detail_address_col] if detail_address_col is not None and len(row) > detail_address_col else None
                     return {"schoolName": row[school_name_col], "address": format_address(row[address_col]), "id": school_id, "detailAddress": detail_address}
+                elif len(hint_matches) > 1:
+                    # The hint helped, but there's still ambiguity within the hinted matches
+                    all_potential_matches = hint_matches
 
-            if len(exact_matches) > 1:
-                print(f"\n  ! Ambiguous school name: Found {len(exact_matches)} matches for '{school_name}'.")
+            if len(all_potential_matches) == 1:
+                row = all_potential_matches[0]
+                school_id = row[id_col] if id_col is not None and len(row) > id_col else None
+                detail_address = row[detail_address_col] if detail_address_col is not None and len(row) > detail_address_col else None
+                return {"schoolName": row[school_name_col], "address": format_address(row[address_col]), "id": school_id, "detailAddress": detail_address}
+
+            if len(all_potential_matches) > 1:
+                print(f"\n  ! Ambiguous school name: Found {len(all_potential_matches)} potential matches for '{school_name}'.")
                 print("  Please review the email content below to make the correct choice.")
                 print("-" * 70)
                 print(f"  Subject: {email_subject}")
                 print(f"  Body (first 200 chars): {email_body[:200].strip()}...")
                 print("-" * 70)
-                for i, row in enumerate(exact_matches):
+                for i, row in enumerate(all_potential_matches):
                     print(f"    {i+1}: {row[school_name_col]} ({row[address_col]})")
                 
                 while True:
                     try:
-                        choice = input(f">>> Please select the correct school (1-{len(exact_matches)}) or press Enter to skip: ")
+                        choice = input(f">>> Please select the correct school (1-{len(all_potential_matches)}) or press Enter to skip: ")
                         if not choice:
                             return None
                         choice_idx = int(choice) - 1
-                        if 0 <= choice_idx < len(exact_matches):
-                            chosen_row = exact_matches[choice_idx]
+                        if 0 <= choice_idx < len(all_potential_matches):
+                            chosen_row = all_potential_matches[choice_idx]
                             school_id = chosen_row[id_col] if id_col is not None and len(chosen_row) > id_col else None
                             detail_address = chosen_row[detail_address_col] if detail_address_col is not None and len(chosen_row) > detail_address_col else None
                             return {"schoolName": chosen_row[school_name_col], "address": format_address(chosen_row[address_col]), "id": school_id, "detailAddress": detail_address}
@@ -96,13 +123,6 @@ def _search_csv(csv_path, school_name, location_hint, school_name_col, address_c
                             print("  ! Invalid selection. Please try again.")
                     except ValueError:
                         print("  ! Invalid input. Please enter a number.")
-            
-            # If only one match
-            if exact_matches:
-                row = exact_matches[0]
-                school_id = row[id_col] if id_col is not None and len(row) > id_col else None
-                detail_address = row[detail_address_col] if detail_address_col is not None and len(row) > detail_address_col else None
-                return {"schoolName": row[school_name_col], "address": format_address(row[address_col]), "id": school_id, "detailAddress": detail_address}
             
             return None
     except FileNotFoundError:
@@ -223,22 +243,94 @@ def get_gmail_service():
     return build('gmail', 'v1', credentials=creds)
 
 def get_existing_schools(file_path):
+
     """Reads the ndjson file and returns a set of unique school names."""
+
     schools = set()
+
     try:
+
         with open(file_path, 'r', encoding='utf-8') as f:
+
             for i, line in enumerate(f):
+
                 if not line.strip(): continue
+
                 try:
+
                     data = json.loads(line)
+
                     school_name = data.get('schoolName')
+
                     if school_name:
+
                         schools.add(school_name)
+
                 except json.JSONDecodeError:
+
                     continue
+
     except FileNotFoundError:
+
         pass
+
     return schools
+
+
+
+
+
+def extract_location_hint_from_text(text):
+
+    """
+
+    Extracts a location hint (sido/sigungu) from a given text by checking against a list of known locations.
+
+    """
+
+    try:
+
+        with open('public/data/sidoSigungu.csv', mode='r', encoding='utf-8') as f:
+
+            reader = csv.reader(f)
+
+            # Assuming first row is header
+
+            header = next(reader)
+
+            # Assuming first column is the location name
+
+            locations = {row[0].strip() for row in reader if row}
+
+    except (FileNotFoundError, StopIteration):
+
+        print("  ! sidoSigungu.csv not found or empty. Cannot extract location hint from body.")
+
+        return None
+
+
+
+    # Sort locations by length, longest first, to match "부산광역시" before "부산"
+
+    sorted_locations = sorted(list(locations), key=len, reverse=True)
+
+
+
+    for loc in sorted_locations:
+
+        if loc in text:
+
+            print(f"  > Found location hint in email body: '{loc}'")
+
+            return loc
+
+    
+
+    return None
+
+
+
+
 
 def append_to_ndjson(file_path, data_item):
     """Appends a JSON object to the ndjson file."""
@@ -490,6 +582,10 @@ def main():
         subject = next((h['value'] for h in message_data['payload']['headers'] if h['name'].lower() == 'subject'), '')
         sender = next((h['value'] for h in message_data['payload']['headers'] if h['name'].lower() == 'from'), '')
         body = extract_email_text(message_data['payload'])
+        
+        # Extract location hint from body before processing school name
+        body_location_hint = extract_location_hint_from_text(body)
+
         full_text = f"{subject}\n\n{body}"
 
         candidate_name = None
@@ -513,7 +609,10 @@ def main():
                 if len(parts) > 1:
                     location_hint, school_name_to_search = parts[0], parts[-1]
                 print(f"  > Derived: School Name='{school_name_to_search}', Location Hint='{location_hint}'")
-            school_info = get_school_info(school_name_to_search, location_hint, email_subject=subject, email_body=body)
+            
+            # Prioritize hint from body, but allow hint from name to override if present
+            final_location_hint = location_hint or body_location_hint
+            school_info = get_school_info(school_name_to_search, final_location_hint, email_subject=subject, email_body=body)
 
         while not school_info:
             print(f"\n  ! Could not validate school: '{candidate_name}'")
