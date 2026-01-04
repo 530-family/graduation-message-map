@@ -686,7 +686,7 @@ def main():
         print("  Calling geocode.sh to add and geocode...")
         
         try:
-            command = ['bash', geocode_script, final_name, final_address]
+            command = ['bash', geocode_script, '--on-duplicate', 'overwrite', final_name, final_address]
             result = subprocess.run(command, check=True, text=True, capture_output=True)
             print(f"  ✓ Geocode script finished for '{final_name}'.")
 
