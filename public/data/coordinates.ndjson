@@ -314,7 +314,7 @@
 {"id": 317, "schoolName": "경북대학교", "address": "대구광역시 북구 대학로 80 (산격동)", "coordinates": {"longitude": 128.607715777, "latitude": 35.887720188}, "videoStatus": "Pending"}
 {"id": 318, "schoolName": "산서중학교", "address": "전북특별자치도 장수군 산서면 보산로 1852-6", "coordinates": {"longitude": 127.398720851, "latitude": 35.583857594}, "videoStatus": "Pending"}
 {"id": 319, "schoolName": "제주제일고등학교", "address": "제주특별자치도 제주시 진군길 22 (노형동)", "coordinates": {"longitude": 126.479419105, "latitude": 33.479737051}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/YOajdKoxyjE"}
-{"id": 320, "schoolName": "동강중학교", "address": "충청남도 서천군 기산면 충절로 624", "coordinates": {"longitude": 126.749278101, "latitude": 36.071437523}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 320, "schoolName": "동강중학교", "address": "충청남도 서천군 기산면 충절로 624", "coordinates": {"longitude": 126.749278101, "latitude": 36.071437523}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 321, "schoolName": "풍동고등학교", "address": "경기도 고양시 일산동구 숲속마을로 119 (풍동)", "coordinates": {"longitude": 126.795039351, "latitude": 37.671791902}, "videoStatus": "Pending"}
 {"id": 322, "schoolName": "토현중학교", "address": "부산광역시 연제구 토현로 47 (연산동)", "coordinates": {"longitude": 129.11119591, "latitude": 35.181557019}, "videoStatus": "Pending"}
 {"id": 323, "schoolName": "법원여자중학교", "address": "경기도 파주시 법원읍 자운서원로 31", "coordinates": {"longitude": 126.868871725, "latitude": 37.852594134}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/qq7dIQuESa0"}
