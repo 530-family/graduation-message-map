@@ -7,6 +7,8 @@ export default function LEDDisplayBoard() {
   const [isVisible, setIsVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
   const [schoolCount, setSchoolCount] = useState(0);
+  const [sentCount, setSentCount] = useState(0);
+  const [pendingCount, setPendingCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -17,10 +19,25 @@ export default function LEDDisplayBoard() {
     fetch("/data/coordinates.ndjson")
       .then((res) => res.text())
       .then((text) => {
-        // Remove all whitespace and newlines, then split by }{
-        const cleaned = text.replace(/\s+/g, "");
-        const objects = cleaned.split("}{");
-        setSchoolCount(objects.length);
+        // Parse NDJSON and count Sent status
+        const lines = text.trim().split("\n");
+        let sent = 0;
+
+        lines.forEach((line) => {
+          try {
+            const data = JSON.parse(line);
+            if (data.videoStatus === "Sent") {
+              sent++;
+            }
+          } catch (e) {
+            // Skip invalid lines
+          }
+        });
+
+        const total = lines.length;
+        setSchoolCount(total);
+        setSentCount(sent);
+        setPendingCount(total - sent);
       })
       .catch((err) => console.error("Failed to load school data:", err));
 
@@ -124,16 +141,18 @@ export default function LEDDisplayBoard() {
           </div>
         </div>
 
-        {/* 마커 범례 카드 */}
+        {/* 마커 범례 및 통계 카드 */}
         <div className="absolute top-full right-4 translate-y-[30px] bg-black/70 backdrop-blur-sm border-2 border-yellow-600/30 rounded-lg px-4 py-3 shadow-lg">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <img
                 src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png"
                 alt="주황색 마커"
                 className="w-5 h-8 drop-shadow-md"
               />
-              <span className="text-sm text-yellow-100/90 font-medium">축사 전송 완료</span>
+              <span className="text-sm text-yellow-100/90 font-medium">
+                축사 전송 완료 <span className="font-bold text-orange-400 ml-1">{sentCount}개교</span>
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <img
@@ -141,7 +160,9 @@ export default function LEDDisplayBoard() {
                 alt="회색 마커"
                 className="w-5 h-8 drop-shadow-md"
               />
-              <span className="text-sm text-yellow-100/90 font-medium">축사 찍는 중</span>
+              <span className="text-sm text-yellow-100/90 font-medium">
+                축사 찍는 중 <span className="font-bold text-gray-400 ml-1">{pendingCount}개교</span>
+              </span>
             </div>
           </div>
         </div>
@@ -149,7 +170,7 @@ export default function LEDDisplayBoard() {
         {/* 우리 학교도? 버튼 */}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="absolute top-full mt-26 right-4 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 rounded-lg px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-semibold text-yellow-400 hover:text-yellow-300"
+          className="absolute top-full mt-[140px] right-4 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 rounded-lg px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-semibold text-yellow-400 hover:text-yellow-300"
         >
           <Mail className="w-5 h-5 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
           <span className="font-[PfStardust30] font-(800) drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">
