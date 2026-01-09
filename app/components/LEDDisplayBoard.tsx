@@ -120,14 +120,36 @@ export default function LEDDisplayBoard() {
           {/* 오른쪽 하단 로딩 표시 */}
           <div className="absolute bottom-2 right-2 flex items-center gap-2 text-yellow-400/70 text-xs font-mono">
             <Loader2 className="w-4 h-4 animate-spin drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
-            <span className="drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">축사 작성중...</span>
+            <span className="drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">축사 찍는중...</span>
+          </div>
+        </div>
+
+        {/* 마커 범례 카드 */}
+        <div className="absolute top-full right-4 translate-y-[30px] bg-black/70 backdrop-blur-sm border-2 border-yellow-600/30 rounded-lg px-4 py-3 shadow-lg">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <img
+                src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png"
+                alt="주황색 마커"
+                className="w-5 h-8 drop-shadow-md"
+              />
+              <span className="text-sm text-yellow-100/90 font-medium">축사 전송 완료</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <img
+                src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png"
+                alt="회색 마커"
+                className="w-5 h-8 drop-shadow-md"
+              />
+              <span className="text-sm text-yellow-100/90 font-medium">축사 찍는 중</span>
+            </div>
           </div>
         </div>
 
         {/* 우리 학교도? 버튼 */}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="absolute top-full mt-4 right-4 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 rounded-lg px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-semibold text-yellow-400 hover:text-yellow-300"
+          className="absolute top-full mt-26 right-4 bg-black/70 hover:bg-black/90 border-2 border-yellow-600/30 hover:border-yellow-500/50 rounded-lg px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-semibold text-yellow-400 hover:text-yellow-300"
         >
           <Mail className="w-5 h-5 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
           <span className="font-[PfStardust30] font-(800) drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">
