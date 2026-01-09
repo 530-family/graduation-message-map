@@ -302,7 +302,7 @@
 {"id": 305, "schoolName": "장승중학교", "address": "서울특별시 동작구 장승배기로10가길 25 (상도동)", "coordinates": {"longitude": 126.940654803, "latitude": 37.503882579}, "videoStatus": "Pending"}
 {"id": 306, "schoolName": "광교중학교", "address": "경기도 수원시 영통구 웰빙타운로 55 (이의동)", "coordinates": {"longitude": 127.044744788, "latitude": 37.304482511}, "videoStatus": "Pending"}
 {"id": 307, "schoolName": "배명고등학교", "address": "서울특별시 송파구 삼학사로 11 (삼전동)", "coordinates": {"longitude": 127.095049176, "latitude": 37.497962918}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/wTLmXuYwrE8"}
-{"id": 308, "schoolName": "용강중학교", "address": "서울특별시 용산구 이촌로65가길 91 (이촌동)", "coordinates": {"longitude": 126.976144706, "latitude": 37.521377533}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 308, "schoolName": "용강중학교", "address": "서울특별시 용산구 이촌로65가길 91 (이촌동)", "coordinates": {"longitude": 126.976144706, "latitude": 37.521377533}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 309, "schoolName": "Unknown School", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
 {"id": 310, "schoolName": "한국호텔관광고등학교", "address": "충청북도 단양군 단성면 북상하리길 69", "coordinates": {"longitude": 128.338344408, "latitude": 36.926535225}, "videoStatus": "Pending"}
 {"id": 311, "schoolName": "해룡중학교", "address": "전라남도 영광군 영광읍 중앙로 120", "coordinates": {"longitude": 126.513003736, "latitude": 35.268714152}, "videoStatus": "Pending"}
