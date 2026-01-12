@@ -4,6 +4,9 @@ import { randomBytes } from "crypto";
 import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
 
+// Vercel 서버리스 함수에서 Node.js runtime 사용 (Edge Runtime 대신)
+export const runtime = 'nodejs';
+
 // Google Sheets 설정
 const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID || "";
 const SHEET_NAME = "requests";
@@ -78,7 +81,21 @@ async function geocodeAddress(address: string): Promise<{ coordinates: Coordinat
 
         debugInfo.attempts.push({ type, url: apiUrl.replace(VWORLD_API_KEY, "***") });
 
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+          headers: {
+            'User-Agent': 'GraduationMessageMap/1.0',
+            'Accept': 'application/json',
+          },
+          // Next.js에서 Node.js fetch 사용을 강제
+          // @ts-ignore
+          duplex: 'half',
+        });
+
+        if (!response.ok) {
+          debugInfo.attempts[debugInfo.attempts.length - 1].httpStatus = response.status;
+          continue;
+        }
+
         const data = await response.json();
 
         debugInfo.attempts[debugInfo.attempts.length - 1].response = data;
