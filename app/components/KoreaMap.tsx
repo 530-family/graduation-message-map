@@ -66,22 +66,10 @@ export default function KoreaMap() {
   useEffect(() => {
     fixMarkerIcon();
 
-    // NDJSON 파일 로드
-    fetch("/data/coordinates.ndjson")
-      .then((response) => response.text())
-      .then((text) => {
-        const data = text
-          .trim()
-          .split("\n")
-          .map((line) => {
-            try {
-              return JSON.parse(line);
-            } catch (e) {
-              console.error("Failed to parse line:", line, e);
-              return null;
-            }
-          })
-          .filter((item): item is SchoolData => item !== null);
+    // Google Sheets API에서 데이터 로드
+    fetch("/api/coordinates")
+      .then((response) => response.json())
+      .then((data) => {
         setSchools(data);
       })
       .catch((error) => {
@@ -104,7 +92,9 @@ export default function KoreaMap() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {schools.map((school, index) => (
+        {schools
+          .filter((school) => school.coordinates.latitude !== 0 || school.coordinates.longitude !== 0)
+          .map((school, index) => (
           <Marker
             key={index}
             position={[

@@ -3,6 +3,7 @@ import { google } from "googleapis";
 import { randomBytes } from "crypto";
 import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
+import { revalidatePath } from "next/cache";
 
 // Vercel 서버리스 함수에서 Node.js runtime 사용 (Edge Runtime 대신)
 export const runtime = 'nodejs';
@@ -308,6 +309,9 @@ export async function POST(request: NextRequest) {
       console.error("coordinates.ndjson 업데이트 오류:", error);
       // coordinates.ndjson 업데이트 실패 시에도 Google Sheets 저장은 성공했으므로 계속 진행
     }
+
+    // 캐시 즉시 무효화 (새로고침 시 최신 데이터 로드)
+    revalidatePath("/api/coordinates");
 
     return NextResponse.json(
       { success: true, message: "요청이 성공적으로 제출되었습니다." },

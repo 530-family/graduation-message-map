@@ -16,26 +16,13 @@ export default function LEDDisplayBoard() {
   useEffect(() => {
     setIsMounted(true);
 
-    // Load school count from ndjson file
-    fetch("/data/coordinates.ndjson")
-      .then((res) => res.text())
-      .then((text) => {
-        // Parse NDJSON and count Sent status
-        const lines = text.trim().split("\n");
-        let sent = 0;
+    // Google Sheets API에서 데이터 로드
+    fetch("/api/coordinates")
+      .then((res) => res.json())
+      .then((data) => {
+        const total = data.length;
+        const sent = data.filter((s: any) => s.videoStatus === "Sent").length;
 
-        lines.forEach((line) => {
-          try {
-            const data = JSON.parse(line);
-            if (data.videoStatus === "Sent") {
-              sent++;
-            }
-          } catch (e) {
-            // Skip invalid lines
-          }
-        });
-
-        const total = lines.length;
         setSchoolCount(total);
         setSentCount(sent);
         setPendingCount(total - sent);
