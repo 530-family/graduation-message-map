@@ -31,12 +31,10 @@ with open('../public/data/coordinates.ndjson', 'r', encoding='utf-8') as f:
 
         # Check if this school received a video
         if school_name in schools_sent:
-            if 'videoStatus' not in item:
-                item['videoStatus'] = 'Sent'
-                item['videoUrl'] = schools_sent[school_name]['youtube_url']
-                matched_count += 1
-            else:
-                already_exists += 1
+            # Always update if school is in CSV (overwrite existing status)
+            item['videoStatus'] = 'Sent'
+            item['videoUrl'] = schools_sent[school_name]['youtube_url']
+            matched_count += 1
         elif 'videoStatus' not in item:
             item['videoStatus'] = 'Pending'
 
@@ -67,12 +65,10 @@ with open('../public/data/coordinates.internal.ndjson', 'r', encoding='utf-8') a
 
         # Check if this school received a video
         if school_name in schools_sent:
-            if 'videoStatus' not in item:
-                item['videoStatus'] = 'Sent'
-                item['videoUrl'] = schools_sent[school_name]['youtube_url']
-                matched_count2 += 1
-            else:
-                already_exists2 += 1
+            # Always update if school is in CSV (overwrite existing status)
+            item['videoStatus'] = 'Sent'
+            item['videoUrl'] = schools_sent[school_name]['youtube_url']
+            matched_count2 += 1
         elif 'videoStatus' not in item:
             item['videoStatus'] = 'Pending'
 

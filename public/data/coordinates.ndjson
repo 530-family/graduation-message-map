@@ -7,7 +7,7 @@
 {"id": 7, "schoolName": "대평중학교", "address": "경기도 수원시 장안구 만석로68번길 7 (정자동)", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.98945971, "latitude": 37.297334066}, "videoStatus": "Sent", "videoUrl": ""}
 {"id": 8, "schoolName": "시지중학교", "address": "대구광역시 수성구 신매로 66 (신매동)", "coordinates": {"longitude": 128.708915366, "latitude": 35.835535114}, "videoStatus": "Sent", "videoUrl": ""}
 {"id": 9, "schoolName": "번동중학교", "address": "서울특별시 강북구 오현로35길 87 (번동)", "coordinates": {"longitude": 127.036312094, "latitude": 37.632795674}, "videoStatus": "Sent", "videoUrl": ""}
-{"id": 10, "schoolName": "웅천고등학교", "address": "충청남도 보령시 웅천읍 방축길 87", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.60515082, "latitude": 36.234177495}, "videoStatus": "Pending"}
+{"id": 10, "schoolName": "웅천고등학교", "address": "충청남도 보령시 웅천읍 방축길 87", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.60515082, "latitude": 36.234177495}, "videoStatus": "Sent"}
 {"id": 11, "schoolName": "용남중학교", "address": "충청남도 계룡시 신도안면 신도안2길 66", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 127.244264121, "latitude": 36.300829091}, "videoStatus": "Sent", "videoUrl": ""}
 {"id": 12, "schoolName": "거제중앙고등학교", "address": "경상남도 거제시 중곡로2길 61 (고현동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.636818279, "latitude": 34.893241377}, "videoStatus": "Sent", "videoUrl": ""}
 {"id": 13, "schoolName": "천곡중학교", "address": "광주광역시 광산구 월계로16번길 78 (월계동)", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.834867385, "latitude": 35.211974174}, "videoStatus": "Pending"}
@@ -899,3 +899,4 @@
 {"id": 907, "schoolName": "NLCS Jeju", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
 {"id": 908, "schoolName": "tianjin international school", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
 {"id": 909, "schoolName": "포항시립 색동어린이집", "address": "경상북도 포항시 흥해읍 선린대길 30", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 910, "schoolName": "포항시립 색동어린이집", "address": "경상북도 포항시 흥해읍 선린대길 30", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
