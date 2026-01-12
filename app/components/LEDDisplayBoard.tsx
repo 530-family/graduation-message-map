@@ -138,7 +138,7 @@ export default function LEDDisplayBoard() {
         </button>
 
         {/* 마커 범례 및 통계 카드 (데스크톱) */}
-        <div className="hidden md:block absolute top-full right-4 translate-y-[30px] bg-black/70 backdrop-blur-sm border-2 border-yellow-600/30 rounded-lg px-4 py-3 shadow-lg">
+        <div className="hidden md:block absolute top-full right-4 translate-y-[15px] bg-black/70 backdrop-blur-sm border-2 border-yellow-600/30 rounded-lg px-4 py-3 shadow-lg">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <img

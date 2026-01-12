@@ -1,11 +1,11 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import L from "leaflet";
 
-interface SchoolData {
+export interface SchoolData {
   schoolName: string;
   address: string;
   coordinates: {
@@ -14,6 +14,10 @@ interface SchoolData {
   };
   videoStatus?: string;
   videoUrl?: string;
+}
+
+interface KoreaMapProps {
+  selectedSchool: SchoolData | null;
 }
 
 // Fix for default marker icon issue in Next.js
@@ -60,8 +64,31 @@ const getMarkerIcon = (videoStatus?: string) => {
   return greyIcon; // default for others
 };
 
-export default function KoreaMap() {
+// Component to control map programmatically
+function MapController({
+  selectedSchool,
+}: {
+  selectedSchool: SchoolData | null;
+}) {
+  const map = useMap();
+
+  // Pan to selected school
+  useEffect(() => {
+    if (selectedSchool) {
+      const position: [number, number] = [
+        selectedSchool.coordinates.latitude,
+        selectedSchool.coordinates.longitude,
+      ];
+      map.flyTo(position, 13, { duration: 1.5 });
+    }
+  }, [selectedSchool, map]);
+
+  return null;
+}
+
+export default function KoreaMap({ selectedSchool }: KoreaMapProps) {
   const [schools, setSchools] = useState<SchoolData[]>([]);
+  const markerRefs = useRef<{ [key: string]: L.Marker }>({});
 
   useEffect(() => {
     fixMarkerIcon();
@@ -80,6 +107,32 @@ export default function KoreaMap() {
   // 한국의 중심 좌표 (서울)
   const center: [number, number] = [36.6665, 127.878];
 
+  // All valid schools for display
+  const validSchools = schools.filter(
+    (school) =>
+      school.coordinates.latitude !== 0 || school.coordinates.longitude !== 0
+  );
+
+  const handleMarkerRef = (marker: L.Marker | null, school: SchoolData) => {
+    if (marker) {
+      const key = `${school.coordinates.latitude}-${school.coordinates.longitude}`;
+      markerRefs.current[key] = marker;
+    }
+  };
+
+  // Open popup when selectedSchool changes
+  useEffect(() => {
+    if (selectedSchool) {
+      const key = `${selectedSchool.coordinates.latitude}-${selectedSchool.coordinates.longitude}`;
+      setTimeout(() => {
+        const marker = markerRefs.current[key];
+        if (marker) {
+          marker.openPopup();
+        }
+      }, 1600); // Wait for flyTo animation to complete
+    }
+  }, [selectedSchool]);
+
   return (
     <div className="w-full h-screen">
       <MapContainer
@@ -88,13 +141,12 @@ export default function KoreaMap() {
         scrollWheelZoom={true}
         className="w-full h-full"
       >
+        <MapController selectedSchool={selectedSchool} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {schools
-          .filter((school) => school.coordinates.latitude !== 0 || school.coordinates.longitude !== 0)
-          .map((school, index) => (
+        {validSchools.map((school, index) => (
           <Marker
             key={index}
             position={[
@@ -102,7 +154,10 @@ export default function KoreaMap() {
               school.coordinates.longitude,
             ]}
             icon={getMarkerIcon(school.videoStatus)}
-            zIndexOffset={school.videoStatus === "Sent" ? 1000 : 500}
+            ref={(marker) => handleMarkerRef(marker, school)}
+            zIndexOffset={
+              selectedSchool?.schoolName === school.schoolName ? 2000 : school.videoStatus === "Sent" ? 1000 : 500
+            }
           >
             <Popup>
               <div>

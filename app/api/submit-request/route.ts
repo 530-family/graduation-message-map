@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
 import { randomBytes } from "crypto";
-import { readFile, writeFile } from "fs/promises";
-import { join } from "path";
-import { revalidatePath } from "next/cache";
 
 // Vercel 서버리스 함수에서 Node.js runtime 사용 (Edge Runtime 대신)
 export const runtime = 'nodejs';
@@ -26,15 +23,6 @@ interface RequestData {
 interface Coordinates {
   longitude: number;
   latitude: number;
-}
-
-interface CoordinateEntry {
-  id: number;
-  schoolName: string;
-  address: string;
-  coordinates: Coordinates;
-  videoStatus: string;
-  videoUrl: string;
 }
 
 // Google JWT 인증 설정
@@ -98,43 +86,6 @@ async function geocodeAddress(address: string): Promise<{ coordinates: Coordinat
     console.error("카카오 API 요청 실패:", error);
     debugInfo.error = String(error);
     return null;
-  }
-}
-
-// coordinates.ndjson 파일 읽기
-async function readCoordinatesFile(): Promise<CoordinateEntry[]> {
-  try {
-    const filePath = join(process.cwd(), "public", "data", "coordinates.ndjson");
-    const content = await readFile(filePath, "utf-8");
-    const lines = content.trim().split("\n");
-
-    const entries: CoordinateEntry[] = [];
-    for (const line of lines) {
-      if (line.trim()) {
-        try {
-          entries.push(JSON.parse(line));
-        } catch (e) {
-          console.error("JSON 파싱 오류:", line);
-        }
-      }
-    }
-
-    return entries;
-  } catch (error) {
-    console.error("coordinates.ndjson 파일 읽기 오류:", error);
-    return [];
-  }
-}
-
-// coordinates.ndjson 파일에 쓰기
-async function writeCoordinatesFile(entries: CoordinateEntry[]): Promise<void> {
-  try {
-    const filePath = join(process.cwd(), "public", "data", "coordinates.ndjson");
-    const content = entries.map((entry) => JSON.stringify(entry)).join("\n") + "\n";
-    await writeFile(filePath, content, "utf-8");
-  } catch (error) {
-    console.error("coordinates.ndjson 파일 쓰기 오류:", error);
-    throw error;
   }
 }
 
@@ -284,34 +235,6 @@ export async function POST(request: NextRequest) {
         values: [rowData],
       },
     });
-
-    // coordinates.ndjson에 새 row 추가
-    try {
-      const coordinateEntries = await readCoordinatesFile();
-
-      // 새 ID 계산 (기존 최대 ID + 1)
-      const maxId = coordinateEntries.length > 0
-        ? Math.max(...coordinateEntries.map((e) => e.id))
-        : 0;
-
-      const newEntry: CoordinateEntry = {
-        id: maxId + 1,
-        schoolName,
-        address,
-        coordinates,
-        videoStatus: "Pending",
-        videoUrl: "",
-      };
-
-      coordinateEntries.push(newEntry);
-      await writeCoordinatesFile(coordinateEntries);
-    } catch (error) {
-      console.error("coordinates.ndjson 업데이트 오류:", error);
-      // coordinates.ndjson 업데이트 실패 시에도 Google Sheets 저장은 성공했으므로 계속 진행
-    }
-
-    // 캐시 즉시 무효화 (새로고침 시 최신 데이터 로드)
-    revalidatePath("/api/coordinates");
 
     return NextResponse.json(
       { success: true, message: "요청이 성공적으로 제출되었습니다." },
