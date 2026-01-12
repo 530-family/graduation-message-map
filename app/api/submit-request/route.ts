@@ -244,13 +244,6 @@ export async function POST(request: NextRequest) {
       const existingAddressClean = normalizeAddress(existingAddress || "");
       const currentAddressClean = normalizeAddress(address);
 
-      // 디버깅용 로그
-      console.log("중복 체크:", {
-        existingAddressClean,
-        currentAddressClean,
-        addressMatch: existingAddressClean === currentAddressClean,
-      });
-
       if (existingAddressClean === currentAddressClean) {
         return NextResponse.json(
           { error: "이미 같은 학교가 신청되었어요! 졸업식 날 축사 영상을 기대해 주세요 🎉" },
