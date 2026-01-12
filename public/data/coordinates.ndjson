@@ -1,43 +1,43 @@
-{"id": 1, "schoolName": "심석고등학교", "address": "경기도 남양주시 화도읍 마석로 62", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.306262643, "latitude": 37.656234833}}
-{"id": 2, "schoolName": "울산과학고등학교", "address": "울산광역시 울주군 상북면 도동신리로 107", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 129.098754405, "latitude": 35.596180972}}
-{"id": 3, "schoolName": "금남중학교", "address": "경상남도 하동군 금남면 섬진강대로 656-7", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.838128747, "latitude": 34.987011009}}
-{"id": 4, "schoolName": "제일고등학교", "address": "인천광역시 부평구 경인로759번길 28 (십정동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 126.708370095, "latitude": 37.47829393}}
-{"id": 5, "schoolName": "삼천포중학교", "address": "경상남도 사천시 벌리6길 77 (벌리동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.084092598, "latitude": 34.942554735}}
-{"id": 6, "schoolName": "경북대학교사범대학부설중학교", "address": "대구광역시 중구 달구벌대로 2178 (대봉동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.601837202, "latitude": 35.862873195}}
-{"id": 7, "schoolName": "대평중학교", "address": "경기도 수원시 장안구 만석로68번길 7 (정자동)", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.98945971, "latitude": 37.297334066}}
-{"id": 8, "schoolName": "시지중학교", "address": "대구광역시 수성구 신매로 66 (신매동)", "coordinates": {"longitude": 128.708915366, "latitude": 35.835535114}}
-{"id": 9, "schoolName": "번동중학교", "address": "서울특별시 강북구 오현로35길 87 (번동)", "coordinates": {"longitude": 127.036312094, "latitude": 37.632795674}}
-{"id": 10, "schoolName": "웅천고등학교", "address": "충청남도 보령시 웅천읍 방축길 87", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.60515082, "latitude": 36.234177495}}
-{"id": 11, "schoolName": "용남중학교", "address": "충청남도 계룡시 신도안면 신도안2길 66", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 127.244264121, "latitude": 36.300829091}}
-{"id": 12, "schoolName": "거제중앙고등학교", "address": "경상남도 거제시 중곡로2길 61 (고현동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.636818279, "latitude": 34.893241377}}
-{"id": 13, "schoolName": "천곡중학교", "address": "광주광역시 광산구 월계로16번길 78 (월계동)", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.834867385, "latitude": 35.211974174}}
-{"id": 14, "schoolName": "동평중학교", "address": "부산광역시 부산진구 백양순환로119번길 12-31 (부암동)", "coordinates": {"longitude": 129.041951023, "latitude": 35.170381407}}
-{"id": 15, "schoolName": "경일중학교", "address": "부산광역시 강서구 명지국제6로 149 (명지동)", "coordinates": {"longitude": 128.915949006, "latitude": 35.094593836}}
-{"id":16,"schoolName":"오현고등학교","address":"제주특별자치도 제주시 일주동로 101 (화북일동)","coordinates":{"longitude":126.555937136,"latitude":33.516421103}}
-{"id": 17, "schoolName": "영훈국제중학교", "address": "서울특별시 강북구 도봉로13가길 19 (미아동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.028093194, "latitude": 37.614682226}}
-{"id": 18, "schoolName": "구미고등학교", "address": "경상북도 구미시 문장로 42 (도량동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.334220906, "latitude": 36.137405439}}
-{"id": 19, "schoolName": "고려대학교", "address": "서울특별시 성북구 안암로 145 (안암동5가, 고려대학교안암캠퍼스(인문사회계))", "addressUnsure": false, "needsReview": true, "coordinates": {"longitude": 0, "latitude": 0}}
-{"id": 20, "schoolName": "양양고등학교", "address": "강원특별자치도 양양군 양양읍 복개길 23-12", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.616472559, "latitude": 38.071092919}}
-{"id": 21, "schoolName": "덕수고등학교", "address": "서울특별시 송파구 위례북로 10 (거여동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.147059583, "latitude": 37.485591562}}
-{"id": 22, "schoolName": "서해고등학교", "address": "경기도 시흥시 정왕신길로 13 (정왕동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 126.723896463, "latitude": 37.360627521}}
-{"id": 23, "schoolName": "전주국제영재아카데미", "address": "전북특별자치도 전주시 완산구 천잠로 303", "addressUnsure": true, "needsReview": true, "coordinates": {"longitude": 0, "latitude": 0}}
-{"id": 24, "schoolName": "미시간주립대학교", "address": "500 S State ST. Ann Arbor, MI 48,109", "addressUnsure": true, "needsReview": true, "coordinates": {"longitude": 0, "latitude": 0}}
-{"id": 26, "schoolName": "경상고등학교", "address": "대구광역시 북구 공항로15길 24 (복현동)", "coordinates": {"longitude": 128.621647511, "latitude": 35.901797068}}
-{"id":27,"schoolName":"솔빛중학교","address":"경기도 화성시 동탄반석로 83 (반송동)","coordinates":{"longitude":127.072362189,"latitude":37.195962624}}
-{"id": 28, "schoolName": "수원하이텍고등학교", "address": "경기도 수원시 영통구 청명북로 56 (영통동)", "coordinates": {"longitude": 127.081329294, "latitude": 37.256317893}}
-{"id": 29, "schoolName": "대천고등학교", "address": "충청남도 보령시 대고로 58 (죽정동)", "coordinates": {"longitude": 126.603857945, "latitude": 36.366678288}}
-{"id": 30, "schoolName": "분당대진고등학교", "address": "경기도 성남시 분당구 분당로 271 (분당동)", "coordinates": {"longitude": 127.138235344, "latitude": 37.369565809}}
-{"id": 31, "schoolName": "인천비즈니스고등학교", "address": "인천광역시 미추홀구 장고개로 31 (도화동)", "coordinates": {"longitude": 126.666920042, "latitude": 37.472128731}}
-{"id": 32, "schoolName": "인화여자고등학교", "address": "인천광역시 미추홀구 석정로 165 (도화동)", "coordinates": {"longitude": 126.657929033, "latitude": 37.47054162}, "status": "sent"}
-{"id": 33, "schoolName": "청원고등학교", "address": "서울특별시 노원구 한글비석로 506 (상계동)", "coordinates": {"longitude": 127.063259149, "latitude": 37.666308111}}
-{"id": 34, "schoolName": "강릉고등학교", "address": "강원특별자치도 강릉시 강릉대로587번길 68 (초당동)", "coordinates": {"longitude": 128.917280115, "latitude": 37.788794305}}
-{"id": 35, "schoolName": "대륜고등학교", "address": "대구광역시 수성구 달구벌대로 2700 (만촌동)", "coordinates": {"longitude": 128.656541562, "latitude": 35.852124522}}
-{"id": 36, "schoolName": "광남고등학교", "address": "서울특별시 광진구 아차산로70길 17-16 (광장동)", "coordinates": {"longitude": 127.101197966, "latitude": 37.541446752}}
-{"id": 37, "schoolName": "늘푸른초등학교", "address": "경기도 성남시 분당구 정자일로 87 (정자동)", "coordinates": {"longitude": 127.105554812, "latitude": 37.35833691}}
-{"id": 38, "schoolName": "수성중학교", "address": "경기도 수원시 장안구 수성로363번길 2 (조원동)", "coordinates": {"longitude": 127.012431031, "latitude": 37.294793251}}
-{"id": 39, "schoolName": "성남외국어고등학교", "address": "경기도 성남시 분당구 대왕판교로385번길 28 (백현동)", "coordinates": {"longitude": 127.096520751, "latitude": 37.37861274}}
-{"id": 40, "schoolName": "동탄목동중학교", "address": "경기도 화성시 동탄순환대로20길 52 (목동)", "coordinates": {"longitude": 127.126684271, "latitude": 37.188758428}}
-{"id": 41, "schoolName": "명인중학교", "address": "경기도 수원시 장안구 정자천로134번길 37 (정자동)", "coordinates": {"longitude": 126.992427092, "latitude": 37.292168223}}
+{"id": 1, "schoolName": "심석고등학교", "address": "경기도 남양주시 화도읍 마석로 62", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.306262643, "latitude": 37.656234833}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 2, "schoolName": "울산과학고등학교", "address": "울산광역시 울주군 상북면 도동신리로 107", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 129.098754405, "latitude": 35.596180972}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 3, "schoolName": "금남중학교", "address": "경상남도 하동군 금남면 섬진강대로 656-7", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.838128747, "latitude": 34.987011009}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 4, "schoolName": "제일고등학교", "address": "인천광역시 부평구 경인로759번길 28 (십정동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 126.708370095, "latitude": 37.47829393}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 5, "schoolName": "삼천포중학교", "address": "경상남도 사천시 벌리6길 77 (벌리동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.084092598, "latitude": 34.942554735}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 6, "schoolName": "경북대학교사범대학부설중학교", "address": "대구광역시 중구 달구벌대로 2178 (대봉동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.601837202, "latitude": 35.862873195}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 7, "schoolName": "대평중학교", "address": "경기도 수원시 장안구 만석로68번길 7 (정자동)", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.98945971, "latitude": 37.297334066}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 8, "schoolName": "시지중학교", "address": "대구광역시 수성구 신매로 66 (신매동)", "coordinates": {"longitude": 128.708915366, "latitude": 35.835535114}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 9, "schoolName": "번동중학교", "address": "서울특별시 강북구 오현로35길 87 (번동)", "coordinates": {"longitude": 127.036312094, "latitude": 37.632795674}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 10, "schoolName": "웅천고등학교", "address": "충청남도 보령시 웅천읍 방축길 87", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.60515082, "latitude": 36.234177495}, "videoStatus": "Pending"}
+{"id": 11, "schoolName": "용남중학교", "address": "충청남도 계룡시 신도안면 신도안2길 66", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 127.244264121, "latitude": 36.300829091}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 12, "schoolName": "거제중앙고등학교", "address": "경상남도 거제시 중곡로2길 61 (고현동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.636818279, "latitude": 34.893241377}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 13, "schoolName": "천곡중학교", "address": "광주광역시 광산구 월계로16번길 78 (월계동)", "addressUnsure": true, "needsReview": false, "coordinates": {"longitude": 126.834867385, "latitude": 35.211974174}, "videoStatus": "Pending"}
+{"id": 14, "schoolName": "동평중학교", "address": "부산광역시 부산진구 백양순환로119번길 12-31 (부암동)", "coordinates": {"longitude": 129.041951023, "latitude": 35.170381407}, "videoStatus": "Pending"}
+{"id": 15, "schoolName": "경일중학교", "address": "부산광역시 강서구 명지국제6로 149 (명지동)", "coordinates": {"longitude": 128.915949006, "latitude": 35.094593836}, "videoStatus": "Pending"}
+{"id": 16, "schoolName": "오현고등학교", "address": "제주특별자치도 제주시 일주동로 101 (화북일동)", "coordinates": {"longitude": 126.555937136, "latitude": 33.516421103}, "videoStatus": "Pending"}
+{"id": 17, "schoolName": "영훈국제중학교", "address": "서울특별시 강북구 도봉로13가길 19 (미아동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.028093194, "latitude": 37.614682226}, "videoStatus": "Pending"}
+{"id": 18, "schoolName": "구미고등학교", "address": "경상북도 구미시 문장로 42 (도량동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.334220906, "latitude": 36.137405439}, "videoStatus": "Pending"}
+{"id": 19, "schoolName": "고려대학교", "address": "서울특별시 성북구 안암로 145 (안암동5가, 고려대학교안암캠퍼스(인문사회계))", "addressUnsure": false, "needsReview": true, "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 20, "schoolName": "양양고등학교", "address": "강원특별자치도 양양군 양양읍 복개길 23-12", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 128.616472559, "latitude": 38.071092919}, "videoStatus": "Pending"}
+{"id": 21, "schoolName": "덕수고등학교", "address": "서울특별시 송파구 위례북로 10 (거여동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 127.147059583, "latitude": 37.485591562}, "videoStatus": "Pending"}
+{"id": 22, "schoolName": "서해고등학교", "address": "경기도 시흥시 정왕신길로 13 (정왕동)", "addressUnsure": false, "needsReview": false, "coordinates": {"longitude": 126.723896463, "latitude": 37.360627521}, "videoStatus": "Pending"}
+{"id": 23, "schoolName": "전주국제영재아카데미", "address": "전북특별자치도 전주시 완산구 천잠로 303", "addressUnsure": true, "needsReview": true, "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 24, "schoolName": "미시간주립대학교", "address": "500 S State ST. Ann Arbor, MI 48,109", "addressUnsure": true, "needsReview": true, "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 26, "schoolName": "경상고등학교", "address": "대구광역시 북구 공항로15길 24 (복현동)", "coordinates": {"longitude": 128.621647511, "latitude": 35.901797068}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 27, "schoolName": "솔빛중학교", "address": "경기도 화성시 동탄반석로 83 (반송동)", "coordinates": {"longitude": 127.072362189, "latitude": 37.195962624}, "videoStatus": "Pending"}
+{"id": 28, "schoolName": "수원하이텍고등학교", "address": "경기도 수원시 영통구 청명북로 56 (영통동)", "coordinates": {"longitude": 127.081329294, "latitude": 37.256317893}, "videoStatus": "Pending"}
+{"id": 29, "schoolName": "대천고등학교", "address": "충청남도 보령시 대고로 58 (죽정동)", "coordinates": {"longitude": 126.603857945, "latitude": 36.366678288}, "videoStatus": "Pending"}
+{"id": 30, "schoolName": "분당대진고등학교", "address": "경기도 성남시 분당구 분당로 271 (분당동)", "coordinates": {"longitude": 127.138235344, "latitude": 37.369565809}, "videoStatus": "Pending"}
+{"id": 31, "schoolName": "인천비즈니스고등학교", "address": "인천광역시 미추홀구 장고개로 31 (도화동)", "coordinates": {"longitude": 126.666920042, "latitude": 37.472128731}, "videoStatus": "Pending"}
+{"id": 32, "schoolName": "인화여자고등학교", "address": "인천광역시 미추홀구 석정로 165 (도화동)", "coordinates": {"longitude": 126.657929033, "latitude": 37.47054162}, "status": "Sent", "videoStatus": "Pending"}
+{"id": 33, "schoolName": "청원고등학교", "address": "서울특별시 노원구 한글비석로 506 (상계동)", "coordinates": {"longitude": 127.063259149, "latitude": 37.666308111}, "videoStatus": "Pending"}
+{"id": 34, "schoolName": "강릉고등학교", "address": "강원특별자치도 강릉시 강릉대로587번길 68 (초당동)", "coordinates": {"longitude": 128.917280115, "latitude": 37.788794305}, "videoStatus": "Pending"}
+{"id": 35, "schoolName": "대륜고등학교", "address": "대구광역시 수성구 달구벌대로 2700 (만촌동)", "coordinates": {"longitude": 128.656541562, "latitude": 35.852124522}, "videoStatus": "Pending"}
+{"id": 36, "schoolName": "광남고등학교", "address": "서울특별시 광진구 아차산로70길 17-16 (광장동)", "coordinates": {"longitude": 127.101197966, "latitude": 37.541446752}, "videoStatus": "Pending"}
+{"id": 37, "schoolName": "늘푸른초등학교", "address": "경기도 성남시 분당구 정자일로 87 (정자동)", "coordinates": {"longitude": 127.105554812, "latitude": 37.35833691}, "videoStatus": "Pending"}
+{"id": 38, "schoolName": "수성중학교", "address": "경기도 수원시 장안구 수성로363번길 2 (조원동)", "coordinates": {"longitude": 127.012431031, "latitude": 37.294793251}, "videoStatus": "Pending"}
+{"id": 39, "schoolName": "성남외국어고등학교", "address": "경기도 성남시 분당구 대왕판교로385번길 28 (백현동)", "coordinates": {"longitude": 127.096520751, "latitude": 37.37861274}, "videoStatus": "Pending"}
+{"id": 40, "schoolName": "동탄목동중학교", "address": "경기도 화성시 동탄순환대로20길 52 (목동)", "coordinates": {"longitude": 127.126684271, "latitude": 37.188758428}, "videoStatus": "Pending"}
+{"id": 41, "schoolName": "명인중학교", "address": "경기도 수원시 장안구 정자천로134번길 37 (정자동)", "coordinates": {"longitude": 126.992427092, "latitude": 37.292168223}, "videoStatus": "Pending"}
 {"id": 42, "schoolName": "양진중학교", "address": "서울특별시 광진구 워커힐로 32 (광장동)", "coordinates": {"longitude": 127.098714299, "latitude": 37.544978381}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/OKkMRCh-PB4"}
 {"id": 43, "schoolName": "이일여자중학교", "address": "전북특별자치도 익산시 평동로7길 30 (인화동1가)", "coordinates": {"longitude": 126.949995427, "latitude": 35.935106167}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/1Zic0xR6xPs"}
 {"id": 44, "schoolName": "청덕중학교", "address": "경기도 용인시 기흥구 구성1로 23 (청덕동)", "coordinates": {"longitude": 127.145588673, "latitude": 37.293032243}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/0ENyaKgU914"}
@@ -48,49 +48,49 @@
 {"id": 49, "schoolName": "성동초등학교", "address": "서울특별시 광진구 자양로4길 63 (자양동)", "coordinates": {"longitude": 127.088884707, "latitude": 37.533132028}, "videoStatus": "Pending"}
 {"id": 50, "schoolName": "광명북중학교", "address": "경기도 광명시 시청로 121 (철산동)", "coordinates": {"longitude": 126.86591043, "latitude": 37.487604216}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/N7wVdrU5Nfg"}
 {"id": 51, "schoolName": "경기글로벌스쿨", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/NPzC8J5nkAs"}
-{"id": 52, "schoolName": "보안중학교", "address": "전북특별자치도 부안군 보안면 영전길 37", "coordinates": {"longitude": 126.673695821, "latitude": 35.609989868}}
-{"id":53,"schoolName":"청운중학교","address":"충청북도 청주시 상당구 영운천로 69 (영운동)","coordinates":{"longitude":127.504847118,"latitude":36.618864877}}
-{"id":54,"schoolName":"동탄목동초등학교","address":"경기도 화성시 동탄순환대로20길 10 (목동)","coordinates":{"longitude":127.124508705,"latitude":37.189514589}}
-{"id": 55, "schoolName": "월곶중학교", "address": "경기도 시흥시 월곶해안로 63 (월곶동)", "coordinates": {"longitude": 126.738016708, "latitude": 37.392660179}}
-{"id": 56, "schoolName": "인천용학초등학교", "address": "인천광역시 미추홀구 용정공원로83번길 9 (용현동)", "coordinates": {"longitude": 126.643268364, "latitude": 37.446686449}}
-{"id": 57, "schoolName": "경안중학교", "address": "경상북도 안동시 경동로 205-33 (송현동)", "coordinates": {"longitude": 128.681404393, "latitude": 36.576344659}}
-{"id": 58, "schoolName": "서천고등학교", "address": "충청남도 서천군 서천읍 사곡로43번길 13-16", "coordinates": {"longitude": 126.689443773, "latitude": 36.085946696}}
-{"id": 59, "schoolName": "태성고등학교", "address": "경기도 용인시 처인구 백옥대로 1059-2 (남동)", "coordinates": {"longitude": 127.208960033, "latitude": 37.228901187}}
-{"id": 60, "schoolName": "부명중학교", "address": "경기도 부천시 원미구 조마루로 182 (중동)", "coordinates": {"longitude": 126.764009202, "latitude": 37.49795795}}
-{"id": 61, "schoolName": "치동초등학교병설유치원", "address": "경기도 화성시 동탄순환대로 881-34 (영천동)", "coordinates": {"longitude": 127.09152535, "latitude": 37.206584807}}
-{"id": 62, "schoolName": "대전대문중학교", "address": "대전광역시 중구 송리로 33 (문화동)", "coordinates": {"longitude": 127.400809529, "latitude": 36.308035054}}
-{"id": 63, "schoolName": "대전만년고등학교", "address": "대전광역시 서구 만년로 6 (만년동)", "coordinates": {"longitude": 127.372760301, "latitude": 36.367266529}}
-{"id": 64, "schoolName": "용호중학교", "address": "부산광역시 남구 동명로 185-17 (용호동)", "coordinates": {"longitude": 129.117363722, "latitude": 35.11933832}}
-{"id": 65, "schoolName": "대구월서초등학교", "address": "대구광역시 달서구 월배로39길 46 (상인동)", "coordinates": {"longitude": 128.531514527, "latitude": 35.821718618}}
-{"id": 66, "schoolName": "형남중학교", "address": "경상북도 구미시 형곡동로 1-3 (형곡동)", "coordinates": {"longitude": 128.335890856, "latitude": 36.101100254}}
-{"id": 67, "schoolName": "방교중학교", "address": "경기도 화성시 동탄산척로1길 23 (송동)", "coordinates": {"longitude": 127.101534175, "latitude": 37.174753214}}
-{"id": 68, "schoolName": "인천당하중학교", "address": "인천광역시 서구 청마로 38 (당하동)", "coordinates": {"longitude": 126.669595214, "latitude": 37.590466284}}
-{"id": 69, "schoolName": "진주고등학교", "address": "경상남도 진주시 의곡길 29 (상봉동)", "coordinates": {"longitude": 128.08023479, "latitude": 35.200095967}}
-{"id": 70, "schoolName": "북평고등학교", "address": "강원특별자치도 동해시 효자남길 51 (동회동)", "coordinates": {"longitude": 129.106501531, "latitude": 37.490081324}}
-{"id": 71, "schoolName": "수원초등학교", "address": "경기도 수원시 팔달구 팔달로110번길 26 (고등동)", "coordinates": {"longitude": 127.003687701, "latitude": 37.277251845}}
-{"id": 72, "schoolName": "성서중학교", "address": "경기도 용인시 수지구 성복1로 137 (성복동)", "coordinates": {"longitude": 127.063668538, "latitude": 37.314988574}}
-{"id": 73, "schoolName": "호성중학교", "address": "경기도 안양시 동안구 호성로 55 (호계동)", "coordinates": {"longitude": 126.964171238, "latitude": 37.366730629}, "status": "sent"}
-{"id": 74, "schoolName": "등원중학교", "address": "서울특별시 강서구 화곡로65길 50 (등촌동)", "coordinates": {"longitude": 126.851815035, "latitude": 37.559734077}}
-{"id": 75, "schoolName": "천안업성고등학교", "address": "충청남도 천안시 서북구 업성3길 65-11 (업성동)", "coordinates": {"longitude": 127.137291336, "latitude": 36.862181855}}
-{"id": 76, "schoolName": "문성중학교", "address": "경상북도 김천시 영남대로 1992-3 (지좌동)", "coordinates": {"longitude": 128.14645289, "latitude": 36.116610534}}
-{"id": 77, "schoolName": "청림초등학교", "address": "경기도 화성시 동탄산척로 93-22 (산척동)", "coordinates": {"longitude": 127.111217898, "latitude": 37.174613739}}
-{"id": 78, "schoolName": "함태중학교", "address": "강원특별자치도 태백시 번영로 11 (황지동)", "coordinates": {"longitude": 128.986689809, "latitude": 37.145978896}}
-{"id": 79, "schoolName": "공주고등학교", "address": "충청남도 공주시 공주고담길 2 (중학동)", "coordinates": {"longitude": 127.122945689, "latitude": 36.448084891}}
-{"id": 80, "schoolName": "신방학중학교", "address": "서울특별시 도봉구 시루봉로 156 (방학동)", "coordinates": {"longitude": 127.029863665, "latitude": 37.664047381}}
-{"id": 81, "schoolName": "풍암중학교", "address": "광주광역시 서구 풍암순환로 51 (풍암동)", "coordinates": {"longitude": 126.878102744, "latitude": 35.122362096}}
-{"id": 82, "schoolName": "학성중학교", "address": "울산광역시 남구 문수로 426 (신정동)", "coordinates": {"longitude": 129.29830164, "latitude": 35.533033566}}
-{"id": 83, "schoolName": "침산중학교", "address": "대구광역시 북구 침산남로 121 (침산동)", "coordinates": {"longitude": 128.589130001, "latitude": 35.889823034}}
-{"id": 84, "schoolName": "명륜초등학교", "address": "강원특별자치도 원주시 행구로 25 (개운동)", "coordinates": {"longitude": 127.957948021, "latitude": 37.341903689}}
-{"id": 85, "schoolName": "자유중학교", "address": "전북특별자치도 고창군 고창읍 보릿골로 176", "coordinates": {"longitude": 126.696106289, "latitude": 35.440863763}}
-{"id": 86, "schoolName": "양서고등학교", "address": "경기도 양평군 양서면 상촌길 31-12", "coordinates": {"longitude": 127.328668633, "latitude": 37.548093428}}
-{"id":87,"schoolName":"장전중학교","address":"부산광역시 금정구 금샘로18번길 39 (장전동)","coordinates":{"longitude":129.078003595,"latitude":35.228851298}}
-{"id": 88, "schoolName": "교동초등학교", "address": "강원특별자치도 강릉시 율곡로2968번길 10 (교동)", "coordinates": {"longitude": 128.893535375, "latitude": 37.766849238}}
-{"id": 89, "schoolName": "효정중학교", "address": "울산광역시 북구 염포로 363 (양정동)", "coordinates": {"longitude": 129.378828222, "latitude": 35.559142823}}
-{"id": 90, "schoolName": "청주중앙중학교", "address": "충청북도 청주시 청원구 향군로115번길 17 (우암동)", "coordinates": {"longitude": 127.479575625, "latitude": 36.654557679}}
-{"id": 91, "schoolName": "노원중학교", "address": "서울특별시 노원구 동일로213길 26 (상계동)", "coordinates": {"longitude": 127.059685501, "latitude": 37.64929372}}
-{"id": 92, "schoolName": "대동중학교", "address": "경상북도 포항시 북구 우창서길 34 (우현동)", "coordinates": {"longitude": 129.358645166, "latitude": 36.059332919}}
-{"id": 93, "schoolName": "소담고등학교", "address": "세종특별자치시 남세종로 326 (소담동)", "coordinates": {"longitude": 127.302818213, "latitude": 36.482576585}}
-{"id": 94, "schoolName": "부흥고등학교", "address": "경기도 안양시 동안구 달안로 15 (비산동)", "coordinates": {"longitude": 126.944731832, "latitude": 37.393595966}}
+{"id": 52, "schoolName": "보안중학교", "address": "전북특별자치도 부안군 보안면 영전길 37", "coordinates": {"longitude": 126.673695821, "latitude": 35.609989868}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/RqOPEqmfuRE"}
+{"id": 53, "schoolName": "청운중학교", "address": "충청북도 청주시 상당구 영운천로 69 (영운동)", "coordinates": {"longitude": 127.504847118, "latitude": 36.618864877}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/lqunmOx7sMo"}
+{"id": 54, "schoolName": "동탄목동초등학교", "address": "경기도 화성시 동탄순환대로20길 10 (목동)", "coordinates": {"longitude": 127.124508705, "latitude": 37.189514589}, "videoStatus": "Pending"}
+{"id": 55, "schoolName": "월곶중학교", "address": "경기도 시흥시 월곶해안로 63 (월곶동)", "coordinates": {"longitude": 126.738016708, "latitude": 37.392660179}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/OvWDpU9k5sE"}
+{"id": 56, "schoolName": "인천용학초등학교", "address": "인천광역시 미추홀구 용정공원로83번길 9 (용현동)", "coordinates": {"longitude": 126.643268364, "latitude": 37.446686449}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/gJQtkQCI-rM"}
+{"id": 57, "schoolName": "경안중학교", "address": "경상북도 안동시 경동로 205-33 (송현동)", "coordinates": {"longitude": 128.681404393, "latitude": 36.576344659}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/e3ZPd3cYF0A"}
+{"id": 58, "schoolName": "서천고등학교", "address": "충청남도 서천군 서천읍 사곡로43번길 13-16", "coordinates": {"longitude": 126.689443773, "latitude": 36.085946696}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 59, "schoolName": "태성고등학교", "address": "경기도 용인시 처인구 백옥대로 1059-2 (남동)", "coordinates": {"longitude": 127.208960033, "latitude": 37.228901187}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/7WdutfimPRE"}
+{"id": 60, "schoolName": "부명중학교", "address": "경기도 부천시 원미구 조마루로 182 (중동)", "coordinates": {"longitude": 126.764009202, "latitude": 37.49795795}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/SHtRH9ewEzk"}
+{"id": 61, "schoolName": "치동초등학교병설유치원", "address": "경기도 화성시 동탄순환대로 881-34 (영천동)", "coordinates": {"longitude": 127.09152535, "latitude": 37.206584807}, "videoStatus": "Pending"}
+{"id": 62, "schoolName": "대전대문중학교", "address": "대전광역시 중구 송리로 33 (문화동)", "coordinates": {"longitude": 127.400809529, "latitude": 36.308035054}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/eoXUz6vXHt0"}
+{"id": 63, "schoolName": "대전만년고등학교", "address": "대전광역시 서구 만년로 6 (만년동)", "coordinates": {"longitude": 127.372760301, "latitude": 36.367266529}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/7e6qA4iUCUs"}
+{"id": 64, "schoolName": "용호중학교", "address": "부산광역시 남구 동명로 185-17 (용호동)", "coordinates": {"longitude": 129.117363722, "latitude": 35.11933832}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/SdPLei6Y4qQ"}
+{"id": 65, "schoolName": "대구월서초등학교", "address": "대구광역시 달서구 월배로39길 46 (상인동)", "coordinates": {"longitude": 128.531514527, "latitude": 35.821718618}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/wjG3airQcyk"}
+{"id": 66, "schoolName": "형남중학교", "address": "경상북도 구미시 형곡동로 1-3 (형곡동)", "coordinates": {"longitude": 128.335890856, "latitude": 36.101100254}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/-8ucyvmzOuE"}
+{"id": 67, "schoolName": "방교중학교", "address": "경기도 화성시 동탄산척로1길 23 (송동)", "coordinates": {"longitude": 127.101534175, "latitude": 37.174753214}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ajJRFT3CVG0"}
+{"id": 68, "schoolName": "인천당하중학교", "address": "인천광역시 서구 청마로 38 (당하동)", "coordinates": {"longitude": 126.669595214, "latitude": 37.590466284}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/FQo8MIZLLR4"}
+{"id": 69, "schoolName": "진주고등학교", "address": "경상남도 진주시 의곡길 29 (상봉동)", "coordinates": {"longitude": 128.08023479, "latitude": 35.200095967}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/fvCjXpE23zA"}
+{"id": 70, "schoolName": "북평고등학교", "address": "강원특별자치도 동해시 효자남길 51 (동회동)", "coordinates": {"longitude": 129.106501531, "latitude": 37.490081324}, "videoStatus": "Pending"}
+{"id": 71, "schoolName": "수원초등학교", "address": "경기도 수원시 팔달구 팔달로110번길 26 (고등동)", "coordinates": {"longitude": 127.003687701, "latitude": 37.277251845}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/wUnrpX1MnZ0"}
+{"id": 72, "schoolName": "성서중학교", "address": "경기도 용인시 수지구 성복1로 137 (성복동)", "coordinates": {"longitude": 127.063668538, "latitude": 37.314988574}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/hah1RxO_iBQ"}
+{"id": 73, "schoolName": "호성중학교", "address": "경기도 안양시 동안구 호성로 55 (호계동)", "coordinates": {"longitude": 126.964171238, "latitude": 37.366730629}, "status": "Sent", "videoStatus": "Sent", "videoUrl": "https://youtu.be/NpnX0Ld7Ik0"}
+{"id": 74, "schoolName": "등원중학교", "address": "서울특별시 강서구 화곡로65길 50 (등촌동)", "coordinates": {"longitude": 126.851815035, "latitude": 37.559734077}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/kTnmZ27PXOg"}
+{"id": 75, "schoolName": "천안업성고등학교", "address": "충청남도 천안시 서북구 업성3길 65-11 (업성동)", "coordinates": {"longitude": 127.137291336, "latitude": 36.862181855}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/1elMIMce3JY"}
+{"id": 76, "schoolName": "문성중학교", "address": "경상북도 김천시 영남대로 1992-3 (지좌동)", "coordinates": {"longitude": 128.14645289, "latitude": 36.116610534}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/jmu71E0R6Zw"}
+{"id": 77, "schoolName": "청림초등학교", "address": "경기도 화성시 동탄산척로 93-22 (산척동)", "coordinates": {"longitude": 127.111217898, "latitude": 37.174613739}, "videoStatus": "Pending"}
+{"id": 78, "schoolName": "함태중학교", "address": "강원특별자치도 태백시 번영로 11 (황지동)", "coordinates": {"longitude": 128.986689809, "latitude": 37.145978896}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/sxQ3VSFVvmA"}
+{"id": 79, "schoolName": "공주고등학교", "address": "충청남도 공주시 공주고담길 2 (중학동)", "coordinates": {"longitude": 127.122945689, "latitude": 36.448084891}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/bl-bCBrAOyA"}
+{"id": 80, "schoolName": "신방학중학교", "address": "서울특별시 도봉구 시루봉로 156 (방학동)", "coordinates": {"longitude": 127.029863665, "latitude": 37.664047381}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/HhOQkPz39Sc"}
+{"id": 81, "schoolName": "풍암중학교", "address": "광주광역시 서구 풍암순환로 51 (풍암동)", "coordinates": {"longitude": 126.878102744, "latitude": 35.122362096}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/aUV8MfVyWnI"}
+{"id": 82, "schoolName": "학성중학교", "address": "울산광역시 남구 문수로 426 (신정동)", "coordinates": {"longitude": 129.29830164, "latitude": 35.533033566}, "videoStatus": "Pending"}
+{"id": 83, "schoolName": "침산중학교", "address": "대구광역시 북구 침산남로 121 (침산동)", "coordinates": {"longitude": 128.589130001, "latitude": 35.889823034}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/bPWUm0fz1WU"}
+{"id": 84, "schoolName": "명륜초등학교", "address": "강원특별자치도 원주시 행구로 25 (개운동)", "coordinates": {"longitude": 127.957948021, "latitude": 37.341903689}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/PJVTMSQpM3Y"}
+{"id": 85, "schoolName": "자유중학교", "address": "전북특별자치도 고창군 고창읍 보릿골로 176", "coordinates": {"longitude": 126.696106289, "latitude": 35.440863763}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/hnhxpnw_hlI"}
+{"id": 86, "schoolName": "양서고등학교", "address": "경기도 양평군 양서면 상촌길 31-12", "coordinates": {"longitude": 127.328668633, "latitude": 37.548093428}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/N8q9YojmIe8"}
+{"id": 87, "schoolName": "장전중학교", "address": "부산광역시 금정구 금샘로18번길 39 (장전동)", "coordinates": {"longitude": 129.078003595, "latitude": 35.228851298}, "status": "Sent", "videoStatus": "Sent", "videoUrl": ""}
+{"id": 88, "schoolName": "교동초등학교", "address": "강원특별자치도 강릉시 율곡로2968번길 10 (교동)", "coordinates": {"longitude": 128.893535375, "latitude": 37.766849238}, "videoStatus": "Pending"}
+{"id": 89, "schoolName": "효정중학교", "address": "울산광역시 북구 염포로 363 (양정동)", "coordinates": {"longitude": 129.378828222, "latitude": 35.559142823}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/PfCOfoQEL8Y"}
+{"id": 90, "schoolName": "청주중앙중학교", "address": "충청북도 청주시 청원구 향군로115번길 17 (우암동)", "coordinates": {"longitude": 127.479575625, "latitude": 36.654557679}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/UT0hdQRzTzM"}
+{"id": 91, "schoolName": "노원중학교", "address": "서울특별시 노원구 동일로213길 26 (상계동)", "coordinates": {"longitude": 127.059685501, "latitude": 37.64929372}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/j5BINyL_BFw"}
+{"id": 92, "schoolName": "대동중학교", "address": "경상북도 포항시 북구 우창서길 34 (우현동)", "coordinates": {"longitude": 129.358645166, "latitude": 36.059332919}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/aHaO6mY2gOM"}
+{"id": 93, "schoolName": "소담고등학교", "address": "세종특별자치시 남세종로 326 (소담동)", "coordinates": {"longitude": 127.302818213, "latitude": 36.482576585}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/z8ESpgb63Mw"}
+{"id": 94, "schoolName": "부흥고등학교", "address": "경기도 안양시 동안구 달안로 15 (비산동)", "coordinates": {"longitude": 126.944731832, "latitude": 37.393595966}, "videoStatus": "Pending"}
 {"id": 95, "schoolName": "서연고등학교", "address": "경기도 화성시 동탄대로4가길 6 (장지동)", "coordinates": {"longitude": 127.111313013, "latitude": 37.160852832}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/umL6uyLdsPs"}
 {"id": 96, "schoolName": "옥련중학교", "address": "인천광역시 연수구 청량로 222 (옥련동)", "coordinates": {"longitude": 126.654265718, "latitude": 37.426660826}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/wWt5zU_DaCE"}
 {"id": 97, "schoolName": "연풍중학교", "address": "충청북도 괴산군 연풍면 향교로 55", "coordinates": {"longitude": 127.999266973, "latitude": 36.766938966}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/etevvHUN_z4"}
@@ -98,7 +98,7 @@
 {"id": 99, "schoolName": "구포중학교", "address": "부산광역시 북구 백양대로1016번다길 31 (구포동)", "coordinates": {"longitude": 128.995630088, "latitude": 35.194621164}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/dAuTFcLvsms"}
 {"id": 100, "schoolName": "회룡중학교", "address": "경기도 의정부시 안말로 45 (호원동)", "coordinates": {"longitude": 127.042997964, "latitude": 37.715318111}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Of2O-6oSE44"}
 {"id": 101, "schoolName": "광일중학교", "address": "경기도 광주시 도척면 노곡로 32 (도척면)", "coordinates": {"longitude": 127.330769717, "latitude": 37.303739316}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/f8G1VFX8u_s"}
-{"id":102,"schoolName":"양덕중학교","address":"경상북도 포항시 북구 장량로241번길 22 (양덕동)","coordinates":{"longitude":129.406980623,"latitude":36.084205125}}
+{"id": 102, "schoolName": "양덕중학교", "address": "경상남도 창원시 마산회원구 학교단지로 47 (합성동)", "coordinates": {"longitude": 128.595083013, "latitude": 35.242435781}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/orQcAHoU38M"}
 {"id": 103, "schoolName": "언동중학교", "address": "경기도 용인시 기흥구 언남로 41 (언남동)", "coordinates": {"longitude": 127.130297337, "latitude": 37.294422717}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/JrezopM1rSE"}
 {"id": 104, "schoolName": "금일초등학교", "address": "전라남도 완도군 금일읍 구동2길 38", "coordinates": {"longitude": 127.0334362, "latitude": 34.355333978}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/6oY5FKKmgMs"}
 {"id": 105, "schoolName": "경기영상과학고등학교", "address": "경기도 고양시 일산서구 강선로 8 (주엽동)", "coordinates": {"longitude": 126.762129535, "latitude": 37.665399886}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/CBPFHlEwoj8"}
@@ -136,16 +136,16 @@
 {"id": 139, "schoolName": "향남고등학교", "address": "경기도 화성시 향남읍 행정동로 49", "coordinates": {"longitude": 126.926595315, "latitude": 37.128881941}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/LYJD4xlBgXg"}
 {"id": 140, "schoolName": "온곡중학교", "address": "서울특별시 노원구 노원로 492 (상계동)", "coordinates": {"longitude": 127.064221052, "latitude": 37.660336587}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Ej3qRq0XwbU"}
 {"id": 141, "schoolName": "이충중학교", "address": "경기도 평택시 이충로35번길 5 (이충동)", "coordinates": {"longitude": 127.069203714, "latitude": 37.05949634}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/1GqQn92Bmjw"}
-{"id":142,"schoolName":"정관중학교","address":"부산광역시 기장군 정관읍 정관로 531","coordinates":{"longitude":129.173140956,"latitude":35.323291750}}
+{"id": 142, "schoolName": "정관중학교", "address": "부산광역시 기장군 정관읍 정관로 531", "coordinates": {"longitude": 129.173140956, "latitude": 35.32329175}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/4UmxPeqEPXU"}
 {"id": 143, "schoolName": "대구중앙중학교", "address": "대구광역시 수성구 신천동로 496 (수성동4가)", "coordinates": {"longitude": 128.61554376, "latitude": 35.867034384}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/B7xrN7jAKCE"}
-{"id":144,"schoolName":"심학중학교","address":"경기도 파주시 양지로 75 (동패동)","coordinates":{"longitude":126.717080932,"latitude":37.709993382}}
+{"id": 144, "schoolName": "심학중학교", "address": "경기도 파주시 양지로 75 (동패동)", "coordinates": {"longitude": 126.717080932, "latitude": 37.709993382}, "videoStatus": "Pending"}
 {"id": 145, "schoolName": "덕양중학교", "address": "경기도 고양시 덕양구 중앙로176번길 18-29 (화전동)", "coordinates": {"longitude": 126.871726464, "latitude": 37.604650107}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/tz8onUhPxkk"}
 {"id": 146, "schoolName": "경명여자고등학교", "address": "대구광역시 북구 칠성로17길 18 (칠성동2가)", "coordinates": {"longitude": 128.59818065, "latitude": 35.880595111}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/EmtcGikRJXA"}
 {"id": 147, "schoolName": "잠원초등학교", "address": "경기도 수원시 영통구 태장로54번길 11 (망포동)", "coordinates": {"longitude": 127.052209299, "latitude": 37.237962965}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/9fSPWJuSc3Q"}
 {"id": 148, "schoolName": "청원중학교", "address": "서울특별시 노원구 한글비석로 506 (상계동)", "coordinates": {"longitude": 127.063259149, "latitude": 37.666308111}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 149, "schoolName": "대덕중학교", "address": "대전광역시 유성구 대덕대로 515 (가정동)", "coordinates": {"longitude": 127.376984519, "latitude": 36.379545944}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/3lPJ-y_i6NU"}
 {"id": 150, "schoolName": "세마고등학교", "address": "경기도 오산시 수목원로 559-17 (세교동)", "coordinates": {"longitude": 127.040521044, "latitude": 37.180606848}, "videoStatus": "Pending", "videoUrl": ""}
-{"id":151,"schoolName":"송운중학교","address":"경기도 시흥시 옥구천동로 433-11 (정왕동)","coordinates":{"longitude":126.730875727,"latitude":37.359867760}}
+{"id": 151, "schoolName": "송운중학교", "address": "경기도 시흥시 옥구천동로 433-11 (정왕동)", "coordinates": {"longitude": 126.730875727, "latitude": 37.35986776}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/qmEzrqkvIqQ"}
 {"id": 152, "schoolName": "대전가양중학교", "address": "대전광역시 동구 비래서로62번길 100 (가양동)", "coordinates": {"longitude": 127.448639314, "latitude": 36.350862704}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/pIzrfbAIz2Y"}
 {"id": 153, "schoolName": "초월중학교", "address": "경기도 광주시 초월읍 도곡길21번길 28", "coordinates": {"longitude": 127.303224658, "latitude": 37.367079072}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/e-5SjV72mLg"}
 {"id": 154, "schoolName": "중계중학교", "address": "서울특별시 노원구 덕릉로76길 23 (중계동)", "coordinates": {"longitude": 127.075661895, "latitude": 37.65478089}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/npZxHc-DDPU"}
@@ -158,7 +158,7 @@
 {"id": 161, "schoolName": "대성고등학교", "address": "서울특별시 은평구 갈현로29길 51-24 (갈현동)", "coordinates": {"longitude": 126.909369318, "latitude": 37.623145274}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ajjNKBNkxDg"}
 {"id": 162, "schoolName": "장유중학교", "address": "경상남도 김해시 장유로 420 (신문동)", "coordinates": {"longitude": 128.819589999, "latitude": 35.189580428}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ftQKDhUFnyM"}
 {"id": 163, "schoolName": "사우고등학교", "address": "경기도 김포시 김포대로 824 (사우동)", "coordinates": {"longitude": 126.722962141, "latitude": 37.619838558}, "videoStatus": "Sent", "videoUrl": "https://www.youtube.com/watch?v=Au1O1KRKfrc"}
-{"id":164,"schoolName":"운리중학교","address":"광주광역시 서구 풍암신흥로11번길 28 (풍암동)","coordinates":{"longitude":126.863249635,"latitude":35.121947982}}
+{"id": 164, "schoolName": "운리중학교", "address": "광주광역시 서구 풍암신흥로11번길 28 (풍암동)", "coordinates": {"longitude": 126.863249635, "latitude": 35.121947982}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 165, "schoolName": "다대고등학교", "address": "부산광역시 사하구 다대낙조2길 199 (다대동)", "coordinates": {"longitude": 128.969463235, "latitude": 35.052870388}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/BbSlPRPFe3U"}
 {"id": 166, "schoolName": "천안성성중학교", "address": "충청남도 천안시 서북구 부성1길 83 (두정동)", "coordinates": {"longitude": 127.134486635, "latitude": 36.837809905}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/L-WpP3vq1QY"}
 {"id": 167, "schoolName": "대룡중학교", "address": "강원도 춘천시 퇴계농공로 65 (퇴계동)", "coordinates": {"longitude": 127.744687716, "latitude": 37.847351818}, "videoStatus": "Pending"}
@@ -167,10 +167,10 @@
 {"id": 170, "schoolName": "경기창조고등학교", "address": "경기도 안성시 공도읍 공도5로 37", "coordinates": {"longitude": 127.17212075, "latitude": 37.002502616}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Ul5wdriq7bI"}
 {"id": 171, "schoolName": "과천중학교", "address": "경기도 과천시 희망4길 33 (중앙동)", "coordinates": {"longitude": 126.988609378, "latitude": 37.433221986}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 172, "schoolName": "하슬라중학교", "address": "강원특별자치도 강릉시 보래미길 9 (포남동)", "coordinates": {"longitude": 128.906634494, "latitude": 37.771977776}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/pgE3LvbXltQ"}
-{"id":173,"schoolName":"감계중학교","address":"경상남도 창원시 의창구 북면 감계로 220","coordinates":{"longitude":128.587299744,"latitude":35.300241727}}
+{"id": 173, "schoolName": "감계중학교", "address": "경상남도 창원시 의창구 북면 감계로 220", "coordinates": {"longitude": 128.587299744, "latitude": 35.300241727}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/qwQj413tTTk"}
 {"id": 174, "schoolName": "비산중학교", "address": "경기도 안양시 동안구 평촌대로427번길 42 (비산동)", "coordinates": {"longitude": 126.948657519, "latitude": 37.409252126}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/rNOOSO4b9l8"}
 {"id": 175, "schoolName": "성화중학교", "address": "대구광역시 북구 복현로 140 (복현동)", "coordinates": {"longitude": 128.618540125, "latitude": 35.902861976}, "videoStatus": "Pending", "videoUrl": ""}
-{"id":176,"schoolName":"석우중학교","address":"경기도 화성시 동탄중앙로 264 (반송동)","coordinates":{"longitude":127.070668824,"latitude":37.208307917}}
+{"id": 176, "schoolName": "석우중학교", "address": "경기도 화성시 동탄중앙로 264 (반송동)", "coordinates": {"longitude": 127.070668824, "latitude": 37.208307917}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 177, "schoolName": "금릉중학교", "address": "경기도 파주시 후곡로 66 (금촌동)", "coordinates": {"longitude": 126.772958968, "latitude": 37.751579214}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/liNBRsm2r3k"}
 {"id": 178, "schoolName": "율현중학교", "address": "경기도 수원시 팔달구 일월로22번길 60 (화서동)", "coordinates": {"longitude": 126.982020448, "latitude": 37.285712381}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/-9jxK4LGSHM"}
 {"id": 179, "schoolName": "남춘천중학교", "address": "강원특별자치도 춘천시 충혼길 51 (온의동)", "coordinates": {"longitude": 127.722093222, "latitude": 37.859342392}, "videoStatus": "Pending"}
@@ -185,16 +185,16 @@
 {"id": 188, "schoolName": "군산중학교", "address": "전북특별자치도 군산시 군중길 18 (송풍동)", "coordinates": {"longitude": 126.701400404, "latitude": 35.977193112}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 189, "schoolName": "남주고등학교", "address": "제주특별자치도 서귀포시 동홍로303번길 14 (동홍동)", "coordinates": {"longitude": 126.564401024, "latitude": 33.275843148}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 190, "schoolName": "석성중학교", "address": "충청남도 부여군 석성면 증산로 7", "coordinates": {"longitude": 126.997736658, "latitude": 36.249239688}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/tgCrye2T-Co"}
-{"id":191,"schoolName":"계남중학교","address":"경기도 부천시 원미구 조마루로 274 (중동)","coordinates":{"longitude":126.774011675,"latitude":37.497438813}}
+{"id": 191, "schoolName": "계남중학교", "address": "경기도 부천시 원미구 조마루로 274 (중동)", "coordinates": {"longitude": 126.774011675, "latitude": 37.497438813}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/FS3OnnDCONo"}
 {"id": 192, "schoolName": "영광고등학교", "address": "경상북도 영주시 의상로 62 (상망동)", "coordinates": {"longitude": 128.642886264, "latitude": 36.841681722}, "videoStatus": "Pending", "videoUrl": ""}
 {"id": 193, "schoolName": "범계중학교", "address": "경기도 안양시 동안구 동안로 56 (호계동)", "coordinates": {"longitude": 126.954750391, "latitude": 37.384774183}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/TBAlqh_QkQo"}
-{"id": 194, "schoolName": "경신고등학교", "address": "대구광역시 수성구 달구벌대로504길 34 (범어동)", "coordinates": {"longitude": 128.638359138, "latitude": 35.855466252}}
-{"id": 195, "schoolName": "서울정화고등학교", "address": "서울특별시 동대문구 홍릉로15길 50 (제기동)", "coordinates": {"longitude": 127.041070453, "latitude": 37.586060688}}
-{"id": 196, "schoolName": "호남삼육중학교", "address": "광주광역시 남구 회서로 30 (주월동)", "coordinates": {"longitude": 126.893342739, "latitude": 35.129168541}}
-{"id": 197, "schoolName": "울산산업고등학교", "address": "울산광역시 울주군 삼남면 반구대로 675", "coordinates": {"longitude": 0, "latitude": 0}}
-{"id":198,"schoolName":"한백중학교","address":"경기도 화성시 동탄순환대로26길 26 (영천동)","coordinates":{"longitude":127.113625008,"latitude":37.206555378}}
-{"id": 199, "schoolName": "신정고등학교", "address": "울산광역시 남구 문수로 458 (신정동)", "coordinates": {"longitude": 129.301993585, "latitude": 35.532934116}}
-{"id": 200, "schoolName": "재능중학교", "address": "인천광역시 동구 재능로 178 (송림동)", "coordinates": {"longitude": 126.650758395, "latitude": 37.475506336}}
+{"id": 194, "schoolName": "경신고등학교", "address": "대구광역시 수성구 달구벌대로504길 34 (범어동)", "coordinates": {"longitude": 128.638359138, "latitude": 35.855466252}, "videoStatus": "Pending"}
+{"id": 195, "schoolName": "서울정화고등학교", "address": "서울특별시 동대문구 홍릉로15길 50 (제기동)", "coordinates": {"longitude": 127.041070453, "latitude": 37.586060688}, "videoStatus": "Pending"}
+{"id": 196, "schoolName": "호남삼육중학교", "address": "광주광역시 남구 회서로 30 (주월동)", "coordinates": {"longitude": 126.893342739, "latitude": 35.129168541}, "videoStatus": "Pending"}
+{"id": 197, "schoolName": "울산산업고등학교", "address": "울산광역시 울주군 삼남면 반구대로 675", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/HClmDjocApE"}
+{"id": 198, "schoolName": "한백중학교", "address": "경기도 화성시 동탄순환대로26길 26 (영천동)", "coordinates": {"longitude": 127.113625008, "latitude": 37.206555378}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/z6VixS4cOos"}
+{"id": 199, "schoolName": "신정고등학교", "address": "울산광역시 남구 문수로 458 (신정동)", "coordinates": {"longitude": 129.301993585, "latitude": 35.532934116}, "videoStatus": "Pending"}
+{"id": 200, "schoolName": "재능중학교", "address": "인천광역시 동구 재능로 178 (송림동)", "coordinates": {"longitude": 126.650758395, "latitude": 37.475506336}, "videoStatus": "Pending"}
 {"id": 201, "schoolName": "광덕고등학교", "address": "경기도 안산시 상록구 순환로 532 (월피동)", "coordinates": {"longitude": 126.845987136, "latitude": 37.340133283}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/a92bLJhnnes"}
 {"id": 202, "schoolName": "명일중학교", "address": "서울특별시 강동구 양재대로156길 57 (고덕동)", "coordinates": {"longitude": 127.148126994, "latitude": 37.556449494}, "videoStatus": "Pending"}
 {"id": 203, "schoolName": "수명고등학교", "address": "서울특별시 강서구 수명로2길 15 (내발산동)", "coordinates": {"longitude": 126.824560674, "latitude": 37.549787073}, "videoStatus": "Pending"}
@@ -224,16 +224,16 @@
 {"id": 227, "schoolName": "밀성중학교", "address": "경상남도 밀양시 석정로 127 (내이동)", "coordinates": {"longitude": 128.752345696, "latitude": 35.501344953}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/WhPtZSfLO7w"}
 {"id": 228, "schoolName": "배곧고등학교", "address": "경기도 시흥시 배곧4로 94-10 (배곧동)", "coordinates": {"longitude": 126.732541343, "latitude": 37.37412814}, "videoStatus": "Pending"}
 {"id": 229, "schoolName": "금곡고등학교", "address": "부산광역시 북구 화명신도시로 236 (금곡동)", "coordinates": {"longitude": 129.011805858, "latitude": 35.244282171}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/iDD5YQHre7A"}
-{"id": 230, "schoolName": "대덕고등학교", "address": "대전광역시 유성구 대덕대로556번길 158 (도룡동)", "coordinates": {"longitude": 127.38131999, "latitude": 36.387394282}}
-{"id": 231, "schoolName": "판곡중학교", "address": "경기도 남양주시 늘을1로 115 (호평동)", "coordinates": {"longitude": 127.242051467, "latitude": 37.662815562}}
-{"id": 232, "schoolName": "감일중학교", "address": "경기도 하남시 감일백제로 55 (감이동)", "coordinates": {"longitude": 127.162531074, "latitude": 37.501214131}}
-{"id":233,"schoolName":"노성중학교","address":"충청남도 논산시 노성면 노성로 602-5","coordinates":{"longitude":127.134340811,"latitude":36.277612211}}
+{"id": 230, "schoolName": "대덕고등학교", "address": "대전광역시 유성구 대덕대로556번길 158 (도룡동)", "coordinates": {"longitude": 127.38131999, "latitude": 36.387394282}, "videoStatus": "Pending"}
+{"id": 231, "schoolName": "판곡중학교", "address": "경기도 남양주시 늘을1로 115 (호평동)", "coordinates": {"longitude": 127.242051467, "latitude": 37.662815562}, "videoStatus": "Pending"}
+{"id": 232, "schoolName": "감일중학교", "address": "경기도 하남시 감일백제로 55 (감이동)", "coordinates": {"longitude": 127.162531074, "latitude": 37.501214131}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/LIHxhSyBcUs"}
+{"id": 233, "schoolName": "노성중학교", "address": "충청남도 논산시 노성면 노성로 602-5", "coordinates": {"longitude": 127.134340811, "latitude": 36.277612211}, "videoStatus": "Pending"}
 {"id": 234, "schoolName": "탄천중학교", "address": "충청남도 공주시 탄천면 통산로 168", "coordinates": {"longitude": 127.030691632, "latitude": 36.331495791}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/BJIuqaetLCQ"}
 {"id": 235, "schoolName": "해운중학교", "address": "경상남도 창원시 마산합포구 월영동남로 16-1 (해운동)", "coordinates": {"longitude": 128.565493962, "latitude": 35.177762506}, "videoStatus": "Pending"}
 {"id": 236, "schoolName": "무릉중학교", "address": "제주특별자치도 서귀포시 대정읍 서삼중로 106", "coordinates": {"longitude": 126.201332379, "latitude": 33.272839232}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/B-51ma3yWfs"}
-{"id": 237, "schoolName": "정광중학교", "address": "광주광역시 광산구 소촌로 90-36 (소촌동)", "coordinates": {"longitude": 126.794842762, "latitude": 35.155117834}}
-{"id": 238, "schoolName": "창원고등학교", "address": "경상남도 창원시 의창구 태복산로 45 (도계동)", "coordinates": {"longitude": 128.642495746, "latitude": 35.255175871}}
-{"id":239,"schoolName":"청아중학교","address":"강원특별자치도 삼척시 성당길 63-7 (당저동)","coordinates":{"longitude":129.159676548,"latitude":37.445497770}}
+{"id": 237, "schoolName": "정광중학교", "address": "광주광역시 광산구 소촌로 90-36 (소촌동)", "coordinates": {"longitude": 126.794842762, "latitude": 35.155117834}, "videoStatus": "Sent", "videoUrl": ""}
+{"id": 238, "schoolName": "창원고등학교", "address": "경상남도 창원시 의창구 태복산로 45 (도계동)", "coordinates": {"longitude": 128.642495746, "latitude": 35.255175871}, "videoStatus": "Pending"}
+{"id": 239, "schoolName": "청아중학교", "address": "강원특별자치도 삼척시 성당길 63-7 (당저동)", "coordinates": {"longitude": 129.159676548, "latitude": 37.44549777}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/vvBLwN24x00"}
 {"id": 240, "schoolName": "선유중학교", "address": "경기도 파주시 문산읍 독서울1길 37", "coordinates": {"longitude": 126.801876922, "latitude": 37.866893128}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/cs3XakrmT6k"}
 {"id": 241, "schoolName": "제천간디학교", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
 {"id": 242, "schoolName": "밀성고등학교", "address": "경상남도 밀양시 석정로 127 (내이동)", "coordinates": {"longitude": 128.752345696, "latitude": 35.501344953}, "videoStatus": "Pending"}
@@ -247,173 +247,173 @@
 {"id": 250, "schoolName": "각화중학교", "address": "광주광역시 북구 군왕로 234 (각화동)", "coordinates": {"longitude": 126.93782114, "latitude": 35.181290437}, "videoStatus": "Pending"}
 {"id": 251, "schoolName": "인천하늘고등학교", "address": "인천광역시 중구 영종대로277번길 117 (운서동)", "coordinates": {"longitude": 126.507239144, "latitude": 37.495430236}, "videoStatus": "Pending"}
 {"id": 252, "schoolName": "서현중학교", "address": "충청북도 청주시 흥덕구 서현중로 10 (가경동)", "coordinates": {"longitude": 127.431150336, "latitude": 36.619936744}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/FQlWr6AIFTY"}
-{"id":253,"schoolName":"청옥중학교","address":"경기도 평택시 청북읍 안청로1길 11","coordinates":{"longitude":126.915490277,"latitude":37.014753764}}
-{"id": 254, "schoolName": "단원중학교", "address": "경기도 안산시 단원구 단원로 27 (고잔동)", "coordinates": {"longitude": 126.822753958, "latitude": 37.327413793}}
-{"id": 255, "schoolName": "구영중학교", "address": "울산광역시 울주군 범서읍 점촌3길 46", "coordinates": {"longitude": 129.2369475, "latitude": 35.572692636}}
+{"id": 253, "schoolName": "청옥중학교", "address": "경기도 평택시 청북읍 안청로1길 11", "coordinates": {"longitude": 126.915490277, "latitude": 37.014753764}, "videoStatus": "Pending"}
+{"id": 254, "schoolName": "단원중학교", "address": "경기도 안산시 단원구 단원로 27 (고잔동)", "coordinates": {"longitude": 126.822753958, "latitude": 37.327413793}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/1YQle4ECJ1Y"}
+{"id": 255, "schoolName": "구영중학교", "address": "울산광역시 울주군 범서읍 점촌3길 46", "coordinates": {"longitude": 129.2369475, "latitude": 35.572692636}, "videoStatus": "Pending"}
 {"id": 256, "schoolName": "강동고등학교", "address": "울산광역시 북구 화암4길 8 (산하동)", "coordinates": {"longitude": 129.435289342, "latitude": 35.632743344}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/qnCKdKiJ6Ts"}
-{"id": 257, "schoolName": "경화여자고등학교", "address": "경기도 광주시 수하길11번길 43 (송정동)", "coordinates": {"longitude": 127.26375118, "latitude": 37.418109753}}
-{"id": 258, "schoolName": "중국 광저우 Utahloy international school", "address": "", "coordinates": {"longitude": 0, "latitude": 0}}
-{"id":259,"schoolName":"천보중학교","address":"경기도 의정부시 부용로 61 (금오동)","coordinates":{"longitude":127.065004499,"latitude":37.750663128}}
-{"id": 260, "schoolName": "평촌중학교", "address": "경기도 안양시 동안구 관평로 127 (평촌동)", "coordinates": {"longitude": 126.962550528, "latitude": 37.38825705}}
-{"id": 261, "schoolName": "대곡중학교", "address": "경상남도 진주시 소호로 8 (충무공동)", "coordinates": {"longitude": 128.135840476, "latitude": 35.170534774}}
-{"id": 262, "schoolName": "반송중학교", "address": "부산광역시 해운대구 반송로911번길 59 (반송동)", "coordinates": {"longitude": 129.151921229, "latitude": 35.234747432}}
-{"id": 263, "schoolName": "하길고등학교", "address": "경기도 화성시 향남읍 상신하길로274번길 22", "coordinates": {"longitude": 126.910313768, "latitude": 37.111844671}}
-{"id": 264, "schoolName": "청원여자고등학교", "address": "서울특별시 노원구 한글비석로 506 (상계동)", "coordinates": {"longitude": 127.063259149, "latitude": 37.666308111}}
-{"id": 265, "schoolName": "경북외국어고등학교", "address": "경상북도 구미시 금오산로 198-10 (남통동)", "coordinates": {"longitude": 128.32289694, "latitude": 36.123788601}}
-{"id": 266, "schoolName": "서변중학교", "address": "대구광역시 북구 서변로21길 14 (서변동)", "coordinates": {"longitude": 128.595643031, "latitude": 35.926363687}}
-{"id": 267, "schoolName": "신반중학교", "address": "경상남도 의령군 부림면 한지28길 18-12", "coordinates": {"longitude": 128.320094435, "latitude": 35.463137505}}
-{"id": 268, "schoolName": "중앙중학교", "address": "서울특별시 종로구 창덕궁길 164 (계동)", "coordinates": {"longitude": 126.986882305, "latitude": 37.58441029}}
-{"id": 269, "schoolName": "백현중학교", "address": "경기도 성남시 분당구 황새울로 124 (정자동)", "coordinates": {"longitude": 127.111264536, "latitude": 37.371324632}}
-{"id": 270, "schoolName": "한국항공대학교", "address": "경기도 고양시 덕양구 항공대학로 76-6 (화전동)", "coordinates": {"longitude": 126.864878573, "latitude": 37.59755153}}
-{"id": 271, "schoolName": "청심국제중학교", "address": "경기도 가평군 설악면 미사리로 324-213", "coordinates": {"longitude": 127.540672711, "latitude": 37.686556174}}
-{"id": 272, "schoolName": "약목중학교", "address": "경상북도 칠곡군 약목면 복성8길 20", "coordinates": {"longitude": 128.360443058, "latitude": 36.035374271}}
-{"id": 273, "schoolName": "태전중학교", "address": "경기도 광주시 태성로 110 (태전동)", "coordinates": {"longitude": 127.227584383, "latitude": 37.380374632}}
-{"id": 274, "schoolName": "양영중학교", "address": "경기도 성남시 분당구 돌마로486번길 23 (서현동)", "coordinates": {"longitude": 127.135831679, "latitude": 37.376633017}}
-{"id": 275, "schoolName": "반여고등학교", "address": "부산광역시 해운대구 반여로 136 (반여동)", "coordinates": {"longitude": 129.12668398, "latitude": 35.202998483}}
-{"id": 276, "schoolName": "진교고등학교", "address": "경상남도 하동군 진교면 민다리길 179", "coordinates": {"longitude": 127.897327053, "latitude": 35.037382354}}
-{"id": 277, "schoolName": "김포고등학교", "address": "경기도 김포시 봉화로 37-15 (사우동)", "coordinates": {"longitude": 126.712980821, "latitude": 37.618399387}}
-{"id": 278, "schoolName": "백마중학교", "address": "경기도 고양시 일산동구 강촌로 189 (마두동)", "coordinates": {"longitude": 126.793278211, "latitude": 37.655123753}, "status": "sent"}
-{"id": 279, "schoolName": "운정고등학교", "address": "경기도 파주시 와석순환로 267 (목동동)", "coordinates": {"longitude": 126.73614613, "latitude": 37.722046496}}
-{"id": 280, "schoolName": "상현중학교", "address": "경기도 용인시 수지구 광교마을로 61 (상현동)", "coordinates": {"longitude": 127.070440828, "latitude": 37.299269473}}
-{"id": 281, "schoolName": "공주영명고등학교", "address": "충청남도 공주시 영명학당2길 33 (중동)", "coordinates": {"longitude": 127.126304188, "latitude": 36.451024088}}
-{"id": 282, "schoolName": "서창중학교", "address": "경상남도 양산시 대운9길 8 (삼호동)", "coordinates": {"longitude": 129.17770805, "latitude": 35.412936942}}
-{"id": 283, "schoolName": "향일고등학교", "address": "경기도 화성시 향남읍 행정중앙2로 28", "coordinates": {"longitude": 126.917980096, "latitude": 37.129286828}}
-{"id":284,"schoolName":"의왕부곡중학교","address":"경기도 의왕시 부곡중학길 61 (월암동)","coordinates":{"longitude":126.956688172,"latitude":37.314757452}}
+{"id": 257, "schoolName": "경화여자고등학교", "address": "경기도 광주시 수하길11번길 43 (송정동)", "coordinates": {"longitude": 127.26375118, "latitude": 37.418109753}, "videoStatus": "Pending"}
+{"id": 258, "schoolName": "중국 광저우 Utahloy international school", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 259, "schoolName": "천보중학교", "address": "경기도 의정부시 부용로 61 (금오동)", "coordinates": {"longitude": 127.065004499, "latitude": 37.750663128}, "videoStatus": "Pending"}
+{"id": 260, "schoolName": "평촌중학교", "address": "경기도 안양시 동안구 관평로 127 (평촌동)", "coordinates": {"longitude": 126.962550528, "latitude": 37.38825705}, "videoStatus": "Pending"}
+{"id": 261, "schoolName": "대곡중학교", "address": "경상남도 진주시 소호로 8 (충무공동)", "coordinates": {"longitude": 128.135840476, "latitude": 35.170534774}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/vdBPIfPFzN8"}
+{"id": 262, "schoolName": "반송중학교", "address": "부산광역시 해운대구 반송로911번길 59 (반송동)", "coordinates": {"longitude": 129.151921229, "latitude": 35.234747432}, "videoStatus": "Pending"}
+{"id": 263, "schoolName": "하길고등학교", "address": "경기도 화성시 향남읍 상신하길로274번길 22", "coordinates": {"longitude": 126.910313768, "latitude": 37.111844671}, "videoStatus": "Pending"}
+{"id": 264, "schoolName": "청원여자고등학교", "address": "서울특별시 노원구 한글비석로 506 (상계동)", "coordinates": {"longitude": 127.063259149, "latitude": 37.666308111}, "videoStatus": "Pending"}
+{"id": 265, "schoolName": "경북외국어고등학교", "address": "경상북도 구미시 금오산로 198-10 (남통동)", "coordinates": {"longitude": 128.32289694, "latitude": 36.123788601}, "videoStatus": "Pending"}
+{"id": 266, "schoolName": "서변중학교", "address": "대구광역시 북구 서변로21길 14 (서변동)", "coordinates": {"longitude": 128.595643031, "latitude": 35.926363687}, "videoStatus": "Pending"}
+{"id": 267, "schoolName": "신반중학교", "address": "경상남도 의령군 부림면 한지28길 18-12", "coordinates": {"longitude": 128.320094435, "latitude": 35.463137505}, "videoStatus": "Pending"}
+{"id": 268, "schoolName": "중앙중학교", "address": "서울특별시 종로구 창덕궁길 164 (계동)", "coordinates": {"longitude": 126.986882305, "latitude": 37.58441029}, "videoStatus": "Pending"}
+{"id": 269, "schoolName": "백현중학교", "address": "경기도 성남시 분당구 황새울로 124 (정자동)", "coordinates": {"longitude": 127.111264536, "latitude": 37.371324632}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/z3EFnAEdJsQ"}
+{"id": 270, "schoolName": "한국항공대학교", "address": "경기도 고양시 덕양구 항공대학로 76-6 (화전동)", "coordinates": {"longitude": 126.864878573, "latitude": 37.59755153}, "videoStatus": "Pending"}
+{"id": 271, "schoolName": "청심국제중학교", "address": "경기도 가평군 설악면 미사리로 324-213", "coordinates": {"longitude": 127.540672711, "latitude": 37.686556174}, "videoStatus": "Pending"}
+{"id": 272, "schoolName": "약목중학교", "address": "경상북도 칠곡군 약목면 복성8길 20", "coordinates": {"longitude": 128.360443058, "latitude": 36.035374271}, "videoStatus": "Pending"}
+{"id": 273, "schoolName": "태전중학교", "address": "경기도 광주시 태성로 110 (태전동)", "coordinates": {"longitude": 127.227584383, "latitude": 37.380374632}, "videoStatus": "Pending"}
+{"id": 274, "schoolName": "양영중학교", "address": "경기도 성남시 분당구 돌마로486번길 23 (서현동)", "coordinates": {"longitude": 127.135831679, "latitude": 37.376633017}, "videoStatus": "Pending"}
+{"id": 275, "schoolName": "반여고등학교", "address": "부산광역시 해운대구 반여로 136 (반여동)", "coordinates": {"longitude": 129.12668398, "latitude": 35.202998483}, "videoStatus": "Pending"}
+{"id": 276, "schoolName": "진교고등학교", "address": "경상남도 하동군 진교면 민다리길 179", "coordinates": {"longitude": 127.897327053, "latitude": 35.037382354}, "videoStatus": "Pending"}
+{"id": 277, "schoolName": "김포고등학교", "address": "경기도 김포시 봉화로 37-15 (사우동)", "coordinates": {"longitude": 126.712980821, "latitude": 37.618399387}, "videoStatus": "Pending"}
+{"id": 278, "schoolName": "백마중학교", "address": "경기도 고양시 일산동구 강촌로 189 (마두동)", "coordinates": {"longitude": 126.793278211, "latitude": 37.655123753}, "status": "Sent", "videoStatus": "Pending"}
+{"id": 279, "schoolName": "운정고등학교", "address": "경기도 파주시 와석순환로 267 (목동동)", "coordinates": {"longitude": 126.73614613, "latitude": 37.722046496}, "videoStatus": "Pending"}
+{"id": 280, "schoolName": "상현중학교", "address": "경기도 용인시 수지구 광교마을로 61 (상현동)", "coordinates": {"longitude": 127.070440828, "latitude": 37.299269473}, "videoStatus": "Pending"}
+{"id": 281, "schoolName": "공주영명고등학교", "address": "충청남도 공주시 영명학당2길 33 (중동)", "coordinates": {"longitude": 127.126304188, "latitude": 36.451024088}, "videoStatus": "Pending"}
+{"id": 282, "schoolName": "서창중학교", "address": "경상남도 양산시 대운9길 8 (삼호동)", "coordinates": {"longitude": 129.17770805, "latitude": 35.412936942}, "videoStatus": "Pending"}
+{"id": 283, "schoolName": "향일고등학교", "address": "경기도 화성시 향남읍 행정중앙2로 28", "coordinates": {"longitude": 126.917980096, "latitude": 37.129286828}, "videoStatus": "Pending"}
+{"id": 284, "schoolName": "의왕부곡중학교", "address": "경기도 의왕시 부곡중학길 61 (월암동)", "coordinates": {"longitude": 126.956688172, "latitude": 37.314757452}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/sUeEBYCpP1Y"}
 {"id": 285, "schoolName": "덕이중학교", "address": "경기도 고양시 일산서구 하이파크3로 10 (덕이동)", "coordinates": {"longitude": 126.754617302, "latitude": 37.692710807}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/huGINLbtCyM"}
-{"id": 286, "schoolName": "모락중학교", "address": "경기도 의왕시 모락로 110 (오전동)", "coordinates": {"longitude": 126.967675643, "latitude": 37.368048008}}
-{"id": 287, "schoolName": "하랑중학교", "address": "강원특별자치도 동해시 발한로 347 (발한동)", "coordinates": {"longitude": 129.102177985, "latitude": 37.560666319}}
-{"id": 288, "schoolName": "연산중학교", "address": "충청남도 논산시 연산면 청동로 113-14", "coordinates": {"longitude": 127.207445962, "latitude": 36.213131296}}
-{"id": 289, "schoolName": "금성중학교", "address": "전북특별자치도 김제시 금성5길 19 (신풍동)", "coordinates": {"longitude": 126.89763934, "latitude": 35.798321099}}
-{"id": 290, "schoolName": "김해중학교", "address": "경상남도 김해시 호계로 456 (부원동)", "coordinates": {"longitude": 128.885564561, "latitude": 35.230749955}}
-{"id": 291, "schoolName": "사직중학교", "address": "부산광역시 동래구 쇠미로51번길 30 (사직동)", "coordinates": {"longitude": 129.051446419, "latitude": 35.19945708}}
-{"id": 292, "schoolName": "동도중학교", "address": "대구광역시 수성구 청호로 350 (범어동)", "coordinates": {"longitude": 128.63969343, "latitude": 35.84935206}}
-{"id": 293, "schoolName": "신명중학교", "address": "서울특별시 강동구 명일로24길 25 (길동)", "coordinates": {"longitude": 127.150057692, "latitude": 37.541417211}}
-{"id": 294, "schoolName": "진주동명중학교", "address": "경상남도 진주시 대신로 454-25 (초전동)", "coordinates": {"longitude": 128.118609029, "latitude": 35.202549659}}
-{"id":295,"schoolName":"부산소프트웨어마이스터고등학교","address":"부산광역시 강서구 가락대로 1393 (봉림동)","coordinates":{"longitude":128.902986900,"latitude":35.187821517}}
-{"id": 296, "schoolName": "진해중앙고등학교", "address": "경상남도 창원시 진해구 병암북로 9 (경화동)", "coordinates": {"longitude": 128.689200456, "latitude": 35.161521013}}
-{"id": 297, "schoolName": "수성고등학교", "address": "대구광역시 수성구 용학로28길 36 (지산동)", "coordinates": {"longitude": 128.625392164, "latitude": 35.821305907}}
-{"id": 298, "schoolName": "덕산중학교", "address": "경기도 부천시 오정구 성오로 203 (오정동)", "coordinates": {"longitude": 126.793910416, "latitude": 37.528803652}}
-{"id":299,"schoolName":"상서중학교","address":"대구광역시 달서구 야외음악당로 107 (성당동)","coordinates":{"longitude":128.549888683,"latitude":35.846443560}}
-{"id": 300, "schoolName": "명신고등학교", "address": "경상남도 진주시 대신로 614 (초전동)", "coordinates": {"longitude": 128.113734483, "latitude": 35.215907428}}
-{"id": 301, "schoolName": "인지중학교", "address": "충청남도 서산시 인지면 무학로 1654-9", "coordinates": {"longitude": 126.426881537, "latitude": 36.750022289}}
-{"id": 302, "schoolName": "안동고등학교", "address": "경상북도 안동시 강남로 550 (정상동)", "coordinates": {"longitude": 128.758976675, "latitude": 36.544555197}}
-{"id":303,"schoolName":"고흥중학교","address":"전라남도 고흥군 고흥읍 고흥로 1847","coordinates":{"longitude":127.290077048,"latitude":34.614473847}}
-{"id": 304, "schoolName": "가온중학교", "address": "울산광역시 중구 구교10길 60 (반구동)", "coordinates": {"longitude": 129.338319908, "latitude": 35.56438689}}
-{"id": 305, "schoolName": "장승중학교", "address": "서울특별시 동작구 장승배기로10가길 25 (상도동)", "coordinates": {"longitude": 126.940654803, "latitude": 37.503882579}}
-{"id": 306, "schoolName": "광교중학교", "address": "경기도 수원시 영통구 웰빙타운로 55 (이의동)", "coordinates": {"longitude": 127.044744788, "latitude": 37.304482511}}
-{"id": 307, "schoolName": "배명고등학교", "address": "서울특별시 송파구 삼학사로 11 (삼전동)", "coordinates": {"longitude": 127.095049176, "latitude": 37.497962918}}
-{"id":308,"schoolName":"용강중학교","address":"서울특별시 용산구 이촌로65가길 91 (이촌동)","coordinates":{"longitude":126.976144706,"latitude":37.521377533}}
-{"id": 309, "schoolName": "Unknown School", "address": "", "coordinates": {"longitude": 0, "latitude": 0}}
-{"id": 310, "schoolName": "한국호텔관광고등학교", "address": "충청북도 단양군 단성면 북상하리길 69", "coordinates": {"longitude": 128.338344408, "latitude": 36.926535225}}
-{"id": 311, "schoolName": "해룡중학교", "address": "전라남도 영광군 영광읍 중앙로 120", "coordinates": {"longitude": 126.513003736, "latitude": 35.268714152}}
+{"id": 286, "schoolName": "모락중학교", "address": "경기도 의왕시 모락로 110 (오전동)", "coordinates": {"longitude": 126.967675643, "latitude": 37.368048008}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/JZEM9ZpTg2M"}
+{"id": 287, "schoolName": "하랑중학교", "address": "강원특별자치도 동해시 발한로 347 (발한동)", "coordinates": {"longitude": 129.102177985, "latitude": 37.560666319}, "videoStatus": "Pending"}
+{"id": 288, "schoolName": "연산중학교", "address": "충청남도 논산시 연산면 청동로 113-14", "coordinates": {"longitude": 127.207445962, "latitude": 36.213131296}, "videoStatus": "Pending"}
+{"id": 289, "schoolName": "금성중학교", "address": "전북특별자치도 김제시 금성5길 19 (신풍동)", "coordinates": {"longitude": 126.89763934, "latitude": 35.798321099}, "videoStatus": "Pending"}
+{"id": 290, "schoolName": "김해중학교", "address": "경상남도 김해시 호계로 456 (부원동)", "coordinates": {"longitude": 128.885564561, "latitude": 35.230749955}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/bzMj8_94FpM"}
+{"id": 291, "schoolName": "사직중학교", "address": "부산광역시 동래구 쇠미로51번길 30 (사직동)", "coordinates": {"longitude": 129.051446419, "latitude": 35.19945708}, "videoStatus": "Pending"}
+{"id": 292, "schoolName": "동도중학교", "address": "대구광역시 수성구 청호로 350 (범어동)", "coordinates": {"longitude": 128.63969343, "latitude": 35.84935206}, "videoStatus": "Pending"}
+{"id": 293, "schoolName": "신명중학교", "address": "서울특별시 강동구 명일로24길 25 (길동)", "coordinates": {"longitude": 127.150057692, "latitude": 37.541417211}, "videoStatus": "Pending"}
+{"id": 294, "schoolName": "진주동명중학교", "address": "경상남도 진주시 대신로 454-25 (초전동)", "coordinates": {"longitude": 128.118609029, "latitude": 35.202549659}, "videoStatus": "Pending"}
+{"id": 295, "schoolName": "부산소프트웨어마이스터고등학교", "address": "부산광역시 강서구 가락대로 1393 (봉림동)", "coordinates": {"longitude": 128.9029869, "latitude": 35.187821517}, "videoStatus": "Pending"}
+{"id": 296, "schoolName": "진해중앙고등학교", "address": "경상남도 창원시 진해구 병암북로 9 (경화동)", "coordinates": {"longitude": 128.689200456, "latitude": 35.161521013}, "videoStatus": "Pending"}
+{"id": 297, "schoolName": "수성고등학교", "address": "대구광역시 수성구 용학로28길 36 (지산동)", "coordinates": {"longitude": 128.625392164, "latitude": 35.821305907}, "videoStatus": "Pending"}
+{"id": 298, "schoolName": "덕산중학교", "address": "경기도 부천시 오정구 성오로 203 (오정동)", "coordinates": {"longitude": 126.793910416, "latitude": 37.528803652}, "videoStatus": "Pending"}
+{"id": 299, "schoolName": "상서중학교", "address": "대구광역시 달서구 야외음악당로 107 (성당동)", "coordinates": {"longitude": 128.549888683, "latitude": 35.84644356}, "videoStatus": "Pending"}
+{"id": 300, "schoolName": "명신고등학교", "address": "경상남도 진주시 대신로 614 (초전동)", "coordinates": {"longitude": 128.113734483, "latitude": 35.215907428}, "videoStatus": "Pending"}
+{"id": 301, "schoolName": "인지중학교", "address": "충청남도 서산시 인지면 무학로 1654-9", "coordinates": {"longitude": 126.426881537, "latitude": 36.750022289}, "videoStatus": "Pending"}
+{"id": 302, "schoolName": "안동고등학교", "address": "경상북도 안동시 강남로 550 (정상동)", "coordinates": {"longitude": 128.758976675, "latitude": 36.544555197}, "videoStatus": "Pending"}
+{"id": 303, "schoolName": "고흥중학교", "address": "전라남도 고흥군 고흥읍 고흥로 1847", "coordinates": {"longitude": 127.290077048, "latitude": 34.614473847}, "videoStatus": "Pending"}
+{"id": 304, "schoolName": "가온중학교", "address": "울산광역시 중구 구교10길 60 (반구동)", "coordinates": {"longitude": 129.338319908, "latitude": 35.56438689}, "videoStatus": "Pending"}
+{"id": 305, "schoolName": "장승중학교", "address": "서울특별시 동작구 장승배기로10가길 25 (상도동)", "coordinates": {"longitude": 126.940654803, "latitude": 37.503882579}, "videoStatus": "Pending"}
+{"id": 306, "schoolName": "광교중학교", "address": "경기도 수원시 영통구 웰빙타운로 55 (이의동)", "coordinates": {"longitude": 127.044744788, "latitude": 37.304482511}, "videoStatus": "Pending"}
+{"id": 307, "schoolName": "배명고등학교", "address": "서울특별시 송파구 삼학사로 11 (삼전동)", "coordinates": {"longitude": 127.095049176, "latitude": 37.497962918}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/wTLmXuYwrE8"}
+{"id": 308, "schoolName": "용강중학교", "address": "서울특별시 용산구 이촌로65가길 91 (이촌동)", "coordinates": {"longitude": 126.976144706, "latitude": 37.521377533}, "videoStatus": "Pending", "videoUrl": ""}
+{"id": 309, "schoolName": "Unknown School", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 310, "schoolName": "한국호텔관광고등학교", "address": "충청북도 단양군 단성면 북상하리길 69", "coordinates": {"longitude": 128.338344408, "latitude": 36.926535225}, "videoStatus": "Pending"}
+{"id": 311, "schoolName": "해룡중학교", "address": "전라남도 영광군 영광읍 중앙로 120", "coordinates": {"longitude": 126.513003736, "latitude": 35.268714152}, "videoStatus": "Pending"}
 {"id": 312, "schoolName": "양학중학교", "address": "경상북도 포항시 북구 이동로 63 (득량동)", "coordinates": {"longitude": 129.341650444, "latitude": 36.033500761}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/-Q7oC37uw2M"}
-{"id": 313, "schoolName": "김해삼문고등학교", "address": "경상남도 김해시 번화1로 127 (삼문동)", "coordinates": {"longitude": 128.796663927, "latitude": 35.198625251}}
-{"id": 314, "schoolName": "환서중학교", "address": "충청남도 천안시 서북구 한들3로 50 (백석동)", "coordinates": {"longitude": 127.123871598, "latitude": 36.828192396}}
-{"id": 315, "schoolName": "동성고등학교", "address": "충청북도 음성군 맹동면 대하로 315", "coordinates": {"longitude": 127.546020365, "latitude": 36.91482327}}
-{"id": 316, "schoolName": "옥과고등학교", "address": "전라남도 곡성군 옥과면 대학로 99", "coordinates": {"longitude": 127.129844636, "latitude": 35.274245501}}
-{"id": 317, "schoolName": "경북대학교", "address": "대구광역시 북구 대학로 80 (산격동)", "coordinates": {"longitude": 128.607715777, "latitude": 35.887720188}}
-{"id": 318, "schoolName": "산서중학교", "address": "전북특별자치도 장수군 산서면 보산로 1852-6", "coordinates": {"longitude": 127.398720851, "latitude": 35.583857594}}
-{"id":319,"schoolName":"제주제일고등학교","address":"제주특별자치도 제주시 진군길 22 (노형동)","coordinates":{"longitude":126.479419105,"latitude":33.479737051}}
-{"id":320,"schoolName":"동강중학교","address":"충청남도 서천군 기산면 충절로 624","coordinates":{"longitude":126.749278101,"latitude":36.071437523}}
-{"id": 321, "schoolName": "풍동고등학교", "address": "경기도 고양시 일산동구 숲속마을로 119 (풍동)", "coordinates": {"longitude": 126.795039351, "latitude": 37.671791902}}
-{"id": 322, "schoolName": "토현중학교", "address": "부산광역시 연제구 토현로 47 (연산동)", "coordinates": {"longitude": 129.11119591, "latitude": 35.181557019}}
-{"id":323,"schoolName":"법원여자중학교","address":"경기도 파주시 법원읍 자운서원로 31","coordinates":{"longitude":126.868871725,"latitude":37.852594134}}
-{"id":324,"schoolName":"송라중학교","address":"경기도 남양주시 화도읍 마석로45번길 31","coordinates":{"longitude":127.302866882,"latitude":37.654626756}}
-{"id":325,"schoolName":"웅상고등학교","address":"경상남도 양산시 배움터길 36 (평산동)","coordinates":{"longitude":129.143993109,"latitude":35.377960737}}
-{"id":326,"schoolName":"안동중학교","address":"경상북도 안동시 태화1길 14 (태화동)","coordinates":{"longitude":128.712090694,"latitude":36.565452898}}
-{"id":327,"schoolName":"아름고등학교","address":"세종특별자치시 달빛1로 151 (아름동)","coordinates":{"longitude":127.245351375,"latitude":36.513136313}}
-{"id":328,"schoolName":"장훈고등학교","address":"서울특별시 영등포구 영등포로64길 26 (신길동)","coordinates":{"longitude":126.914860408,"latitude":37.513873572}}
-{"id":329,"schoolName":"영암중학교","address":"전라남도 영암군 영암읍 영암초중고길 32","coordinates":{"longitude":126.687752293,"latitude":34.799087244}}
-{"id":330,"schoolName":"연무중학교","address":"경기도 수원시 영통구 센트럴타운로100번길 30 (이의동)","coordinates":{"longitude":127.051729250,"latitude":37.292827391}}
-{"id":331,"schoolName":"인천기계공업고등학교","address":"인천광역시 미추홀구 한나루로 545 (주안동)","coordinates":{"longitude":126.669862031,"latitude":37.456178923}}
-{"id":332,"schoolName":"강동중학교","address":"울산광역시 북구 산음12길 10 (산하동)","coordinates":{"longitude":129.434808644,"latitude":35.629702711}}
-{"id": 333, "schoolName": "자카르타한국국제학교", "address": "", "coordinates": {"longitude": 0, "latitude": 0}}
-{"id":334,"schoolName":"울산생활과학고등학교","address":"울산광역시 동구 학문로 70 (화정동)","coordinates":{"longitude":129.421228097,"latitude":35.504126821}}
-{"id":335,"schoolName":"동일중학교","address":"서울특별시 금천구 탑골로10길 45 (시흥동)","coordinates":{"longitude":126.916214388,"latitude":37.451991673}}
-{"id":336,"schoolName":"성산중학교","address":"대구광역시 달서구 선원남로 174 (용산동)","coordinates":{"longitude":128.518741173,"latitude":35.856744090}}
-{"id":337,"schoolName":"의정부고등학교","address":"경기도 의정부시 녹양로 29 (가능동)","coordinates":{"longitude":127.031448892,"latitude":37.755053731}}
-{"id":338,"schoolName":"성균관대학교","address":"서울특별시 종로구 성균관로 25-2 (명륜3가)","coordinates":{"longitude":126.995416807,"latitude":37.586834270}}
-{"id":339,"schoolName":"광주송원중학교","address":"광주광역시 남구 송암로 73 (송하동)","coordinates":{"longitude":126.875871224,"latitude":35.109072448}}
-{"id":340,"schoolName":"잠실중학교","address":"서울특별시 송파구 올림픽로35길 130 (신천동)","coordinates":{"longitude":127.099376789,"latitude":37.517673930}}
-{"id":341,"schoolName":"합포중학교","address":"경상남도 창원시 마산합포구 산호남10길 18 (산호동)","coordinates":{"longitude":128.585264708,"latitude":35.215969500}}
-{"id":342,"schoolName":"한국철도고등학교","address":"경상북도 영주시 이산로 31 (하망동)","coordinates":{"longitude":128.640370982,"latitude":36.822130609}}
-{"id":343,"schoolName":"대구동부중학교","address":"대구광역시 수성구 화랑로32길 74 (만촌동)","coordinates":{"longitude":128.644046400,"latitude":35.872742929}}
-{"id":344,"schoolName":"원화중학교","address":"대구광역시 달서구 당산로30길 30 (성당동)","coordinates":{"longitude":128.548754325,"latitude":35.847577625}}
-{"id":345,"schoolName":"인창중학교","address":"서울특별시 서대문구 경기대로 65 (충정로2가)","coordinates":{"longitude":126.963516648,"latitude":37.565416907}}
-{"id":346,"schoolName":"강화중학교","address":"인천광역시 강화군 강화읍 동문로 53","coordinates":{"longitude":126.491024633,"latitude":37.750403774}}
-{"id":347,"schoolName":"금호중학교","address":"세종특별자치시 대평로 27 (대평동)","coordinates":{"longitude":127.279921892,"latitude":36.470490175}}
-{"id":348,"schoolName":"하길중학교","address":"경기도 화성시 향남읍 상신하길로274번길 10","coordinates":{"longitude":126.908582112,"latitude":37.112267454}}
-{"id":349,"schoolName":"부산중앙중학교","address":"부산광역시 기장군 정관읍 정관덕산길 73","coordinates":{"longitude":129.187443344,"latitude":35.322449451}}
-{"id":350,"schoolName":"이충고등학교","address":"경기도 평택시 이충로35번길 50 (이충동)","coordinates":{"longitude":127.064987398,"latitude":37.057508037}}
-{"id":351,"schoolName":"나성중학교","address":"세종특별자치시 갈매로 298 (나성동)","coordinates":{"longitude":127.264064003,"latitude":36.490819718}}
-{"id":352,"schoolName":"포항보건고등학교","address":"경상북도 포항시 북구 죽장면 일광길 2","coordinates":{"longitude":129.092730031,"latitude":36.163569011}}
-{"id":353,"schoolName":"인천성리중학교","address":"인천광역시 남동구 성리로 26 (구월동)","coordinates":{"longitude":126.709473592,"latitude":37.445009113}}
-{"id":354,"schoolName":"대전전민고등학교","address":"대전광역시 유성구 전민로 63 (전민동)","coordinates":{"longitude":127.398406997,"latitude":36.397873740}}
-{"id":355,"schoolName":"장기중학교","address":"경기도 김포시 청송로 5 (장기동)","coordinates":{"longitude":126.665004066,"latitude":37.648055787}}
-{"id":356,"schoolName":"수곡중학교","address":"충청북도 청주시 서원구 수곡로 15 (수곡동)","coordinates":{"longitude":127.474336560,"latitude":36.614672869}}
-{"id":357,"schoolName":"대전전민중학교","address":"대전광역시 유성구 엑스포로466번길 97 (전민동)","coordinates":{"longitude":127.405469015,"latitude":36.401556276}}
-{"id":358,"schoolName":"한백고등학교","address":"경기도 화성시 동탄순환대로26길 21 (영천동)","coordinates":{"longitude":127.113486580,"latitude":37.207596674}}
-{"id":359,"schoolName":"우송고등학교","address":"대전광역시 동구 동대전로131번길 53 (자양동)","coordinates":{"longitude":127.443473942,"latitude":36.334452068}}
+{"id": 313, "schoolName": "김해삼문고등학교", "address": "경상남도 김해시 번화1로 127 (삼문동)", "coordinates": {"longitude": 128.796663927, "latitude": 35.198625251}, "videoStatus": "Pending"}
+{"id": 314, "schoolName": "환서중학교", "address": "충청남도 천안시 서북구 한들3로 50 (백석동)", "coordinates": {"longitude": 127.123871598, "latitude": 36.828192396}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/2NAHieEDnyI"}
+{"id": 315, "schoolName": "동성고등학교", "address": "충청북도 음성군 맹동면 대하로 315", "coordinates": {"longitude": 127.546020365, "latitude": 36.91482327}, "videoStatus": "Pending"}
+{"id": 316, "schoolName": "옥과고등학교", "address": "전라남도 곡성군 옥과면 대학로 99", "coordinates": {"longitude": 127.129844636, "latitude": 35.274245501}, "videoStatus": "Pending"}
+{"id": 317, "schoolName": "경북대학교", "address": "대구광역시 북구 대학로 80 (산격동)", "coordinates": {"longitude": 128.607715777, "latitude": 35.887720188}, "videoStatus": "Pending"}
+{"id": 318, "schoolName": "산서중학교", "address": "전북특별자치도 장수군 산서면 보산로 1852-6", "coordinates": {"longitude": 127.398720851, "latitude": 35.583857594}, "videoStatus": "Pending"}
+{"id": 319, "schoolName": "제주제일고등학교", "address": "제주특별자치도 제주시 진군길 22 (노형동)", "coordinates": {"longitude": 126.479419105, "latitude": 33.479737051}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/YOajdKoxyjE"}
+{"id": 320, "schoolName": "동강중학교", "address": "충청남도 서천군 기산면 충절로 624", "coordinates": {"longitude": 126.749278101, "latitude": 36.071437523}, "videoStatus": "Pending", "videoUrl": ""}
+{"id": 321, "schoolName": "풍동고등학교", "address": "경기도 고양시 일산동구 숲속마을로 119 (풍동)", "coordinates": {"longitude": 126.795039351, "latitude": 37.671791902}, "videoStatus": "Pending"}
+{"id": 322, "schoolName": "토현중학교", "address": "부산광역시 연제구 토현로 47 (연산동)", "coordinates": {"longitude": 129.11119591, "latitude": 35.181557019}, "videoStatus": "Pending"}
+{"id": 323, "schoolName": "법원여자중학교", "address": "경기도 파주시 법원읍 자운서원로 31", "coordinates": {"longitude": 126.868871725, "latitude": 37.852594134}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/qq7dIQuESa0"}
+{"id": 324, "schoolName": "송라중학교", "address": "경기도 남양주시 화도읍 마석로45번길 31", "coordinates": {"longitude": 127.302866882, "latitude": 37.654626756}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ZDAXWmptGFw"}
+{"id": 325, "schoolName": "웅상고등학교", "address": "경상남도 양산시 배움터길 36 (평산동)", "coordinates": {"longitude": 129.143993109, "latitude": 35.377960737}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Nt-1lDP0qMY"}
+{"id": 326, "schoolName": "안동중학교", "address": "경상북도 안동시 태화1길 14 (태화동)", "coordinates": {"longitude": 128.712090694, "latitude": 36.565452898}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/EIrrkV1EG0Y"}
+{"id": 327, "schoolName": "아름고등학교", "address": "세종특별자치시 달빛1로 151 (아름동)", "coordinates": {"longitude": 127.245351375, "latitude": 36.513136313}, "videoStatus": "Pending"}
+{"id": 328, "schoolName": "장훈고등학교", "address": "서울특별시 영등포구 영등포로64길 26 (신길동)", "coordinates": {"longitude": 126.914860408, "latitude": 37.513873572}, "videoStatus": "Pending"}
+{"id": 329, "schoolName": "영암중학교", "address": "전라남도 영암군 영암읍 영암초중고길 32", "coordinates": {"longitude": 126.687752293, "latitude": 34.799087244}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/MyDbsvjKp3Y"}
+{"id": 330, "schoolName": "연무중학교", "address": "경기도 수원시 영통구 센트럴타운로100번길 30 (이의동)", "coordinates": {"longitude": 127.05172925, "latitude": 37.292827391}, "videoStatus": "Pending"}
+{"id": 331, "schoolName": "인천기계공업고등학교", "address": "인천광역시 미추홀구 한나루로 545 (주안동)", "coordinates": {"longitude": 126.669862031, "latitude": 37.456178923}, "videoStatus": "Pending"}
+{"id": 332, "schoolName": "강동중학교", "address": "울산광역시 북구 산음12길 10 (산하동)", "coordinates": {"longitude": 129.434808644, "latitude": 35.629702711}, "videoStatus": "Pending"}
+{"id": 333, "schoolName": "자카르타한국국제학교", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 334, "schoolName": "울산생활과학고등학교", "address": "울산광역시 동구 학문로 70 (화정동)", "coordinates": {"longitude": 129.421228097, "latitude": 35.504126821}, "videoStatus": "Pending"}
+{"id": 335, "schoolName": "동일중학교", "address": "서울특별시 금천구 탑골로10길 45 (시흥동)", "coordinates": {"longitude": 126.916214388, "latitude": 37.451991673}, "videoStatus": "Pending"}
+{"id": 336, "schoolName": "성산중학교", "address": "대구광역시 달서구 선원남로 174 (용산동)", "coordinates": {"longitude": 128.518741173, "latitude": 35.85674409}, "videoStatus": "Pending"}
+{"id": 337, "schoolName": "의정부고등학교", "address": "경기도 의정부시 녹양로 29 (가능동)", "coordinates": {"longitude": 127.031448892, "latitude": 37.755053731}, "videoStatus": "Pending"}
+{"id": 338, "schoolName": "성균관대학교", "address": "서울특별시 종로구 성균관로 25-2 (명륜3가)", "coordinates": {"longitude": 126.995416807, "latitude": 37.58683427}, "videoStatus": "Pending"}
+{"id": 339, "schoolName": "광주송원중학교", "address": "광주광역시 남구 송암로 73 (송하동)", "coordinates": {"longitude": 126.875871224, "latitude": 35.109072448}, "videoStatus": "Pending"}
+{"id": 340, "schoolName": "잠실중학교", "address": "서울특별시 송파구 올림픽로35길 130 (신천동)", "coordinates": {"longitude": 127.099376789, "latitude": 37.51767393}, "videoStatus": "Pending"}
+{"id": 341, "schoolName": "합포중학교", "address": "경상남도 창원시 마산합포구 산호남10길 18 (산호동)", "coordinates": {"longitude": 128.585264708, "latitude": 35.2159695}, "videoStatus": "Pending"}
+{"id": 342, "schoolName": "한국철도고등학교", "address": "경상북도 영주시 이산로 31 (하망동)", "coordinates": {"longitude": 128.640370982, "latitude": 36.822130609}, "videoStatus": "Pending"}
+{"id": 343, "schoolName": "대구동부중학교", "address": "대구광역시 수성구 화랑로32길 74 (만촌동)", "coordinates": {"longitude": 128.6440464, "latitude": 35.872742929}, "videoStatus": "Pending"}
+{"id": 344, "schoolName": "원화중학교", "address": "대구광역시 달서구 당산로30길 30 (성당동)", "coordinates": {"longitude": 128.548754325, "latitude": 35.847577625}, "videoStatus": "Pending"}
+{"id": 345, "schoolName": "인창중학교", "address": "서울특별시 서대문구 경기대로 65 (충정로2가)", "coordinates": {"longitude": 126.963516648, "latitude": 37.565416907}, "videoStatus": "Pending"}
+{"id": 346, "schoolName": "강화중학교", "address": "인천광역시 강화군 강화읍 동문로 53", "coordinates": {"longitude": 126.491024633, "latitude": 37.750403774}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/3PopMmlFgoc"}
+{"id": 347, "schoolName": "금호중학교", "address": "세종특별자치시 대평로 27 (대평동)", "coordinates": {"longitude": 127.279921892, "latitude": 36.470490175}, "videoStatus": "Pending"}
+{"id": 348, "schoolName": "하길중학교", "address": "경기도 화성시 향남읍 상신하길로274번길 10", "coordinates": {"longitude": 126.908582112, "latitude": 37.112267454}, "videoStatus": "Pending"}
+{"id": 349, "schoolName": "부산중앙중학교", "address": "부산광역시 기장군 정관읍 정관덕산길 73", "coordinates": {"longitude": 129.187443344, "latitude": 35.322449451}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/4nR_6ER0HyY"}
+{"id": 350, "schoolName": "이충고등학교", "address": "경기도 평택시 이충로35번길 50 (이충동)", "coordinates": {"longitude": 127.064987398, "latitude": 37.057508037}, "videoStatus": "Pending"}
+{"id": 351, "schoolName": "나성중학교", "address": "세종특별자치시 갈매로 298 (나성동)", "coordinates": {"longitude": 127.264064003, "latitude": 36.490819718}, "videoStatus": "Pending"}
+{"id": 352, "schoolName": "포항보건고등학교", "address": "경상북도 포항시 북구 죽장면 일광길 2", "coordinates": {"longitude": 129.092730031, "latitude": 36.163569011}, "videoStatus": "Pending"}
+{"id": 353, "schoolName": "인천성리중학교", "address": "인천광역시 남동구 성리로 26 (구월동)", "coordinates": {"longitude": 126.709473592, "latitude": 37.445009113}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/E_QOUhwGtDY"}
+{"id": 354, "schoolName": "대전전민고등학교", "address": "대전광역시 유성구 전민로 63 (전민동)", "coordinates": {"longitude": 127.398406997, "latitude": 36.39787374}, "videoStatus": "Pending"}
+{"id": 355, "schoolName": "장기중학교", "address": "경기도 김포시 청송로 5 (장기동)", "coordinates": {"longitude": 126.665004066, "latitude": 37.648055787}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/z5vwwI-bNqk"}
+{"id": 356, "schoolName": "수곡중학교", "address": "충청북도 청주시 서원구 수곡로 15 (수곡동)", "coordinates": {"longitude": 127.47433656, "latitude": 36.614672869}, "videoStatus": "Pending"}
+{"id": 357, "schoolName": "대전전민중학교", "address": "대전광역시 유성구 엑스포로466번길 97 (전민동)", "coordinates": {"longitude": 127.405469015, "latitude": 36.401556276}, "videoStatus": "Pending"}
+{"id": 358, "schoolName": "한백고등학교", "address": "경기도 화성시 동탄순환대로26길 21 (영천동)", "coordinates": {"longitude": 127.11348658, "latitude": 37.207596674}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/60zhX_1yu18"}
+{"id": 359, "schoolName": "우송고등학교", "address": "대전광역시 동구 동대전로131번길 53 (자양동)", "coordinates": {"longitude": 127.443473942, "latitude": 36.334452068}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/H7fa3OE03S0"}
 {"id": 360, "schoolName": "삼산중학교", "address": "인천광역시 부평구 충선로 308 (삼산동)", "coordinates": {"longitude": 126.736232984, "latitude": 37.516620998}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/9pmvx7WToNA"}
-{"id":361,"schoolName":"운봉중학교","address":"전북특별자치도 남원시 운봉읍 바래봉길 73","coordinates":{"longitude":127.536411623,"latitude":35.437075102}}
-{"id":362,"schoolName":"분당중학교","address":"경기도 성남시 분당구 황새울로 4 (정자동)","coordinates":{"longitude":127.111287891,"latitude":37.360947573}}
-{"id":363,"schoolName":"봉곡중학교","address":"경상북도 구미시 봉곡서로11안길 9-8 (봉곡동)","coordinates":{"longitude":128.304487139,"latitude":36.158730121}}
-{"id":364,"schoolName":"경일고등학교","address":"부산광역시 강서구 영강길 153-42 (명지동)","coordinates":{"longitude":128.922503992,"latitude":35.111645939}}
-{"id":365,"schoolName":"동대문중학교","address":"서울특별시 동대문구 사가정로 59 (전농동)","coordinates":{"longitude":127.051512254,"latitude":37.574544319}}
-{"id":366,"schoolName":"송탄중학교","address":"경기도 평택시 지산3로10번길 5 (지산동)","coordinates":{"longitude":127.066773843,"latitude":37.076420628}}
-{"id": 367, "schoolName": "조선대학교부속중학교", "address": "광주광역시 동구 필문대로 309-3", "coordinates": {"longitude": 0, "latitude": 0}}
-{"id":368,"schoolName":"영산중학교","address":"경상남도 창녕군 영산면 영산계성로 87","coordinates":{"longitude":128.523610369,"latitude":35.460053974}}
-{"id":369,"schoolName":"동탄초등학교","address":"경기도 화성시 동탄감배산로 26 (오산동)","coordinates":{"longitude":127.091303926,"latitude":37.189024461}}
-{"id":370,"schoolName":"해강고등학교","address":"부산광역시 해운대구 해운대해변로 33 (우동)","coordinates":{"longitude":129.136502424,"latitude":35.164739024}}
-{"id":371,"schoolName":"연희중학교","address":"서울특별시 서대문구 증가로 170 (남가좌동)","coordinates":{"longitude":126.919287959,"latitude":37.578734167}}
-{"id":372,"schoolName":"삼정초등학교","address":"울산광역시 울주군 청량읍 삼정로 36","coordinates":{"longitude":129.233730640,"latitude":35.490889716}}
-{"id":373,"schoolName":"임원중학교","address":"강원특별자치도 삼척시 원덕읍 삼척로 1313","coordinates":{"longitude":129.336359850,"latitude":37.240824654}}
-{"id":374,"schoolName":"대구국제고등학교","address":"대구광역시 북구 도남길 77 (국우동)","coordinates":{"longitude":128.581616786,"latitude":35.955507834}}
-{"id":375,"schoolName":"여주제일고등학교","address":"경기도 여주시 가남읍 여주남로 1155-11","coordinates":{"longitude":127.554564241,"latitude":37.206837504}}
-{"id":376,"schoolName":"고령중학교","address":"경상북도 고령군 대가야읍 가야금길 20","coordinates":{"longitude":128.271969588,"latitude":35.741195591}}
-{"id":377,"schoolName":"전주한일고등학교","address":"전북특별자치도 전주시 완산구 백제대로 442 (서신동)","coordinates":{"longitude":127.123647467,"latitude":35.831231182}}
-{"id":378,"schoolName":"진주중앙중학교","address":"경상남도 진주시 모덕로 287 (하대동)","coordinates":{"longitude":128.124834995,"latitude":35.189802028}}
-{"id":379,"schoolName":"김해제일고등학교","address":"경상남도 김해시 분성로3번길 105 (외동)","coordinates":{"longitude":128.853832997,"latitude":35.239561614}}
-{"id":380,"schoolName":"중곡초등학교","address":"경상남도 거제시 중곡로 27 (고현동)","coordinates":{"longitude":128.629099934,"latitude":34.894691479}}
-{"id":381,"schoolName":"운유고등학교","address":"경기도 김포시 김포한강2로 236 (장기동)","coordinates":{"longitude":126.661701530,"latitude":37.646156846}}
-{"id":383,"schoolName":"신어중학교","address":"경상남도 김해시 삼안로195번길 7 (삼방동)","coordinates":{"longitude":128.911848857,"latitude":35.244804823}}
-{"id": 384, "schoolName": "평창초등학교", "address": "강원도 평창군 평창읍 송학로 71 (평창읍)", "coordinates": {"longitude": 128.39197124, "latitude": 37.370397344}}
-{"id": 385, "schoolName": "부산관광고등학교", "address": "부산광역시 서구 천마로 52 (남부민동)", "coordinates": {"longitude": 129.02242457, "latitude": 35.082504828}}
-{"id": 386, "schoolName": "안강여자중학교", "address": "경상북도 경주시 안강읍 화전길 62-8", "coordinates": {"longitude": 129.211555584, "latitude": 35.99342828}}
-{"id": 387, "schoolName": "종촌중학교", "address": "세종특별자치시 도움1로 126 (종촌동)", "coordinates": {"longitude": 127.245561967, "latitude": 36.50266204}}
-{"id":388,"schoolName":"관동중학교","address":"강원특별자치도 강릉시 하슬라로20번길 14 (교동)","coordinates":{"longitude":128.880142225,"latitude":37.757283019}}
-{"id": 389, "schoolName": "용신중학교", "address": "경기도 용인시 처인구 명지로 15-26 (김량장동)", "coordinates": {"longitude": 127.192384701, "latitude": 37.233577137}}
-{"id": 390, "schoolName": "동천초등학교", "address": "부산광역시 남구 석포로26번길 22", "coordinates": {"longitude": 129.083172441, "latitude": 35.121615409}}
-{"id": 391, "schoolName": "인천성리초등학교", "address": "인천광역시 남동구 성리로 32-2 (구월동)", "coordinates": {"longitude": 126.709301531, "latitude": 37.445725069}}
-{"id": 392, "schoolName": "마전중학교", "address": "인천광역시 서구 완정로 91 (마전동)", "coordinates": {"longitude": 126.665275211, "latitude": 37.597969059}}
-{"id": 393, "schoolName": "금구중학교", "address": "광주광역시 광산구 목련로153번길 76 (운남동)", "coordinates": {"longitude": 126.81551701, "latitude": 35.175570975}}
-{"id": 394, "schoolName": "한국외국어대학교", "address": "서울특별시 동대문구 이문로 107", "coordinates": {"longitude": 127.058313445, "latitude": 37.597275738}}
-{"id": 395, "schoolName": "한국글로벌중학교", "address": "경기도 시흥시 금오로 640", "coordinates": {"longitude": 126.832686116, "latitude": 37.458452648}}
-{"id": 396, "schoolName": "부안고등학교", "address": "전라북도 부안군 부안읍 문정로 32 (부안읍)", "coordinates": {"longitude": 126.729074892, "latitude": 35.71507805}}
-{"id": 397, "schoolName": "속리산중학교", "address": "충청북도 보은군 삼승면 능월1길 11 (삼승면)", "coordinates": {"longitude": 127.736198082, "latitude": 36.393034245}}
-{"id": 398, "schoolName": "갈뫼중학교", "address": "경기도 의왕시 갈미로 61 (내손동)", "coordinates": {"longitude": 126.975127858, "latitude": 37.377482397}}
-{"id": 399, "schoolName": "대송중학교", "address": "울산광역시 동구 학문로 90 (화정동)", "coordinates": {"longitude": 129.419616852, "latitude": 35.504564782}}
-{"id": 400, "schoolName": "한신초등학교", "address": "서울특별시 도봉구 노해로49길 69 (쌍문동)", "coordinates": {"longitude": 127.032479815, "latitude": 37.653254005}}
-{"id": 401, "schoolName": "옥산중학교", "address": "충청북도 청주시 흥덕구 옥산면 오산1길 41", "coordinates": {"longitude": 127.370760293, "latitude": 36.670845163}}
-{"id": 402, "schoolName": "모현중학교", "address": "경기도 용인시 처인구 모현읍 문현로189번길 5 (모현읍)", "coordinates": {"longitude": 127.230550175, "latitude": 37.343651719}}
-{"id": 403, "schoolName": "명서중학교", "address": "경상남도 창원시 의창구 명지로 54 (명서동)", "coordinates": {"longitude": 128.644101332, "latitude": 35.251553897}}
-{"id": 404, "schoolName": "인천계수중학교", "address": "인천광역시 계양구 살라리로2번길 25 (서운동)", "coordinates": {"longitude": 126.744758501, "latitude": 37.535137153}}
-{"id": 405, "schoolName": "성동중학교", "address": "부산광역시 남구 남동천로 38 (문현동)", "coordinates": {"longitude": 129.066103522, "latitude": 35.14009614}}
-{"id": 406, "schoolName": "부천중학교", "address": "경기도 부천시 원미구 심중로75번길 64 (중동)", "coordinates": {"longitude": 126.76874809, "latitude": 37.490429606}}
-{"id": 407, "schoolName": "영덕고등학교", "address": "경기도 수원시 영통구 매영로 334 (영통동)", "coordinates": {"longitude": 127.068353549, "latitude": 37.252584709}}
-{"id": 408, "schoolName": "원곡중학교", "address": "경기도 안산시 단원구 원선로 81 (원곡동)", "coordinates": {"longitude": 126.801562724, "latitude": 37.331572444}}
-{"id": 409, "schoolName": "안산강서고등학교", "address": "경기도 안산시 단원구 삼일로 367 (와동)", "coordinates": {"longitude": 126.818780829, "latitude": 37.33416147}}
-{"id": 410, "schoolName": "부산중학교", "address": "부산광역시 동구 초량로40번길 29 (초량동)", "coordinates": {"longitude": 129.036904732, "latitude": 35.122256825}}
-{"id": 411, "schoolName": "안서중학교", "address": "경기도 광명시 기아로13번안길 9-9 (소하동)", "coordinates": {"longitude": 126.881323465, "latitude": 37.43807429}}
-{"id": 412, "schoolName": "정일중학교", "address": "전라북도 정읍시 충정로 511 (정일중학교)", "coordinates": {"longitude": 126.830966754, "latitude": 35.581372446}}
-{"id": 413, "schoolName": "창원신월초등학교", "address": "경상남도 창원시 성산구 신월로72번길 12 (신월동)", "coordinates": {"longitude": 128.692771396, "latitude": 35.225444027}}
-{"id": 414, "schoolName": "안천중학교", "address": "서울특별시 금천구 한내로 69-44 (독산동)", "coordinates": {"longitude": 126.887325896, "latitude": 37.458942673}}
-{"id": 415, "schoolName": "운산고등학교", "address": "경기도 광명시 한내일로 17", "coordinates": {"longitude": 126.883356552, "latitude": 37.454317695}}
-{"id": 416, "schoolName": "순심여자중학교", "address": "경상북도 칠곡군 왜관읍 남부1길 22 (왜관읍)", "coordinates": {"longitude": 128.397278221, "latitude": 35.98671157}}
-{"id": 417, "schoolName": "풍납중학교", "address": "서울특별시 송파구 올림픽로43길 20 (풍납동)", "coordinates": {"longitude": 127.11579813, "latitude": 37.525796121}}
-{"id": 418, "schoolName": "경북세무고등학교", "address": "경상북도 포항시 북구 기계면 기계로 218", "coordinates": {"longitude": 129.196383791, "latitude": 36.076843113}}
-{"id": 419, "schoolName": "전주인봉초등학교", "address": "전라북도 전주시 덕진구 무삼지로 7 (전주인봉초등학교)", "coordinates": {"longitude": 127.164838323, "latitude": 35.826895234}}
-{"id": 420, "schoolName": "무석한국학교", "address": "", "coordinates": {"longitude": 0, "latitude": 0}}
+{"id": 361, "schoolName": "운봉중학교", "address": "전북특별자치도 남원시 운봉읍 바래봉길 73", "coordinates": {"longitude": 127.536411623, "latitude": 35.437075102}, "videoStatus": "Pending"}
+{"id": 362, "schoolName": "분당중학교", "address": "경기도 성남시 분당구 황새울로 4 (정자동)", "coordinates": {"longitude": 127.111287891, "latitude": 37.360947573}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/hnqrMvJ_d3A"}
+{"id": 363, "schoolName": "봉곡중학교", "address": "경상북도 구미시 봉곡서로11안길 9-8 (봉곡동)", "coordinates": {"longitude": 128.304487139, "latitude": 36.158730121}, "videoStatus": "Pending"}
+{"id": 364, "schoolName": "경일고등학교", "address": "부산광역시 강서구 영강길 153-42 (명지동)", "coordinates": {"longitude": 128.922503992, "latitude": 35.111645939}, "videoStatus": "Pending"}
+{"id": 365, "schoolName": "동대문중학교", "address": "서울특별시 동대문구 사가정로 59 (전농동)", "coordinates": {"longitude": 127.051512254, "latitude": 37.574544319}, "videoStatus": "Pending"}
+{"id": 366, "schoolName": "송탄중학교", "address": "경기도 평택시 지산3로10번길 5 (지산동)", "coordinates": {"longitude": 127.066773843, "latitude": 37.076420628}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Wn_5Bpdb2jc"}
+{"id": 367, "schoolName": "조선대학교부속중학교", "address": "광주광역시 동구 필문대로 309-3", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
+{"id": 368, "schoolName": "영산중학교", "address": "경상남도 창녕군 영산면 영산계성로 87 (영산면)", "coordinates": {"longitude": 128.523610369, "latitude": 35.460053974}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/gtARKd4okA0"}
+{"id": 369, "schoolName": "동탄초등학교", "address": "경기도 화성시 동탄감배산로 26 (오산동)", "coordinates": {"longitude": 127.091303926, "latitude": 37.189024461}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/gF_XJbo8gwo"}
+{"id": 370, "schoolName": "해강고등학교", "address": "부산광역시 해운대구 해운대해변로 33 (우동)", "coordinates": {"longitude": 129.136502424, "latitude": 35.164739024}, "videoStatus": "Pending"}
+{"id": 371, "schoolName": "연희중학교", "address": "서울특별시 서대문구 증가로 170 (남가좌동)", "coordinates": {"longitude": 126.919287959, "latitude": 37.578734167}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/vZSrLWcZFZw"}
+{"id": 372, "schoolName": "삼정초등학교", "address": "울산광역시 울주군 청량읍 삼정로 36", "coordinates": {"longitude": 129.23373064, "latitude": 35.490889716}, "videoStatus": "Pending"}
+{"id": 373, "schoolName": "임원중학교", "address": "강원특별자치도 삼척시 원덕읍 삼척로 1313", "coordinates": {"longitude": 129.33635985, "latitude": 37.240824654}, "videoStatus": "Pending"}
+{"id": 374, "schoolName": "대구국제고등학교", "address": "대구광역시 북구 도남길 77 (국우동)", "coordinates": {"longitude": 128.581616786, "latitude": 35.955507834}, "videoStatus": "Pending"}
+{"id": 375, "schoolName": "여주제일고등학교", "address": "경기도 여주시 가남읍 여주남로 1155-11 (가남읍)", "coordinates": {"longitude": 127.554564241, "latitude": 37.206837504}, "videoStatus": "Pending"}
+{"id": 376, "schoolName": "고령중학교", "address": "경상북도 고령군 대가야읍 가야금길 20", "coordinates": {"longitude": 128.271969588, "latitude": 35.741195591}, "videoStatus": "Pending"}
+{"id": 377, "schoolName": "전주한일고등학교", "address": "전북특별자치도 전주시 완산구 백제대로 442 (서신동)", "coordinates": {"longitude": 127.123647467, "latitude": 35.831231182}, "videoStatus": "Pending"}
+{"id": 378, "schoolName": "진주중앙중학교", "address": "경상남도 진주시 모덕로 287 (하대동)", "coordinates": {"longitude": 128.124834995, "latitude": 35.189802028}, "videoStatus": "Pending"}
+{"id": 379, "schoolName": "김해제일고등학교", "address": "경상남도 김해시 분성로3번길 105 (외동)", "coordinates": {"longitude": 128.853832997, "latitude": 35.239561614}, "videoStatus": "Pending"}
+{"id": 380, "schoolName": "중곡초등학교", "address": "경상남도 거제시 중곡로 27 (고현동)", "coordinates": {"longitude": 128.629099934, "latitude": 34.894691479}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/0DHkOjiPcRM"}
+{"id": 381, "schoolName": "운유고등학교", "address": "경기도 김포시 김포한강2로 236 (장기동)", "coordinates": {"longitude": 126.66170153, "latitude": 37.646156846}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/GZO8dfIotAU"}
+{"id": 383, "schoolName": "신어중학교", "address": "경상남도 김해시 삼안로195번길 7 (삼방동)", "coordinates": {"longitude": 128.911848857, "latitude": 35.244804823}, "videoStatus": "Pending"}
+{"id": 384, "schoolName": "평창초등학교", "address": "강원도 평창군 평창읍 송학로 71 (평창읍)", "coordinates": {"longitude": 128.39197124, "latitude": 37.370397344}, "videoStatus": "Pending"}
+{"id": 385, "schoolName": "부산관광고등학교", "address": "부산광역시 서구 천마로 52 (남부민동)", "coordinates": {"longitude": 129.02242457, "latitude": 35.082504828}, "videoStatus": "Pending"}
+{"id": 386, "schoolName": "안강여자중학교", "address": "경상북도 경주시 안강읍 화전길 62-8", "coordinates": {"longitude": 129.211555584, "latitude": 35.99342828}, "videoStatus": "Pending"}
+{"id": 387, "schoolName": "종촌중학교", "address": "세종특별자치시 도움1로 126 (종촌동)", "coordinates": {"longitude": 127.245561967, "latitude": 36.50266204}, "videoStatus": "Pending"}
+{"id": 388, "schoolName": "관동중학교", "address": "강원도 강릉시 하슬라로20번길 14 (교동)", "coordinates": {"longitude": 128.880142225, "latitude": 37.757283019}, "videoStatus": "Pending"}
+{"id": 389, "schoolName": "용신중학교", "address": "경기도 용인시 처인구 명지로 15-26 (김량장동)", "coordinates": {"longitude": 127.192384701, "latitude": 37.233577137}, "videoStatus": "Pending"}
+{"id": 390, "schoolName": "동천초등학교", "address": "부산광역시 남구 석포로26번길 22", "coordinates": {"longitude": 129.083172441, "latitude": 35.121615409}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/kdoZ56YECyY"}
+{"id": 391, "schoolName": "인천성리초등학교", "address": "인천광역시 남동구 성리로 32-2 (구월동)", "coordinates": {"longitude": 126.709301531, "latitude": 37.445725069}, "videoStatus": "Pending"}
+{"id": 392, "schoolName": "마전중학교", "address": "인천광역시 서구 완정로 91 (마전동)", "coordinates": {"longitude": 126.665275211, "latitude": 37.597969059}, "videoStatus": "Pending"}
+{"id": 393, "schoolName": "금구중학교", "address": "광주광역시 광산구 목련로153번길 76 (운남동)", "coordinates": {"longitude": 126.81551701, "latitude": 35.175570975}, "videoStatus": "Pending"}
+{"id": 394, "schoolName": "한국외국어대학교", "address": "서울특별시 동대문구 이문로 107", "coordinates": {"longitude": 127.058313445, "latitude": 37.597275738}, "videoStatus": "Pending"}
+{"id": 395, "schoolName": "한국글로벌중학교", "address": "경기도 시흥시 금오로 640", "coordinates": {"longitude": 126.832686116, "latitude": 37.458452648}, "videoStatus": "Pending"}
+{"id": 396, "schoolName": "부안고등학교", "address": "전라북도 부안군 부안읍 문정로 32 (부안읍)", "coordinates": {"longitude": 126.729074892, "latitude": 35.71507805}, "videoStatus": "Pending"}
+{"id": 397, "schoolName": "속리산중학교", "address": "충청북도 보은군 삼승면 능월1길 11 (삼승면)", "coordinates": {"longitude": 127.736198082, "latitude": 36.393034245}, "videoStatus": "Pending"}
+{"id": 398, "schoolName": "갈뫼중학교", "address": "경기도 의왕시 갈미로 61 (내손동)", "coordinates": {"longitude": 126.975127858, "latitude": 37.377482397}, "videoStatus": "Pending"}
+{"id": 399, "schoolName": "대송중학교", "address": "울산광역시 동구 학문로 90 (화정동)", "coordinates": {"longitude": 129.419616852, "latitude": 35.504564782}, "videoStatus": "Pending"}
+{"id": 400, "schoolName": "한신초등학교", "address": "서울특별시 도봉구 노해로49길 69 (쌍문동)", "coordinates": {"longitude": 127.032479815, "latitude": 37.653254005}, "videoStatus": "Pending"}
+{"id": 401, "schoolName": "옥산중학교", "address": "충청북도 청주시 흥덕구 옥산면 오산1길 41", "coordinates": {"longitude": 127.370760293, "latitude": 36.670845163}, "videoStatus": "Pending"}
+{"id": 402, "schoolName": "모현중학교", "address": "경기도 용인시 처인구 모현읍 문현로189번길 5 (모현읍)", "coordinates": {"longitude": 127.230550175, "latitude": 37.343651719}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/BxmpirjNCL4"}
+{"id": 403, "schoolName": "명서중학교", "address": "경상남도 창원시 의창구 명지로 54 (명서동)", "coordinates": {"longitude": 128.644101332, "latitude": 35.251553897}, "videoStatus": "Pending"}
+{"id": 404, "schoolName": "인천계수중학교", "address": "인천광역시 계양구 살라리로2번길 25 (서운동)", "coordinates": {"longitude": 126.744758501, "latitude": 37.535137153}, "videoStatus": "Pending"}
+{"id": 405, "schoolName": "성동중학교", "address": "부산광역시 남구 남동천로 38 (문현동)", "coordinates": {"longitude": 129.066103522, "latitude": 35.14009614}, "videoStatus": "Pending"}
+{"id": 406, "schoolName": "부천중학교", "address": "경기도 부천시 원미구 심중로75번길 64 (중동)", "coordinates": {"longitude": 126.76874809, "latitude": 37.490429606}, "videoStatus": "Pending"}
+{"id": 407, "schoolName": "영덕고등학교", "address": "경기도 수원시 영통구 매영로 334 (영통동)", "coordinates": {"longitude": 127.068353549, "latitude": 37.252584709}, "videoStatus": "Pending"}
+{"id": 408, "schoolName": "원곡중학교", "address": "경기도 안산시 단원구 원선로 81 (원곡동)", "coordinates": {"longitude": 126.801562724, "latitude": 37.331572444}, "videoStatus": "Pending"}
+{"id": 409, "schoolName": "안산강서고등학교", "address": "경기도 안산시 단원구 삼일로 367 (와동)", "coordinates": {"longitude": 126.818780829, "latitude": 37.33416147}, "videoStatus": "Pending"}
+{"id": 410, "schoolName": "부산중학교", "address": "부산광역시 동구 초량로40번길 29 (초량동)", "coordinates": {"longitude": 129.036904732, "latitude": 35.122256825}, "videoStatus": "Pending"}
+{"id": 411, "schoolName": "안서중학교", "address": "경기도 광명시 기아로13번안길 9-9 (소하동)", "coordinates": {"longitude": 126.881323465, "latitude": 37.43807429}, "videoStatus": "Pending"}
+{"id": 412, "schoolName": "정일중학교", "address": "전라북도 정읍시 충정로 511 (정일중학교)", "coordinates": {"longitude": 126.830966754, "latitude": 35.581372446}, "videoStatus": "Pending"}
+{"id": 413, "schoolName": "창원신월초등학교", "address": "경상남도 창원시 성산구 신월로72번길 12 (신월동)", "coordinates": {"longitude": 128.692771396, "latitude": 35.225444027}, "videoStatus": "Pending"}
+{"id": 414, "schoolName": "안천중학교", "address": "서울특별시 금천구 한내로 69-44 (독산동)", "coordinates": {"longitude": 126.887325896, "latitude": 37.458942673}, "videoStatus": "Pending"}
+{"id": 415, "schoolName": "운산고등학교", "address": "경기도 광명시 한내일로 17", "coordinates": {"longitude": 126.883356552, "latitude": 37.454317695}, "videoStatus": "Pending"}
+{"id": 416, "schoolName": "순심여자중학교", "address": "경상북도 칠곡군 왜관읍 남부1길 22 (왜관읍)", "coordinates": {"longitude": 128.397278221, "latitude": 35.98671157}, "videoStatus": "Pending"}
+{"id": 417, "schoolName": "풍납중학교", "address": "서울특별시 송파구 올림픽로43길 20 (풍납동)", "coordinates": {"longitude": 127.11579813, "latitude": 37.525796121}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/JVLiQ1V6usc"}
+{"id": 418, "schoolName": "경북세무고등학교", "address": "경상북도 포항시 북구 기계면 기계로 218", "coordinates": {"longitude": 129.196383791, "latitude": 36.076843113}, "videoStatus": "Pending"}
+{"id": 419, "schoolName": "전주인봉초등학교", "address": "전라북도 전주시 덕진구 무삼지로 7 (전주인봉초등학교)", "coordinates": {"longitude": 127.164838323, "latitude": 35.826895234}, "videoStatus": "Pending"}
+{"id": 420, "schoolName": "무석한국학교", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
 {"id": 421, "schoolName": "신주중학교", "address": "경상남도 양산시 물금읍 신주로 21", "coordinates": {"longitude": 129.01494526, "latitude": 35.334898459}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/NVbkEWKls9c"}
 {"id": 422, "schoolName": "서연중학교", "address": "서울특별시 서대문구 연희로11마길 9-6 (연희동)", "coordinates": {"longitude": 126.927137698, "latitude": 37.568216345}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ZuLq6H_fLZ0"}
 {"id": 423, "schoolName": "예당중학교", "address": "경기도 화성시 노작로 226-35 (석우동)", "coordinates": {"longitude": 127.078846352, "latitude": 37.208015883}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/KcJB3hSwjUo"}
@@ -448,15 +448,15 @@
 {"id": 454, "schoolName": "숙지고등학교", "address": "경기도 수원시 팔달구 수성로182번길 100 (화서동)", "coordinates": {"longitude": 126.993268941, "latitude": 37.282368748}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/_RM58jFHKYk"}
 {"id": 455, "schoolName": "천안불무중학교", "address": "충청남도 천안시 서북구 불당23로 30", "coordinates": {"longitude": 127.10413692, "latitude": 36.817947566}, "videoStatus": "Pending"}
 {"id": 456, "schoolName": "전라중학교", "address": "전북특별자치도 전주시 덕진구 들사평1길 39 (덕진동1가)", "coordinates": {"longitude": 127.12345554, "latitude": 35.837546915}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/uTnDkLe5Vtc"}
-{"id": 457, "schoolName": "국립전통예술고등학교", "address": "서울특별시 금천구 시흥대로38길 62 (시흥동)", "coordinates": {"longitude": 126.906703182, "latitude": 37.446698597}}
-{"id": 458, "schoolName": "신상중학교", "address": "서울특별시 노원구 동일로216길 42 (상계동)", "coordinates": {"longitude": 127.063039534, "latitude": 37.651682486}}
-{"id": 459, "schoolName": "동일공업고등학교", "address": "경기도 평택시 중앙로 315 (비전동)", "coordinates": {"longitude": 127.117985577, "latitude": 36.992333212}}
-{"id": 460, "schoolName": "서현초등학교", "address": "경기도 성남시 분당구 중앙공원로39번길 12 (서현동)", "coordinates": {"longitude": 127.128550298, "latitude": 37.382575708}}
-{"id": 461, "schoolName": "오송중학교", "address": "충청북도 청주시 흥덕구 오송읍 만수2길 13 (오송읍)", "coordinates": {"longitude": 127.329974712, "latitude": 36.626870771}}
-{"id": 462, "schoolName": "인천해원중학교", "address": "인천광역시 서구 청라한내로 21 (청라동)", "coordinates": {"longitude": 126.628198734, "latitude": 37.527380514}}
-{"id": 463, "schoolName": "설봉중학교", "address": "경기도 이천시 향교로 117 (창전동)", "coordinates": {"longitude": 127.451260401, "latitude": 37.284615683}}
-{"id":464,"schoolName":"을지중학교","address":"서울특별시 노원구 덕릉로 580 (중계동)","coordinates":{"longitude":127.071705101,"latitude":37.649788096}}
-{"id": 465, "schoolName": "남일중학교", "address": "부산광역시 동래구 온천천로531번길 49 (안락동)", "coordinates": {"longitude": 129.111626542, "latitude": 35.193121912}}
+{"id": 457, "schoolName": "국립전통예술고등학교", "address": "서울특별시 금천구 시흥대로38길 62 (시흥동)", "coordinates": {"longitude": 126.906703182, "latitude": 37.446698597}, "videoStatus": "Pending"}
+{"id": 458, "schoolName": "신상중학교", "address": "서울특별시 노원구 동일로216길 42 (상계동)", "coordinates": {"longitude": 127.063039534, "latitude": 37.651682486}, "videoStatus": "Pending"}
+{"id": 459, "schoolName": "동일공업고등학교", "address": "경기도 평택시 중앙로 315 (비전동)", "coordinates": {"longitude": 127.117985577, "latitude": 36.992333212}, "videoStatus": "Pending"}
+{"id": 460, "schoolName": "서현초등학교", "address": "경기도 성남시 분당구 중앙공원로39번길 12 (서현동)", "coordinates": {"longitude": 127.128550298, "latitude": 37.382575708}, "videoStatus": "Pending"}
+{"id": 461, "schoolName": "오송중학교", "address": "충청북도 청주시 흥덕구 오송읍 만수2길 13 (오송읍)", "coordinates": {"longitude": 127.329974712, "latitude": 36.626870771}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/TcVQsxreKI8"}
+{"id": 462, "schoolName": "인천해원중학교", "address": "인천광역시 서구 청라한내로 21 (청라동)", "coordinates": {"longitude": 126.628198734, "latitude": 37.527380514}, "videoStatus": "Pending"}
+{"id": 463, "schoolName": "설봉중학교", "address": "경기도 이천시 향교로 117 (창전동)", "coordinates": {"longitude": 127.451260401, "latitude": 37.284615683}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ukKgwIHcT7I"}
+{"id": 464, "schoolName": "을지중학교", "address": "서울특별시 노원구 덕릉로 580 (중계동)", "coordinates": {"longitude": 127.071705101, "latitude": 37.649788096}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/hGjzMvs2xbc"}
+{"id": 465, "schoolName": "남일중학교", "address": "부산광역시 동래구 온천천로531번길 49 (안락동)", "coordinates": {"longitude": 129.111626542, "latitude": 35.193121912}, "videoStatus": "Pending"}
 {"id": 466, "schoolName": "광양제철중학교", "address": "전라남도 광양시 마로니에길 69 (금호동)", "coordinates": {"longitude": 127.727584333, "latitude": 34.947742829}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/vr4qAErmnKI"}
 {"id": 467, "schoolName": "창녕중학교", "address": "경상남도 창녕군 창녕읍 남창녕로 48", "coordinates": {"longitude": 128.503954362, "latitude": 35.535226673}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/4OfqyLNByHA"}
 {"id": 468, "schoolName": "인천연송고등학교", "address": "인천광역시 연수구 컨벤시아대로42번길 72 (송도동)", "coordinates": {"longitude": 126.646534133, "latitude": 37.403195181}, "videoStatus": "Pending"}
@@ -474,29 +474,29 @@
 {"id": 480, "schoolName": "국립공주대학교사범대학부설고등학교", "address": "충청남도 공주시 봉황로 75 (공주대학교사범대학부설고등학교)", "coordinates": {"longitude": 127.120283403, "latitude": 36.453275725}, "videoStatus": "Pending"}
 {"id": 481, "schoolName": "석정여자중학교", "address": "강원도 영월군 영월읍 영월로 1914-11 (석정여자중학교)", "coordinates": {"longitude": 128.458032695, "latitude": 37.180862095}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/n9rtxuRqSzk"}
 {"id": 482, "schoolName": "미사중학교", "address": "경기도 하남시 미사강변한강로 334 (망월동)", "coordinates": {"longitude": 127.20060473, "latitude": 37.56091846}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/-lqSX6Ai1j8"}
-{"id": 483, "schoolName": "세종국제고등학교", "address": "세종특별자치시 달빛1로 251 (아름동)", "coordinates": {"longitude": 127.247793278, "latitude": 36.521608377}}
-{"id": 484, "schoolName": "상무중학교", "address": "광주광역시 서구 운천로 142", "coordinates": {"longitude": 126.857958077, "latitude": 35.145078432}}
-{"id": 485, "schoolName": "김화공업고등학교", "address": "강원도 철원군 서면 와수1로 72 (서면)", "coordinates": {"longitude": 127.434228894, "latitude": 38.242974894}}
-{"id": 486, "schoolName": "대전갑천초등학교", "address": "대전광역시 서구 월평동로 61 (월평동)", "coordinates": {"longitude": 127.36768929, "latitude": 36.360827878}}
-{"id": 487, "schoolName": "운산초등학교", "address": "부산광역시 남구 용호로269번길 89 (용호동)", "coordinates": {"longitude": 129.115450548, "latitude": 35.110111069}}
-{"id": 488, "schoolName": "울산제일중학교", "address": "울산광역시 중구 태화로 77 (태화동)", "coordinates": {"longitude": 129.284642306, "latitude": 35.554884836}}
-{"id": 489, "schoolName": "동패중학교", "address": "경기도 파주시 교하로 381 (동패동)", "coordinates": {"longitude": 126.735828256, "latitude": 37.70855789}}
-{"id": 490, "schoolName": "용정중학교", "address": "전라남도 보성군 미력면 보성강로 279 (미력면)", "coordinates": {"longitude": 127.110147269, "latitude": 34.807024677}}
-{"id": 491, "schoolName": "거제중앙중학교", "address": "경상남도 거제시 중곡로2길 51 (고현동)", "coordinates": {"longitude": 128.635928384, "latitude": 34.894700586}}
-{"id": 492, "schoolName": "서원중학교", "address": "경기도 용인시 수지구 상현로42번길 26-8 (상현동)", "coordinates": {"longitude": 127.080661829, "latitude": 37.301863157}}
-{"id":493,"schoolName":"효명중학교","address":"경기도 평택시 송탄로 51 (장당동)","coordinates":{"longitude":127.055165151,"latitude":37.049924885}}
-{"id": 494, "schoolName": "유봉여자고등학교", "address": "강원도 춘천시 봉의산길22번길 28 (교동 유봉여자고등학교)", "coordinates": {"longitude": 127.73406851, "latitude": 37.885366754}}
-{"id": 495, "schoolName": "인천상정고등학교", "address": "인천광역시 부평구 경원대로 1109 (십정동)", "coordinates": {"longitude": 126.696379846, "latitude": 37.48071819}}
-{"id":496,"schoolName":"봉선중학교","address":"광주광역시 남구 봉선중길 14 (봉선동)","coordinates":{"longitude":126.912146997,"latitude":35.129011813}}
-{"id": 497, "schoolName": "한국디지털미디어고등학교", "address": "경기도 안산시 단원구 사세충열로 94 (와동)", "coordinates": {"longitude": 126.831239082, "latitude": 37.341349705}}
-{"id": 498, "schoolName": "화성청계초등학교", "address": "경기도 화성시 동탄대로시범길 39 (청계동)", "coordinates": {"longitude": 127.101619775, "latitude": 37.19936531}, "status": "sent"}
-{"id": 499, "schoolName": "양천고등학교", "address": "서울특별시 양천구 신정로14길 13 (신정동)", "coordinates": {"longitude": 126.846455265, "latitude": 37.509524234}}
-{"id": 500, "schoolName": "범박중학교", "address": "경기도 부천시 소사구 양지남로 69-16 (범박동)", "coordinates": {"longitude": 126.814524632, "latitude": 37.469159553}}
-{"id": 501, "schoolName": "김화중학교", "address": "강원도 철원군 서면 와수1로 72 (서면)", "coordinates": {"longitude": 127.434228894, "latitude": 38.242974894}}
-{"id": 502, "schoolName": "전동중학교", "address": "서울특별시 동대문구 장안벚꽃로 291 (휘경동)", "coordinates": {"longitude": 127.071772611, "latitude": 37.584979875}}
-{"id": 503, "schoolName": "호원중학교", "address": "경기도 의정부시 호암로 205 (호원동)", "coordinates": {"longitude": 127.044652301, "latitude": 37.719334208}}
+{"id": 483, "schoolName": "세종국제고등학교", "address": "세종특별자치시 달빛1로 251 (아름동)", "coordinates": {"longitude": 127.247793278, "latitude": 36.521608377}, "videoStatus": "Pending"}
+{"id": 484, "schoolName": "상무중학교", "address": "광주광역시 서구 운천로 142", "coordinates": {"longitude": 126.857958077, "latitude": 35.145078432}, "videoStatus": "Pending"}
+{"id": 485, "schoolName": "김화공업고등학교", "address": "강원도 철원군 서면 와수1로 72 (서면)", "coordinates": {"longitude": 127.434228894, "latitude": 38.242974894}, "videoStatus": "Pending"}
+{"id": 486, "schoolName": "대전갑천초등학교", "address": "대전광역시 서구 월평동로 61 (월평동)", "coordinates": {"longitude": 127.36768929, "latitude": 36.360827878}, "videoStatus": "Pending"}
+{"id": 487, "schoolName": "운산초등학교", "address": "부산광역시 남구 용호로269번길 89 (용호동)", "coordinates": {"longitude": 129.115450548, "latitude": 35.110111069}, "videoStatus": "Pending"}
+{"id": 488, "schoolName": "울산제일중학교", "address": "울산광역시 중구 태화로 77 (태화동)", "coordinates": {"longitude": 129.284642306, "latitude": 35.554884836}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/yq2_4idwbZE"}
+{"id": 489, "schoolName": "동패중학교", "address": "경기도 파주시 교하로 381 (동패동)", "coordinates": {"longitude": 126.735828256, "latitude": 37.70855789}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Gskth_dh6Uw"}
+{"id": 490, "schoolName": "용정중학교", "address": "전라남도 보성군 미력면 보성강로 279 (미력면)", "coordinates": {"longitude": 127.110147269, "latitude": 34.807024677}, "videoStatus": "Pending"}
+{"id": 491, "schoolName": "거제중앙중학교", "address": "경상남도 거제시 중곡로2길 51 (고현동)", "coordinates": {"longitude": 128.635928384, "latitude": 34.894700586}, "videoStatus": "Pending"}
+{"id": 492, "schoolName": "서원중학교", "address": "경기도 용인시 수지구 상현로42번길 26-8 (상현동)", "coordinates": {"longitude": 127.080661829, "latitude": 37.301863157}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/RUXUCLvIcrg"}
+{"id": 493, "schoolName": "효명중학교", "address": "경기도 평택시 송탄로 51 (장당동)", "coordinates": {"longitude": 127.055165151, "latitude": 37.049924885}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/OWZihjRgXZ8"}
+{"id": 494, "schoolName": "유봉여자고등학교", "address": "강원도 춘천시 봉의산길22번길 28 (교동 유봉여자고등학교)", "coordinates": {"longitude": 127.73406851, "latitude": 37.885366754}, "videoStatus": "Pending"}
+{"id": 495, "schoolName": "인천상정고등학교", "address": "인천광역시 부평구 경원대로 1109 (십정동)", "coordinates": {"longitude": 126.696379846, "latitude": 37.48071819}, "videoStatus": "Pending"}
+{"id": 496, "schoolName": "봉선중학교", "address": "광주광역시 남구 봉선중길 14", "coordinates": {"longitude": 126.912146997, "latitude": 35.129011813}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/1dqtiZz1E2A"}
+{"id": 497, "schoolName": "한국디지털미디어고등학교", "address": "경기도 안산시 단원구 사세충열로 94 (와동)", "coordinates": {"longitude": 126.831239082, "latitude": 37.341349705}, "videoStatus": "Pending"}
+{"id": 498, "schoolName": "화성청계초등학교", "address": "경기도 화성시 동탄대로시범길 39 (청계동)", "coordinates": {"longitude": 127.101619775, "latitude": 37.19936531}, "status": "Sent", "videoStatus": "Pending"}
+{"id": 499, "schoolName": "양천고등학교", "address": "서울특별시 양천구 신정로14길 13 (신정동)", "coordinates": {"longitude": 126.846455265, "latitude": 37.509524234}, "videoStatus": "Pending"}
+{"id": 500, "schoolName": "범박중학교", "address": "경기도 부천시 소사구 양지남로 69-16 (범박동)", "coordinates": {"longitude": 126.814524632, "latitude": 37.469159553}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/DuFXPGdAPO0"}
+{"id": 501, "schoolName": "김화중학교", "address": "강원도 철원군 서면 와수1로 72 (서면)", "coordinates": {"longitude": 127.434228894, "latitude": 38.242974894}, "videoStatus": "Pending"}
+{"id": 502, "schoolName": "전동중학교", "address": "서울특별시 동대문구 장안벚꽃로 291 (휘경동)", "coordinates": {"longitude": 127.071772611, "latitude": 37.584979875}, "videoStatus": "Pending"}
+{"id": 503, "schoolName": "호원중학교", "address": "경기도 의정부시 호암로 205 (호원동)", "coordinates": {"longitude": 127.044652301, "latitude": 37.719334208}, "videoStatus": "Pending"}
 {"id": 504, "schoolName": "전주아중중학교", "address": "전라북도 전주시 덕진구 중상보로 16 (전주아중중학교)", "coordinates": {"longitude": 127.17043203, "latitude": 35.832513858}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/iaN9FCwrtHU"}
-{"id":505,"schoolName":"창천중학교","address":"서울특별시 마포구 백범로1길 56 (노고산동)","coordinates":{"longitude":126.939420820,"latitude":37.554893553}}
+{"id": 505, "schoolName": "창천중학교", "address": "서울특별시 마포구 백범로1길 56 (노고산동)", "coordinates": {"longitude": 126.93942082, "latitude": 37.554893553}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/4YcQhQ35mB8"}
 {"id": 506, "schoolName": "한국원자력마이스터고등학교", "address": "경상북도 울진군 평해읍 월송정로 422", "coordinates": {"longitude": 129.463796923, "latitude": 36.743306376}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/GyX_eFlyeYU"}
 {"id": 507, "schoolName": "상동중학교", "address": "경기도 부천시 원미구 부흥로 19 (상동)", "coordinates": {"longitude": 126.744708085, "latitude": 37.497912814}, "videoStatus": "Pending"}
 {"id": 508, "schoolName": "하안북중학교", "address": "경기도 광명시 가림로 22 (하안동)", "coordinates": {"longitude": 126.867800109, "latitude": 37.464906036}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/dHEupDalAAQ"}
@@ -504,15 +504,15 @@
 {"id": 510, "schoolName": "광주수피아여자중학교", "address": "광주광역시 남구 백서로 13 (양림동)", "coordinates": {"longitude": 126.909269728, "latitude": 35.137592544}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/--JJTFBjI3U"}
 {"id": 511, "schoolName": "대송고등학교", "address": "울산광역시 동구 봉수로 210 (화정동)", "coordinates": {"longitude": 129.419345495, "latitude": 35.50569466}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/3lc-WEagQaA"}
 {"id": 512, "schoolName": "풍산중학교", "address": "경상북도 안동시 풍산읍 풍산중앙길 39", "coordinates": {"longitude": 128.565033776, "latitude": 36.583795506}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/fOM7jFQvQYI"}
-{"id": 513, "schoolName": "전주고등학교", "address": "전북특별자치도 전주시 완산구 권삼득로 2 (중노송동)", "coordinates": {"longitude": 127.151713764, "latitude": 35.825857937}}
-{"id": 514, "schoolName": "보문고등학교", "address": "대전광역시 동구 우암로 57 (삼성동)", "coordinates": {"longitude": 127.424600545, "latitude": 36.33671021}}
-{"id": 515, "schoolName": "대화고등학교", "address": "경기도 고양시 일산서구 대화로 100 (대화동)", "coordinates": {"longitude": 126.73204382, "latitude": 37.668364899}}
-{"id":516,"schoolName":"용남고등학교","address":"경상남도 사천시 용현면 선진길 24","coordinates":{"longitude":128.064377863,"latitude":35.044445906}}
-{"id": 517, "schoolName": "영통중학교", "address": "경기도 수원시 영통구 영통로 316 (영통동)", "coordinates": {"longitude": 127.063722217, "latitude": 37.253640809}}
-{"id": 518, "schoolName": "대구경북과학기술원", "address": "대구광역시 달성군 현풍읍 테크노중앙대로 333", "coordinates": {"longitude": 128.456255249, "latitude": 35.704926213}}
-{"id": 519, "schoolName": "경안고등학교", "address": "경상북도 안동시 제비원로 182 (금곡동)", "coordinates": {"longitude": 128.721165606, "latitude": 36.567783046}}
-{"id": 520, "schoolName": "충남외국어고등학교", "address": "충청남도 아산시 탕정면 탕정면로 53-60", "coordinates": {"longitude": 127.061468201, "latitude": 36.804054077}}
-{"id": 521, "schoolName": "영동고등학교", "address": "경상북도 영천시 안야사길 13 (야사동)", "coordinates": {"longitude": 128.946142378, "latitude": 35.978150694}}
+{"id": 513, "schoolName": "전주고등학교", "address": "전북특별자치도 전주시 완산구 권삼득로 2 (중노송동)", "coordinates": {"longitude": 127.151713764, "latitude": 35.825857937}, "videoStatus": "Pending"}
+{"id": 514, "schoolName": "보문고등학교", "address": "대전광역시 동구 우암로 57 (삼성동)", "coordinates": {"longitude": 127.424600545, "latitude": 36.33671021}, "videoStatus": "Pending"}
+{"id": 515, "schoolName": "대화고등학교", "address": "경기도 고양시 일산서구 대화로 100 (대화동)", "coordinates": {"longitude": 126.73204382, "latitude": 37.668364899}, "videoStatus": "Pending"}
+{"id": 516, "schoolName": "용남고등학교", "address": "경상남도 사천시 용현면 선진길 24", "coordinates": {"longitude": 128.064377863, "latitude": 35.044445906}, "videoStatus": "Pending"}
+{"id": 517, "schoolName": "영통중학교", "address": "경기도 수원시 영통구 영통로 316 (영통동)", "coordinates": {"longitude": 127.063722217, "latitude": 37.253640809}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/lYsbxZqdAxg"}
+{"id": 518, "schoolName": "대구경북과학기술원", "address": "대구광역시 달성군 현풍읍 테크노중앙대로 333", "coordinates": {"longitude": 128.456255249, "latitude": 35.704926213}, "videoStatus": "Pending"}
+{"id": 519, "schoolName": "경안고등학교", "address": "경상북도 안동시 제비원로 182 (금곡동)", "coordinates": {"longitude": 128.721165606, "latitude": 36.567783046}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/z7VxpfJ4Dv4"}
+{"id": 520, "schoolName": "충남외국어고등학교", "address": "충청남도 아산시 탕정면 탕정면로 53-60", "coordinates": {"longitude": 127.061468201, "latitude": 36.804054077}, "videoStatus": "Pending"}
+{"id": 521, "schoolName": "영동고등학교", "address": "경상북도 영천시 안야사길 13 (야사동)", "coordinates": {"longitude": 128.946142378, "latitude": 35.978150694}, "videoStatus": "Pending"}
 {"id": 522, "schoolName": "개원중학교", "address": "서울특별시 강남구 영동대로 101 (개포동)", "coordinates": {"longitude": 127.071900442, "latitude": 37.49159043}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/0p_HF7a3AK8"}
 {"id": 523, "schoolName": "포항영신고등학교", "address": "경상북도 포항시 북구 소티재로 107 (우현동)", "coordinates": {"longitude": 129.351007538, "latitude": 36.059639148}, "videoStatus": "Pending"}
 {"id": 524, "schoolName": "인천체육고등학교", "address": "인천광역시 서구 로봇랜드로 473 (청라동)", "coordinates": {"longitude": 126.610490231, "latitude": 37.545403599}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/USOfV5VFx70"}
@@ -527,30 +527,30 @@
 {"id": 533, "schoolName": "동국대학교사범대학부속금산중고등학교", "address": "전북특별자치도 김제시 금산면 모악로 47", "coordinates": {"longitude": 126.999870536, "latitude": 35.717371318}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/lfRGFnYRX6I"}
 {"id": 534, "schoolName": "대구가톨릭대학교사범대학부속무학중학교", "address": "경상북도 경산시 하양읍 금송로 71-11", "coordinates": {"longitude": 128.817296587, "latitude": 35.919643033}, "videoStatus": "Pending"}
 {"id": 535, "schoolName": "창원남고등학교", "address": "경상남도 창원시 성산구 창원대로 813 (외동)", "coordinates": {"longitude": 128.680073222, "latitude": 35.21412585}, "videoStatus": "Pending", "videoUrl": ""}
-{"id":536,"schoolName":"길음중학교","address":"서울특별시 성북구 길음로 144 (길음동)","coordinates":{"longitude":127.017836501,"latitude":37.613974993}}
-{"id": 537, "schoolName": "괴산중학교", "address": "충청북도 괴산군 괴산읍 괴산로 3527", "coordinates": {"longitude": 127.783643089, "latitude": 36.797393719}}
-{"id": 538, "schoolName": "청담중학교", "address": "서울특별시 강남구 압구정로61길 36 (청담동)", "coordinates": {"longitude": 127.045437156, "latitude": 37.528594862}}
-{"id": 539, "schoolName": "다대중학교", "address": "부산광역시 사하구 다대로554번길 33 (다대동)", "coordinates": {"longitude": 128.968666296, "latitude": 35.057791608}}
-{"id":540,"schoolName":"청림중학교","address":"경기도 화성시 동탄산척로 94 (산척동)","coordinates":{"longitude":127.111411446,"latitude":37.171819404}}
-{"id": 541, "schoolName": "소래고등학교", "address": "경기도 시흥시 수인로3287번길 26 (은행동)", "coordinates": {"longitude": 126.794738731, "latitude": 37.438030021}}
-{"id": 542, "schoolName": "남강고등학교", "address": "서울특별시 관악구 난곡로34길 80 (신림동)", "coordinates": {"longitude": 126.925348116, "latitude": 37.4723092}}
-{"id": 543, "schoolName": "신사중학교", "address": "서울특별시 강남구 압구정로 123 (압구정동)", "coordinates": {"longitude": 127.020918837, "latitude": 37.524651621}}
-{"id": 544, "schoolName": "목일중학교", "address": "서울특별시 양천구 목동동로8길 70 (신정동)", "coordinates": {"longitude": 126.874268765, "latitude": 37.513508547}}
-{"id": 545, "schoolName": "서대구중학교", "address": "대구광역시 서구 북비산로45길 7 (평리동)", "coordinates": {"longitude": 128.55656137, "latitude": 35.880328598}}
+{"id": 536, "schoolName": "길음중학교", "address": "서울특별시 성북구 길음로 144 (길음동)", "coordinates": {"longitude": 127.017836501, "latitude": 37.613974993}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Cxetmostpz0"}
+{"id": 537, "schoolName": "괴산중학교", "address": "충청북도 괴산군 괴산읍 괴산로 3527", "coordinates": {"longitude": 127.783643089, "latitude": 36.797393719}, "videoStatus": "Pending"}
+{"id": 538, "schoolName": "청담중학교", "address": "서울특별시 강남구 압구정로61길 36 (청담동)", "coordinates": {"longitude": 127.045437156, "latitude": 37.528594862}, "videoStatus": "Pending"}
+{"id": 539, "schoolName": "다대중학교", "address": "부산광역시 사하구 다대로554번길 33 (다대동)", "coordinates": {"longitude": 128.968666296, "latitude": 35.057791608}, "videoStatus": "Pending"}
+{"id": 540, "schoolName": "청림중학교", "address": "경기도 화성시 동탄산척로 94 (산척동)", "coordinates": {"longitude": 127.111411446, "latitude": 37.171819404}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/dapdOk800_c"}
+{"id": 541, "schoolName": "소래고등학교", "address": "경기도 시흥시 수인로3287번길 26 (은행동)", "coordinates": {"longitude": 126.794738731, "latitude": 37.438030021}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/A52tu7RPVwM"}
+{"id": 542, "schoolName": "남강고등학교", "address": "서울특별시 관악구 난곡로34길 80 (신림동)", "coordinates": {"longitude": 126.925348116, "latitude": 37.4723092}, "videoStatus": "Pending"}
+{"id": 543, "schoolName": "신사중학교", "address": "서울특별시 강남구 압구정로 123 (압구정동)", "coordinates": {"longitude": 127.020918837, "latitude": 37.524651621}, "videoStatus": "Pending"}
+{"id": 544, "schoolName": "목일중학교", "address": "서울특별시 양천구 목동동로8길 70 (신정동)", "coordinates": {"longitude": 126.874268765, "latitude": 37.513508547}, "videoStatus": "Pending"}
+{"id": 545, "schoolName": "서대구중학교", "address": "대구광역시 서구 북비산로45길 7 (평리동)", "coordinates": {"longitude": 128.55656137, "latitude": 35.880328598}, "videoStatus": "Pending"}
 {"id": 546, "schoolName": "원평중학교", "address": "충청북도 청주시 서원구 1순환로1137번길 36 (분평동)", "coordinates": {"longitude": 127.493911138, "latitude": 36.60805741}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/VVKYZ_coTe4"}
 {"id": 547, "schoolName": "인천디자인고등학교", "address": "인천광역시 서구 대평로56번길 10 (연희동)", "coordinates": {"longitude": 126.67168602, "latitude": 37.548023705}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Q397uabB5JM"}
 {"id": 548, "schoolName": "대연고등학교", "address": "부산광역시 남구 조각공원로 20 (대연동)", "coordinates": {"longitude": 129.101992902, "latitude": 35.129043546}, "videoStatus": "Pending"}
 {"id": 549, "schoolName": "남천중학교", "address": "부산광역시 남구 황령대로492번길 71 (대연동)", "coordinates": {"longitude": 129.105231606, "latitude": 35.136961737}, "videoStatus": "Pending"}
 {"id": 550, "schoolName": "부원중학교", "address": "인천광역시 부평구 경원대로 1339 (부평동)", "coordinates": {"longitude": 126.716743285, "latitude": 37.492423629}, "videoStatus": "Pending"}
 {"id": 551, "schoolName": "봉은중학교", "address": "서울특별시 강남구 영동대로128길 59 (삼성동)", "coordinates": {"longitude": 127.062343224, "latitude": 37.519084852}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Cg6YnJoAS1U"}
-{"id": 552, "schoolName": "이천송정중학교", "address": "경기도 이천시 영창로45번길 139 (송정동)", "coordinates": {"longitude": 127.433054647, "latitude": 37.293485331}}
-{"id": 553, "schoolName": "천안가온중학교", "address": "충청남도 천안시 동남구 청수6로 83 (청당동)", "coordinates": {"longitude": 127.155232683, "latitude": 36.787758246}}
-{"id":554,"schoolName":"순천삼산중학교","address":"전라남도 순천시 해룡면 매안로 84","coordinates":{"longitude":127.555726279,"latitude":34.933812882}}
-{"id": 555, "schoolName": "동평중학교", "address": "울산광역시 남구 도산로77번길 13-34 (달동)", "coordinates": {"longitude": 129.324931968, "latitude": 35.533868972}}
-{"id": 556, "schoolName": "부천중학교", "address": "경기도 부천시 심중로75번길 64 (중동)", "coordinates": {"longitude": 126.76874809, "latitude": 37.490429606}}
-{"id": 557, "schoolName": "인천문학초등학교", "address": "인천광역시 미추홀구 매소홀로 553 (문학동)", "coordinates": {"longitude": 126.682390362, "latitude": 37.439601037}}
-{"id": 558, "schoolName": "서연중학교", "address": "경기도 화성시 동탄대로4길 40 (장지동)", "coordinates": {"longitude": 127.110229727, "latitude": 37.160852037}}
-{"id": 559, "schoolName": "중부초등학교", "address": "경상남도 양산시 양주로 140 (중부동)", "coordinates": {"longitude": 129.033291188, "latitude": 35.337372304}}
+{"id": 552, "schoolName": "이천송정중학교", "address": "경기도 이천시 영창로45번길 139 (송정동)", "coordinates": {"longitude": 127.433054647, "latitude": 37.293485331}, "videoStatus": "Pending"}
+{"id": 553, "schoolName": "천안가온중학교", "address": "충청남도 천안시 동남구 청수6로 83 (청당동)", "coordinates": {"longitude": 127.155232683, "latitude": 36.787758246}, "videoStatus": "Pending"}
+{"id": 554, "schoolName": "순천삼산중학교", "address": "전라남도 순천시 해룡면 매안로 84", "coordinates": {"longitude": 127.555726279, "latitude": 34.933812882}, "videoStatus": "Pending"}
+{"id": 555, "schoolName": "동평중학교", "address": "울산광역시 남구 도산로77번길 13-34 (달동)", "coordinates": {"longitude": 129.324931968, "latitude": 35.533868972}, "videoStatus": "Pending"}
+{"id": 556, "schoolName": "부천중학교", "address": "경기도 부천시 심중로75번길 64 (중동)", "coordinates": {"longitude": 126.76874809, "latitude": 37.490429606}, "videoStatus": "Pending"}
+{"id": 557, "schoolName": "인천문학초등학교", "address": "인천광역시 미추홀구 매소홀로 553 (문학동)", "coordinates": {"longitude": 126.682390362, "latitude": 37.439601037}, "videoStatus": "Pending"}
+{"id": 558, "schoolName": "서연중학교", "address": "경기도 화성시 동탄대로4길 40 (장지동)", "coordinates": {"longitude": 127.110229727, "latitude": 37.160852037}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ZuLq6H_fLZ0"}
+{"id": 559, "schoolName": "중부초등학교", "address": "경상남도 양산시 양주로 140 (중부동)", "coordinates": {"longitude": 129.033291188, "latitude": 35.337372304}, "videoStatus": "Pending"}
 {"id": 560, "schoolName": "대흥중학교", "address": "충청남도 예산군 대흥면 예당로 845", "coordinates": {"longitude": 126.792168282, "latitude": 36.605416071}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/eBWXS0lCe2k"}
 {"id": 561, "schoolName": "대광고등학교", "address": "부산광역시 사하구 동매로 135 (당리동)", "coordinates": {"longitude": 128.972325756, "latitude": 35.10151236}, "videoStatus": "Pending"}
 {"id": 562, "schoolName": "오성중학교", "address": "경기도 평택시 오성면 오성새싹길 6 (오성면)", "coordinates": {"longitude": 126.980383707, "latitude": 37.00891134}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/5cpriFOoLCc"}
@@ -566,10 +566,10 @@
 {"id": 572, "schoolName": "원곡고등학교", "address": "경기도 안산시 단원구 화랑로 15 (원곡동)", "coordinates": {"longitude": 126.798020849, "latitude": 37.333752388}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/7zUGE7-fqxg"}
 {"id": 573, "schoolName": "문성고등학교", "address": "광주광역시 남구 제석로 73 (봉선동)", "coordinates": {"longitude": 126.904991638, "latitude": 35.119424643}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Q0YTr_ytEr4"}
 {"id": 574, "schoolName": "대서중학교", "address": "대구광역시 달서구 월배로 303 (송현동)", "coordinates": {"longitude": 128.543541885, "latitude": 35.823634735}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/j-7uXGlB2tA"}
-{"id": 575, "schoolName": "새본리중학교", "address": "대구광역시 달서구 대명천로 167 (본리동)", "coordinates": {"longitude": 128.541177892, "latitude": 35.83946836}}
-{"id": 576, "schoolName": "중앙중학교", "address": "경기도 안산시 단원구 안산천서로 65 (고잔동)", "coordinates": {"longitude": 126.839664632, "latitude": 37.322167547}}
-{"id":577,"schoolName":"창원대암고등학교","address":"경상남도 창원시 성산구 대암로 203 (대방동)","coordinates":{"longitude":128.711645527,"latitude":35.207562045}}
-{"id": 578, "schoolName": "창원과학고등학교", "address": "경상남도 창원시 의창구 평산로159번길 30 (서상동)", "coordinates": {"longitude": 128.619671954, "latitude": 35.256818933}}
+{"id": 575, "schoolName": "새본리중학교", "address": "대구광역시 달서구 대명천로 167 (본리동)", "coordinates": {"longitude": 128.541177892, "latitude": 35.83946836}, "videoStatus": "Pending"}
+{"id": 576, "schoolName": "중앙중학교", "address": "경기도 안산시 단원구 안산천서로 65 (고잔동)", "coordinates": {"longitude": 126.839664632, "latitude": 37.322167547}, "videoStatus": "Pending"}
+{"id": 577, "schoolName": "창원대암고등학교", "address": "경상남도 창원시 성산구 대암로 203 (대방동)", "coordinates": {"longitude": 128.711645527, "latitude": 35.207562045}, "videoStatus": "Pending"}
+{"id": 578, "schoolName": "창원과학고등학교", "address": "경상남도 창원시 의창구 평산로159번길 30 (서상동)", "coordinates": {"longitude": 128.619671954, "latitude": 35.256818933}, "videoStatus": "Pending"}
 {"id": 579, "schoolName": "초전중학교", "address": "경상북도 성주군 초전면 대장길 124", "coordinates": {"longitude": 128.264348584, "latitude": 35.976776374}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/iNThzrBVHmQ"}
 {"id": 580, "schoolName": "인천국제고등학교", "address": "인천광역시 중구 영종대로277번길 74-40 (운서동)", "coordinates": {"longitude": 126.508691926, "latitude": 37.490533029}, "videoStatus": "Pending"}
 {"id": 581, "schoolName": "목포영화중학교", "address": "전라남도 목포시 영산로 413-2 (상동)", "coordinates": {"longitude": 126.410170314, "latitude": 34.807993774}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/nDoUYIowIO8"}
@@ -587,14 +587,14 @@
 {"id": 593, "schoolName": "진주봉원중학교", "address": "경상남도 진주시 진주성로 169 (상봉동)", "coordinates": {"longitude": 128.073680885, "latitude": 35.204999327}, "videoStatus": "Pending"}
 {"id": 594, "schoolName": "한국삼육중학교", "address": "서울특별시 노원구 화랑로 815 (공릉동)", "coordinates": {"longitude": 127.108850353, "latitude": 37.643357368}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/e2yw7kw8RNs"}
 {"id": 595, "schoolName": "유가중학교", "address": "대구광역시 달성군 유가읍 테크노대로5길 20", "coordinates": {"longitude": 128.467828339, "latitude": 35.691147633}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Xnuaq8wWjJ4"}
-{"id": 596, "schoolName": "강릉제일고등학교", "address": "강원특별자치도 강릉시 화부산로8번길 37 (교동)", "coordinates": {"longitude": 128.889706644, "latitude": 37.760444984}}
-{"id": 597, "schoolName": "포산고등학교", "address": "대구광역시 달성군 현풍읍 비슬로 556-13", "coordinates": {"longitude": 128.448461275, "latitude": 35.690530635}}
-{"id": 598, "schoolName": "송파중학교", "address": "서울특별시 송파구 동남로 203 (가락동)", "coordinates": {"longitude": 127.129641772, "latitude": 37.496181877}}
-{"id": 599, "schoolName": "풍무중학교", "address": "경기도 김포시 유현로33번길 60 (풍무동)", "coordinates": {"longitude": 126.727340229, "latitude": 37.600141632}}
-{"id": 600, "schoolName": "오륜중학교", "address": "서울특별시 송파구 양재대로 1242 (방이동)", "coordinates": {"longitude": 127.138521712, "latitude": 37.516294893}}
-{"id":601,"schoolName":"삼각산중학교","address":"서울특별시 강북구 삼양로19길 141 (미아동)","coordinates":{"longitude":127.014342629,"latitude":37.616041191}}
-{"id":602,"schoolName":"대전제일고등학교","address":"대전광역시 서구 배재로46번길 77 (도마동)","coordinates":{"longitude":127.372394565,"latitude":36.313483959}}
-{"id": 603, "schoolName": "덕계초등학교", "address": "경상남도 양산시 덕계로 92 (덕계동)", "coordinates": {"longitude": 129.154163341, "latitude": 35.375529563}}
+{"id": 596, "schoolName": "강릉제일고등학교", "address": "강원특별자치도 강릉시 화부산로8번길 37 (교동)", "coordinates": {"longitude": 128.889706644, "latitude": 37.760444984}, "videoStatus": "Pending"}
+{"id": 597, "schoolName": "포산고등학교", "address": "대구광역시 달성군 현풍읍 비슬로 556-13", "coordinates": {"longitude": 128.448461275, "latitude": 35.690530635}, "videoStatus": "Pending"}
+{"id": 598, "schoolName": "송파중학교", "address": "서울특별시 송파구 동남로 203 (가락동)", "coordinates": {"longitude": 127.129641772, "latitude": 37.496181877}, "videoStatus": "Pending"}
+{"id": 599, "schoolName": "풍무중학교", "address": "경기도 김포시 유현로33번길 60 (풍무동)", "coordinates": {"longitude": 126.727340229, "latitude": 37.600141632}, "videoStatus": "Pending"}
+{"id": 600, "schoolName": "오륜중학교", "address": "서울특별시 송파구 양재대로 1242 (방이동)", "coordinates": {"longitude": 127.138521712, "latitude": 37.516294893}, "videoStatus": "Pending"}
+{"id": 601, "schoolName": "삼각산중학교", "address": "서울특별시 강북구 삼양로19길 141 (미아동)", "coordinates": {"longitude": 127.014342629, "latitude": 37.616041191}, "videoStatus": "Pending"}
+{"id": 602, "schoolName": "대전제일고등학교", "address": "대전광역시 서구 배재로46번길 77 (도마동)", "coordinates": {"longitude": 127.372394565, "latitude": 36.313483959}, "videoStatus": "Pending"}
+{"id": 603, "schoolName": "덕계초등학교", "address": "경상남도 양산시 덕계로 92 (덕계동)", "coordinates": {"longitude": 129.154163341, "latitude": 35.375529563}, "videoStatus": "Pending"}
 {"id": 604, "schoolName": "부평서중학교", "address": "인천광역시 부평구 화랑로 29 (산곡동)", "coordinates": {"longitude": 126.703427464, "latitude": 37.487036973}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/mo8d1KiJxZI"}
 {"id": 605, "schoolName": "솔뫼중학교", "address": "경기도 의정부시 시민로 464-14 (용현동)", "coordinates": {"longitude": 127.082276081, "latitude": 37.7307826}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/NNb2yPECUg4"}
 {"id": 606, "schoolName": "봉림중학교", "address": "경상남도 창원시 의창구 사림로16번길 15 (사림동)", "coordinates": {"longitude": 128.677288626, "latitude": 35.246754232}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/3NO-QG6WTxs"}
@@ -602,16 +602,16 @@
 {"id": 608, "schoolName": "남지고등학교", "address": "경상남도 창녕군 남지읍 남고길 11", "coordinates": {"longitude": 128.471641056, "latitude": 35.387207326}, "videoStatus": "Pending"}
 {"id": 609, "schoolName": "용현중학교", "address": "인천광역시 미추홀구 낙섬동로 16 (용현동)", "coordinates": {"longitude": 126.639778433, "latitude": 37.44687591}, "videoStatus": "Pending"}
 {"id": 610, "schoolName": "천상중학교", "address": "울산광역시 울주군 범서읍 천상중앙길 161", "coordinates": {"longitude": 129.219798315, "latitude": 35.560150907}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/cM6rqoiKDLw"}
-{"id": 611, "schoolName": "천안동성중학교", "address": "충청남도 천안시 서북구 성환읍 성환1로 138", "coordinates": {"longitude": 127.130170837, "latitude": 36.90522233}}
-{"id": 612, "schoolName": "대구외국어고등학교", "address": "대구광역시 달서구 선원로11길 21 (신당동)", "coordinates": {"longitude": 128.497494432, "latitude": 35.860563724}}
-{"id":613,"schoolName":"담양중학교","address":"전라남도 담양군 담양읍 천변7길 13","coordinates":{"longitude":126.981035154,"latitude":35.316356754}}
-{"id": 614, "schoolName": "율하중학교", "address": "경상남도 김해시 율하1로 39 (율하동)", "coordinates": {"longitude": 128.808074003, "latitude": 35.17504193}}
-{"id": 615, "schoolName": "마한드라인터내셔널스쿨", "address": "", "coordinates": {"longitude": 0, "latitude": 0}}
+{"id": 611, "schoolName": "천안동성중학교", "address": "충청남도 천안시 서북구 성환읍 성환1로 138", "coordinates": {"longitude": 127.130170837, "latitude": 36.90522233}, "videoStatus": "Pending"}
+{"id": 612, "schoolName": "대구외국어고등학교", "address": "대구광역시 달서구 선원로11길 21 (신당동)", "coordinates": {"longitude": 128.497494432, "latitude": 35.860563724}, "videoStatus": "Pending"}
+{"id": 613, "schoolName": "담양중학교", "address": "전라남도 담양군 담양읍 천변7길 13", "coordinates": {"longitude": 126.981035154, "latitude": 35.316356754}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/BCJH9bpn3AU"}
+{"id": 614, "schoolName": "율하중학교", "address": "경상남도 김해시 율하1로 39 (율하동)", "coordinates": {"longitude": 128.808074003, "latitude": 35.17504193}, "videoStatus": "Pending"}
+{"id": 615, "schoolName": "마한드라인터내셔널스쿨", "address": "", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
 {"id": 616, "schoolName": "고림고등학교", "address": "경기도 용인시 처인구 고림로165번길 (고림동)", "coordinates": {"longitude": 127.2194, "latitude": 37.2468}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/dOiwx8e5G0Q"}
-{"id":617,"schoolName":"청산중학교","address":"경기도 연천군 청산면 아우라지길 13-32","coordinates":{"longitude":127.107497684,"latitude":38.034839435}}
-{"id": 618, "schoolName": "정천중학교", "address": "경기도 수원시 팔달구 정자천로32번길 11 (화서동)", "coordinates": {"longitude": 126.982699046, "latitude": 37.289214362}}
-{"id": 619, "schoolName": "병천고등학교", "address": "충청남도 천안시 동남구 병천면 충절로 1872", "coordinates": {"longitude": 127.313704488, "latitude": 36.764231643}}
-{"id": 620, "schoolName": "새솔고등학교", "address": "경기도 화성시 큰나래3길 25 (새솔동)", "coordinates": {"longitude": 126.829517537, "latitude": 37.273678594}}
+{"id": 617, "schoolName": "청산중학교", "address": "경기도 연천군 청산면 아우라지길 13-32", "coordinates": {"longitude": 127.107217091, "latitude": 38.03486731}, "videoStatus": "Pending"}
+{"id": 618, "schoolName": "정천중학교", "address": "경기도 수원시 팔달구 정자천로32번길 11 (화서동)", "coordinates": {"longitude": 126.982699046, "latitude": 37.289214362}, "videoStatus": "Pending"}
+{"id": 619, "schoolName": "병천고등학교", "address": "충청남도 천안시 동남구 병천면 충절로 1872", "coordinates": {"longitude": 127.313704488, "latitude": 36.764231643}, "videoStatus": "Pending"}
+{"id": 620, "schoolName": "새솔고등학교", "address": "경기도 화성시 큰나래3길 25 (새솔동)", "coordinates": {"longitude": 126.829517537, "latitude": 37.273678594}, "videoStatus": "Pending"}
 {"id": 621, "schoolName": "잠원중학교", "address": "경기도 수원시 영통구 태장로 25 (망포동)", "coordinates": {"longitude": 127.048987918, "latitude": 37.239292183}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/kouarn9DXWk"}
 {"id": 622, "schoolName": "양재고등학교", "address": "서울특별시 서초구 남부순환로346길 9 (서초동)", "coordinates": {"longitude": 127.03358996, "latitude": 37.483301017}, "videoStatus": "Pending"}
 {"id": 623, "schoolName": "칠원중학교", "address": "경상남도 함안군 칠서면 삼칠로 281", "coordinates": {"longitude": 128.507290923, "latitude": 35.318192006}, "videoStatus": "Pending"}
@@ -648,8 +648,8 @@
 {"id": 654, "schoolName": "문산수억중학교", "address": "경기도 파주시 파주읍 우계로 357", "coordinates": {"longitude": 126.802037668, "latitude": 37.852386305}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ENR3Vl3-EBo"}
 {"id": 655, "schoolName": "온양고등학교", "address": "충청남도 아산시 온천대로 1411 (온천동)", "coordinates": {"longitude": 126.995381512, "latitude": 36.784463979}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ulGVteFpz_Q"}
 {"id": 656, "schoolName": "능동고등학교", "address": "경기도 화성시 동탄원천로 315-26 (능동고등학교)", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/k_ILuMdVP9g"}
-{"id":657,"schoolName":"능곡중학교","address":"경기도 고양시 덕양구 행당로11번길 48 (토당동)","coordinates":{"longitude":126.826705641,"latitude":37.622882630}}
-{"id": 658, "schoolName": "대전과학고등학교", "address": "대전광역시 유성구 과학로 46 (구성동)", "coordinates": {"longitude": 0, "latitude": 0}}
+{"id": 657, "schoolName": "능곡중학교", "address": "경기도 고양시 덕양구 행당로11번길 48 (토당동)", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/WXc-M1y_Yn8"}
+{"id": 658, "schoolName": "대전과학고등학교", "address": "대전광역시 유성구 과학로 46 (구성동)", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
 {"id": 659, "schoolName": "포항중학교", "address": "경상북도 포항시 북구 학산로 45 (학산동)", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/V-v5dJ7-XtU"}
 {"id": 660, "schoolName": "대구북중학교", "address": "대구광역시 북구 공항로 50 (복현동)", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Lm7njWpMtqw"}
 {"id": 661, "schoolName": "창원대산중학교", "address": "경상남도 창원시 의창구 대산면 진산대로 380 (대산면)", "coordinates": {"longitude": 0, "latitude": 0}, "videoStatus": "Pending"}
@@ -660,51 +660,51 @@
 {"id": 666, "schoolName": "정화중학교", "address": "대구광역시 수성구 청호로84길 123 (범어동)", "coordinates": {"longitude": 128.642057969, "latitude": 35.849414676}, "videoStatus": "Pending"}
 {"id": 667, "schoolName": "송린중학교", "address": "경기도 화성시 수노을2로 148 (새솔동)", "coordinates": {"longitude": 126.822717381, "latitude": 37.276823853}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/fuVOXKd_OzI"}
 {"id": 668, "schoolName": "충북반도체고등학교", "address": "충청북도 음성군 금왕읍 무극로 393-1", "coordinates": {"longitude": 127.606515644, "latitude": 36.993771722}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/MPglgYJXiSQ"}
-{"id":669,"schoolName":"선인중학교","address":"인천광역시 미추홀구 석정로 165 (도화동)","coordinates":{"longitude":126.657929033,"latitude":37.470541620}}
-{"id": 670, "schoolName": "중동중학교", "address": "서울특별시 강남구 일원로8길 37 (일원동)", "coordinates": {"longitude": 127.078681941, "latitude": 37.488569842}}
-{"id": 671, "schoolName": "대진고등학교", "address": "대구광역시 달서구 화암로73길 15 (대곡동)", "coordinates": {"longitude": 128.5188838, "latitude": 35.805737704}}
-{"id": 672, "schoolName": "인천효성중학교", "address": "인천광역시 계양구 안남로 607 (효성동)", "coordinates": {"longitude": 126.710366032, "latitude": 37.53782104}}
-{"id": 673, "schoolName": "광주과학고등학교", "address": "광주광역시 북구 첨단과기로 215 (오룡동)", "coordinates": {"longitude": 126.848586252, "latitude": 35.22845559}}
-{"id": 674, "schoolName": "토성초등학교", "address": "부산광역시 서구 구덕로134번길 45 (토성동2가)", "coordinates": {"longitude": 129.020876262, "latitude": 35.098483655}}
-{"id": 675, "schoolName": "성지중학교", "address": "경기도 용인시 기흥구 강남서로 26 (구갈동)", "coordinates": {"longitude": 127.128288191, "latitude": 37.273942915}}
+{"id": 669, "schoolName": "선인중학교", "address": "인천광역시 미추홀구 석정로 165 (도화동)", "coordinates": {"longitude": 126.657929033, "latitude": 37.47054162}, "videoStatus": "Pending"}
+{"id": 670, "schoolName": "중동중학교", "address": "서울특별시 강남구 일원로8길 37 (일원동)", "coordinates": {"longitude": 127.078681941, "latitude": 37.488569842}, "videoStatus": "Pending"}
+{"id": 671, "schoolName": "대진고등학교", "address": "대구광역시 달서구 화암로73길 15 (대곡동)", "coordinates": {"longitude": 128.5188838, "latitude": 35.805737704}, "videoStatus": "Pending"}
+{"id": 672, "schoolName": "인천효성중학교", "address": "인천광역시 계양구 안남로 607 (효성동)", "coordinates": {"longitude": 126.710366032, "latitude": 37.53782104}, "videoStatus": "Pending"}
+{"id": 673, "schoolName": "광주과학고등학교", "address": "광주광역시 북구 첨단과기로 215 (오룡동)", "coordinates": {"longitude": 126.848586252, "latitude": 35.22845559}, "videoStatus": "Pending"}
+{"id": 674, "schoolName": "토성초등학교", "address": "부산광역시 서구 구덕로134번길 45 (토성동2가)", "coordinates": {"longitude": 129.020876262, "latitude": 35.098483655}, "videoStatus": "Pending"}
+{"id": 675, "schoolName": "성지중학교", "address": "경기도 용인시 기흥구 강남서로 26 (구갈동)", "coordinates": {"longitude": 127.128288191, "latitude": 37.273942915}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/8f7tH9maIAg"}
 {"id": 676, "schoolName": "진산중학교", "address": "인천광역시 부평구 충선로234번길 70 (삼산동)", "coordinates": {"longitude": 126.739906945, "latitude": 37.509360508}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/3nhAjdm0v2c"}
-{"id":677,"schoolName":"구미중학교","address":"경기도 성남시 분당구 구미로173번길 29 (구미동)","coordinates":{"longitude":127.123605843,"latitude":37.346343937}}
+{"id": 677, "schoolName": "구미중학교", "address": "경기도 성남시 분당구 구미로173번길 29 (구미동)", "coordinates": {"longitude": 127.123605843, "latitude": 37.346343937}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Rv98rsEQdoc"}
 {"id": 678, "schoolName": "음봉중학교", "address": "충청남도 아산시 음봉면 음봉로 505", "coordinates": {"longitude": 127.066817612, "latitude": 36.842203358}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/V6Md3OuXn2w"}
 {"id": 679, "schoolName": "비봉초등학교", "address": "전북특별자치도 완주군 비봉면 비봉소농길 40", "coordinates": {"longitude": 127.138372094, "latitude": 35.998242579}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/lhaJzlHhocc"}
 {"id": 680, "schoolName": "신장고등학교", "address": "경기도 하남시 신장동로 19 (신장동)", "coordinates": {"longitude": 127.209760278, "latitude": 37.543829739}, "videoStatus": "Pending"}
 {"id": 681, "schoolName": "광산중학교", "address": "광주광역시 광산구 사암로158번길 23 (우산동)", "coordinates": {"longitude": 126.80799547, "latitude": 35.158795547}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/B75bfZ-Cc4o"}
-{"id": 682, "schoolName": "유덕중학교", "address": "광주광역시 서구 상무버들로 29 (유촌동)", "coordinates": {"longitude": 126.85977127, "latitude": 35.163025932}}
-{"id": 683, "schoolName": "세명컴퓨터고등학교", "address": "서울특별시 은평구 통일로92가길 33 (불광동)", "coordinates": {"longitude": 126.923942032, "latitude": 37.627609732}}
-{"id": 684, "schoolName": "대원국제중학교", "address": "서울특별시 광진구 용마산로22길 26 (중곡동)", "coordinates": {"longitude": 127.08857491, "latitude": 37.563232296}}
-{"id": 685, "schoolName": "신성여자중학교", "address": "제주특별자치도 제주시 아봉로 174-5 (영평동)", "coordinates": {"longitude": 126.563185361, "latitude": 33.477049687}}
-{"id":686,"schoolName":"남해중학교","address":"경상남도 남해군 남해읍 화전로78번길 29","coordinates":{"longitude":127.896899943,"latitude":34.839261237}}
-{"id": 687, "schoolName": "상원고등학교", "address": "경기도 부천시 원미구 상동로 10 (상동)", "coordinates": {"longitude": 126.752305579, "latitude": 37.49831262}}
-{"id": 688, "schoolName": "전주서중학교", "address": "전북특별자치도 전주시 완산구 당산로 2 (서신동)", "coordinates": {"longitude": 127.109489616, "latitude": 35.831718531}}
-{"id": 689, "schoolName": "제천중학교", "address": "충청북도 제천시 의병대로 29 (서부동)", "coordinates": {"longitude": 128.204256733, "latitude": 37.139270444}}
-{"id": 690, "schoolName": "청주교육대학교", "address": "충청북도 청주시 서원구 청남로 2065 (수곡동)", "coordinates": {"longitude": 127.483746854, "latitude": 36.614729388}}
+{"id": 682, "schoolName": "유덕중학교", "address": "광주광역시 서구 상무버들로 29 (유촌동)", "coordinates": {"longitude": 126.85977127, "latitude": 35.163025932}, "videoStatus": "Pending"}
+{"id": 683, "schoolName": "세명컴퓨터고등학교", "address": "서울특별시 은평구 통일로92가길 33 (불광동)", "coordinates": {"longitude": 126.923942032, "latitude": 37.627609732}, "videoStatus": "Pending"}
+{"id": 684, "schoolName": "대원국제중학교", "address": "서울특별시 광진구 용마산로22길 26 (중곡동)", "coordinates": {"longitude": 127.08857491, "latitude": 37.563232296}, "videoStatus": "Pending"}
+{"id": 685, "schoolName": "신성여자중학교", "address": "제주특별자치도 제주시 아봉로 174-5 (영평동)", "coordinates": {"longitude": 126.563185361, "latitude": 33.477049687}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/_WTTCWbZIuA"}
+{"id": 686, "schoolName": "남해중학교", "address": "경상남도 남해군 남해읍 화전로78번길 29", "coordinates": {"longitude": 127.896899943, "latitude": 34.839261237}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/VbB7MVdGv6g"}
+{"id": 687, "schoolName": "상원고등학교", "address": "경기도 부천시 원미구 상동로 10 (상동)", "coordinates": {"longitude": 126.752305579, "latitude": 37.49831262}, "videoStatus": "Pending"}
+{"id": 688, "schoolName": "전주서중학교", "address": "전북특별자치도 전주시 완산구 당산로 2 (서신동)", "coordinates": {"longitude": 127.109489616, "latitude": 35.831718531}, "videoStatus": "Pending"}
+{"id": 689, "schoolName": "제천중학교", "address": "충청북도 제천시 의병대로 29 (서부동)", "coordinates": {"longitude": 128.204256733, "latitude": 37.139270444}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/2D7zM6fiOIY"}
+{"id": 690, "schoolName": "청주교육대학교", "address": "충청북도 청주시 서원구 청남로 2065 (수곡동)", "coordinates": {"longitude": 127.483746854, "latitude": 36.614729388}, "videoStatus": "Pending"}
 {"id": 691, "schoolName": "월암중학교", "address": "대구광역시 달서구 조암로6길 33 (월성동)", "coordinates": {"longitude": 128.524018701, "latitude": 35.82715744}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/dsgyhxfZfYg"}
 {"id": 692, "schoolName": "제주대학교사범대학부설중학교", "address": "제주특별자치도 제주시 용담로7길 33 (용담삼동)", "coordinates": {"longitude": 126.508539111, "latitude": 33.515781818}, "videoStatus": "Pending"}
 {"id": 693, "schoolName": "온빛초등학교", "address": "세종특별자치시 만남로 174 (고운동)", "coordinates": {"longitude": 127.240566369, "latitude": 36.514533017}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/817J6n85aqY"}
-{"id": 694, "schoolName": "동양중학교", "address": "서울특별시 동작구 흑석로9길 94 (흑석동)", "coordinates": {"longitude": 126.957178036, "latitude": 37.509860469}}
-{"id": 695, "schoolName": "서현고등학교", "address": "경기도 성남시 분당구 분당로 87 (서현동)", "coordinates": {"longitude": 127.123641989, "latitude": 37.381160939}}
-{"id": 696, "schoolName": "성광중학교", "address": "대구광역시 북구 검단로 150 (복현동)", "coordinates": {"longitude": 128.623426067, "latitude": 35.907603999}}
-{"id": 697, "schoolName": "상일중학교", "address": "서울특별시 강동구 천호대로219길 61 (상일동)", "coordinates": {"longitude": 127.170346897, "latitude": 37.549549003}}
-{"id": 698, "schoolName": "고양중학교", "address": "경기도 고양시 덕양구 동세로 82 (삼송동)", "coordinates": {"longitude": 126.884398652, "latitude": 37.649664792}}
-{"id": 699, "schoolName": "세정초등학교", "address": "경기도 화성시 동탄순환대로12길 74 (산척동)", "coordinates": {"longitude": 127.126639854, "latitude": 37.166779123}}
-{"id": 700, "schoolName": "남양주다산중학교", "address": "경기도 남양주시 다산중앙로172번길 50 (다산동)", "coordinates": {"longitude": 127.158673905, "latitude": 37.627795482}}
-{"id": 701, "schoolName": "솔올중학교", "address": "강원특별자치도 강릉시 솔올로 102 (교동)", "coordinates": {"longitude": 128.879499242, "latitude": 37.771140078}}
-{"id": 702, "schoolName": "진광고등학교", "address": "강원특별자치도 원주시 진광길 50 (우산동)", "coordinates": {"longitude": 127.935245471, "latitude": 37.372721705}}
-{"id": 703, "schoolName": "중모초등학교", "address": "경상북도 상주시 모동면 신천1길 15", "coordinates": {"longitude": 127.960366589, "latitude": 36.301678498}}
-{"id": 704, "schoolName": "병곡중학교", "address": "경상북도 영덕군 병곡면 병곡길 24-7", "coordinates": {"longitude": 129.41127403, "latitude": 36.604342752}}
-{"id": 705, "schoolName": "김천석천중학교", "address": "경상북도 김천시 남산공원길 128 (황금동)", "coordinates": {"longitude": 128.122112875, "latitude": 36.11741234}}
-{"id": 706, "schoolName": "건국대학교사범대학부속중학교", "address": "서울특별시 광진구 자양로 145-1 (화양동)", "coordinates": {"longitude": 127.081854546, "latitude": 37.541347025}}
-{"id":707,"schoolName":"조치원중학교","address":"세종특별자치시 조치원읍 대첩로 90","coordinates":{"longitude":127.286556309,"latitude":36.595757512}}
-{"id": 708, "schoolName": "대전송촌중학교", "address": "대전광역시 대덕구 계족산로 110 (송촌동)", "coordinates": {"longitude": 127.443518021, "latitude": 36.364086288}}
-{"id": 709, "schoolName": "장산중학교", "address": "부산광역시 해운대구 선수촌로 47 (반여동)", "coordinates": {"longitude": 129.117891832, "latitude": 35.198751062}}
-{"id": 710, "schoolName": "풍암고등학교", "address": "광주광역시 서구 풍암신흥로39번길 20 (풍암동)", "coordinates": {"longitude": 126.867566477, "latitude": 35.122171632}}
-{"id": 711, "schoolName": "문창고등학교", "address": "경상북도 문경시 돈달로 145 (흥덕동)", "coordinates": {"longitude": 128.200236746, "latitude": 36.603073311}}
-{"id": 712, "schoolName": "장유고등학교", "address": "경상남도 김해시 월산로 77 (부곡동)", "coordinates": {"longitude": 128.804478098, "latitude": 35.201549781}}
-{"id":713,"schoolName":"부평공업고등학교","address":"인천광역시 부평구 주부토로 194 (갈산동)","coordinates":{"longitude":126.726797764,"latitude":37.512601630}}
+{"id": 694, "schoolName": "동양중학교", "address": "서울특별시 동작구 흑석로9길 94 (흑석동)", "coordinates": {"longitude": 126.957178036, "latitude": 37.509860469}, "videoStatus": "Pending"}
+{"id": 695, "schoolName": "서현고등학교", "address": "경기도 성남시 분당구 분당로 87 (서현동)", "coordinates": {"longitude": 127.123641989, "latitude": 37.381160939}, "videoStatus": "Pending"}
+{"id": 696, "schoolName": "성광중학교", "address": "대구광역시 북구 검단로 150 (복현동)", "coordinates": {"longitude": 128.623426067, "latitude": 35.907603999}, "videoStatus": "Pending"}
+{"id": 697, "schoolName": "상일중학교", "address": "서울특별시 강동구 천호대로219길 61 (상일동)", "coordinates": {"longitude": 127.170346897, "latitude": 37.549549003}, "videoStatus": "Pending"}
+{"id": 698, "schoolName": "고양중학교", "address": "경기도 고양시 덕양구 동세로 82 (삼송동)", "coordinates": {"longitude": 126.884398652, "latitude": 37.649664792}, "videoStatus": "Pending"}
+{"id": 699, "schoolName": "세정초등학교", "address": "경기도 화성시 동탄순환대로12길 74 (산척동)", "coordinates": {"longitude": 127.126639854, "latitude": 37.166779123}, "videoStatus": "Pending"}
+{"id": 700, "schoolName": "남양주다산중학교", "address": "경기도 남양주시 다산중앙로172번길 50 (다산동)", "coordinates": {"longitude": 127.158673905, "latitude": 37.627795482}, "videoStatus": "Pending"}
+{"id": 701, "schoolName": "솔올중학교", "address": "강원특별자치도 강릉시 솔올로 102 (교동)", "coordinates": {"longitude": 128.879499242, "latitude": 37.771140078}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/yX9_zT4x0vE"}
+{"id": 702, "schoolName": "진광고등학교", "address": "강원특별자치도 원주시 진광길 50 (우산동)", "coordinates": {"longitude": 127.935245471, "latitude": 37.372721705}, "videoStatus": "Pending"}
+{"id": 703, "schoolName": "중모초등학교", "address": "경상북도 상주시 모동면 신천1길 15", "coordinates": {"longitude": 127.960366589, "latitude": 36.301678498}, "videoStatus": "Pending"}
+{"id": 704, "schoolName": "병곡중학교", "address": "경상북도 영덕군 병곡면 병곡길 24-7", "coordinates": {"longitude": 129.41127403, "latitude": 36.604342752}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/cBUMYOuFDhc"}
+{"id": 705, "schoolName": "김천석천중학교", "address": "경상북도 김천시 남산공원길 128 (황금동)", "coordinates": {"longitude": 128.122112875, "latitude": 36.11741234}, "videoStatus": "Pending"}
+{"id": 706, "schoolName": "건국대학교사범대학부속중학교", "address": "서울특별시 광진구 자양로 145-1 (화양동)", "coordinates": {"longitude": 127.081854546, "latitude": 37.541347025}, "videoStatus": "Pending"}
+{"id": 707, "schoolName": "조치원중학교", "address": "세종특별자치시 조치원읍 대첩로 90", "coordinates": {"longitude": 127.286556309, "latitude": 36.595757512}, "videoStatus": "Pending"}
+{"id": 708, "schoolName": "대전송촌중학교", "address": "대전광역시 대덕구 계족산로 110 (송촌동)", "coordinates": {"longitude": 127.443518021, "latitude": 36.364086288}, "videoStatus": "Pending"}
+{"id": 709, "schoolName": "장산중학교", "address": "부산광역시 해운대구 선수촌로 47 (반여동)", "coordinates": {"longitude": 129.117891832, "latitude": 35.198751062}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ajq2cdWBVFQ"}
+{"id": 710, "schoolName": "풍암고등학교", "address": "광주광역시 서구 풍암신흥로39번길 20 (풍암동)", "coordinates": {"longitude": 126.867566477, "latitude": 35.122171632}, "videoStatus": "Pending"}
+{"id": 711, "schoolName": "문창고등학교", "address": "경상북도 문경시 돈달로 145 (흥덕동)", "coordinates": {"longitude": 128.200236746, "latitude": 36.603073311}, "videoStatus": "Pending"}
+{"id": 712, "schoolName": "장유고등학교", "address": "경상남도 김해시 월산로 77 (부곡동)", "coordinates": {"longitude": 128.804478098, "latitude": 35.201549781}, "videoStatus": "Pending"}
+{"id": 713, "schoolName": "부평공업고등학교", "address": "인천광역시 부평구 주부토로 194 (갈산동)", "coordinates": {"longitude": 126.726797764, "latitude": 37.51260163}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/BWn-b2t1Qog"}
 {"id": 714, "schoolName": "삼척고등학교", "address": "강원특별자치도 삼척시 사대안길 21 (당저동)", "coordinates": {"longitude": 129.164910785, "latitude": 37.446703895}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/RRo3Smndr9Q"}
 {"id": 715, "schoolName": "보평중학교", "address": "경기도 성남시 분당구 동판교로 131 (백현동)", "coordinates": {"longitude": 127.115695085, "latitude": 37.393935973}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/yzo7SiIkOeg"}
 {"id": 716, "schoolName": "원종고등학교", "address": "경기도 부천시 오정구 소사로807번길 68 (원종동)", "coordinates": {"longitude": 126.800145378, "latitude": 37.528449473}, "videoStatus": "Pending"}
@@ -713,11 +713,11 @@
 {"id": 719, "schoolName": "복대중학교", "address": "충청북도 청주시 흥덕구 짐대로 30 (복대동)", "coordinates": {"longitude": 127.425795512, "latitude": 36.633947512}, "videoStatus": "Pending"}
 {"id": 720, "schoolName": "송현고등학교", "address": "경기도 의정부시 용민로 159 (민락동)", "coordinates": {"longitude": 127.090873025, "latitude": 37.743949374}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/11kA6rOPJdY"}
 {"id": 721, "schoolName": "충주미덕중학교", "address": "충청북도 충주시 방아길 20 (호암동)", "coordinates": {"longitude": 127.937921919, "latitude": 36.946721834}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/NpVWLVJwbEg"}
-{"id":722,"schoolName":"전남대학교사범대학부설중학교","address":"광주광역시 북구 용봉로 45 (용봉동)","coordinates":{"longitude":126.902426361,"latitude":35.173474062}}
-{"id": 723, "schoolName": "능인중학교", "address": "대구광역시 수성구 무학로 207 (지산동)", "coordinates": {"longitude": 128.633648466, "latitude": 35.831560996}}
-{"id": 724, "schoolName": "개금고등학교", "address": "부산광역시 부산진구 백양대로208번길 71 (개금동)", "coordinates": {"longitude": 129.025133413, "latitude": 35.161392692}}
-{"id": 725, "schoolName": "인천중산중학교", "address": "인천광역시 중구 두미포로 189 (중산동)", "coordinates": {"longitude": 126.571045136, "latitude": 37.498127913}}
-{"id": 726, "schoolName": "상록고등학교", "address": "경기도 안산시 상록구 반석로4길 34 (본오동)", "coordinates": {"longitude": 126.87465172, "latitude": 37.29898926}}
+{"id": 722, "schoolName": "전남대학교사범대학부설중학교", "address": "광주광역시 북구 용봉로 45 (용봉동)", "coordinates": {"longitude": 126.902426361, "latitude": 35.173474062}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/icd16RsS3tY"}
+{"id": 723, "schoolName": "능인중학교", "address": "대구광역시 수성구 무학로 207 (지산동)", "coordinates": {"longitude": 128.633648466, "latitude": 35.831560996}, "videoStatus": "Pending"}
+{"id": 724, "schoolName": "개금고등학교", "address": "부산광역시 부산진구 백양대로208번길 71 (개금동)", "coordinates": {"longitude": 129.025133413, "latitude": 35.161392692}, "videoStatus": "Pending"}
+{"id": 725, "schoolName": "인천중산중학교", "address": "인천광역시 중구 두미포로 189 (중산동)", "coordinates": {"longitude": 126.571045136, "latitude": 37.498127913}, "videoStatus": "Pending"}
+{"id": 726, "schoolName": "상록고등학교", "address": "경기도 안산시 상록구 반석로4길 34 (본오동)", "coordinates": {"longitude": 126.87465172, "latitude": 37.29898926}, "videoStatus": "Pending"}
 {"id": 727, "schoolName": "장덕중학교", "address": "광주광역시 광산구 수등로 11 (장덕동)", "coordinates": {"longitude": 126.81109347, "latitude": 35.186232485}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/d1Q4pctyTcc"}
 {"id": 728, "schoolName": "대전중학교", "address": "대전광역시 중구 수도산로 9 (대흥동)", "coordinates": {"longitude": 127.424222702, "latitude": 36.321298177}, "videoStatus": "Pending"}
 {"id": 729, "schoolName": "하남중학교", "address": "광주광역시 광산구 산정로6번길 21-2 (월곡동)", "coordinates": {"longitude": 126.805508503, "latitude": 35.167520933}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/WJ2y8H3qPDo"}
@@ -731,31 +731,31 @@
 {"id": 737, "schoolName": "부영여자고등학교", "address": "전라남도 여수시 안산1길 172-9 (안산동)", "coordinates": {"longitude": 127.652208692, "latitude": 34.758927567}, "videoStatus": "Pending"}
 {"id": 738, "schoolName": "청덕고등학교", "address": "경기도 용인시 기흥구 구성1로 21 (청덕동)", "coordinates": {"longitude": 127.144206555, "latitude": 37.292755242}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/N2mFlbIC3t0"}
 {"id": 739, "schoolName": "구로중학교", "address": "서울특별시 구로구 구로중앙로 48 (구로동)", "coordinates": {"longitude": 126.8899712, "latitude": 37.494712063}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/B6vJpQGFRE4"}
-{"id": 740, "schoolName": "대구팔공중학교", "address": "대구광역시 동구 연경지묘로 150 (지묘동)", "coordinates": {"longitude": 128.627020812, "latitude": 35.946888401}}
-{"id": 741, "schoolName": "인왕중학교", "address": "서울특별시 서대문구 세검정로4길 32 (홍제동)", "coordinates": {"longitude": 126.949661759, "latitude": 37.593786365}}
-{"id": 742, "schoolName": "용인한국외국어대학교부설고등학교", "address": "경기도 용인시 처인구 모현읍 외대로54번길 50", "coordinates": {"longitude": 127.256477787, "latitude": 37.330853748}}
-{"id": 743, "schoolName": "한얼중학교", "address": "경상남도 김해시 진영읍 진영로265번길 9-8", "coordinates": {"longitude": 128.741500747, "latitude": 35.304183215}}
-{"id":744,"schoolName":"부광고등학교","address":"인천광역시 부평구 화랑로 28 (산곡동)","coordinates":{"longitude":126.703249515,"latitude":37.488431457}}
-{"id": 745, "schoolName": "서울외국어고등학교", "address": "서울특별시 도봉구 덕릉로66길 22 (창동)", "coordinates": {"longitude": 127.051508629, "latitude": 37.645780776}}
-{"id": 746, "schoolName": "고성중앙고등학교", "address": "경상남도 고성군 고성읍 남포로 45", "coordinates": {"longitude": 128.318571423, "latitude": 34.967806052}}
+{"id": 740, "schoolName": "대구팔공중학교", "address": "대구광역시 동구 연경지묘로 150 (지묘동)", "coordinates": {"longitude": 128.627020812, "latitude": 35.946888401}, "videoStatus": "Pending"}
+{"id": 741, "schoolName": "인왕중학교", "address": "서울특별시 서대문구 세검정로4길 32 (홍제동)", "coordinates": {"longitude": 126.949661759, "latitude": 37.593786365}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/mQb5w91KZQc"}
+{"id": 742, "schoolName": "용인한국외국어대학교부설고등학교", "address": "경기도 용인시 처인구 모현읍 외대로54번길 50", "coordinates": {"longitude": 127.256477787, "latitude": 37.330853748}, "videoStatus": "Pending"}
+{"id": 743, "schoolName": "한얼중학교", "address": "경상남도 김해시 진영읍 진영로265번길 9-8", "coordinates": {"longitude": 128.741500747, "latitude": 35.304183215}, "videoStatus": "Pending"}
+{"id": 744, "schoolName": "부광고등학교", "address": "인천광역시 부평구 화랑로 28 (산곡동)", "coordinates": {"longitude": 126.703249515, "latitude": 37.488431457}, "videoStatus": "Pending"}
+{"id": 745, "schoolName": "서울외국어고등학교", "address": "서울특별시 도봉구 덕릉로66길 22 (창동)", "coordinates": {"longitude": 127.051508629, "latitude": 37.645780776}, "videoStatus": "Pending"}
+{"id": 746, "schoolName": "고성중앙고등학교", "address": "경상남도 고성군 고성읍 남포로 45", "coordinates": {"longitude": 128.318571423, "latitude": 34.967806052}, "videoStatus": "Pending"}
 {"id": 747, "schoolName": "예봉중학교", "address": "경기도 남양주시 와부읍 수레로 127-37", "coordinates": {"longitude": 127.22049268, "latitude": 37.595393751}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ISP19i1aumM"}
-{"id": 748, "schoolName": "와부중학교", "address": "경기도 남양주시 와부읍 월문천로 65", "coordinates": {"longitude": 127.219907429, "latitude": 37.586825936}}
-{"id":749,"schoolName":"신천중학교","address":"서울특별시 송파구 백제고분로 11 (잠실동)","coordinates":{"longitude":127.078259385,"latitude":37.516328119}}
+{"id": 748, "schoolName": "와부중학교", "address": "경기도 남양주시 와부읍 월문천로 65", "coordinates": {"longitude": 127.219907429, "latitude": 37.586825936}, "videoStatus": "Pending"}
+{"id": 749, "schoolName": "신천중학교", "address": "서울특별시 송파구 백제고분로 11 (잠실동)", "coordinates": {"longitude": 127.078259385, "latitude": 37.516328119}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/grkyNPPOjOM"}
 {"id": 750, "schoolName": "범일중학교", "address": "대구광역시 수성구 지범로41길 23 (범물동)", "coordinates": {"longitude": 128.644587513, "latitude": 35.821174352}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/L5zIX2bJWZc"}
 {"id": 751, "schoolName": "수일고등학교", "address": "경기도 수원시 장안구 수일로233번길 59 (조원동)", "coordinates": {"longitude": 127.017744485, "latitude": 37.30776792}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/qQp8O-CW3Jg"}
 {"id": 752, "schoolName": "사곡고등학교", "address": "경상북도 구미시 박정희로 195 (사곡동)", "coordinates": {"longitude": 128.352522107, "latitude": 36.096909405}, "videoStatus": "Pending"}
 {"id": 753, "schoolName": "신목고등학교", "address": "서울특별시 양천구 안양천로 739 (신정동)", "coordinates": {"longitude": 126.873561526, "latitude": 37.512767532}, "videoStatus": "Pending"}
 {"id": 754, "schoolName": "정현고등학교", "address": "경기도 화성시 동탄산척로 93-10 (산척동)", "coordinates": {"longitude": 127.111029, "latitude": 37.172925949}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/t9Pb7pzrNgM"}
-{"id":755,"schoolName":"월서중학교","address":"대구광역시 달서구 월배로33길 105 (월성동)","coordinates":{"longitude":128.526417353,"latitude":35.819234011}}
-{"id": 756, "schoolName": "순천제일고등학교", "address": "전라남도 순천시 중앙로 491-8 (가곡동)", "coordinates": {"longitude": 127.48855519, "latitude": 34.989185108}}
-{"id": 757, "schoolName": "계림고등학교", "address": "경상북도 경주시 용담로 122 (황성동)", "coordinates": {"longitude": 129.208737388, "latitude": 35.866338726}}
-{"id": 758, "schoolName": "강원예술고등학교", "address": "강원특별자치도 강릉시 구정면 칠봉로 670-34", "coordinates": {"longitude": 128.864230488, "latitude": 37.722646998}}
-{"id": 759, "schoolName": "대구소프트웨어마이스터고등학교", "address": "대구광역시 달성군 구지면 창리로11길 93", "coordinates": {"longitude": 128.413625181, "latitude": 35.663247731}}
-{"id":760,"schoolName":"반안중학교","address":"부산광역시 해운대구 명장로67번길 40-32 (반여동)","coordinates":{"longitude":129.112328592,"latitude":35.203287524}}
-{"id": 761, "schoolName": "경북소프트웨어마이스터고등학교", "address": "경상북도 의성군 봉양면 봉호로 14", "coordinates": {"longitude": 128.584788033, "latitude": 36.303150333}}
-{"id": 762, "schoolName": "진량초등학교", "address": "경상북도 경산시 진량읍 낙산길 37", "coordinates": {"longitude": 128.816423854, "latitude": 35.875616879}}
-{"id": 763, "schoolName": "진접중학교", "address": "경기도 남양주시 진접읍 금강로 1641-1", "coordinates": {"longitude": 127.19316818, "latitude": 37.736572854}}
-{"id": 764, "schoolName": "남외중학교", "address": "울산광역시 중구 남외3길 50 (남외동)", "coordinates": {"longitude": 129.348915701, "latitude": 35.56651815}}
+{"id": 755, "schoolName": "월서중학교", "address": "대구광역시 달서구 월배로33길 105 (월성동)", "coordinates": {"longitude": 128.526417353, "latitude": 35.819234011}, "videoStatus": "Pending"}
+{"id": 756, "schoolName": "순천제일고등학교", "address": "전라남도 순천시 중앙로 491-8 (가곡동)", "coordinates": {"longitude": 127.48855519, "latitude": 34.989185108}, "videoStatus": "Pending"}
+{"id": 757, "schoolName": "계림고등학교", "address": "경상북도 경주시 용담로 122 (황성동)", "coordinates": {"longitude": 129.208737388, "latitude": 35.866338726}, "videoStatus": "Pending"}
+{"id": 758, "schoolName": "강원예술고등학교", "address": "강원특별자치도 강릉시 구정면 칠봉로 670-34", "coordinates": {"longitude": 128.864230488, "latitude": 37.722646998}, "videoStatus": "Pending"}
+{"id": 759, "schoolName": "대구소프트웨어마이스터고등학교", "address": "대구광역시 달성군 구지면 창리로11길 93", "coordinates": {"longitude": 128.413625181, "latitude": 35.663247731}, "videoStatus": "Pending"}
+{"id": 760, "schoolName": "반안중학교", "address": "부산광역시 해운대구 명장로67번길 40-32 (반여동)", "coordinates": {"longitude": 129.112328592, "latitude": 35.203287524}, "videoStatus": "Pending"}
+{"id": 761, "schoolName": "경북소프트웨어마이스터고등학교", "address": "경상북도 의성군 봉양면 봉호로 14", "coordinates": {"longitude": 128.584788033, "latitude": 36.303150333}, "videoStatus": "Pending"}
+{"id": 762, "schoolName": "진량초등학교", "address": "경상북도 경산시 진량읍 낙산길 37", "coordinates": {"longitude": 128.816423854, "latitude": 35.875616879}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/jNjxoFCDCoE"}
+{"id": 763, "schoolName": "진접중학교", "address": "경기도 남양주시 진접읍 금강로 1641-1", "coordinates": {"longitude": 127.19316818, "latitude": 37.736572854}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/ffnpxPB89EQ"}
+{"id": 764, "schoolName": "남외중학교", "address": "울산광역시 중구 남외3길 50 (남외동)", "coordinates": {"longitude": 129.348915701, "latitude": 35.56651815}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/GDKqPmpxxl4"}
 {"id": 765, "schoolName": "구일중학교", "address": "서울특별시 구로구 구일로 90-133 (구로동)", "coordinates": {"longitude": 126.873306487, "latitude": 37.494650427}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/dmd9Mhv63WA"}
 {"id": 766, "schoolName": "남산중학교", "address": "부산광역시 금정구 금단로 114 (남산동)", "coordinates": {"longitude": 129.094253821, "latitude": 35.259828634}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/SS9hOl6QbK0"}
 {"id": 767, "schoolName": "해강중학교", "address": "부산광역시 해운대구 해운대해변로 17 (우동)", "coordinates": {"longitude": 129.135741588, "latitude": 35.164006706}, "videoStatus": "Pending"}
@@ -774,125 +774,27 @@
 {"id": 780, "schoolName": "거제공업고등학교", "address": "경상남도 거제시 계룡로11길 63 (고현동)", "coordinates": {"longitude": 128.61389378, "latitude": 34.88209524}, "videoStatus": "Pending"}
 {"id": 781, "schoolName": "정신여자고등학교", "address": "서울특별시 송파구 올림픽로4길 16 (잠실동)", "coordinates": {"longitude": 127.072119239, "latitude": 37.508810661}, "videoStatus": "Pending"}
 {"id": 782, "schoolName": "세종중학교", "address": "경기도 여주시 세종로 204-17 (교동)", "coordinates": {"longitude": 127.632610678, "latitude": 37.279112362}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/Y39p-ArFaos"}
-{"id": 783, "schoolName": "신도림고등학교", "address": "서울특별시 구로구 경인로67길 159 (신도림동)", "coordinates": {"longitude": 126.881948232, "latitude": 37.514028022}}
-{"id":784,"schoolName":"완도중학교","address":"전라남도 완도군 완도읍 청해진남로 88","coordinates":{"longitude":126.750827833,"latitude":34.308306088}}
-{"id":785,"schoolName":"배명중학교","address":"서울특별시 송파구 삼학사로 11 (삼전동)","coordinates":{"longitude":127.095049176,"latitude":37.497962918}}
-{"id":786,"schoolName":"인천석암초등학교","address":"인천광역시 미추홀구 주안동로 46 (주안동)","coordinates":{"longitude":126.687262768,"latitude":37.461924270}}
-{"id":787,"schoolName":"한국교원대학교부설고등학교","address":"충청북도 청주시 흥덕구 강내면 태성탑연로 433","coordinates":{"longitude":127.357363237,"latitude":36.621158611}}
-{"id":788,"schoolName":"인천이음중학교","address":"인천광역시 서구 이음1로 455 (원당동)","coordinates":{"longitude":126.711552185,"latitude":37.599758151}}
-{"id":789,"schoolName":"신창중학교","address":"광주광역시 광산구 왕버들로290번길 40 (신창동)","coordinates":{"longitude":126.839375048,"latitude":35.193447259}}
-{"id":790,"schoolName":"천성중학교","address":"충청남도 천안시 동남구 벌말1길 7 (유량동)","coordinates":{"longitude":127.173786154,"latitude":36.812284835}}
-{"id":791,"schoolName":"마산용마고등학교","address":"경상남도 창원시 마산합포구 허당로 51 (산호동)","coordinates":{"longitude":128.582481493,"latitude":35.211525324}}
-{"id":792,"schoolName":"광탄중학교","address":"경기도 파주시 광탄면 혜음로 1128","coordinates":{"longitude":126.847321141,"latitude":37.781945244}}
-{"id":793,"schoolName":"신흥중학교","address":"인천광역시 중구 인항로24번길 38 (신흥동3가)","coordinates":{"longitude":126.629957598,"latitude":37.454178734}}
-{"id":794,"schoolName":"경주중학교","address":"경상북도 경주시 원효로 231 (황오동)","coordinates":{"longitude":129.224748573,"latitude":35.843860881}}
-{"id":795,"schoolName":"청주남중학교","address":"충청북도 청주시 서원구 청남로 2039 (수곡동)","coordinates":{"longitude":127.483436550,"latitude":36.614461894}}
-{"id":796,"schoolName":"대전월평중학교","address":"대전광역시 서구 월평동로 21 (월평동)","coordinates":{"longitude":127.367215986,"latitude":36.356596622}}
-{"id":797,"schoolName":"강일중학교","address":"서울특별시 강동구 고덕로27길 12 (암사동)","coordinates":{"longitude":127.138008553,"latitude":37.555344787}}
-{"id":798,"schoolName":"동래고등학교","address":"부산광역시 동래구 충렬대로285번길 22 (칠산동)","coordinates":{"longitude":129.091632125,"latitude":35.201325231}}
-{"id":799,"schoolName":"탄현중학교","address":"경기도 파주시 탄현면 열살미길 10","coordinates":{"longitude":126.722978759,"latitude":37.805089920}}
-{"id":800,"schoolName":"학산중학교","address":"대구광역시 달서구 월곡로94길 10 (월성동)","coordinates":{"longitude":128.525754377,"latitude":35.831410354}}
-{"id":801,"schoolName":"포항이동중학교","address":"경상북도 포항시 남구 대이로 170 (이동)","coordinates":{"longitude":129.340394481,"latitude":36.030044016}}
-{"id":802,"schoolName":"지사중학교","address":"부산광역시 강서구 과학산단로306번길 33 (지사동)","coordinates":{"longitude":128.835718373,"latitude":35.152179911}}
-{"id":803,"schoolName":"인천대학교","address":"인천광역시 연수구 아카데미로 119 (송도동)","coordinates":{"longitude":126.630298006,"latitude":37.374639147}}
-{"id":804,"schoolName":"대흥고등학교","address":"충청남도 예산군 대흥면 예당로 845","coordinates":{"longitude":126.792168282,"latitude":36.605416071}}
-{"id":805,"schoolName":"숙지중학교","address":"경기도 수원시 팔달구 덕영대로735번길 23 (화서동)","coordinates":{"longitude":126.991911213,"latitude":37.282166656}}
-{"id":806,"schoolName":"진천중학교","address":"충청북도 진천군 진천읍 성중로 27-5","coordinates":{"longitude":127.446853426,"latitude":36.868157885}}
-{"id":807,"schoolName":"충남해양과학고등학교","address":"충청남도 보령시 대천항로 212 (신흑동)","coordinates":{"longitude":126.513849039,"latitude":36.319472391}}
-{"id":808,"schoolName":"창북중학교","address":"경상남도 창원시 의창구 북면 무동서로 8","coordinates":{"longitude":128.580643200,"latitude":35.316900227}}
-{"id":809,"schoolName":"송산고등학교","address":"경기도 화성시 송산면 송산포도로 102-21","coordinates":{"longitude":126.738293718,"latitude":37.216181805}}
-{"id":810,"schoolName":"대전만년중학교","address":"대전광역시 서구 만년남로 17 (만년동)","coordinates":{"longitude":127.376431421,"latitude":36.367138832}}
-{"id":811,"schoolName":"금남초등학교","address":"세종특별자치시 금남면 금남구즉로 62","coordinates":{"longitude":127.288288575,"latitude":36.472687966}}
-{"id":812,"schoolName":"문수고등학교","address":"울산광역시 남구 울밀로 2905 (무거동)","coordinates":{"longitude":129.265142981,"latitude":35.555335364}}
-{"id":813,"schoolName":"신평중학교","address":"경기도 하남시 신장동로 57 (신장동)","coordinates":{"longitude":127.213946914,"latitude":37.543974698}}
-{"id":814,"schoolName":"국제대학교","address":"경기도 평택시 장안웃길 56 (장안동)","coordinates":{"longitude":127.080618844,"latitude":37.066149507}}
-{"id":815,"schoolName":"능허대중학교","address":"인천광역시 연수구 송도교육로 31 (송도동)","coordinates":{"longitude":126.657945817,"latitude":37.373522376}}
-{"id":816,"schoolName":"양지고등학교","address":"경기도 안산시 단원구 화정천동로 50 (고잔동)","coordinates":{"longitude":126.822166697,"latitude":37.309236515}}
-{"id":817,"schoolName":"국립공주대학교사범대학부설중학교","address":"충청남도 공주시 봉황로 75 (반죽동)","coordinates":{"longitude":127.120283403,"latitude":36.453275725}}
-{"id":818,"schoolName":"외솔중학교","address":"울산광역시 중구 종가로 710 (서동)","coordinates":{"longitude":129.342807876,"latitude":35.584297109}}
-{"id":819,"schoolName":"도촌중학교","address":"경기도 성남시 중원구 도촌북로 50 (도촌동)","coordinates":{"longitude":127.153840160,"latitude":37.416633132}}
-{"id":820,"schoolName":"경민IT고등학교","address":"경기도 의정부시 서부로 545 (가능동)","coordinates":{"longitude":127.026104589,"latitude":37.746227024}}
-{"id":821,"schoolName":"글벗초등학교","address":"세종특별자치시 소담로 121 (소담동)","coordinates":{"longitude":127.297451678,"latitude":36.487732128}}
-{"id":822,"schoolName":"중산중학교","address":"경기도 고양시 일산동구 탄중로 361 (중산동)","coordinates":{"longitude":126.783652827,"latitude":37.691422336}}
-{"id":823,"schoolName":"동명중학교","address":"강원특별자치도 강릉시 보래미하길79번길 21 (포남동)","coordinates":{"longitude":128.913268814,"latitude":37.777476983}}
-{"id":824,"schoolName":"대동고등학교","address":"부산광역시 사하구 을숙도대로709번길 27 (신평동)","coordinates":{"longitude":128.982629529,"latitude":35.087200985}}
-{"id":825,"schoolName":"구남중학교","address":"부산광역시 북구 백양대로1016번길 38 (구포동)","coordinates":{"longitude":128.997862286,"latitude":35.195956938}}
-{"id":826,"schoolName":"모덕초등학교","address":"부산광역시 사상구 덕상로 120 (모라동)","coordinates":{"longitude":128.992100758,"latitude":35.182674639}}
-{"id":827,"schoolName":"전주평화중학교","address":"전북특별자치도 전주시 완산구 평화로 74 (평화동2가)","coordinates":{"longitude":127.134016258,"latitude":35.783372841}}
-{"id":828,"schoolName":"원봉중학교","address":"충청북도 청주시 상당구 중흥로 99 (용암동)","coordinates":{"longitude":127.505422875,"latitude":36.613508959}}
-{"id":829,"schoolName":"대전봉명중학교","address":"대전광역시 유성구 계룡로132번길 71 (봉명동)","coordinates":{"longitude":127.344996559,"latitude":36.349627451}}
-{"id":830,"schoolName":"발안중학교","address":"경기도 화성시 향남읍 발안로 73","coordinates":{"longitude":126.918903305,"latitude":37.132660182}}
-{"id":831,"schoolName":"원당중학교","address":"경기도 고양시 덕양구 마상로 1 (주교동)","coordinates":{"longitude":126.823288813,"latitude":37.664707602}}
-{"id":832,"schoolName":"순천세빛중학교","address":"전라남도 순천시 북정4길 70 (매곡동)","coordinates":{"longitude":127.479347996,"latitude":34.965462712}}
-{"id":833,"schoolName":"세종과학고등학교","address":"서울특별시 구로구 오리로21길 79 (궁동)","coordinates":{"longitude":126.828011781,"latitude":37.496265569}}
-{"id":834,"schoolName":"영종중학교","address":"인천광역시 중구 남디로 92 (운남동)","coordinates":{"longitude":126.525253094,"latitude":37.483511501}}
-{"id":835,"schoolName":"제천동중학교","address":"충청북도 제천시 의병대로 301 (신백동)","coordinates":{"longitude":128.234743474,"latitude":37.132621693}}
-{"id":836,"schoolName":"영문중학교","address":"경기도 용인시 처인구 포곡읍 영문로 70","coordinates":{"longitude":127.208392693,"latitude":37.271893246}}
-{"id":837,"schoolName":"동명고등학교","address":"광주광역시 광산구 사이동길 16 (서봉동)","coordinates":{"longitude":126.740727618,"latitude":35.156142777}}
-{"id":838,"schoolName":"김해수남고등학교","address":"경상남도 김해시 율하로 381 (율하동)","coordinates":{"longitude":128.816488987,"latitude":35.168249523}}
-{"id":839,"schoolName":"인헌중학교","address":"서울특별시 관악구 인헌9길 35 (봉천동)","coordinates":{"longitude":126.969822232,"latitude":37.473286920}}
-{"id":840,"schoolName":"삼성중학교","address":"부산광역시 사하구 감천로43번길 45-2 (감천동)","coordinates":{"longitude":128.999262259,"latitude":35.094587818}}
-{"id":841,"schoolName":"동춘천초등학교","address":"강원특별자치도 춘천시 성심로 77 (효자동)","coordinates":{"longitude":127.743316291,"latitude":37.876872718}}
-{"id":842,"schoolName":"금일중학교","address":"전라남도 완도군 금일읍 금일로 445-1","coordinates":{"longitude":127.032479074,"latitude":34.351213145}}
-{"id":843,"schoolName":"포항고등학교","address":"경상북도 포항시 북구 아호로 50 (학산동)","coordinates":{"longitude":129.371771444,"latitude":36.057049284}}
-{"id":844,"schoolName":"관교중학교","address":"인천광역시 미추홀구 경원대로670번길 19 (관교동)","coordinates":{"longitude":126.691805262,"latitude":37.444290855}}
-{"id":845,"schoolName":"정광고등학교","address":"광주광역시 광산구 소촌로 90-36 (소촌동)","coordinates":{"longitude":126.794842762,"latitude":35.155117834}}
-{"id":846,"schoolName":"금양중학교","address":"부산광역시 금정구 기찰로22번길 37 (부곡동)","coordinates":{"longitude":129.095724383,"latitude":35.233408715}}
-{"id":847,"schoolName":"춘천중학교","address":"강원특별자치도 춘천시 공지로 442-10 (중앙로3가)","coordinates":{"longitude":127.719313965,"latitude":37.875262279}}
-{"id":848,"schoolName":"전주영생고등학교","address":"전북특별자치도 전주시 완산구 천잠로 333 (효자동3가)","coordinates":{"longitude":127.091987657,"latitude":35.816100313}}
-{"id":849,"schoolName":"영남중학교","address":"대구광역시 달서구 월곡로 300 (상인동)","coordinates":{"longitude":128.536794624,"latitude":35.821252081}}
-{"id":850,"schoolName":"진양고등학교","address":"경상남도 진주시 충의로100번길 12 (충무공동)","coordinates":{"longitude":128.152119886,"latitude":35.175813815}}
-{"id":851,"schoolName":"용성중학교","address":"충청북도 청주시 상당구 영운천로203번길 36-12 (용정동)","coordinates":{"longitude":127.518058615,"latitude":36.627513723}}
-{"id":852,"schoolName":"대전문지중학교","address":"대전광역시 유성구 전민로 53 (전민동)","coordinates":{"longitude":127.399085483,"latitude":36.396989712}}
-{"id":853,"schoolName":"화성세정중학교","address":"경기도 화성시 동탄순환대로12길 60 (산척동)","coordinates":{"longitude":127.124620401,"latitude":37.167118528}}
-{"id":854,"schoolName":"남성중학교","address":"전북특별자치도 익산시 동서로35길 41 (신동)","coordinates":{"longitude":126.965292737,"latitude":35.956437378}}
-{"id":855,"schoolName":"거창중학교","address":"경상남도 거창군 거창읍 동동6길 9","coordinates":{"longitude":127.920521875,"latitude":35.689498145}}
-{"id":856,"schoolName":"임자중학교","address":"전라남도 신안군 임자면 임자로 230-9","coordinates":{"longitude":126.099349699,"latitude":35.090844617}}
-{"id":857,"schoolName":"단양고등학교","address":"충청북도 단양군 단양읍 수변로 2","coordinates":{"longitude":128.368286035,"latitude":36.977159782}}
-{"id":858,"schoolName":"옥천중학교","address":"충청북도 옥천군 옥천읍 삼양로 81","coordinates":{"longitude":127.568607663,"latitude":36.305562046}}
-{"id":859,"schoolName":"신언중학교","address":"울산광역시 울주군 언양읍 방천9길 19","coordinates":{"longitude":129.113439468,"latitude":35.567440087}}
-{"id":860,"schoolName":"경북항공고등학교","address":"경상북도 영주시 풍기읍 금계로 90","coordinates":{"longitude":128.525855280,"latitude":36.881174048}}
-{"id":861,"schoolName":"광운중학교","address":"서울특별시 노원구 광운로1길 24 (월계동)","coordinates":{"longitude":127.055332998,"latitude":37.621392151}}
-{"id":862,"schoolName":"한영고등학교","address":"전라남도 여수시 장군산길 18-43 (여서동)","coordinates":{"longitude":127.714837094,"latitude":34.753411639}}
-{"id":863,"schoolName":"농소중학교","address":"울산광역시 북구 호계7길 13 (호계동)","coordinates":{"longitude":129.354832589,"latitude":35.624974143}}
-{"id":864,"schoolName":"명진중학교","address":"부산광역시 북구 학사로 192 (화명동)","coordinates":{"longitude":129.009402388,"latitude":35.239782297}}
-{"id":865,"schoolName":"신덕중학교","address":"부산광역시 북구 함박봉로140번가길 27 (만덕동)","coordinates":{"longitude":129.030803613,"latitude":35.203173801}}
-{"id":866,"schoolName":"교하중학교","address":"경기도 파주시 책향기로 194 (동패동)","coordinates":{"longitude":126.721160565,"latitude":37.722748220}}
-{"id":867,"schoolName":"신광여자중학교","address":"서울특별시 용산구 청파로 263 (청파동3가)","coordinates":{"longitude":126.969418405,"latitude":37.542995879}}
-{"id":868,"schoolName":"도초고등학교","address":"전라남도 신안군 도초면 서남문로 1493","coordinates":{"longitude":125.952338161,"latitude":34.703816236}}
-{"id":869,"schoolName":"이리고등학교","address":"전북특별자치도 익산시 익산대로36길 35 (남중동)","coordinates":{"longitude":126.955773999,"latitude":35.949250976}}
-{"id":870,"schoolName":"대구노변초등학교","address":"대구광역시 수성구 노변공원로 52 (시지동)","coordinates":{"longitude":128.697489101,"latitude":35.837515024}}
-{"id":871,"schoolName":"세일중학교","address":"서울특별시 금천구 시흥대로147길 34 (독산동)","coordinates":{"longitude":126.895284750,"latitude":37.474674447}}
-{"id":872,"schoolName":"진도중학교","address":"전라남도 진도군 진도읍 교동3길 9","coordinates":{"longitude":126.258722058,"latitude":34.483655052}}
-{"id":873,"schoolName":"청주고등학교","address":"충청북도 청주시 흥덕구 사직대로 79 (복대동)","coordinates":{"longitude":127.454957304,"latitude":36.636440893}}
-{"id":874,"schoolName":"성서고등학교","address":"대구광역시 달서구 선원로 221 (용산동)","coordinates":{"longitude":128.516221490,"latitude":35.859943166}}
-{"id":875,"schoolName":"보람고등학교","address":"세종특별자치시 한누리대로 2176 (보람동)","coordinates":{"longitude":127.284494309,"latitude":36.477659372}}
-{"id":876,"schoolName":"보성고등학교","address":"전라남도 보성군 보성읍 용문길 48","coordinates":{"longitude":127.093354712,"latitude":34.776156251}}
-{"id":877,"schoolName":"서재중학교","address":"대구광역시 달성군 다사읍 서재로26길 18","coordinates":{"longitude":128.499723278,"latitude":35.873265224}}
-{"id":878,"schoolName":"신탄진중학교","address":"대전광역시 대덕구 석봉로 15 (석봉동)","coordinates":{"longitude":127.423088032,"latitude":36.447885886}}
-{"id":879,"schoolName":"거창승강기고등학교","address":"경상남도 거창군 가조면 마상3길 33-20","coordinates":{"longitude":128.015669343,"latitude":35.713839470}}
-{"id":880,"schoolName":"남도여자중학교","address":"부산광역시 영도구 남도여중길 130 (신선동2가)","coordinates":{"longitude":129.045592804,"latitude":35.086781182}}
-{"id":881,"schoolName":"순성중학교","address":"충청남도 당진시 순성면 틀모시로 146","coordinates":{"longitude":126.706178032,"latitude":36.852409736}}
-{"id":882,"schoolName":"강신중학교","address":"서울특별시 양천구 남부순환로 604 (신월동)","coordinates":{"longitude":126.838336376,"latitude":37.515051337}}
-{"id":883,"schoolName":"전주해성중학교","address":"전북특별자치도 전주시 완산구 계룡산길 88 (삼천동2가)","coordinates":{"longitude":127.101183168,"latitude":35.787253856}}
-{"id":884,"schoolName":"부산일과학고등학교","address":"부산광역시 사하구 제석로 242 (당리동)","coordinates":{"longitude":128.988884325,"latitude":35.117218637}}
-{"id":885,"schoolName":"불국중학교","address":"경상북도 경주시 구매2길 35-12 (시래동)","coordinates":{"longitude":129.309184514,"latitude":35.773857009}}
-{"id":886,"schoolName":"영동일고등학교","address":"서울특별시 송파구 석촌호수로 93 (잠실동)","coordinates":{"longitude":127.089443615,"latitude":37.509974426}}
-{"id":887,"schoolName":"세현고등학교","address":"서울특별시 강서구 허준로 227 (가양동)","coordinates":{"longitude":126.863532003,"latitude":37.560404578}}
-{"id":888,"schoolName":"이리부송초등학교","address":"전북특별자치도 익산시 부송로2길 27 (부송동)","coordinates":{"longitude":126.993896435,"latitude":35.955733850}}
-{"id":889,"schoolName":"부산예술중학교","address":"부산광역시 금정구 체육공원로 20 (구서동)","coordinates":{"longitude":129.096485864,"latitude":35.246435455}}
-{"id":890,"schoolName":"동신중학교","address":"부산광역시 동래구 충렬사로51번길 38 (명장동)","coordinates":{"longitude":129.097897809,"latitude":35.205973070}}
-{"id":891,"schoolName":"여수중앙중학교","address":"전라남도 여수시 덕충6길 79 (덕충동)","coordinates":{"longitude":127.734426520,"latitude":34.752503535}}
-{"id":892,"schoolName":"대전탄방중학교","address":"대전광역시 서구 문정로 181 (둔산동)","coordinates":{"longitude":127.394820594,"latitude":36.350453128}}
-{"id":893,"schoolName":"용수중학교","address":"부산광역시 북구 금곡대로229번길 88 (화명동)","coordinates":{"longitude":129.007760986,"latitude":35.230245296}}
-{"id":894,"schoolName":"용마초등학교","address":"경상남도 창원시 마산합포구 산호남로 50 (산호동)","coordinates":{"longitude":128.584723242,"latitude":35.216049645}}
-{"id":895,"schoolName":"광주서석중학교","address":"광주광역시 서구 화정로253번길 27 (화정동)","coordinates":{"longitude":126.881845113,"latitude":35.149864535}}
-{"id":896,"schoolName":"학력인정부산조리고등학교","address":"부산광역시 사상구 낙동대로1390번길 65 (삼락동)","coordinates":{"longitude":128.980401290,"latitude":35.183539357}}
-{"id":897,"schoolName":"칠원고등학교","address":"경상남도 함안군 칠서면 삼칠로 281","coordinates":{"longitude":128.507290923,"latitude":35.318192006}}
-{"id":898,"schoolName":"덕명여자중학교","address":"부산광역시 부산진구 봉수로 13 (전포동)","coordinates":{"longitude":129.069892372,"latitude":35.152695412}}
-{"id":899,"schoolName":"목포부주초등학교","address":"전라남도 목포시 남악2로22번길 37 (옥암동)","coordinates":{"longitude":126.456928307,"latitude":34.808791179}}
-{"id":900,"schoolName":"양서중학교","address":"서울특별시 양천구 남부순환로 380 (신월동)","coordinates":{"longitude":126.828972652,"latitude":37.532675723}}
-{"id":901,"schoolName":"전북중학교","address":"전북특별자치도 전주시 덕진구 쪽구름2길 22 (여의동2가)","coordinates":{"longitude":127.078022080,"latitude":35.874576769}}
-{"id":902,"schoolName":"일광중학교","address":"부산광역시 기장군 일광읍 해빛3로 99","coordinates":{"longitude":129.220192442,"latitude":35.265240203}}
-{"id":903,"schoolName":"주례여자중학교","address":"부산광역시 사상구 가야대로306번길 55 (주례동)","coordinates":{"longitude":129.007215145,"latitude":35.148923577}}
-{"id":904,"schoolName":"화암초등학교","address":"울산광역시 동구 화문로 55 (방어동)","coordinates":{"longitude":129.415382142,"latitude":35.484154645}}
+{"id": 783, "schoolName": "신도림고등학교", "address": "서울특별시 구로구 경인로67길 159 (신도림동)", "coordinates": {"longitude": 126.881948232, "latitude": 37.514028022}, "videoStatus": "Pending"}
+{"id": 784, "schoolName": "완도중학교", "address": "전라남도 완도군 완도읍 청해진남로 88", "coordinates": {"longitude": 126.750827833, "latitude": 34.308306088}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/rkALdzaKrZI"}
+{"id": 785, "schoolName": "배명중학교", "address": "서울특별시 송파구 삼학사로 11 (삼전동)", "coordinates": {"longitude": 127.095049176, "latitude": 37.497962918}, "videoStatus": "Pending"}
+{"id": 786, "schoolName": "인천석암초등학교", "address": "인천광역시 미추홀구 주안동로 46 (주안동)", "coordinates": {"longitude": 126.687262768, "latitude": 37.46192427}, "videoStatus": "Pending"}
+{"id": 787, "schoolName": "한국교원대학교부설고등학교", "address": "충청북도 청주시 흥덕구 강내면 태성탑연로 433", "coordinates": {"longitude": 127.357363237, "latitude": 36.621158611}, "videoStatus": "Pending"}
+{"id": 788, "schoolName": "인천이음중학교", "address": "인천광역시 서구 이음1로 455 (원당동)", "coordinates": {"longitude": 126.711552185, "latitude": 37.599758151}, "videoStatus": "Pending"}
+{"id": 789, "schoolName": "신창중학교", "address": "광주광역시 광산구 왕버들로290번길 40 (신창동)", "coordinates": {"longitude": 126.839375048, "latitude": 35.193447259}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/mc3MTUCbAAA"}
+{"id": 790, "schoolName": "천성중학교", "address": "충청남도 천안시 동남구 벌말1길 7 (유량동)", "coordinates": {"longitude": 127.173786154, "latitude": 36.812284835}, "videoStatus": "Pending"}
+{"id": 791, "schoolName": "마산용마고등학교", "address": "경상남도 창원시 마산합포구 허당로 51 (산호동)", "coordinates": {"longitude": 128.582481493, "latitude": 35.211525324}, "videoStatus": "Pending"}
+{"id": 792, "schoolName": "광탄중학교", "address": "경기도 파주시 광탄면 혜음로 1128", "coordinates": {"longitude": 126.847321141, "latitude": 37.781945244}, "videoStatus": "Pending"}
+{"id": 793, "schoolName": "신흥중학교", "address": "경상북도 포항시 남구 오천읍 장기로 1636", "coordinates": {"longitude": 129.422876719, "latitude": 35.964487037}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/8h9fGb4kpW4"}
+{"id": 794, "schoolName": "경주중학교", "address": "경상북도 경주시 원효로 231 (황오동)", "coordinates": {"longitude": 129.224748573, "latitude": 35.843860881}, "videoStatus": "Pending"}
+{"id": 795, "schoolName": "청주남중학교", "address": "충청북도 청주시 서원구 청남로 2039 (수곡동)", "coordinates": {"longitude": 127.48343655, "latitude": 36.614461894}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/3fjtbf0bb4U"}
+{"id": 796, "schoolName": "대전월평중학교", "address": "대전광역시 서구 월평동로 21 (월평동)", "coordinates": {"longitude": 127.367215986, "latitude": 36.356596622}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/5LMEQW7LXiw"}
+{"id": 797, "schoolName": "강일중학교", "address": "서울특별시 강동구 고덕로27길 12 (암사동)", "coordinates": {"longitude": 127.138008553, "latitude": 37.555344787}, "videoStatus": "Pending"}
+{"id": 798, "schoolName": "동래고등학교", "address": "부산광역시 동래구 충렬대로285번길 22 (칠산동)", "coordinates": {"longitude": 129.091632125, "latitude": 35.201325231}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/QrGuHBsqX0Q"}
+{"id": 799, "schoolName": "탄현중학교", "address": "경기도 파주시 탄현면 열살미길 10", "coordinates": {"longitude": 126.722978759, "latitude": 37.80508992}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/yeV1DPOnB9E"}
+{"id": 800, "schoolName": "학산중학교", "address": "대구광역시 달서구 월곡로94길 10 (월성동)", "coordinates": {"longitude": 128.525754377, "latitude": 35.831410354}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/fxBr9e9N8XA"}
+{"id": 801, "schoolName": "포항이동중학교", "address": "경상북도 포항시 남구 대이로 170 (이동)", "coordinates": {"longitude": 129.340394481, "latitude": 36.030044016}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/enN20e9jaGQ"}
+{"id": 802, "schoolName": "지사중학교", "address": "부산광역시 강서구 과학산단로306번길 33 (지사동)", "coordinates": {"longitude": 128.835718373, "latitude": 35.152179911}, "videoStatus": "Pending"}
+{"id": 803, "schoolName": "인천대학교", "address": "인천광역시 연수구 아카데미로 119 (송도동)", "coordinates": {"longitude": 126.630298006, "latitude": 37.374639147}, "videoStatus": "Pending"}
+{"id": 804, "schoolName": "대흥고등학교", "address": "충청남도 예산군 대흥면 예당로 845", "coordinates": {"longitude": 126.792168282, "latitude": 36.605416071}, "videoStatus": "Pending"}
+{"id": 805, "schoolName": "숙지중학교", "address": "경기도 수원시 팔달구 덕영대로735번길 23 (화서동)", "coordinates": {"longitude": 126.991911213, "latitude": 37.282166656}, "videoStatus": "Sent", "videoUrl": "https://youtu.be/PqqYwxQFwlY"}
+{"id": 806, "schoolName": "진천중학교", "address": "충청북도 진천군 진천읍 성중로 27-5", "coordinates": {"longitude": 127.446853426, "latitude": 36.868157885}, "videoStatus": "Pending"}
