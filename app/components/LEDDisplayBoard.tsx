@@ -165,7 +165,7 @@ export default function LEDDisplayBoard() {
 
         {/* 모바일 범례 팝업 */}
         {showLegend && (
-          <div className="md:hidden fixed top-[70px] left-2 bg-black/90 backdrop-blur-sm border border-yellow-600/30 rounded-lg px-3 py-2 shadow-lg z-[1002]">
+          <div className="md:hidden fixed top-[150px] left-2 bg-black/90 backdrop-blur-sm border border-yellow-600/30 rounded-lg px-3 py-2 shadow-lg z-[1002]">
             <button
               onClick={() => setShowLegend(false)}
               className="absolute top-1 right-1 text-yellow-400/70 hover:text-yellow-400"
