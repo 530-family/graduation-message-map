@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import LEDDisplayBoard from "./components/LEDDisplayBoard";
 import QuickLinks from "./components/QuickLinks";
-import RequestForm from "./components/RequestForm";
+import RequestFormWrapper from "./components/RequestFormWrapper";
 
 // Leaflet은 서버 사이드 렌더링을 지원하지 않으므로 dynamic import 사용
 const KoreaMap = dynamic(() => import("./components/KoreaMap"), {
@@ -23,7 +23,7 @@ export default function Home() {
       <LEDDisplayBoard />
       <KoreaMap />
       <QuickLinks />
-      <RequestForm />
+      <RequestFormWrapper />
     </main>
   );
 }

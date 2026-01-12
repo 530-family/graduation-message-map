@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { X, Search, Loader2, Mail, MapPin } from "lucide-react";
 
 interface School {
@@ -60,14 +59,6 @@ export default function RequestForm({
       setInternalIsOpen(value);
     }
   };
-
-  // 쿼리 파라미터로 모달 열기
-  const searchParams = useSearchParams();
-  useEffect(() => {
-    if (searchParams.get("apply") === "true" || searchParams.get("open") === "true") {
-      setInternalIsOpen(true);
-    }
-  }, [searchParams]);
 
   // 초기 학교명/주소가 변경될 때 폼 업데이트
   useEffect(() => {
