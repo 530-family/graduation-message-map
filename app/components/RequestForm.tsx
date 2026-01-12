@@ -377,7 +377,7 @@ export default function RequestForm({
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50"
+                  className="w-full px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50 text-left"
                   placeholder="your@email.com"
                 />
               </div>
@@ -402,7 +402,7 @@ export default function RequestForm({
                     onChange={handleSearchChange}
                     onFocus={() => searchQuery && !isManualInput && !selectedSchool && setShowSuggestions(true)}
                     disabled={!!selectedSchool}
-                    className="w-full pl-10 pr-10 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50 disabled:bg-black/30 disabled:cursor-not-allowed"
+                    className="w-full pl-10 pr-10 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50 disabled:bg-black/30 disabled:cursor-not-allowed text-left"
                     placeholder={selectedSchool ? "학교 선택됨" : "학교명 검색..."}
                   />
                   {/* 선택된 학교 초기화 X 버튼 */}
@@ -474,7 +474,7 @@ export default function RequestForm({
                     required
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="flex-1 px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50 disabled:bg-black/30"
+                    className="flex-1 px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50 disabled:bg-black/30 text-left"
                     placeholder={selectedSchool ? "자동 입력됨" : "주소를 입력해주세요"}
                     disabled={!!selectedSchool}
                   />
@@ -505,7 +505,7 @@ export default function RequestForm({
                   value={formData.graduationDate}
                   onChange={(e) => setFormData({ ...formData, graduationDate: e.target.value })}
                   onClick={(e) => (e.target as HTMLInputElement).showPicker?.()}
-                  className="w-full px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white focus:outline-none focus:border-yellow-500/50 [color-scheme:dark] cursor-pointer"
+                  className="w-full px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white focus:outline-none focus:border-yellow-500/50 [color-scheme:dark] cursor-pointer text-left"
                 />
               </div>
 
@@ -513,13 +513,17 @@ export default function RequestForm({
               <div>
                 <label className="block text-sm font-medium text-yellow-300 mb-1 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">
                   축사에 꼭 포함했으면 하는 내용 <span className="text-red-400">*</span>
+                  <span className="text-xs text-yellow-100/50 ml-2">
+                    ({formData.requestDetails.length}/1000자)
+                  </span>
                 </label>
                 <textarea
                   required
+                  maxLength={1000}
                   value={formData.requestDetails}
                   onChange={(e) => setFormData({ ...formData, requestDetails: e.target.value })}
                   rows={4}
-                  className="w-full px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50"
+                  className="w-full px-4 py-3 bg-black/50 border-2 border-yellow-600/30 rounded-lg text-white placeholder-yellow-100/30 focus:outline-none focus:border-yellow-500/50 text-left resize-none"
                   placeholder="만약 없다면 '없음'이라고 적어주세요."
                 />
               </div>
