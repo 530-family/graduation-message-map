@@ -56,9 +56,12 @@ function getGoogleAuth() {
 }
 
 // VWorld API를 사용하여 주소를 좌표로 변환
-async function geocodeAddress(address: string): Promise<Coordinates | null> {
+async function geocodeAddress(address: string): Promise<{ coordinates: Coordinates; debugInfo: any } | null> {
+  const debugInfo: any = { address, apiKeyExists: !!VWORLD_API_KEY, attempts: [] };
+
   if (!VWORLD_API_KEY) {
     console.error("VWORLD_API_KEY가 설정되지 않았습니다.");
+    debugInfo.error = "API_KEY_MISSING";
     return null;
   }
 
@@ -73,8 +76,12 @@ async function geocodeAddress(address: string): Promise<Coordinates | null> {
       try {
         const apiUrl = `https://api.vworld.kr/req/address?service=address&request=getcoord&version=2.0&crs=epsg:4326&address=${encodedAddress}&refine=true&simple=false&format=json&type=${type}&key=${VWORLD_API_KEY}`;
 
+        debugInfo.attempts.push({ type, url: apiUrl.replace(VWORLD_API_KEY, "***") });
+
         const response = await fetch(apiUrl);
         const data = await response.json();
+
+        debugInfo.attempts[debugInfo.attempts.length - 1].response = data;
 
         if (data.response && data.response.status === "OK") {
           const result = data.response.result;
@@ -82,22 +89,28 @@ async function geocodeAddress(address: string): Promise<Coordinates | null> {
 
           if (point && point.x && point.y) {
             return {
-              longitude: parseFloat(point.x),
-              latitude: parseFloat(point.y),
+              coordinates: {
+                longitude: parseFloat(point.x),
+                latitude: parseFloat(point.y),
+              },
+              debugInfo,
             };
           }
         }
       } catch (error) {
         console.error(`VWorld API ${type} 타입 요청 실패:`, error);
+        debugInfo.attempts[debugInfo.attempts.length - 1].error = String(error);
         // 다음 타입으로 시도
         continue;
       }
     }
 
     console.error("VWorld API에서 좌표를 찾을 수 없습니다:", address);
+    console.error("디버그 정보:", JSON.stringify(debugInfo, null, 2));
     return null;
   } catch (error) {
     console.error("지오코딩 오류:", error);
+    debugInfo.error = String(error);
     return null;
   }
 }
@@ -247,14 +260,22 @@ export async function POST(request: NextRequest) {
     }
 
     // 주소를 좌표로 변환
-    const coordinates = await geocodeAddress(address);
+    const geocodeResult = await geocodeAddress(address);
 
-    if (!coordinates) {
+    if (!geocodeResult) {
       return NextResponse.json(
-        { error: "주소를 좌표로 변환할 수 없습니다. 주소를 정확하게 입력했는지 확인해주세요." },
+        {
+          error: "주소를 좌표로 변환할 수 없습니다. 주소를 정확하게 입력했는지 확인해주세요.",
+          debug: {
+            message: "지오코딩 실패 - VWorld API가 좌표를 반환하지 않았습니다",
+            hint: "프로덕션 환경에 VWORLD_API_KEY가 설정되어 있는지 확인하세요",
+          },
+        },
         { status: 400 }
       );
     }
+
+    const { coordinates, debugInfo } = geocodeResult;
 
     // 현재 시간 (한국 시간)
     const now = new Date();

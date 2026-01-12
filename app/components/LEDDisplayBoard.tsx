@@ -11,6 +11,7 @@ export default function LEDDisplayBoard() {
   const [pendingCount, setPendingCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [showLegend, setShowLegend] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -100,11 +101,11 @@ export default function LEDDisplayBoard() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-1001 bg-linear-to-b from-gray-900 to-black py-4 border-b-4 border-yellow-500 shadow-2xl">
-      <div className="container mx-auto px-4">
-        <div className="relative overflow-hidden bg-black/50 rounded-lg border-2 border-yellow-600/30 p-4 shadow-inner">
+    <div className="fixed top-0 left-0 right-0 z-[1001] bg-gradient-to-b from-gray-900 to-black py-2 md:py-4 border-b-2 md:border-b-4 border-yellow-500 shadow-2xl">
+      <div className="container mx-auto px-2 md:px-4">
+        <div className="relative overflow-hidden bg-black/50 rounded-lg border border-yellow-600/30 p-2 md:p-4 shadow-inner">
           {/* 상단 인디케이터 라인 */}
-          <div className="flex justify-between items-center mb-2 text-xs text-yellow-500/70 font-mono">
+          <div className="flex justify-between items-center mb-1 md:mb-2 text-[10px] md:text-xs text-yellow-500/70 font-mono">
             <span>● LIVE</span>
             <span
               className={`transition-opacity duration-300 ${
@@ -120,7 +121,7 @@ export default function LEDDisplayBoard() {
 
           {/* 메인 텍스트 - 전광판 스타일 */}
           <h1
-            className={`text-center text-3xl md:text-5xl font-bold tracking-widest transition-all duration-300 font-[PfStardust30] ${
+            className={`text-center text-lg md:text-3xl lg:text-5xl font-bold tracking-widest transition-all duration-300 font-[PfStardust30] ${
               isVisible
                 ? "text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]"
                 : "text-yellow-500/80 drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]"
@@ -135,14 +136,22 @@ export default function LEDDisplayBoard() {
           </div>
 
           {/* 오른쪽 하단 로딩 표시 */}
-          <div className="absolute bottom-2 right-2 flex items-center gap-2 text-yellow-400/70 text-xs font-mono">
-            <Loader2 className="w-4 h-4 animate-spin drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
-            <span className="drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">축사 찍는중...</span>
+          <div className="absolute bottom-1 md:bottom-2 right-2 flex items-center gap-1 md:gap-2 text-yellow-400/70 text-[10px] md:text-xs font-mono">
+            <Loader2 className="w-3 h-3 md:w-4 md:h-4 animate-spin drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
+            <span className="hidden md:inline drop-shadow-[0_0_5px_rgba(250,204,21,0.5)]">축사 찍는중...</span>
           </div>
         </div>
 
-        {/* 마커 범례 및 통계 카드 */}
-        <div className="absolute top-full right-4 translate-y-[30px] bg-black/70 backdrop-blur-sm border-2 border-yellow-600/30 rounded-lg px-4 py-3 shadow-lg">
+        {/* 마커 범례 토글 버튼 (모바일) */}
+        <button
+          onClick={() => setShowLegend(!showLegend)}
+          className="md:hidden absolute top-full right-2 translate-y-2 bg-black/70 backdrop-blur-sm border border-yellow-600/30 rounded px-2 py-1 shadow-lg text-yellow-400 text-xs"
+        >
+          📊 {sentCount}/{schoolCount}
+        </button>
+
+        {/* 마커 범례 및 통계 카드 (데스크톱) */}
+        <div className="hidden md:block absolute top-full right-4 translate-y-[30px] bg-black/70 backdrop-blur-sm border-2 border-yellow-600/30 rounded-lg px-4 py-3 shadow-lg">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <img
@@ -166,6 +175,32 @@ export default function LEDDisplayBoard() {
             </div>
           </div>
         </div>
+
+        {/* 모바일 범례 팝업 */}
+        {showLegend && (
+          <div className="md:hidden fixed top-[70px] right-2 bg-black/90 backdrop-blur-sm border border-yellow-600/30 rounded-lg px-3 py-2 shadow-lg z-[1002]">
+            <button
+              onClick={() => setShowLegend(false)}
+              className="absolute top-1 right-1 text-yellow-400/70 hover:text-yellow-400"
+            >
+              ✕
+            </button>
+            <div className="flex flex-col gap-2 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-6 rounded-full bg-orange-500"></div>
+                <span className="text-yellow-100/90">
+                  전송 완료 <span className="font-bold text-orange-400 ml-1">{sentCount}개교</span>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-6 rounded-full bg-gray-400"></div>
+                <span className="text-yellow-100/90">
+                  찍는 중 <span className="font-bold text-gray-400 ml-1">{pendingCount}개교</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

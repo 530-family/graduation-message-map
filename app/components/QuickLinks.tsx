@@ -35,21 +35,21 @@ export default function QuickLinks() {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 rounded-lg shadow-lg p-4 z-400
-    ${isExpanded ? "bg-white" : "bg-linear-to-b from-white to-white/70"}`}
+      className={`fixed bottom-4 left-2 md:right-4 md:left-auto rounded-lg shadow-lg p-2 md:p-4 z-[400]
+    ${isExpanded ? "bg-white" : "bg-gradient-to-b from-white to-white/70"}`}
     >
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1 md:gap-2">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center justify-between text-sm font-semibold text-gray-800 md:cursor-default"
+          className="flex items-center justify-between text-xs md:text-sm font-semibold text-gray-800"
         >
-          <span>바로가기</span>
-          <span className="md:hidden">
-            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          <span>🔗 바로가기</span>
+          <span>
+            {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
           </span>
         </button>
         <div
-          className={`flex flex-col gap-2 transition-all duration-300 overflow-hidden ${
+          className={`flex flex-col gap-1 md:gap-2 transition-all duration-300 overflow-hidden ${
             isExpanded
               ? "max-h-96 opacity-100"
               : "max-h-0 opacity-0 md:max-h-96 md:opacity-100"
@@ -61,10 +61,10 @@ export default function QuickLinks() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 hover:underline transition-colors"
+              className="flex items-center gap-1 md:gap-2 text-xs md:text-sm text-gray-700 hover:text-gray-900 hover:underline transition-colors"
             >
-              <ExternalLink size={14} />
-              {link.name}
+              <ExternalLink size={12} className="md:size-[14px]" />
+              <span className="truncate">{link.name}</span>
             </a>
           ))}
         </div>
