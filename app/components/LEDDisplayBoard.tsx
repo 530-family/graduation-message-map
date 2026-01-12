@@ -132,7 +132,7 @@ export default function LEDDisplayBoard() {
         {/* 마커 범례 토글 버튼 (모바일) */}
         <button
           onClick={() => setShowLegend(!showLegend)}
-          className="md:hidden absolute top-full right-2 translate-y-2 bg-black/70 backdrop-blur-sm border border-yellow-600/30 rounded px-2 py-1 shadow-lg text-yellow-400 text-xs"
+          className="md:hidden absolute top-full left-2 translate-y-2 bg-black/70 backdrop-blur-sm border border-yellow-600/30 rounded px-2 py-1 shadow-lg text-yellow-400 text-xs"
         >
           📊 {sentCount}/{schoolCount}
         </button>
@@ -165,7 +165,7 @@ export default function LEDDisplayBoard() {
 
         {/* 모바일 범례 팝업 */}
         {showLegend && (
-          <div className="md:hidden fixed top-[70px] right-2 bg-black/90 backdrop-blur-sm border border-yellow-600/30 rounded-lg px-3 py-2 shadow-lg z-[1002]">
+          <div className="md:hidden fixed top-[70px] left-2 bg-black/90 backdrop-blur-sm border border-yellow-600/30 rounded-lg px-3 py-2 shadow-lg z-[1002]">
             <button
               onClick={() => setShowLegend(false)}
               className="absolute top-1 right-1 text-yellow-400/70 hover:text-yellow-400"

@@ -333,7 +333,7 @@ export default function RequestForm({
       {/* 열기 버튼 (항상 표시) */}
       <button
         onClick={() => handleSetIsOpen(true)}
-        className="cursor-pointer fixed top-[120px] md:top-[270px] right-2 md:right-4 bg-black/80 hover:bg-black/90 border border-yellow-500 md:border-2 hover:border-yellow-400 rounded-lg px-2 md:px-4 py-1.5 md:py-3 shadow-[0_0_20px_rgba(234,179,8,0.4)] hover:shadow-[0_0_35px_rgba(234,179,8,0.7)] transition-all duration-300 flex items-center gap-1 md:gap-2 font-bold text-yellow-400 hover:text-yellow-300 z-[1002]"
+        className="cursor-pointer fixed top-[130px] md:top-[270px] right-2 md:right-4 bg-black/80 hover:bg-black/90 border border-yellow-500 md:border-2 hover:border-yellow-400 rounded-lg px-2 md:px-4 py-1.5 md:py-3 shadow-[0_0_20px_rgba(234,179,8,0.4)] hover:shadow-[0_0_35px_rgba(234,179,8,0.7)] transition-all duration-300 flex items-center gap-1 md:gap-2 font-bold text-yellow-400 hover:text-yellow-300 z-[1002]"
       >
         <Mail className="w-4 h-4 md:w-5 md:h-5 animate-bounce drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]" />
         <span className="text-xs md:text-base drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">

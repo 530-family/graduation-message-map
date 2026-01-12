@@ -46,7 +46,7 @@ export default function SchoolSearch({
   };
 
   return (
-    <div className="fixed top-[60px] md:top-[140px] left-0 right-0 z-[1002] w-full flex justify-center px-4 py-2 md:py-3 pointer-events-none">
+    <div className="fixed top-[70px] md:top-[140px] left-0 right-0 z-[1002] w-full flex justify-center px-4 py-2 md:py-3 pointer-events-none">
       <div className="w-full max-w-md bg-black/80 backdrop-blur-md rounded-lg border-2 border-yellow-600/30 shadow-2xl overflow-hidden pointer-events-auto">
         <div className="p-2 md:p-3">
           <div className="relative">
