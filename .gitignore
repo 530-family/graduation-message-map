@@ -43,6 +43,9 @@ next-env.d.ts
 # google cloud console
 credentials.json
 token.json
+*.json
+!package.json
+!package-lock.json
 
 # internal resources
 *.internal.md
