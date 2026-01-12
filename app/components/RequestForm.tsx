@@ -330,8 +330,8 @@ export default function RequestForm({
 
   return (
     <>
-      {/* 열기 버튼 (항상 표시) */}
-      {!isControlled && (
+      {/* 열기 버튼 (모달이 닫혀있을 때만 표시) */}
+      {!isOpen && (
         <button
           onClick={() => handleSetIsOpen(true)}
           className="cursor-pointer fixed top-[280px] right-4 bg-black/80 hover:bg-black/90 border-2 border-yellow-500 hover:border-yellow-400 rounded-lg px-7 py-3 shadow-[0_0_20px_rgba(234,179,8,0.4)] hover:shadow-[0_0_35px_rgba(234,179,8,0.7)] transition-all duration-300 flex items-center gap-2 font-bold text-yellow-400 hover:text-yellow-300 z-[1002]"

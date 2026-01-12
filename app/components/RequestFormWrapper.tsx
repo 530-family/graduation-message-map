@@ -1,19 +1,21 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import RequestForm from "./RequestForm";
 
 function RequestFormInner() {
   const searchParams = useSearchParams();
-  const isOpen = searchParams.get("apply") === "true" || searchParams.get("open") === "true";
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
 
-  // Return a controlled version of RequestForm when opened via URL params
-  if (isOpen) {
-    return <RequestForm isOpen={true} onOpenChange={() => {}} />;
-  }
+  // URL params로 열리도록 초기화
+  useEffect(() => {
+    if (searchParams.get("apply") === "true" || searchParams.get("open") === "true") {
+      setInternalIsOpen(true);
+    }
+  }, [searchParams]);
 
-  return <RequestForm />;
+  return <RequestForm isOpen={internalIsOpen} onOpenChange={setInternalIsOpen} />;
 }
 
 export default function RequestFormWrapper() {
