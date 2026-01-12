@@ -11,7 +11,6 @@ export const runtime = 'nodejs';
 const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID || "";
 const SHEET_NAME = "requests";
 const KAKAO_REST_API_KEY = process.env.KAKAO_REST_API_KEY || "";
-const VWORLD_API_KEY = process.env.VWORLD_API_KEY || "";
 
 interface RequestData {
   email: string;
@@ -59,91 +58,46 @@ function getGoogleAuth() {
   });
 }
 
-// 카카오 지오코딩 API (우선) + VWorld API (fallback)
+// 카카오 지오코딩 API
 async function geocodeAddress(address: string): Promise<{ coordinates: Coordinates; debugInfo: any } | null> {
-  const debugInfo: any = { address, kakaoKeyExists: !!KAKAO_REST_API_KEY, vworldKeyExists: !!VWORLD_API_KEY, attempts: [] };
+  const debugInfo: any = { address, apiKeyExists: !!KAKAO_REST_API_KEY };
 
-  // 1. 카카오 API 시도 (Vercel에서 안정적)
-  if (KAKAO_REST_API_KEY) {
-    try {
-      const apiUrl = `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(address)}`;
-
-      debugInfo.attempts.push({ service: "Kakao", url: apiUrl.replace(address, "***") });
-
-      const response = await fetch(apiUrl, {
-        headers: {
-          'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
-        },
-      });
-
-      if (!response.ok) {
-        debugInfo.attempts[debugInfo.attempts.length - 1].httpStatus = response.status;
-      } else {
-        const data = await response.json();
-        debugInfo.attempts[debugInfo.attempts.length - 1].response = data;
-
-        if (data.documents && data.documents.length > 0) {
-          const doc = data.documents[0];
-          if (doc.x && doc.y) {
-            return {
-              coordinates: {
-                longitude: parseFloat(doc.x),
-                latitude: parseFloat(doc.y),
-              },
-              debugInfo: { ...debugInfo, used: "Kakao" },
-            };
-          }
-        }
-      }
-    } catch (error) {
-      console.error("카카오 API 요청 실패:", error);
-      const lastAttempt = debugInfo.attempts[debugInfo.attempts.length - 1];
-      if (lastAttempt) lastAttempt.error = String(error);
-    }
+  if (!KAKAO_REST_API_KEY) {
+    debugInfo.error = "KAKAO_REST_API_KEY_MISSING";
+    return null;
   }
 
-  // 2. VWorld API fallback (로컬 환경용)
-  if (VWORLD_API_KEY) {
-    try {
-      const encodedAddress = encodeURIComponent(address);
-      const apiUrl = `https://api.vworld.kr/req/address?service=address&request=getcoord&version=2.0&crs=epsg:4326&address=${encodedAddress}&refine=true&simple=false&format=json&type=ROAD&key=${VWORLD_API_KEY}`;
+  try {
+    const apiUrl = `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(address)}`;
 
-      debugInfo.attempts.push({ service: "VWorld", url: apiUrl.replace(VWORLD_API_KEY, "***") });
+    const response = await fetch(apiUrl, {
+      headers: {
+        'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
+      },
+    });
 
-      const response = await fetch(apiUrl, {
-        headers: {
-          'User-Agent': 'GraduationMessageMap/1.0',
-          'Accept': 'application/json',
-        },
-        // @ts-ignore
-        duplex: 'half',
-      });
+    const data = await response.json();
 
-      if (!response.ok) {
-        debugInfo.attempts[debugInfo.attempts.length - 1].httpStatus = response.status;
-      } else {
-        const data = await response.json();
-        debugInfo.attempts[debugInfo.attempts.length - 1].response = data;
-
-        if (data.response?.status === "OK" && data.response.result?.point?.x && data.response.result?.point?.y) {
-          return {
-            coordinates: {
-              longitude: parseFloat(data.response.result.point.x),
-              latitude: parseFloat(data.response.result.point.y),
-            },
-            debugInfo: { ...debugInfo, used: "VWorld" },
-          };
-        }
+    if (data.documents && data.documents.length > 0) {
+      const doc = data.documents[0];
+      if (doc.x && doc.y) {
+        return {
+          coordinates: {
+            longitude: parseFloat(doc.x),
+            latitude: parseFloat(doc.y),
+          },
+          debugInfo,
+        };
       }
-    } catch (error) {
-      console.error("VWorld API 요청 실패:", error);
-      const lastAttempt = debugInfo.attempts[debugInfo.attempts.length - 1];
-      if (lastAttempt) lastAttempt.error = String(error);
     }
-  }
 
-  console.error("지오코딩 실패:", address);
-  return null;
+    debugInfo.error = "NO_RESULTS";
+    return null;
+  } catch (error) {
+    console.error("카카오 API 요청 실패:", error);
+    debugInfo.error = String(error);
+    return null;
+  }
 }
 
 // coordinates.ndjson 파일 읽기
