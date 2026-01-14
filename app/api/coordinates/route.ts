@@ -16,6 +16,8 @@ interface SchoolData {
   id: number;
   schoolName: string;
   address: string;
+  email: string;
+  requestContent: string;
   coordinates: {
     longitude: number;
     latitude: number;
@@ -78,13 +80,15 @@ export async function GET() {
 
     // SchoolData 배열로 변환
     const schools: SchoolData[] = dataRows
-      .filter((row) => row.length >= 9) // 최소 필드 확인
+      .filter((row) => row.length >= 11) // 최소 필드 확인 (이메일, 요청사항 포함)
       .map((row, index) => {
         // A열: ID, B열: 타입, C열: 시즌, D열: 상태, E열: 이메일
         // F열: 학교명, G열: 주소, H열: 경도, I열: 위도
         // J열: 졸업식 날짜, K열: 요청 사항, L열: 제출 시간
         const schoolName = row[5] || "";
         const address = row[6] || "";
+        const email = row[4] || "";
+        const requestContent = row[10] || "";
         const longitude = parseFloat(row[7]) || 0;
         const latitude = parseFloat(row[8]) || 0;
 
@@ -97,6 +101,8 @@ export async function GET() {
           id: index + 1,
           schoolName,
           address,
+          email,
+          requestContent,
           coordinates: {
             longitude,
             latitude,
