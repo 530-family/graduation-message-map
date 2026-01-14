@@ -23,14 +23,13 @@ interface SchoolData {
   id: string;  // 시트의 고유 ID 사용
   schoolName: string;
   address: string;
-  email: string;
-  requestContent: string;
   coordinates: {
     longitude: number;
     latitude: number;
   };
   videoStatus: VideoStatus;  // enum 타입 사용
   videoUrl: string;
+  // email, requestContent는 브라우저로 전송하지 않음 (개인정보 보호)
 }
 
 interface UpdateStatusRequest {
@@ -126,8 +125,7 @@ export async function GET() {
           id: String(sheetId),
           schoolName,
           address,
-          email,
-          requestContent,
+          // email, requestContent는 브라우저로 전송하지 않음 (개인정보 보호)
           coordinates: {
             longitude,
             latitude,
@@ -138,7 +136,11 @@ export async function GET() {
       })
       .filter((school): school is SchoolData => school !== null);
 
-    return NextResponse.json(schools);
+    return NextResponse.json(schools, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate',
+      },
+    });
   } catch (error) {
     console.error("Coordinates API Error:", error);
 
