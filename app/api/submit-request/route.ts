@@ -47,7 +47,7 @@ function getGoogleAuth() {
   });
 }
 
-// 주소 정규화 함수 (첫 "(" 또는 "/"부터 뒤를 제거)
+// 주소 정규화 함수 (첫 "(" 또는 "/"부터 뒤를 제거하고, 첫 단어를 제외)
 function normalizeAddress(addr: string): string {
   const cleaned = addr || "";
   // "(" 또는 "/" 중 먼저 나오는 것 찾아서 그 앞부분만 사용
@@ -63,10 +63,19 @@ function normalizeAddress(addr: string): string {
     cutIndex = slashIndex;
   }
 
+  let result = cleaned;
   if (cutIndex !== -1) {
-    return cleaned.substring(0, cutIndex).trim();
+    result = cleaned.substring(0, cutIndex).trim();
+  } else {
+    result = cleaned.trim();
   }
-  return cleaned.trim();
+
+  // 띄어쓰기로 구분된 첫 번째 단어 제외 (예: "충북 청주 무슨시" → "청주 무슨시")
+  const parts = result.split(/\s+/);
+  if (parts.length > 1) {
+    return parts.slice(1).join(" ");
+  }
+  return result;
 }
 
 // LocationIQ 지오코딩 API
@@ -164,6 +173,7 @@ export async function POST(request: NextRequest) {
     // 중복 체크
     for (const row of dataRows) {
       const existingEmail = row[4]; // F열: 이메일
+      const existingSchoolName = row[5]; // 학교명
       const existingAddress = row[6]; // G열: 주소
 
       // 이메일 중복 체크
@@ -174,11 +184,11 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // 주소 중복 체크 (정규화된 주소로 비교)
+      // 학교명 + 주소 중복 체크 (정규화된 주소로 비교)
       const existingAddressClean = normalizeAddress(existingAddress || "");
       const currentAddressClean = normalizeAddress(address);
 
-      if (existingAddressClean === currentAddressClean) {
+      if (existingSchoolName === schoolName && existingAddressClean === currentAddressClean) {
         return NextResponse.json(
           { error: "이미 같은 학교가 신청되었어요! 졸업식 날 축사 영상을 기대해 주세요 🎉" },
           { status: 409 }
