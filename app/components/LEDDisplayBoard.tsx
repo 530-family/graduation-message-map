@@ -21,7 +21,8 @@ export default function LEDDisplayBoard() {
       .then((res) => res.json())
       .then((data) => {
         const total = data.length;
-        const sent = data.filter((s: any) => s.videoStatus === "Sent").length;
+        // 전송완료만 카운트, 그 외(대기중/업로드완료/메일작성완료)는 모두 찍는 중
+        const sent = data.filter((s: any) => s.videoStatus === "전송완료").length;
 
         setSchoolCount(total);
         setSentCount(sent);
