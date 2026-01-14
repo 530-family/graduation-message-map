@@ -212,22 +212,30 @@ export async function PATCH(request: Request) {
       );
     }
 
-    // D열(상태)과 M열(videoUrl) 업데이트
-    const updateRange = `${SHEET_NAME}!D${targetRowIndex}:M${targetRowIndex}`;
-    const updateValues = [
-      [
-        body.videoStatus,  // D열: 상태
-        "", "", "", "", "", "", "", // E~L열: 기존 값 유지
-        body.videoUrl || ""  // M열: videoUrl
-      ]
-    ];
+    // D열(상태)과 M열(videoUrl)만 각각 업데이트하여 중간 데이터 보존
+    // 먼저 현재 행 데이터를 가져옴
+    const currentRow = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!A${targetRowIndex}:M${targetRowIndex}`,
+    });
 
+    const rowValues = currentRow.data.values?.[0] || [];
+    if (rowValues.length < 13) {
+      // 행이 충분히 길지 않으면 빈 값으로 채움
+      while (rowValues.length < 13) rowValues.push("");
+    }
+
+    // D열(인덱스 3)과 M열(인덱스 12)만 업데이트
+    rowValues[3] = body.videoStatus;  // D열: 상태
+    rowValues[12] = body.videoUrl || "";  // M열: videoUrl
+
+    // 전체 행 업데이트
     await sheets.spreadsheets.values.update({
       spreadsheetId: SPREADSHEET_ID,
-      range: updateRange,
+      range: `${SHEET_NAME}!A${targetRowIndex}:M${targetRowIndex}`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: updateValues,
+        values: [rowValues],
       },
     });
 
