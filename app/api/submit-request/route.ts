@@ -8,7 +8,7 @@ export const runtime = 'nodejs';
 // Google Sheets 설정
 const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID || "";
 const SHEET_NAME = "requests";
-const KAKAO_REST_API_KEY = process.env.KAKAO_REST_API_KEY || "";
+const LOCATIONIQ_API_KEY = process.env.LOCATIONIQ_API_KEY || "";
 
 interface RequestData {
   email: string;
@@ -47,33 +47,52 @@ function getGoogleAuth() {
   });
 }
 
-// 카카오 지오코딩 API
-async function geocodeAddress(address: string): Promise<{ coordinates: Coordinates; debugInfo: any } | null> {
-  const debugInfo: any = { address, apiKeyExists: !!KAKAO_REST_API_KEY };
+// 주소 정규화 함수 (첫 "(" 또는 "/"부터 뒤를 제거)
+function normalizeAddress(addr: string): string {
+  const cleaned = addr || "";
+  // "(" 또는 "/" 중 먼저 나오는 것 찾아서 그 앞부분만 사용
+  const parenIndex = cleaned.indexOf("(");
+  const slashIndex = cleaned.indexOf("/");
 
-  if (!KAKAO_REST_API_KEY) {
-    debugInfo.error = "KAKAO_REST_API_KEY_MISSING";
+  let cutIndex = -1;
+  if (parenIndex !== -1 && slashIndex !== -1) {
+    cutIndex = Math.min(parenIndex, slashIndex);
+  } else if (parenIndex !== -1) {
+    cutIndex = parenIndex;
+  } else if (slashIndex !== -1) {
+    cutIndex = slashIndex;
+  }
+
+  if (cutIndex !== -1) {
+    return cleaned.substring(0, cutIndex).trim();
+  }
+  return cleaned.trim();
+}
+
+// LocationIQ 지오코딩 API
+async function geocodeAddress(address: string): Promise<{ coordinates: Coordinates; debugInfo: any } | null> {
+  const normalizedAddress = normalizeAddress(address);
+  const debugInfo: any = { originalAddress: address, normalizedAddress, apiKeyExists: !!LOCATIONIQ_API_KEY };
+
+  if (!LOCATIONIQ_API_KEY) {
+    debugInfo.error = "LOCATIONIQ_API_KEY_MISSING";
     return null;
   }
 
   try {
-    const apiUrl = `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(address)}`;
+    const apiUrl = `https://us1.locationiq.com/v1/search?key=${LOCATIONIQ_API_KEY}&q=${encodeURIComponent(normalizedAddress)}&format=json&limit=1`;
 
-    const response = await fetch(apiUrl, {
-      headers: {
-        'Authorization': `KakaoAK ${KAKAO_REST_API_KEY}`,
-      },
-    });
+    const response = await fetch(apiUrl);
 
     const data = await response.json();
 
-    if (data.documents && data.documents.length > 0) {
-      const doc = data.documents[0];
-      if (doc.x && doc.y) {
+    if (Array.isArray(data) && data.length > 0) {
+      const result = data[0];
+      if (result.lat && result.lon) {
         return {
           coordinates: {
-            longitude: parseFloat(doc.x),
-            latitude: parseFloat(doc.y),
+            longitude: parseFloat(result.lon),
+            latitude: parseFloat(result.lat),
           },
           debugInfo,
         };
@@ -83,7 +102,7 @@ async function geocodeAddress(address: string): Promise<{ coordinates: Coordinat
     debugInfo.error = "NO_RESULTS";
     return null;
   } catch (error) {
-    console.error("카카오 API 요청 실패:", error);
+    console.error("LocationIQ API 요청 실패:", error);
     debugInfo.error = String(error);
     return null;
   }
@@ -154,28 +173,6 @@ export async function POST(request: NextRequest) {
           { status: 409 }
         );
       }
-
-      // 주소 정규화 함수 (첫 "(" 또는 "/"부터 뒤를 제거)
-      const normalizeAddress = (addr: string) => {
-        const cleaned = addr || "";
-        // "(" 또는 "/" 중 먼저 나오는 것 찾아서 그 앞부분만 사용
-        const parenIndex = cleaned.indexOf("(");
-        const slashIndex = cleaned.indexOf("/");
-
-        let cutIndex = -1;
-        if (parenIndex !== -1 && slashIndex !== -1) {
-          cutIndex = Math.min(parenIndex, slashIndex);
-        } else if (parenIndex !== -1) {
-          cutIndex = parenIndex;
-        } else if (slashIndex !== -1) {
-          cutIndex = slashIndex;
-        }
-
-        if (cutIndex !== -1) {
-          return cleaned.substring(0, cutIndex).trim();
-        }
-        return cleaned.trim();
-      };
 
       // 주소 중복 체크 (정규화된 주소로 비교)
       const existingAddressClean = normalizeAddress(existingAddress || "");
