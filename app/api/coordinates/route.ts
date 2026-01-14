@@ -30,7 +30,7 @@ interface SchoolData {
     longitude: number;
     latitude: number;
   };
-  videoStatus: string;
+  videoStatus: VideoStatus;  // enum 타입 사용
   videoUrl: string;
 }
 
