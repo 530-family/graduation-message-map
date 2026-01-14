@@ -33,25 +33,20 @@ const fixMarkerIcon = () => {
   });
 };
 
-// Create marker icons for different statuses
-// Orange: for "Sent" status
+// Orange: 전송완료
 const orangeIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
 
-// Grey icon for other statuses
+// Grey: 대기중
 const greyIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png",
+  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
@@ -60,8 +55,9 @@ const greyIcon = new L.Icon({
 
 // Function to get marker icon based on videoStatus
 const getMarkerIcon = (videoStatus?: string) => {
-  if (videoStatus === "Sent") return orangeIcon;
-  return greyIcon; // default for others
+  // 전송완료면 orange, 그 외(대기중/업로드완료/메일작성완료)는 grey
+  if (videoStatus === "전송완료") return orangeIcon;
+  return greyIcon;
 };
 
 // Component to control map programmatically
@@ -156,7 +152,7 @@ export default function KoreaMap({ selectedSchool }: KoreaMapProps) {
             icon={getMarkerIcon(school.videoStatus)}
             ref={(marker) => handleMarkerRef(marker, school)}
             zIndexOffset={
-              selectedSchool?.schoolName === school.schoolName ? 2000 : school.videoStatus === "Sent" ? 1000 : 500
+              selectedSchool?.schoolName === school.schoolName ? 2000 : school.videoStatus === "전송완료" ? 1000 : 500
             }
           >
             <Popup>
