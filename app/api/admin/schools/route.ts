@@ -110,7 +110,7 @@ export async function GET(request: Request) {
     // 시트 데이터 조회
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:M`,
+      range: `${SHEET_NAME}!A1:M2000`,
     });
 
     const rows = response.data.values || [];
@@ -211,7 +211,7 @@ export async function PATCH(request: Request) {
     // 먼저 전체 데이터를 가져와서 해당 ID의 행을 찾음
     const getResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:M`,
+      range: `${SHEET_NAME}!A1:M2000`,
     });
 
     const rows = getResponse.data.values || [];
