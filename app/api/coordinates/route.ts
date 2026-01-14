@@ -4,9 +4,8 @@ import { google } from "googleapis";
 // Vercel 서버리스 함수에서 Node.js runtime 사용
 export const runtime = 'nodejs';
 
-// 캐싱: 5분
+// 캐싱 비활성화: 매번 시트에서 데이터를 가져옴
 export const dynamic = 'force-dynamic';
-export const revalidate = 300;
 
 // Google Sheets 설정
 const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID || "";
@@ -139,11 +138,7 @@ export async function GET() {
       })
       .filter((school): school is SchoolData => school !== null);
 
-    return NextResponse.json(schools, {
-      headers: {
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
-      },
-    });
+    return NextResponse.json(schools);
   } catch (error) {
     console.error("Coordinates API Error:", error);
 
