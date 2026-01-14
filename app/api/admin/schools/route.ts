@@ -40,6 +40,12 @@ interface AdminSchoolData {
   videoUrl: string;
 }
 
+interface UpdateStatusRequest {
+  id: string;
+  status: VideoStatus;
+  videoUrl?: string;
+}
+
 // Google JWT 인증 설정
 function getGoogleAuth() {
   const clientEmail = process.env.GOOGLE_CLIENT_EMAIL || "";
@@ -165,6 +171,113 @@ export async function GET(request: Request) {
 
     return NextResponse.json(
       { error: "데이터 조회 중 알 수 없는 오류가 발생했습니다." },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH: 상태 업데이트 (VideoEditor에서 사용)
+export async function PATCH(request: Request) {
+  try {
+    // API 키 인증
+    if (!authenticate(request)) {
+      return NextResponse.json(
+        { error: "인증 실패: 유효한 API 키가 필요합니다." },
+        { status: 401 }
+      );
+    }
+
+    const body: UpdateStatusRequest = await request.json();
+
+    if (!body.id || !body.status) {
+      return NextResponse.json(
+        { error: "필수 파라미터가 누락되었습니다: id, status" },
+        { status: 400 }
+      );
+    }
+
+    if (!SPREADSHEET_ID) {
+      return NextResponse.json(
+        { error: "서버 설정 오류: SPREADSHEET_ID가 설정되지 않았습니다." },
+        { status: 500 }
+      );
+    }
+
+    // Google Sheets API 연결
+    const auth = getGoogleAuth();
+    await auth.authorize();
+    const sheets = google.sheets({ version: "v4", auth });
+
+    // 먼저 전체 데이터를 가져와서 해당 ID의 행을 찾음
+    const getResponse = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!A:M`,
+    });
+
+    const rows = getResponse.data.values || [];
+    const dataRows = rows.slice(1);
+
+    // ID로 행 찾기 (A열)
+    let targetRowIndex = -1;
+    for (let i = 0; i < dataRows.length; i++) {
+      if (String(dataRows[i][0]) === String(body.id)) {
+        targetRowIndex = i + 2; // +2: 헤더 행(1) + 인덱스 보정
+        break;
+      }
+    }
+
+    if (targetRowIndex === -1) {
+      return NextResponse.json(
+        { error: `ID를 찾을 수 없습니다: ${body.id}` },
+        { status: 404 }
+      );
+    }
+
+    // D열(상태)과 M열(videoUrl)만 업데이트하여 중간 데이터 보존
+    // 먼저 현재 행 데이터를 가져옴
+    const currentRow = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!A${targetRowIndex}:M${targetRowIndex}`,
+    });
+
+    const rowValues = currentRow.data.values?.[0] || [];
+    if (rowValues.length < 13) {
+      // 행이 충분히 길지 않으면 빈 값으로 채움
+      while (rowValues.length < 13) rowValues.push("");
+    }
+
+    // D열(인덱스 3)과 M열(인덱스 12)만 업데이트
+    rowValues[3] = body.status;  // D열: 상태
+    rowValues[12] = body.videoUrl || "";  // M열: videoUrl
+
+    // 전체 행 업데이트
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!A${targetRowIndex}:M${targetRowIndex}`,
+      valueInputOption: "USER_ENTERED",
+      requestBody: {
+        values: [rowValues],
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      id: body.id,
+      status: body.status,
+      videoUrl: body.videoUrl || "",
+    });
+  } catch (error) {
+    console.error("Update Status API Error:", error);
+
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: `상태 업데이트 중 오류가 발생했습니다: ${error.message}` },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: "상태 업데이트 중 알 수 없는 오류가 발생했습니다." },
       { status: 500 }
     );
   }
